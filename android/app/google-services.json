@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "745452549032",
+    "project_id": "anyrent-440f0",
+    "storage_bucket": "anyrent-440f0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:745452549032:android:b7842b83ad8c550270639d",
+        "android_client_info": {
+          "package_name": "anylinker.any_rent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "745452549032-6ucrq6h0v7mdm9s1dcdaf8fov6gn8kpg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "anylinker.any_rent",
+            "certificate_hash": "bd72735a8aaab04f29ccba91a936af2d8f1f122f"
+          }
+        },
+        {
+          "client_id": "745452549032-stev2ihqlf9dtpub6bjg9kh0o6ioqsak.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBU4945pgtXJNlG-dglXiioKpoBbmCELz0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "745452549032-stev2ihqlf9dtpub6bjg9kh0o6ioqsak.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
