@@ -80,74 +80,80 @@ class _MyPageHeaderState extends State<MyPageHeader> {
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            fit: BoxFit.fill,
-                            image: NetworkImage(
-                                '$url/api/mypage/images?recieveToken=$prfSeq',
-                            )
-                          ),
-                          border: Border.all(
-                            color: Colors.yellow.withOpacity(0.8),
-                            width: 5
-                          )
-                        ),
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                                fit: BoxFit.fill,
+                                image: (prfSeq == null)
+                                    ? //    Image.asset() 또는 Image.file(file) 검색하여 대체 예정
+                                    NetworkImage(
+                                        'https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F24283C3858F778CA2EFABE',
+                                      )
+                                    : NetworkImage(
+                                        '$url/api/mypage/images?recieveToken=$prfSeq',
+                                      )
+                                // image: NetworkImage(
+                                //     '$url/api/mypage/images?recieveToken=$prfSeq',
+                                // )
+                                ),
+                            border: Border.all(
+                                color: Colors.yellow.withOpacity(0.8),
+                                width: 5)),
                         width: 120,
                         height: 150,
-                        // child:  Image.network(url , key: ValueKey(url),),//이미지 널 체크 여부
                         // child: (prfSeq == null)
-                            // ? Icon(
-                            //     Icons.add_box_outlined,
-                            //     size: defaultSize * 8,
-                            //   )
-                            // : Image.network(
-                            //     '$url/api/mypage/images?recieveToken=$prfSeq',
-                            //     loadingBuilder: (BuildContext context, Widget child,
-                            //         ImageChunkEvent loadingProgress) {
-                            //       if (loadingProgress == null) return child;
-                            //       return Center(
-                            //         child: CircularProgressIndicator(
-                            //           value: loadingProgress.expectedTotalBytes !=
-                            //                   null
-                            //               ? loadingProgress.cumulativeBytesLoaded /
-                            //                   loadingProgress.expectedTotalBytes
-                            //               : null,
-                            //         ),
-                            //       );
-                            //     },
-                            //   ), //이미지 널 체크 여부
+                        //     ? Icon(
+                        //         Icons.add_box_outlined,
+                        //         size: defaultSize * 8,
+                        //       )
+                        //     : Image.network(
+                        //         '$url/api/mypage/images?recieveToken=$prfSeq',
+                        //         loadingBuilder: (BuildContext context, Widget child,
+                        //             ImageChunkEvent loadingProgress) {
+                        //           if (loadingProgress == null) return child;
+                        //           return Center(
+                        //             child: CircularProgressIndicator(
+                        //               value: loadingProgress.expectedTotalBytes !=
+                        //                       null
+                        //                   ? loadingProgress.cumulativeBytesLoaded /
+                        //                       loadingProgress.expectedTotalBytes
+                        //                   : null,
+                        //             ),
+                        //           );
+                        //         },
+                        //       ), //이미지 널 체크 여부
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Container(
-                            padding: EdgeInsets.symmetric(horizontal: 15,vertical: 2.5),
-                            margin: EdgeInsets.symmetric(vertical: 10,horizontal: 0),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 2.5),
+                            margin: EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 0),
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10)
-                            ),
+                                borderRadius: BorderRadius.circular(10)),
                             child: Text(
                               (nicNm ?? ''),
                               style: TextStyle(
                                   fontSize: defaultSize * 2,
                                   fontWeight: FontWeight.bold,
-                              color: Colors.white),
+                                  color: Colors.white),
                             ),
-
-                            ),
-
+                          ),
                           Container(
-                              margin: EdgeInsets.symmetric(vertical: 10,horizontal: 0),
-                            padding: EdgeInsets.symmetric(horizontal: 15,vertical: 2.1),
-                            child: Text((mbrId ?? ''),
+                            margin: EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 0),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 2.1),
+                            child: Text(
+                              (mbrId ?? ''),
                               style: TextStyle(
                                   fontSize: defaultSize * 2,
                                   fontWeight: FontWeight.bold,
-                              color: Colors.white),
+                                  color: Colors.white),
                             ),
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10)
-                            ),
+                                borderRadius: BorderRadius.circular(10)),
                           ),
                         ],
                       ),
@@ -155,13 +161,14 @@ class _MyPageHeaderState extends State<MyPageHeader> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            padding: EdgeInsets.symmetric(vertical: 2.5,horizontal: 8),
+                            padding: EdgeInsets.symmetric(
+                                vertical: 2.5, horizontal: 8),
                             child: Text(
-                              ('평점'),
+                              ('평점.'),
                               style: TextStyle(
                                   fontSize: defaultSize * 2,
-                                  fontWeight: FontWeight.bold
-                              ,color: Colors.white),
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
                             ),
                           ),
                           Container(
@@ -190,10 +197,14 @@ class _MyPageHeaderState extends State<MyPageHeader> {
                       child: Text(
                         '프로필 보기',
                         style: TextStyle(
-                            fontSize: defaultSize * 1.8, color: Colors.green,fontWeight: FontWeight.bold),
+                            fontSize: defaultSize * 1.8,
+                            color: Colors.green,
+                            fontWeight: FontWeight.bold),
                       ),
-                      onPressed: () => Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => MyPageProfile()))),
+                      onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MyPageProfile()))),
                 )
               ],
             ),
