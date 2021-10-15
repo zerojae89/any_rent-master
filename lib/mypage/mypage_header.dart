@@ -80,21 +80,14 @@ class _MyPageHeaderState extends State<MyPageHeader> {
                     children: [
                       Container(
                         decoration: BoxDecoration(
+                            color: Colors.white,
                             shape: BoxShape.circle,
                             image: DecorationImage(
                                 fit: BoxFit.fill,
                                 image: (prfSeq == null)
-                                    ? //    Image.asset() 또는 Image.file(file) 검색하여 대체 예정
-                                    NetworkImage(
-                                        'https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F24283C3858F778CA2EFABE',
-                                      )
+                                    ? AssetImage('assets/noimage.jpg')
                                     : NetworkImage(
-                                        '$url/api/mypage/images?recieveToken=$prfSeq',
-                                      )
-                                // image: NetworkImage(
-                                //     '$url/api/mypage/images?recieveToken=$prfSeq',
-                                // )
-                                ),
+                                        '$url/api/mypage/images?recieveToken=$prfSeq')), //.
                             border: Border.all(
                                 color: Colors.yellow.withOpacity(0.8),
                                 width: 5)),
