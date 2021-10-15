@@ -68,11 +68,16 @@ class _MyPageState extends State<MyPage> {
            body : SingleChildScrollView(
              child: Column(
                children: [
-                 MyPageHeader(),
-                 Divider(
-                   height: defaultSize * 1.5,
-                   thickness: defaultSize * 0.5,
-                 ),
+                 Container(
+                     decoration: BoxDecoration(
+                       color: Colors.lightGreen,
+                       borderRadius: BorderRadius.only(
+                         bottomLeft: Radius.circular(140),
+                         bottomRight: Radius.circular(140)
+                       )
+                         
+                     ),
+                     child: MyPageHeader()),
                  MyPageMenuItem(
                    icon: Icon(Icons.location_on_outlined, color: Colors.black,),
                    title: '내동네',

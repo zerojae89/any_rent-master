@@ -97,7 +97,7 @@ PODS:
     - GoogleUtilities/Logger
   - "location_permissions (3.0.0+1)":
     - Flutter
-  - multi_image_picker (4.7.14):
+  - multi_image_picker (4.7.15):
     - BSImagePicker (~> 2.10.3)
     - Flutter
   - nanopb (1.30905.0):
@@ -197,7 +197,7 @@ SPEC CHECKSUMS:
   GoogleDataTransportCCTSupport: d70a561f7d236af529fee598835caad5e25f6d3d
   GoogleUtilities: 39530bc0ad980530298e9c4af8549e991fd033b1
   location_permissions: 7e0f9aa0f60deb8ff93ddf0e2a164c7e8197bc94
-  multi_image_picker: c068931d08240565e0615fb01437d16984909183
+  multi_image_picker: 58577ab96d99b35c82d626db7d81906d14c2b667
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   permission_handler: 8278954f2382902f63f00dd8828769c0bd6d511b
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6

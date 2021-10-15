@@ -327,7 +327,6 @@ class _RegisterState extends State<Register> {
                 // Divider(height: 15, thickness: 4,),
                 Divider(),
                 Container(
-
                   padding: EdgeInsets.fromLTRB(defaultSize * 2, defaultSize * 3, defaultSize, defaultSize * 2),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -337,24 +336,29 @@ class _RegisterState extends State<Register> {
                         children: [
                           Expanded(
                             flex: 4,
-
-                              child: DropdownButton(
-                                items: registerItems.auctionMethod.map((item) {
-                                  return  DropdownMenuItem(
+                              child: Container(
+                                padding: EdgeInsets.only(left: defaultSize, right: defaultSize),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10.0), // 동그라미 모양
+                                    color: Colors.lightGreen
+                                ),
+                                child:    DropdownButton(
+                                  items: registerItems.auctionMethod.map((item) {
+                                    return  DropdownMenuItem(
                                       child: Padding(
                                         padding: EdgeInsets.symmetric(horizontal: defaultSize),
                                         child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.7,color: Colors.black,) ), ),
                                       value: item['id'],
-                                  );
-                                }).toList(),
-                                underline: Container(),
-                                onChanged: (value) { setState(() { aucMtd = value; }); print('aucMtd ======== $aucMtd'); },
-                                hint:  Text(registerItems.auctionMethod[0]["name"],style: TextStyle(fontSize: defaultSize * 1.7,color: Colors.white)),
-                                dropdownColor: Colors.lightGreen,
-                                value:aucMtd,
-                                iconEnabledColor: Colors.amber, //화살표 색
+                                    );
+                                  }).toList(),
+                                  underline: Container(),
+                                  onChanged: (value) { setState(() { aucMtd = value; }); print('aucMtd ======== $aucMtd'); },
+                                  hint:  Text(registerItems.auctionMethod[0]["name"],style: TextStyle(fontSize: defaultSize * 1.7,color: Colors.white)),
+                                  dropdownColor: Colors.lightGreen,
+                                  value:aucMtd,
+                                  iconEnabledColor: Colors.amber, //화살표 색
+                                ),
                               ),
-
                           ),
                           Expanded( flex: 4,  child: (aucMtd == '2') ?  InkWell( child: Text(auctionTimeString ?? '터치 후 압찰시간 선택', style: TextStyle(fontSize: defaultSize * 1.7)),  onTap: () => setAuctionTime(), )  :  Container(), ),
                         ],

@@ -65,16 +65,14 @@ class _MyPageHeaderState extends State<MyPageHeader> {
   Widget build(BuildContext context) {
     double defaultSize = SizeConfig.defaultSize;
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 0),
       height: defaultSize * 33,
       child: Container(
-        color: Colors.lightGreen,
         child: SingleChildScrollView(
           child: Center(
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.only(top:12.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -178,9 +176,8 @@ class _MyPageHeaderState extends State<MyPageHeader> {
                     ],
                   ),
                 ),
-                Padding(padding: EdgeInsets.only()),
                 Container(
-                  margin: EdgeInsets.symmetric(vertical: 5),
+                  margin: EdgeInsets.symmetric(vertical: 3),
                   width: defaultSize * 15,
                   height: defaultSize * 4,
                   decoration: BoxDecoration(
