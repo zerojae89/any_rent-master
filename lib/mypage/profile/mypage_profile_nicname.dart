@@ -50,16 +50,24 @@ class _MyPageProfileNicNameState extends State<MyPageProfileNicName> {
         children: [
           SafeArea(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: defaultSize * widget.horizontal, vertical: defaultSize * widget.vertical),
+              padding: EdgeInsets.only(top: 15,left: 20),
               child: Row(
                 children: [
                   widget.icon,
                   SizedBox(width: defaultSize * 2,),
-                  Text( '닉네임 : ',  style: TextStyle( fontSize: defaultSize * 1.8, ),),
-                  SizedBox(width: defaultSize * 2,),
-                  Text( (nicNm ?? '' ),  style: TextStyle( fontSize: defaultSize * 1.6, ), ),
-                  Spacer(),
-                  FlatButton(onPressed: () => nicNameDialog(),  child:  Text( '변경',  style: TextStyle( fontSize: defaultSize * 1.5, ), ),),
+                  Text( '닉네임 : ',  style: TextStyle( fontSize: 19,fontWeight: FontWeight.bold ),),
+                  SizedBox(width: defaultSize * 4,),
+                  Container(width:110,child: Text( (nicNm ?? '' ),  style: TextStyle( fontSize: 19,fontWeight: FontWeight.bold,color: Colors.lightGreen[700]), )),
+                  // Spacer(),
+                  Container(
+                      height: 40,
+                      width: 80,
+                      decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: Colors.lightGreen
+                  ),
+                      child:
+                  FlatButton(onPressed: () => nicNameDialog(),  child:  Text( '변경',  style: TextStyle( color: Colors.white,fontSize: defaultSize * 1.5, ), ),)),
                 ],
               ),
             ),

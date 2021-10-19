@@ -332,22 +332,23 @@ class _RegisterState extends State<Register> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('입찰방식', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),
+                      SizedBox(height: 20,),
                       Row(
                         children: [
                           Expanded(
-                            flex: 4,
-                              child: Container(
+                            flex: 0,
+                              child:Container(
                                 padding: EdgeInsets.only(left: defaultSize, right: defaultSize),
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10.0), // 동그라미 모양
-                                    color: Colors.lightGreen
+                                    color: Colors.lightGreen,
                                 ),
                                 child:    DropdownButton(
                                   items: registerItems.auctionMethod.map((item) {
                                     return  DropdownMenuItem(
                                       child: Padding(
                                         padding: EdgeInsets.symmetric(horizontal: defaultSize),
-                                        child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.7,color: Colors.black,) ), ),
+                                        child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.7,color: Colors.white,) ), ),
                                       value: item['id'],
                                     );
                                   }).toList(),
@@ -359,8 +360,24 @@ class _RegisterState extends State<Register> {
                                   iconEnabledColor: Colors.amber, //화살표 색
                                 ),
                               ),
+                          ),SizedBox(width: 50,),
+                          Container(padding: EdgeInsets.only(left: defaultSize,top: defaultSize),
+                              width: 160,
+                              height: 40,
+                          //     decoration: BoxDecoration(
+                          //       borderRadius: BorderRadius.circular(40),
+                          //   border: Border.all(
+                          //     color: Colors.purple,
+                          //     style: BorderStyle.solid,
+                          //   )
+                          // ),
+                              child:
+                          Expanded(flex: 4,  child: (aucMtd == '2')
+                              ?  InkWell( child: Text(auctionTimeString
+                              ?? '터치 후 압찰시간 선택', style: TextStyle(fontSize: defaultSize * 1.7,fontWeight: FontWeight.bold,color: Colors.lightGreen[700])),
+                            onTap: () => setAuctionTime(), )  :  Container(),
+                          )
                           ),
-                          Expanded( flex: 4,  child: (aucMtd == '2') ?  InkWell( child: Text(auctionTimeString ?? '터치 후 압찰시간 선택', style: TextStyle(fontSize: defaultSize * 1.7)),  onTap: () => setAuctionTime(), )  :  Container(), ),
                         ],
                       ),
                     ],
@@ -618,51 +635,51 @@ class _RegisterState extends State<Register> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   RaisedButton(onPressed: () {Navigator.pop(context, false); setState(() { auctionTime = 1260; auctionTimeString ='20분';});},
-                    child: Text('20분', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.amber),),
-                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.purple) ),color: Colors.white,),
+                    child: Text('20분', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.lightGreen[700]),),
+                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.amber) ),color: Colors.white,),
                   RaisedButton(onPressed: () {Navigator.pop(context, false); setState(() { auctionTime = 1860; auctionTimeString ='30분';});},
-                    child: Text('30분', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.amber),),
-                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.purple) ),color: Colors.white,),
+                    child: Text('30분', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.lightGreen[700]),),
+                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.amber) ),color: Colors.white,),
                   RaisedButton(onPressed: () {Navigator.pop(context, false); setState(() { auctionTime = 2460; auctionTimeString ='40분';});},
-                    child: Text('40분', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.amber),),
-                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.purple) ),color: Colors.white,),
+                    child: Text('40분', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.lightGreen[700]),),
+                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.amber) ),color: Colors.white,),
                   RaisedButton(onPressed: () {Navigator.pop(context, false); setState(() { auctionTime = 3060; auctionTimeString ='50분';});},
-                    child: Text('50분', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.amber),),
-                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0), side: BorderSide(color: Colors.purple) ),color: Colors.white,),
+                    child: Text('50분', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.lightGreen[700]),),
+                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0), side: BorderSide(color: Colors.amber) ),color: Colors.white,),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   RaisedButton(onPressed: () {Navigator.pop(context, false); setState(() { auctionTime = 3660; auctionTimeString ='1시간';});},
-                    child: Text('1시간', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.amber),),
-                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.purple) ),color: Colors.white,),
+                    child: Text('1시간', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.lightGreen[700]),),
+                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.amber) ),color: Colors.white,),
                   RaisedButton(onPressed: () {Navigator.pop(context, false); setState(() { auctionTime = 7260; auctionTimeString ='2시간';});},
-                    child: Text('2시간', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.amber),),
-                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.purple) ),color: Colors.white,),
+                    child: Text('2시간', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.lightGreen[700]),),
+                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.amber) ),color: Colors.white,),
                   RaisedButton(onPressed: () {Navigator.pop(context, false); setState(() { auctionTime = 10860; auctionTimeString ='3시간';});},
-                    child: Text('3시간', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.amber),),
-                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.purple) ),color: Colors.white,),
+                    child: Text('3시간', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.lightGreen[700]),),
+                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.amber) ),color: Colors.white,),
                   RaisedButton(onPressed: () {Navigator.pop(context, false); setState(() { auctionTime = 21660; auctionTimeString ='4시간';});},
-                    child: Text('6시간', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.amber),),
-                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.purple) ),color: Colors.white,),
+                    child: Text('6시간', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.lightGreen[700]),),
+                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.amber) ),color: Colors.white,),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   RaisedButton(onPressed: () {Navigator.pop(context, false); setState(() { auctionTime = 86460; auctionTimeString ='1일';});},
-                    child: Text('1일', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.amber),),
-                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.purple) ),color: Colors.white,),
+                    child: Text('1일', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.lightGreen[700]),),
+                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.amber) ),color: Colors.white,),
                   RaisedButton(onPressed: () {Navigator.pop(context, false); setState(() { auctionTime = 172860; auctionTimeString ='2일';});},
-                    child: Text('2일', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.amber),),
-                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.purple) ),color: Colors.white,),
+                    child: Text('2일', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.lightGreen[700]),),
+                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.amber) ),color: Colors.white,),
                   RaisedButton(onPressed: () {Navigator.pop(context, false); setState(() { auctionTime = 259260; auctionTimeString ='3일';});},
-                    child: Text('3일', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.amber),),
-                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.purple) ),color: Colors.white,),
+                    child: Text('3일', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.lightGreen[700]),),
+                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.amber) ),color: Colors.white,),
                   RaisedButton(onPressed: () {Navigator.pop(context, false); setState(() { auctionTime = 345660; auctionTimeString ='5일';});},
-                    child: Text('5일', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.amber),),
-                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.purple) ),color: Colors.white,),
+                    child: Text('5일', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.lightGreen[700]),),
+                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.amber) ),color: Colors.white,),
                 ],
               ),
             ],

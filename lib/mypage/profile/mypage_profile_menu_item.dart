@@ -22,7 +22,7 @@ class MypageProfileMenuItem extends StatelessWidget{
       children: [
         SafeArea(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: defaultSize * horizontal, vertical: 0),
+            padding: EdgeInsets.symmetric(horizontal: defaultSize * horizontal, vertical: 10),
             child: Row(
               children: [
                 icon,

@@ -7,6 +7,7 @@ import 'package:any_rent/settings/size_config.dart';
 import 'mypage_server.dart';
 import 'profile/mypage_profile.dart';
 
+
 // const url = 'http://211.253.20.112'; //개발서버
 // const url = "http://192.168.1.3:4001"; //재승 내부 ip
 const url = UrlConfig.url;
@@ -141,7 +142,7 @@ class _MyPageHeaderState extends State<MyPageHeader> {
                               style: TextStyle(
                                   fontSize: defaultSize * 2,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.white),
+                                  color: Colors.yellowAccent),
                             ),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10)),
@@ -177,7 +178,7 @@ class _MyPageHeaderState extends State<MyPageHeader> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.symmetric(vertical: 3),
+                  margin: EdgeInsets.symmetric(vertical: 12),
                   width: defaultSize * 15,
                   height: defaultSize * 4,
                   decoration: BoxDecoration(
