@@ -90,29 +90,8 @@ class _MyPageHeaderState extends State<MyPageHeader> {
                             border: Border.all(
                                 color: Colors.yellow.withOpacity(0.8),
                                 width: 5)),
-                        width: 120,
-                        height: 150,
-                        // child: (prfSeq == null)
-                        //     ? Icon(
-                        //         Icons.add_box_outlined,
-                        //         size: defaultSize * 8,
-                        //       )
-                        //     : Image.network(
-                        //         '$url/api/mypage/images?recieveToken=$prfSeq',
-                        //         loadingBuilder: (BuildContext context, Widget child,
-                        //             ImageChunkEvent loadingProgress) {
-                        //           if (loadingProgress == null) return child;
-                        //           return Center(
-                        //             child: CircularProgressIndicator(
-                        //               value: loadingProgress.expectedTotalBytes !=
-                        //                       null
-                        //                   ? loadingProgress.cumulativeBytesLoaded /
-                        //                       loadingProgress.expectedTotalBytes
-                        //                   : null,
-                        //             ),
-                        //           );
-                        //         },
-                        //       ), //이미지 널 체크 여부
+                        width: defaultSize * 15,
+                        height: defaultSize * 15
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -194,7 +173,8 @@ class _MyPageHeaderState extends State<MyPageHeader> {
                       ),
                       onPressed: () => Navigator.push(
                           context,
-                          MaterialPageRoute(
+                          MaterialPageRoute
+                            (
                               builder: (context) => MyPageProfile()))),
                 )
               ],

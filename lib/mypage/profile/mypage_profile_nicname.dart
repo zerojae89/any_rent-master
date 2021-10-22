@@ -50,7 +50,7 @@ class _MyPageProfileNicNameState extends State<MyPageProfileNicName> {
         children: [
           SafeArea(
             child: Padding(
-              padding: EdgeInsets.only(top: 15,left: 20),
+              padding: EdgeInsets.only(top: 40,left: 20),
               child: Row(
                 children: [
                   widget.icon,
@@ -64,7 +64,7 @@ class _MyPageProfileNicNameState extends State<MyPageProfileNicName> {
                       width: 80,
                       decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
-                    color: Colors.lightGreen
+                    color: Colors.lightGreen,
                   ),
                       child:
                   FlatButton(onPressed: () => nicNameDialog(),  child:  Text( '변경',  style: TextStyle( color: Colors.white,fontSize: defaultSize * 1.5, ), ),)),
@@ -72,7 +72,7 @@ class _MyPageProfileNicNameState extends State<MyPageProfileNicName> {
               ),
             ),
           ),
-          Divider()
+          // Divider()
         ],
       ),
     );

@@ -146,6 +146,13 @@ class _MyPageProfileHeaderState extends State<MyPageProfileHeader> {
       key: globalKey,
       onTap: () => profileDialog(),
       child: Container(
+        decoration: BoxDecoration(
+          boxShadow: [BoxShadow(
+            color: Colors.lightGreen.withOpacity(0.4),
+            blurRadius: 5.0,
+            spreadRadius: 3.0
+          )]
+        ),
         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
         child: Column(
           children: [
@@ -157,10 +164,24 @@ class _MyPageProfileHeaderState extends State<MyPageProfileHeader> {
                   Container(
                     width: defaultSize * 15,
                     height: defaultSize * 15,
-                    child: (images.length > 0) ?
-                    SizedBox( height: defaultSize * 5,  child: buildGridView())
-                    : (prfSeq == null) ?  Icon(Icons.account_box_rounded, size: defaultSize * 8,) :  Image.network('$url/api/mypage/images?recieveToken=$prfSeq'),//이미지 널 체크 여부
-                  ),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        fit: BoxFit.fill,
+                          image: (prfSeq == null)
+                            ? AssetImage('assets/noimage.jpg')
+                              : NetworkImage('$url/api/mypage/images?recieveToken=$prfSeq')
+                      ),
+                      border: Border.all(
+                        color: Colors.amberAccent.withOpacity(0.8),
+                        width: 5
+                      )
+                      )
+                    ),
+                    // child: (images.length > 0) ?
+                    SizedBox( height: defaultSize * 5)
+                    // : (prfSeq == null) ?  Icon(Icons.circle, size: defaultSize * 8,) :  Image.network('$url/api/mypage/images?recieveToken=$prfSeq'),//이미지 널 체크 여부
+            // ),
                 ],
               ),
             ),

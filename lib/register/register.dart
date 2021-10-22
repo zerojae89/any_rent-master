@@ -7,7 +7,7 @@ import 'package:intl/intl.dart';
 
 import 'package:any_rent/mypage/detail/mytown/mypage_mytown.dart';
 import 'package:flutter/material.dart';
-// import 'package:date_time_picker/date_time_picker.dart';
+import 'package:date_time_picker/date_time_picker.dart';
 import '../main_home.dart';
 import 'register_items.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
@@ -364,13 +364,6 @@ class _RegisterState extends State<Register> {
                           Container(padding: EdgeInsets.only(left: defaultSize,top: defaultSize),
                               width: 160,
                               height: 40,
-                          //     decoration: BoxDecoration(
-                          //       borderRadius: BorderRadius.circular(40),
-                          //   border: Border.all(
-                          //     color: Colors.purple,
-                          //     style: BorderStyle.solid,
-                          //   )
-                          // ),
                               child:
                           Expanded(flex: 4,  child: (aucMtd == '2')
                               ?  InkWell( child: Text(auctionTimeString
@@ -446,18 +439,15 @@ class _RegisterState extends State<Register> {
                             child: Padding( padding: EdgeInsets.only(right: defaultSize * 2),
                               child: InkWell(
                                 onTap: (){
-                                  // DateTimePicker(
-                                  //   initialValue: '',
-                                  //   firstDate: DateTime(2000),
-                                  //   lastDate: DateTime(2100),
-                                  //   dateLabelText: 'Date',
-                                  //   onChanged: (val) => print(val),
-                                  //   validator: (val) {
-                                  //     print(val);
-                                  //     return null;
-                                  //     },
-                                  //   onSaved: (val)=>print(val),
-                                  // );
+                                  print('시작날짜');
+                                  // DateTimePicker.showDateTimePicker(context,
+                                  //     showTitleActions: true,
+                                  //     minTime: DateTime.now().add(Duration(seconds: auctionTime)),
+                                  //     onConfirm: (date) {
+                                  //       print('confirm $date');
+                                  //       setState(() { jobStDtm = date.toString().substring(0,16); start =date; });
+                                  //       print('jobStDtm ======== $jobStDtm');
+                                  //     }, locale: LocaleType.ko);
                                 },
                                 child: Text( jobStDtm ?? '시작날짜를 선택하세요.', textAlign: TextAlign.right),
                               ),
