@@ -66,7 +66,7 @@ class _MyPageHeaderState extends State<MyPageHeader> {
   Widget build(BuildContext context) {
     double defaultSize = SizeConfig.defaultSize;
     return Container(
-      height: defaultSize * 33,
+      height: defaultSize * 35,
       child: Container(
         child: SingleChildScrollView(
           child: Center(
@@ -91,16 +91,14 @@ class _MyPageHeaderState extends State<MyPageHeader> {
                                 color: Colors.yellow.withOpacity(0.8),
                                 width: 5)),
                         width: defaultSize * 15,
-                        height: defaultSize * 15
+                        height: defaultSize * 18
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Container(
                             padding: EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 2.5),
-                            margin: EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 0),
+                                horizontal: 15, vertical: 0),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10)),
                             child: Text(
@@ -132,6 +130,7 @@ class _MyPageHeaderState extends State<MyPageHeader> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
+                            margin: EdgeInsets.only(bottom: 8),
                             padding: EdgeInsets.symmetric(
                                 vertical: 2.5, horizontal: 8),
                             child: Text(
@@ -143,6 +142,7 @@ class _MyPageHeaderState extends State<MyPageHeader> {
                             ),
                           ),
                           Container(
+                            margin: EdgeInsets.only(bottom: 12,left: 10),
                             child: Text(
                               (mbrGrd ?? ''),
                               style: TextStyle(
@@ -157,7 +157,7 @@ class _MyPageHeaderState extends State<MyPageHeader> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.symmetric(vertical: 12),
+                  margin: EdgeInsets.symmetric(vertical: 8),
                   width: defaultSize * 15,
                   height: defaultSize * 4,
                   decoration: BoxDecoration(

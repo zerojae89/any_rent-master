@@ -163,7 +163,7 @@ class _MyPageProfileHeaderState extends State<MyPageProfileHeader> {
                 children: [
                   Container(
                     width: defaultSize * 15,
-                    height: defaultSize * 15,
+                    height: defaultSize * 18,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(

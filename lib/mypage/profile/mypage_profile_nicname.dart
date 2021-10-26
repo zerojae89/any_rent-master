@@ -102,8 +102,8 @@ class _MyPageProfileNicNameState extends State<MyPageProfileNicName> {
                 },
               ),
             actions: <Widget>[
-              FlatButton(onPressed: () => Navigator.pop(context, false), child: Text('취소', style: TextStyle(color: Colors.purple),)),
-              FlatButton(onPressed: validateAndSave , child: Text('변경', style: TextStyle(color: Colors.purple),)),
+              FlatButton(onPressed: () => Navigator.pop(context, false), child: Text('취소', style: TextStyle(color: Colors.lightGreen),)),
+              FlatButton(onPressed: validateAndSave , child: Text('변경', style: TextStyle(color: Colors.lightGreen),)),
             ],
           );
         }

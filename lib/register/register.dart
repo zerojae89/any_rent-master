@@ -255,351 +255,354 @@ class _RegisterState extends State<Register> {
         children: [
           Form(
             key: formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // CircularProgressIndicator(),
-                Container(
-                  padding: EdgeInsets.fromLTRB(defaultSize * 2, defaultSize * 3, defaultSize, defaultSize * 2),
-                  child: Text('카테고리', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),
-                ),
-                Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.only(left: defaultSize, right: defaultSize),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.0), // 동그라미 모양
-                            color: Colors.lightGreen
-                        ),
-                        child: (tp1List != null) ?
-                        DropdownButton(
-                          isExpanded: false,
-                          items: tp1List.map((item) {
-                            return  DropdownMenuItem(
-                                child: Padding( padding: EdgeInsets.symmetric(horizontal: defaultSize), child: Text( item['tp1Nm'], style: TextStyle(color: Colors.white,fontSize: defaultSize * 1.6,fontWeight: FontWeight.bold)), ),
-                                value: item['tp1Cd']
-                            );
-                          }).toList(),
-                          underline: Container(),
-                          onChanged: (value) {
-                            setState(() { jobTp1 = value; });
-                            print('jobTp1 ======== $jobTp1');
-                            getTp2();
-                          },
-                          hint:  Text(('카테고리1'),style: TextStyle(color: Colors.lightGreen[100],fontSize: 17)),
-                          dropdownColor: Colors.lightGreen,
-                          value:jobTp1,
-                          iconEnabledColor: Colors.amber,
-                        ) : Padding( padding: EdgeInsets.symmetric(horizontal: 5.0), child: SizedBox( width: defaultSize, height: defaultSize, child: CircularProgressIndicator(), ),),
-                      ),
-                      SizedBox( width: defaultSize * 2, ),
-                      Container(
-                        padding: EdgeInsets.only(left: defaultSize, right: defaultSize),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.0), // 동그라미 모양
-                            color: Colors.lightGreen,
-                        ),
-                        child: DropdownButton(
-                          isExpanded: false,
-                          items: (tp2List != null) ?
-                          tp2List.map((item) {
-                            return  DropdownMenuItem(
-                                child: Padding( padding: EdgeInsets.symmetric(horizontal: defaultSize),  child: Text( item['tp2Nm'],  style: TextStyle(color: Colors.white,fontSize: defaultSize * 1.6,fontWeight: FontWeight.bold) ), ),
-                                value: item['tp2Cd']
-                            );
-                          }).toList() : [],
-                          underline: Container(),
-                          onChanged: (value) {
-                            setState(() { jobTp2 = value; });
-                            print('jobTp2 ======== $jobTp2');
-                          },
-                          hint:  Text(('카테고리2'),style: TextStyle(color: Colors.lightGreen[100],fontSize: defaultSize * 1.7)),
-                          dropdownColor: Colors.lightGreen,
-                          value:jobTp2,
-                          iconEnabledColor: Colors.amber,
-                        ),
-                      ),
-                    ],
+            child: Container(
+              color: Colors.lightGreen[50].withOpacity(0.8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // CircularProgressIndicator(),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(defaultSize * 2, defaultSize * 3, defaultSize, defaultSize * 2),
+                    child: Text('카테고리', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),
                   ),
-                ),
-                // Divider(height: 15, thickness: 4,),
-                Divider(),
-                Container(
-                  padding: EdgeInsets.fromLTRB(defaultSize * 2, defaultSize * 3, defaultSize, defaultSize * 2),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('입찰방식', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),
-                      SizedBox(height: 20,),
-                      Row(
-                        children: [
-                          Expanded(
-                            flex: 0,
-                              child:Container(
-                                padding: EdgeInsets.only(left: defaultSize, right: defaultSize),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10.0), // 동그라미 모양
-                                    color: Colors.lightGreen,
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.only(left: defaultSize, right: defaultSize),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0), // 동그라미 모양
+                              color: Colors.lightGreen
+                          ),
+                          child: (tp1List != null) ?
+                          DropdownButton(
+                            isExpanded: false,
+                            items: tp1List.map((item) {
+                              return  DropdownMenuItem(
+                                  child: Padding( padding: EdgeInsets.symmetric(horizontal: defaultSize), child: Text( item['tp1Nm'], style: TextStyle(color: Colors.white,fontSize: defaultSize * 1.6,fontWeight: FontWeight.bold)), ),
+                                  value: item['tp1Cd']
+                              );
+                            }).toList(),
+                            underline: Container(),
+                            onChanged: (value) {
+                              setState(() { jobTp1 = value; });
+                              print('jobTp1 ======== $jobTp1');
+                              getTp2();
+                            },
+                            hint:  Text(('카테고리1'),style: TextStyle(color: Colors.lightGreen[100],fontSize: 17)),
+                            dropdownColor: Colors.lightGreen,
+                            value:jobTp1,
+                            iconEnabledColor: Colors.amber,
+                          ) : Padding( padding: EdgeInsets.symmetric(horizontal: 5.0), child: SizedBox( width: defaultSize, height: defaultSize, child: CircularProgressIndicator(), ),),
+                        ),
+                        SizedBox( width: defaultSize * 2, ),
+                        Container(
+                          padding: EdgeInsets.only(left: defaultSize, right: defaultSize),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0), // 동그라미 모양
+                              color: Colors.lightGreen,
+                          ),
+                          child: DropdownButton(
+                            isExpanded: false,
+                            items: (tp2List != null) ?
+                            tp2List.map((item) {
+                              return  DropdownMenuItem(
+                                  child: Padding( padding: EdgeInsets.symmetric(horizontal: defaultSize),  child: Text( item['tp2Nm'],  style: TextStyle(color: Colors.white,fontSize: defaultSize * 1.6,fontWeight: FontWeight.bold) ), ),
+                                  value: item['tp2Cd']
+                              );
+                            }).toList() : [],
+                            underline: Container(),
+                            onChanged: (value) {
+                              setState(() { jobTp2 = value; });
+                              print('jobTp2 ======== $jobTp2');
+                            },
+                            hint:  Text(('카테고리2'),style: TextStyle(color: Colors.lightGreen[100],fontSize: defaultSize * 1.7)),
+                            dropdownColor: Colors.lightGreen,
+                            value:jobTp2,
+                            iconEnabledColor: Colors.amber,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 30,),
+                  Divider(),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(defaultSize * 2, defaultSize * 3, defaultSize, defaultSize * 2),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('입찰방식', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),
+                        SizedBox(height: 20,),
+                        Row(
+                          children: [
+                            Expanded(
+                              flex: 0,
+                                child:Container(
+                                  padding: EdgeInsets.only(left: defaultSize, right: defaultSize),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10.0), // 동그라미 모양
+                                      color: Colors.lightGreen,
+                                  ),
+                                  child:    DropdownButton(
+                                    items: registerItems.auctionMethod.map((item) {
+                                      return  DropdownMenuItem(
+                                        child: Padding(
+                                          padding: EdgeInsets.symmetric(horizontal: defaultSize),
+                                          child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.7,color: Colors.white,) ), ),
+                                        value: item['id'],
+                                      );
+                                    }).toList(),
+                                    underline: Container(),
+                                    onChanged: (value) { setState(() { aucMtd = value; }); print('aucMtd ======== $aucMtd'); },
+                                    hint:  Text(registerItems.auctionMethod[0]["name"],style: TextStyle(fontSize: defaultSize * 1.7,color: Colors.white)),
+                                    dropdownColor: Colors.lightGreen,
+                                    value:aucMtd,
+                                    iconEnabledColor: Colors.amber, //화살표 색
+                                  ),
                                 ),
-                                child:    DropdownButton(
-                                  items: registerItems.auctionMethod.map((item) {
-                                    return  DropdownMenuItem(
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(horizontal: defaultSize),
-                                        child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.7,color: Colors.white,) ), ),
-                                      value: item['id'],
-                                    );
-                                  }).toList(),
-                                  underline: Container(),
-                                  onChanged: (value) { setState(() { aucMtd = value; }); print('aucMtd ======== $aucMtd'); },
-                                  hint:  Text(registerItems.auctionMethod[0]["name"],style: TextStyle(fontSize: defaultSize * 1.7,color: Colors.white)),
-                                  dropdownColor: Colors.lightGreen,
-                                  value:aucMtd,
-                                  iconEnabledColor: Colors.amber, //화살표 색
-                                ),
-                              ),
-                          ),SizedBox(width: 50,),
-                          Container(padding: EdgeInsets.only(left: defaultSize,top: defaultSize),
-                              width: 160,
-                              height: 40,
-                              child:
-                          Expanded(flex: 4,  child: (aucMtd == '2')
-                              ?  InkWell( child: Text(auctionTimeString
-                              ?? '터치 후 압찰시간 선택', style: TextStyle(fontSize: defaultSize * 1.7,fontWeight: FontWeight.bold,color: Colors.lightGreen[700])),
-                            onTap: () => setAuctionTime(), )  :  Container(),
-                          )
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                Divider(),
-                Container(
-                  padding: EdgeInsets.fromLTRB(defaultSize * 2, defaultSize * 3, defaultSize, defaultSize * 2),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('결제', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),
-                      Row(
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: Text('결제', style: TextStyle(fontSize: defaultSize * 1.6),),
-                          ),
-                          Expanded( flex: 4,
-                            child: TextField(
-                              controller: _controller,
-                              decoration: InputDecoration(prefixText: _currency),
-                              keyboardType: TextInputType.emailAddress,
-                              onChanged: (string) {
-                                string = '${_formatNumber(string.replaceAll(',', ''))}';
-                                _controller.value = TextEditingValue(
-                                  text: string,
-                                  selection: TextSelection.collapsed(offset: string.length), );
-                                print('jobAmt ================== $string');
-                                setState(()=> jobAmt = string);
-                              },
+                            ),SizedBox(width: 50,),
+                            Container(padding: EdgeInsets.only(left: defaultSize,top: defaultSize),
+                                width: 160,
+                                height: 40,
+                                child:
+                            Expanded(flex: 4,  child: (aucMtd == '2')
+                                ?  InkWell( child: Text(auctionTimeString
+                                ?? '터치 후 압찰시간 선택', style: TextStyle(fontSize: defaultSize * 1.7,fontWeight: FontWeight.bold,color: Colors.lightGreen[700])),
+                              onTap: () => setAuctionTime(), )  :  Container(),
+                            )
                             ),
-                          ),
-                          Expanded( flex: 2,
-                            child:DropdownButton(
-                              items: registerItems.paymentItmes.map((item) {
-                                return  DropdownMenuItem(
-                                    child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.7,) ),
-                                    value: item['id']
-                                );
-                              }).toList(),
-                              underline: Container(),
-                              onChanged: (value) { setState(() { payMtd = value; }); print('payMtd ======== $payMtd'); },
-                              hint:  Text(registerItems.paymentItmes[0]["name"],style: TextStyle(fontSize: defaultSize * 1.7)),
-                              value:payMtd,
-                              iconEnabledColor: Colors.amber, //화살표 색
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                Divider(),
-                Container(
-                  padding: EdgeInsets.fromLTRB(defaultSize * 2, defaultSize * 3, defaultSize, defaultSize * 2),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('날짜', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),
-                      Padding(padding: EdgeInsets.only(top: 10)),
-                      Row(
-                        children: [
-                          Expanded(flex: 2 ,child: Text('시작일', style: TextStyle(fontSize: defaultSize * 1.6),),),
-                          Expanded( flex: 6 ,
-                            child: Padding( padding: EdgeInsets.only(right: defaultSize * 2),
-                              child: InkWell(
-                                onTap: (){
-                                  print('시작날짜');
-                                  // DateTimePicker.showDateTimePicker(context,
-                                  //     showTitleActions: true,
-                                  //     minTime: DateTime.now().add(Duration(seconds: auctionTime)),
-                                  //     onConfirm: (date) {
-                                  //       print('confirm $date');
-                                  //       setState(() { jobStDtm = date.toString().substring(0,16); start =date; });
-                                  //       print('jobStDtm ======== $jobStDtm');
-                                  //     }, locale: LocaleType.ko);
+                  Divider(),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(defaultSize * 2, defaultSize * 3, defaultSize, defaultSize * 2),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('결제', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),
+                        Row(
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Text('결제', style: TextStyle(fontSize: defaultSize * 1.6),),
+                            ),
+                            Expanded( flex: 4,
+                              child: TextField(
+                                controller: _controller,
+                                decoration: InputDecoration(prefixText: _currency),
+                                keyboardType: TextInputType.emailAddress,
+                                onChanged: (string) {
+                                  string = '${_formatNumber(string.replaceAll(',', ''))}';
+                                  _controller.value = TextEditingValue(
+                                    text: string,
+                                    selection: TextSelection.collapsed(offset: string.length), );
+                                  print('jobAmt ================== $string');
+                                  setState(()=> jobAmt = string);
                                 },
-                                child: Text( jobStDtm ?? '시작날짜를 선택하세요.', textAlign: TextAlign.right),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                Divider(),
-                Container(
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Padding(padding: EdgeInsets.all(defaultSize)),
-                          Expanded(flex: 1, child: Text('동네', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),),
-                          Expanded( flex: 2,
-                            child: (areaItems == null) ? Padding( padding: EdgeInsets.symmetric(horizontal: 5.0), child: SizedBox( width: defaultSize, height: defaultSize, child: CircularProgressIndicator(), ),) :
-                            DropdownButton(
-                              items: (areaItems != null) ?
-                              areaItems.map((item) {
-                                return  DropdownMenuItem(
-                                    child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.7,) ),
-                                    value: item['id']
-                                );
-                              }).toList() : [],
-                              underline: Container(),
-                              onChanged: (value) { setState(() { twnCd = value; }); print('twnCd ======== $twnCd'); },
-                              hint: Text('동네', style: TextStyle(fontSize: defaultSize * 1.7)),
-                              value:twnCd,
-                              iconEnabledColor: Colors.amber, //화살표 색
-                            ),
-                          ),
-                          Expanded(flex: 2, child: Text('범위', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),),
-                          Expanded( flex: 2,
-                            child:DropdownButton(
-                              items: registerItems.rangeItems.map((item) {
-                                return  DropdownMenuItem(
-                                    child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.7,) ),
-                                    value: item['id']
-                                );
-                              }).toList(),
-                              underline: Container(),
-                              onChanged: (value) { setState(() { twnGc = value; }); print('twnGc ======== $twnGc'); },
-                              hint:  Text(registerItems.rangeItems[0]["name"],style: TextStyle(fontSize: defaultSize * 1.7)),
-                              value:twnGc,
-                              iconEnabledColor: Colors.amber, //화살표 색
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Padding(padding: EdgeInsets.all(defaultSize)),
-                          Expanded(flex: 1, child: Text('희망성별', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),),
-                          Expanded( flex: 2,
-                            child:DropdownButton(
-                              items: registerItems.genderItems.map((item) {
-                                return  DropdownMenuItem(
-                                    child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.7,) ),
-                                    value: item['id']
-                                );
-                              }).toList(),
-                              underline: Container(),
-                              onChanged: (value) { setState(() { hanGnd = value; }); print('hanGnd ======== $hanGnd'); },
-                              hint:  Text(registerItems.genderItems[0]["name"],style: TextStyle(fontSize: defaultSize * 1.7)),
-                              value:hanGnd,
-                              iconEnabledColor: Colors.amber, //화살표 색
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                Divider(),
-                Container(
-                  padding: EdgeInsets.fromLTRB(defaultSize * 2, defaultSize * 3, defaultSize, defaultSize * 2),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('일내용', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),
-                      Padding(
-                        padding: EdgeInsets.all(defaultSize * 1.3),
-                        child: TextFormField(
-                          decoration: InputDecoration(labelText: '제목을 입력하세요.'),
-                          validator: (value){
-                            if (value.trim().isEmpty){ return '공백은 입력할 수 없습니다.'; }
-                            if (value.isEmpty) { return '제목을 입력해 주세요.'; } else  return null; },
-                          onChanged: (value){ print('value =============$value'); setState(() => jobTtl = value );},
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(defaultSize * 1.3),
-                        child: TextFormField(
-                          decoration: InputDecoration(labelText: '상세내용을 입력하세요.'),
-                          maxLines: 6,
-                          validator: (value){
-                            if (value.trim().isEmpty){ return '공백은 입력할 수 없습니다.'; }
-                            if (value.isEmpty) { return '상세내용을 입력하세요.'; } else  return null; },
-                          onChanged: (value){ print('value =============$value'); setState(() => jobCtn = value );},
-                          onSaved: (value){ jobCtn = value; },
-                        ),
-                      ),
-                      Column(
-                        children: [
-                          // Row(
-                          //   mainAxisAlignment: MainAxisAlignment.center,
-                          //   children: [
-                          //
-                          //   ],
-                          // ),
-                          SizedBox( height: defaultSize * 45,  child: (images.length > 0) ? InkWell( onTap: loadAssets, child: buildGridView()) :
-                            InkWell(
-                              onTap: loadAssets,
-                              child: Container( padding: EdgeInsets.only(top: defaultSize * 2),
-                                  child: Center(child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text('터치하여 이미지를 선택 하세요.\n\n', style: TextStyle(fontSize: defaultSize * 1.6)),
-                                      Text('이미지는 3장까지 가능 합니다.', style: TextStyle(fontSize: defaultSize * 1.4)),
-                                    ],
-                                  ))
+                            Expanded( flex: 2,
+                              child:DropdownButton(
+                                items: registerItems.paymentItmes.map((item) {
+                                  return  DropdownMenuItem(
+                                      child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.7,) ),
+                                      value: item['id']
+                                  );
+                                }).toList(),
+                                underline: Container(),
+                                onChanged: (value) { setState(() { payMtd = value; }); print('payMtd ======== $payMtd'); },
+                                hint:  Text(registerItems.paymentItmes[0]["name"],style: TextStyle(fontSize: defaultSize * 1.7)),
+                                value:payMtd,
+                                iconEnabledColor: Colors.amber, //화살표 색
                               ),
                             ),
-                          ),
-                          SizedBox(height:  defaultSize * 3,),
-                          // Container(
-                          //   width: defaultSize * 20, height: defaultSize * 8,
-                          //   decoration: BoxDecoration(
-                          //   color: Colors.blueAccent[700],
-                          //     boxShadow: [
-                          //       BoxShadow(
-                          //         color: Colors.amber[100],
-                          //         blurRadius: 5.0,
-                          //         spreadRadius: 3.0
-                          //       )
-                          //     ],
-                          //     borderRadius: BorderRadius.circular(30.0), ),
-                          //   child: FlatButton(
-                          //     child: Text('소일 등록 !', style: TextStyle(fontSize: defaultSize * 2.5,color: Colors.white)),
-                          //     onPressed: sendRegister,
-                          //   ),
-                          // ),
-                        ],
-                      ),
-                    ],
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                  Divider(),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(defaultSize * 2, defaultSize * 3, defaultSize, defaultSize * 2),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('날짜', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),
+                        Padding(padding: EdgeInsets.only(top: 10)),
+                        Row(
+                          children: [
+                            Expanded(flex: 2 ,child: Text('시작일', style: TextStyle(fontSize: defaultSize * 1.6),),),
+                            Expanded( flex: 6 ,
+                              child: Padding( padding: EdgeInsets.only(right: defaultSize * 2),
+                                child: InkWell(
+                                  onTap: (){
+                                    print('시작날짜');
+                                    // DateTimePicker.showDateTimePicker(context,
+                                    //     showTitleActions: true,
+                                    //     minTime: DateTime.now().add(Duration(seconds: auctionTime)),
+                                    //     onConfirm: (date) {
+                                    //       print('confirm $date');
+                                    //       setState(() { jobStDtm = date.toString().substring(0,16); start =date; });
+                                    //       print('jobStDtm ======== $jobStDtm');
+                                    //     }, locale: LocaleType.ko);
+                                  },
+                                  child: Text( jobStDtm ?? '시작날짜를 선택하세요.', textAlign: TextAlign.right),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Divider(),
+                  Container(
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Padding(padding: EdgeInsets.all(defaultSize)),
+                            Expanded(flex: 1, child: Text('동네', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),),
+                            Expanded( flex: 2,
+                              child: (areaItems == null) ? Padding( padding: EdgeInsets.symmetric(horizontal: 5.0), child: SizedBox( width: defaultSize, height: defaultSize, child: CircularProgressIndicator(), ),) :
+                              DropdownButton(
+                                items: (areaItems != null) ?
+                                areaItems.map((item) {
+                                  return  DropdownMenuItem(
+                                      child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.7,) ),
+                                      value: item['id']
+                                  );
+                                }).toList() : [],
+                                underline: Container(),
+                                onChanged: (value) { setState(() { twnCd = value; }); print('twnCd ======== $twnCd'); },
+                                hint: Text('동네', style: TextStyle(fontSize: defaultSize * 1.7)),
+                                value:twnCd,
+                                iconEnabledColor: Colors.amber, //화살표 색
+                              ),
+                            ),
+                            Expanded(flex: 2, child: Text('범위', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),),
+                            Expanded( flex: 2,
+                              child:DropdownButton(
+                                items: registerItems.rangeItems.map((item) {
+                                  return  DropdownMenuItem(
+                                      child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.7,) ),
+                                      value: item['id']
+                                  );
+                                }).toList(),
+                                underline: Container(),
+                                onChanged: (value) { setState(() { twnGc = value; }); print('twnGc ======== $twnGc'); },
+                                hint:  Text(registerItems.rangeItems[0]["name"],style: TextStyle(fontSize: defaultSize * 1.7)),
+                                value:twnGc,
+                                iconEnabledColor: Colors.amber, //화살표 색
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Padding(padding: EdgeInsets.all(defaultSize)),
+                            Expanded(flex: 1, child: Text('희망성별', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),),
+                            Expanded( flex: 2,
+                              child:DropdownButton(
+                                items: registerItems.genderItems.map((item) {
+                                  return  DropdownMenuItem(
+                                      child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.7,) ),
+                                      value: item['id']
+                                  );
+                                }).toList(),
+                                underline: Container(),
+                                onChanged: (value) { setState(() { hanGnd = value; }); print('hanGnd ======== $hanGnd'); },
+                                hint:  Text(registerItems.genderItems[0]["name"],style: TextStyle(fontSize: defaultSize * 1.7)),
+                                value:hanGnd,
+                                iconEnabledColor: Colors.amber, //화살표 색
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Divider(),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(defaultSize * 2, defaultSize * 3, defaultSize, defaultSize * 2),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('일내용', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),
+                        Padding(
+                          padding: EdgeInsets.all(defaultSize * 1.3),
+                          child: TextFormField(
+                            decoration: InputDecoration(labelText: '제목을 입력하세요.'),
+                            validator: (value){
+                              if (value.trim().isEmpty){ return '공백은 입력할 수 없습니다.'; }
+                              if (value.isEmpty) { return '제목을 입력해 주세요.'; } else  return null; },
+                            onChanged: (value){ print('value =============$value'); setState(() => jobTtl = value );},
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(defaultSize * 1.3),
+                          child: TextFormField(
+                            decoration: InputDecoration(labelText: '상세내용을 입력하세요.'),
+                            maxLines: 6,
+                            validator: (value){
+                              if (value.trim().isEmpty){ return '공백은 입력할 수 없습니다.'; }
+                              if (value.isEmpty) { return '상세내용을 입력하세요.'; } else  return null; },
+                            onChanged: (value){ print('value =============$value'); setState(() => jobCtn = value );},
+                            onSaved: (value){ jobCtn = value; },
+                          ),
+                        ),
+                        Column(
+                          children: [
+                            // Row(
+                            //   mainAxisAlignment: MainAxisAlignment.center,
+                            //   children: [
+                            //
+                            //   ],
+                            // ),
+                            SizedBox( height: defaultSize * 45,  child: (images.length > 0) ? InkWell( onTap: loadAssets, child: buildGridView()) :
+                              InkWell(
+                                onTap: loadAssets,
+                                child: Container( padding: EdgeInsets.only(top: defaultSize * 2),
+                                    child: Center(child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Text('터치하여 이미지를 선택 하세요.\n\n', style: TextStyle(fontSize: defaultSize * 1.6)),
+                                        Text('이미지는 3장까지 가능 합니다.', style: TextStyle(fontSize: defaultSize * 1.4)),
+                                      ],
+                                    ))
+                                ),
+                              ),
+                            ),
+                            SizedBox(height:  defaultSize * 3,),
+                            // Container(
+                            //   width: defaultSize * 20, height: defaultSize * 8,
+                            //   decoration: BoxDecoration(
+                            //   color: Colors.blueAccent[700],
+                            //     boxShadow: [
+                            //       BoxShadow(
+                            //         color: Colors.amber[100],
+                            //         blurRadius: 5.0,
+                            //         spreadRadius: 3.0
+                            //       )
+                            //     ],
+                            //     borderRadius: BorderRadius.circular(30.0), ),
+                            //   child: FlatButton(
+                            //     child: Text('소일 등록 !', style: TextStyle(fontSize: defaultSize * 2.5,color: Colors.white)),
+                            //     onPressed: sendRegister,
+                            //   ),
+                            // ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],

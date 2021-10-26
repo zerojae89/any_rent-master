@@ -234,44 +234,51 @@ class _HomeState extends State<Home> {
           ),
         ),
         actions: [
-          DropdownButton(
-            dropdownColor: Colors.white,
-            items: homeSortItems.sortItems.map((item) {
-              return  DropdownMenuItem(
-                  child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.7,color:  Colors.black) ),
-                  value: item['id']
-              );
-            }).toList(),
-            underline: Container(),
-            onChanged: (value) {
-              print('value ======== $value');
-              setState(() { sortId = value; });
-              if(value == "1"){ refreshList(); }
-              if(value == "2"){
-                print('낮은 금액순!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-                List selected = homeItems.where((element) => element['jobAmt'] > 1).toList()..sort(( a, b) => b['jobAmt'].compareTo(a['jobAmt']));
-                homeItems.clear();
-                if(!isDisposed){ setState(() => homeItems = selected); }
-              }
-              if(value == "3"){
-                print('높은 금액순!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-                List selected = homeItems.where((element) => element['jobAmt'] > 1).toList()..sort(( a, b) => a['jobAmt'].compareTo(b['jobAmt']));
-                homeItems.clear();
-                if(!isDisposed){ setState(() => homeItems = selected); }
-              }
-              if(value == "4"){
-                print('지역보기 !!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-                selectTwGcList("1");
-              }
-              if(value == "5"){
-                selectTwGcList("2");
-                print('광역보기 !!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-              }
+          Container(
+            // decoration: BoxDecoration(
+            //   borderRadius: BorderRadius.circular(20.0),
+            //   color: Colors.lightGreen
+            // ),
+            padding: EdgeInsets.only(top: 5,left: 20),
+            child: DropdownButton(
+              dropdownColor: Colors.white,
+              items: homeSortItems.sortItems.map((item) {
+                return  DropdownMenuItem(
+                    child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.7,color:  Colors.black) ),
+                    value: item['id']
+                );
+              }).toList(),
+              underline: Container(),
+              onChanged: (value) {
+                print('value ======== $value');
+                setState(() { sortId = value; });
+                if(value == "1"){ refreshList(); }
+                if(value == "2"){
+                  print('낮은 금액순!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+                  List selected = homeItems.where((element) => element['jobAmt'] > 1).toList()..sort(( a, b) => b['jobAmt'].compareTo(a['jobAmt']));
+                  homeItems.clear();
+                  if(!isDisposed){ setState(() => homeItems = selected); }
+                }
+                if(value == "3"){
+                  print('높은 금액순!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+                  List selected = homeItems.where((element) => element['jobAmt'] > 1).toList()..sort(( a, b) => a['jobAmt'].compareTo(b['jobAmt']));
+                  homeItems.clear();
+                  if(!isDisposed){ setState(() => homeItems = selected); }
+                }
+                if(value == "4"){
+                  print('지역보기 !!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+                  selectTwGcList("1");
+                }
+                if(value == "5"){
+                  selectTwGcList("2");
+                  print('광역보기 !!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+                }
 
-            },
-            hint:  Text(homeSortItems.sortItems[0]["name"],style: TextStyle(fontSize: defaultSize * 1.7,  color:  Colors.black)),
-            value: sortId,
-            iconEnabledColor: Colors.amber, //화살표 색
+              },
+              hint:  Text(homeSortItems.sortItems[0]["name"],style: TextStyle(fontSize: defaultSize * 1.7,  color:  Colors.black)),
+              value: sortId,
+              iconEnabledColor: Colors.amber, //화살표 색
+            ),
           ),
         ],
       ),
