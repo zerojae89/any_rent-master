@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
 import 'package:any_rent/settings/url.dart';
+import 'package:date_format/date_format.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-
 import 'package:any_rent/mypage/detail/mytown/mypage_mytown.dart';
 import 'package:flutter/material.dart';
 import 'package:date_time_picker/date_time_picker.dart';
@@ -23,12 +23,68 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 // const url = "http://192.168.1.3:4001"; //재승 내부 ip
 const url = UrlConfig.url;
 
+
 class Register extends StatefulWidget {
   @override
   _RegisterState createState() => _RegisterState();
 }
 
+
 class _RegisterState extends State<Register> {
+  double _height;
+  double _width;
+  String _setTime, _setDate, _hour,_minute,_time;
+  String dateTime;
+  DateTime selectedDate = DateTime.now();
+  TimeOfDay selectedTime = TimeOfDay(hour: 00, minute: 00);
+  TextEditingController _dateController = TextEditingController();
+  TextEditingController _timeController = TextEditingController();
+
+  Future<Null>_selectDate(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        initialDatePickerMode: DatePickerMode.day,
+        firstDate: DateTime(2021),
+        lastDate: DateTime(2100));
+    if(picked != null)
+      setState(() {
+        selectedDate = picked;
+        _dateController.text =
+            DateFormat.yMd().format(selectedDate);
+      });
+  }
+
+  Future<Null> _selectTime(BuildContext context) async {
+    final TimeOfDay picked = await showTimePicker(
+      context: context,
+      initialTime: selectedTime,
+    );
+    if (picked != null)
+      setState(() {
+        selectedTime = picked;
+        _hour = selectedTime.hour.toString();
+        _minute = selectedTime.minute.toString();
+        _time = _hour + ' : ' + _minute;
+        _timeController.text = _time;
+        _timeController.text = formatDate(
+            DateTime(2019, 08, 1, selectedTime.hour, selectedTime.minute),
+            [hh, ':', nn, " ", am]).toString();
+      });
+  }
+
+  @override
+  void initState(){
+    _dateController.text = DateFormat.yMd().format(DateTime.now());
+
+    _timeController.text = formatDate(
+        DateTime(2019, 08, 1, DateTime.now().hour, DateTime.now().minute),
+        [hh, ':', nn, " ", am]).toString();
+    super.initState();
+    loadToken();
+  }
+
+
   String token, jobTp1, jobTp2, twnCd, twnGc, jobStDtm, bidDlDtm, jobAmt, aucMtd, payMtd, jobTtl, jobCtn, hanGnd, townCd1, townCd2, townNm1, townNm2, auctionTimeString;
   int auctionTime = 600;
   String people = "1";
@@ -54,11 +110,6 @@ class _RegisterState extends State<Register> {
   String get _currency => NumberFormat.compactSimpleCurrency(locale: _locale).currencySymbol;
   final navigatorKey = GlobalKey<NavigatorState>();
 
-  @override
-  void initState() {
-    super.initState();
-    loadToken();
-  }
 
   @override
   void dispose() {
@@ -232,6 +283,8 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
+    _height = MediaQuery.of(context).size.height;
+    _width = MediaQuery.of(context).size.width;
     CircularProgressIndicator();
     // return Scaffold( body: Center(child: Container( width: defaultSize * 10, height: defaultSize * 10, color: Colors.white, child: CircularProgressIndicator())) );
     return isHttpSend ?  Scaffold( key: globalKey, body: SizedBox.expand( child: Container( color: Colors.grey[50],  child: Center(child:
@@ -256,7 +309,6 @@ class _RegisterState extends State<Register> {
           Form(
             key: formKey,
             child: Container(
-              color: Colors.lightGreen[50].withOpacity(0.8),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -433,6 +485,7 @@ class _RegisterState extends State<Register> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('날짜', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),
+                        SizedBox(height: 10,),
                         Padding(padding: EdgeInsets.only(top: 10)),
                         Row(
                           children: [
@@ -441,17 +494,31 @@ class _RegisterState extends State<Register> {
                               child: Padding( padding: EdgeInsets.only(right: defaultSize * 2),
                                 child: InkWell(
                                   onTap: (){
-                                    print('시작날짜');
-                                    // DateTimePicker.showDateTimePicker(context,
-                                    //     showTitleActions: true,
-                                    //     minTime: DateTime.now().add(Duration(seconds: auctionTime)),
-                                    //     onConfirm: (date) {
-                                    //       print('confirm $date');
-                                    //       setState(() { jobStDtm = date.toString().substring(0,16); start =date; });
-                                    //       print('jobStDtm ======== $jobStDtm');
-                                    //     }, locale: LocaleType.ko);
-                                  },
-                                  child: Text( jobStDtm ?? '시작날짜를 선택하세요.', textAlign: TextAlign.right),
+                                    _selectDate(context);
+                                    },
+                                  child: Container(
+                                  width: 200,
+                                  height: 30,
+                                  margin: EdgeInsets.only(top: 0),
+                                  alignment: Alignment.center,
+                                  // decoration: BoxDecoration(border:Border.all(color: Colors.grey)),
+                                  child: TextFormField(
+                                    style: TextStyle(fontSize: 20),
+                                    textAlign: TextAlign.center,
+                                    enabled: false,
+                                    keyboardType: TextInputType.text,
+                                    controller: _dateController,
+                                    onSaved: (String val) {
+                                      _setDate = val;
+                                    },
+                                    decoration: InputDecoration(
+                                        disabledBorder:
+                                        UnderlineInputBorder(borderSide: BorderSide.none),
+                                        // labelText: 'Time',
+                                        contentPadding: EdgeInsets.only(top: 0.0)),
+                                  ),
+                                ),
+                                  // child: Text( jobStDtm ?? '시작날짜를 선택하세요.', textAlign: TextAlign.right),
                                 ),
                               ),
                             ),
@@ -459,6 +526,41 @@ class _RegisterState extends State<Register> {
                         ),
                       ],
                     ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(20.0),
+                    child:Row(
+                      children: [
+                        Text('시작 시간'),
+                        InkWell(
+                          onTap: () {
+                            _selectTime(context);
+                          },
+                          child:
+                          Container(
+                            margin: EdgeInsets.only(left:45),
+                            width: _width / 1.7,
+                            height: 20,
+                            alignment: Alignment.center,
+                            child: TextFormField(
+                              style: TextStyle(fontSize: 20),
+                              textAlign: TextAlign.center,
+                              onSaved: (String val) {
+                                _setTime = val;
+                              },
+                              enabled: false,
+                              keyboardType: TextInputType.text,
+                              controller: _timeController,
+                              decoration: InputDecoration(
+                                  disabledBorder:
+                                  UnderlineInputBorder(borderSide: BorderSide.none),
+                                  // labelText: 'Time',
+                                  contentPadding: EdgeInsets.all(5)),
+                            ),
+                          ),
+                        )
+                      ],
+                    )
                   ),
                   Divider(),
                   Container(

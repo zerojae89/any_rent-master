@@ -40,11 +40,9 @@ dependencies:
   geocoder: ^0.2.1
   intl: ^0.16.1
   flutter_swiper: ^1.1.6
-
+  date_format : ^1.0.0
   socket_io_client: ^0.9.12
   flutter_socket_io: ^0.6.0
-
-
   scoped_model: ^1.0.1
 
 dev_dependencies:

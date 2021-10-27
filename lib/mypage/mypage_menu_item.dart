@@ -18,7 +18,7 @@ class MyPageMenuItem extends StatelessWidget{
         children: [
           SafeArea(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: defaultSize * horizontal, vertical:10),
+              padding: EdgeInsets.symmetric(horizontal: defaultSize * horizontal, vertical:15),
               child: Row(
                 children: [
                   icon,
