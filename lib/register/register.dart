@@ -18,6 +18,7 @@ import 'package:any_rent/settings/custom_shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:date_format/src/locale/locale.dart';
 
 // const url = 'http://211.253.20.112'; //개발서버
 // const url = "http://192.168.1.3:4001"; //재승 내부 ip
@@ -36,13 +37,15 @@ class _RegisterState extends State<Register> {
   String _setTime, _setDate, _hour,_minute,_time;
   String dateTime;
   DateTime selectedDate = DateTime.now();
-  TimeOfDay selectedTime = TimeOfDay(hour: 00, minute: 00);
+  TimeOfDay selectedTime = TimeOfDay(hour: 00, minute: 00,);
   TextEditingController _dateController = TextEditingController();
   TextEditingController _timeController = TextEditingController();
 
   Future<Null>_selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
         context: context,
+        // locale: Locale('kr'),
+        // locale: ,
         initialDate: selectedDate,
         initialDatePickerMode: DatePickerMode.day,
         firstDate: DateTime(2021),
@@ -50,8 +53,12 @@ class _RegisterState extends State<Register> {
     if(picked != null)
       setState(() {
         selectedDate = picked;
+        print("selectedDate ============");
+        print(selectedDate.toString());
+        print("selectedDate ============");
+
         _dateController.text =
-            DateFormat.yMd().format(selectedDate);
+            DateFormat.yMd('ko_KR').format(selectedDate);
       });
   }
 
@@ -59,14 +66,29 @@ class _RegisterState extends State<Register> {
     final TimeOfDay picked = await showTimePicker(
       context: context,
       initialTime: selectedTime,
+
     );
     if (picked != null)
       setState(() {
+        // jobStDtm = date.toString().substring(0.16); start =date;
         selectedTime = picked;
+        print("selectedTime ============");
+        print(selectedTime.toString());
+        print(selectedTime.format(context));
+        print(selectedTime.hourOfPeriod);
+
+        String asd = selectedTime.toString().substring(10,15);
+        print(asd);
+        print("selectedTime ============");
+
         _hour = selectedTime.hour.toString();
         _minute = selectedTime.minute.toString();
         _time = _hour + ' : ' + _minute;
         _timeController.text = _time;
+
+
+        print("_time =========== $_time");
+
         _timeController.text = formatDate(
             DateTime(2019, 08, 1, selectedTime.hour, selectedTime.minute),
             [hh, ':', nn, " ", am]).toString();
@@ -314,7 +336,7 @@ class _RegisterState extends State<Register> {
                 children: [
                   // CircularProgressIndicator(),
                   Container(
-                    padding: EdgeInsets.fromLTRB(defaultSize * 2, defaultSize * 3, defaultSize, defaultSize * 2),
+                    padding: EdgeInsets.fromLTRB(defaultSize * 2.5, defaultSize * 2, defaultSize, defaultSize),
                     child: Text('카테고리', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),
                   ),
                   Container(
@@ -323,6 +345,8 @@ class _RegisterState extends State<Register> {
                       children: [
                         Container(
                           padding: EdgeInsets.only(left: defaultSize, right: defaultSize),
+                          height: 40,
+                          width: 130,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10.0), // 동그라미 모양
                               color: Colors.lightGreen
@@ -351,6 +375,8 @@ class _RegisterState extends State<Register> {
                         SizedBox( width: defaultSize * 2, ),
                         Container(
                           padding: EdgeInsets.only(left: defaultSize, right: defaultSize),
+                          height: 40,
+                          width: 130,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10.0), // 동그라미 모양
                               color: Colors.lightGreen,
@@ -378,21 +404,24 @@ class _RegisterState extends State<Register> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 30,),
+                  SizedBox(height: 10,),
                   Divider(),
                   Container(
-                    padding: EdgeInsets.fromLTRB(defaultSize * 2, defaultSize * 3, defaultSize, defaultSize * 2),
+                    padding: EdgeInsets.fromLTRB(defaultSize * 2.5, defaultSize , defaultSize, defaultSize),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('입찰방식', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),
-                        SizedBox(height: 20,),
+                        SizedBox(height: 10,),
                         Row(
                           children: [
                             Expanded(
                               flex: 0,
                                 child:Container(
+                                  margin: EdgeInsets.only(left: 27),
                                   padding: EdgeInsets.only(left: defaultSize, right: defaultSize),
+                                  height: 40,
+                                  width: 100,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10.0), // 동그라미 모양
                                       color: Colors.lightGreen,
@@ -432,7 +461,7 @@ class _RegisterState extends State<Register> {
                   ),
                   Divider(),
                   Container(
-                    padding: EdgeInsets.fromLTRB(defaultSize * 2, defaultSize * 3, defaultSize, defaultSize * 2),
+                    padding: EdgeInsets.fromLTRB(defaultSize * 2.5, defaultSize * 1, defaultSize, defaultSize ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -480,7 +509,7 @@ class _RegisterState extends State<Register> {
                   ),
                   Divider(),
                   Container(
-                    padding: EdgeInsets.fromLTRB(defaultSize * 2, defaultSize * 3, defaultSize, defaultSize * 2),
+                    padding: EdgeInsets.fromLTRB(defaultSize * 2.5, defaultSize , defaultSize, defaultSize),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -542,21 +571,9 @@ class _RegisterState extends State<Register> {
                             width: _width / 1.7,
                             height: 20,
                             alignment: Alignment.center,
-                            child: TextFormField(
-                              style: TextStyle(fontSize: 20),
-                              textAlign: TextAlign.center,
-                              onSaved: (String val) {
-                                _setTime = val;
-                              },
-                              enabled: false,
-                              keyboardType: TextInputType.text,
-                              controller: _timeController,
-                              decoration: InputDecoration(
-                                  disabledBorder:
-                                  UnderlineInputBorder(borderSide: BorderSide.none),
-                                  // labelText: 'Time',
-                                  contentPadding: EdgeInsets.all(5)),
-                            ),
+                            child: Text( selectedTime.format(context) ?? '시작시간을 선택하세요.',
+                              style:  TextStyle(fontSize: 20),
+                              textAlign: TextAlign.right, ),
                           ),
                         )
                       ],
@@ -568,7 +585,7 @@ class _RegisterState extends State<Register> {
                       children: [
                         Row(
                           children: [
-                            Padding(padding: EdgeInsets.all(defaultSize)),
+                            Padding(padding: EdgeInsets.fromLTRB(defaultSize*2.5,defaultSize,defaultSize,defaultSize)),
                             Expanded(flex: 1, child: Text('동네', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),),
                             Expanded( flex: 2,
                               child: (areaItems == null) ? Padding( padding: EdgeInsets.symmetric(horizontal: 5.0), child: SizedBox( width: defaultSize, height: defaultSize, child: CircularProgressIndicator(), ),) :
@@ -607,7 +624,7 @@ class _RegisterState extends State<Register> {
                         ),
                         Row(
                           children: [
-                            Padding(padding: EdgeInsets.all(defaultSize)),
+                            Padding(padding: EdgeInsets.fromLTRB(defaultSize*2.5,defaultSize,defaultSize,defaultSize)),
                             Expanded(flex: 1, child: Text('희망성별', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),),
                             Expanded( flex: 2,
                               child:DropdownButton(
@@ -631,7 +648,7 @@ class _RegisterState extends State<Register> {
                   ),
                   Divider(),
                   Container(
-                    padding: EdgeInsets.fromLTRB(defaultSize * 2, defaultSize * 3, defaultSize, defaultSize * 2),
+                    padding: EdgeInsets.fromLTRB(defaultSize * 2.5, defaultSize * 3, defaultSize, defaultSize * 2),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
