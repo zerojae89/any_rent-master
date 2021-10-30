@@ -18,7 +18,6 @@ import 'package:any_rent/settings/custom_shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:date_format/src/locale/locale.dart';
 
 // const url = 'http://211.253.20.112'; //개발서버
 // const url = "http://192.168.1.3:4001"; //재승 내부 ip
@@ -45,7 +44,7 @@ class _RegisterState extends State<Register> {
     final DateTime picked = await showDatePicker(
         context: context,
         // locale: Locale('kr'),
-        // locale: ,
+        // locale: const Locale("kr", "KR"),
         initialDate: selectedDate,
         initialDatePickerMode: DatePickerMode.day,
         firstDate: DateTime(2021),
@@ -572,7 +571,7 @@ class _RegisterState extends State<Register> {
                             height: 20,
                             alignment: Alignment.center,
                             child: Text( selectedTime.format(context) ?? '시작시간을 선택하세요.',
-                              style:  TextStyle(fontSize: 20),
+                              style:  TextStyle(fontSize: 15),
                               textAlign: TextAlign.right, ),
                           ),
                         )
