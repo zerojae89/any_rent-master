@@ -36,28 +36,34 @@ class _RegisterState extends State<Register> {
   String _setTime, _setDate, _hour,_minute,_time;
   String dateTime;
   DateTime selectedDate = DateTime.now();
-  TimeOfDay selectedTime = TimeOfDay(hour: 00, minute: 00,);
+  // TimeOfDay selectedTime = TimeOfDay(hour: 00, minute: 00,);
+  TimeOfDay selectedTime = TimeOfDay(hour: DateTime.now().hour, minute: DateTime.now().minute,);
   TextEditingController _dateController = TextEditingController();
   TextEditingController _timeController = TextEditingController();
 
   Future<Null>_selectDate(BuildContext context) async {
+    final format = DateFormat("yyyy-MM-dd");
     final DateTime picked = await showDatePicker(
         context: context,
         // locale: Locale('kr'),
         // locale: const Locale("kr", "KR"),
         initialDate: selectedDate,
-        initialDatePickerMode: DatePickerMode.day,
+        // initialDatePickerMode: DatePickerMode.day,
         firstDate: DateTime(2021),
-        lastDate: DateTime(2100));
+        lastDate: DateTime(2100)
+    );
     if(picked != null)
       setState(() {
         selectedDate = picked;
         print("selectedDate ============");
+        String formattedDate = format.format(picked);
         print(selectedDate.toString());
+        print("selectedDate ============$formattedDate");
         print("selectedDate ============");
 
         _dateController.text =
-            DateFormat.yMd('ko_KR').format(selectedDate);
+            // DateFormat.yMd('ko_KR').format(selectedDate);
+        formattedDate;
       });
   }
 
@@ -76,17 +82,19 @@ class _RegisterState extends State<Register> {
         print(selectedTime.format(context));
         print(selectedTime.hourOfPeriod);
 
-        String asd = selectedTime.toString().substring(10,15);
-        print(asd);
+        String timeSub = selectedTime.toString().substring(10,15);
+        print(timeSub);
         print("selectedTime ============");
 
-        _hour = selectedTime.hour.toString();
-        _minute = selectedTime.minute.toString();
-        _time = _hour + ' : ' + _minute;
-        _timeController.text = _time;
+        // _hour = selectedTime.hour.toString();
+        // _minute = selectedTime.minute.toString();
+        // _time = _hour + ' : ' + _minute;
+        // _timeController.text = _time;
+        //
+        // print("_time =========== $_time");
 
-
-        print("_time =========== $_time");
+        jobStDtm =  selectedDate.toString().substring(0,11) + timeSub;
+        print("jobStdtm ============ $jobStDtm");
 
         _timeController.text = formatDate(
             DateTime(2019, 08, 1, selectedTime.hour, selectedTime.minute),
@@ -360,8 +368,14 @@ class _RegisterState extends State<Register> {
                               );
                             }).toList(),
                             underline: Container(),
+                            onTap: () {
+                              FocusScopeNode currentFocus = FocusScope.of(context);
+                              if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+                                currentFocus.focusedChild.unfocus();
+                              }
+                            },
                             onChanged: (value) {
-                              setState(() { jobTp1 = value; });
+                              setState(() { jobTp1 = value; jobTp2 = null;});
                               print('jobTp1 ======== $jobTp1');
                               getTp2();
                             },
@@ -390,6 +404,14 @@ class _RegisterState extends State<Register> {
                               );
                             }).toList() : [],
                             underline: Container(),
+                            onTap: () {
+                              FocusScopeNode currentFocus = FocusScope.of(
+                                  context);
+                              if (!currentFocus.hasPrimaryFocus &&
+                                  currentFocus.focusedChild != null) {
+                                currentFocus.focusedChild.unfocus();
+                              }
+                            },
                             onChanged: (value) {
                               setState(() { jobTp2 = value; });
                               print('jobTp2 ======== $jobTp2');
@@ -417,10 +439,10 @@ class _RegisterState extends State<Register> {
                             Expanded(
                               flex: 0,
                                 child:Container(
-                                  margin: EdgeInsets.only(left: 27),
+                                  // margin: EdgeInsets.only(left: 27),
                                   padding: EdgeInsets.only(left: defaultSize, right: defaultSize),
-                                  height: 40,
-                                  width: 100,
+                                  // height: 40,
+                                  // width: 100,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10.0), // 동그라미 모양
                                       color: Colors.lightGreen,
@@ -435,6 +457,14 @@ class _RegisterState extends State<Register> {
                                       );
                                     }).toList(),
                                     underline: Container(),
+                                    onTap: () {
+                                      FocusScopeNode currentFocus = FocusScope.of(
+                                          context);
+                                      if (!currentFocus.hasPrimaryFocus &&
+                                          currentFocus.focusedChild != null) {
+                                        currentFocus.focusedChild.unfocus();
+                                      }
+                                    },
                                     onChanged: (value) { setState(() { aucMtd = value; }); print('aucMtd ======== $aucMtd'); },
                                     hint:  Text(registerItems.auctionMethod[0]["name"],style: TextStyle(fontSize: defaultSize * 1.7,color: Colors.white)),
                                     dropdownColor: Colors.lightGreen,
@@ -475,7 +505,10 @@ class _RegisterState extends State<Register> {
                               child: TextField(
                                 controller: _controller,
                                 decoration: InputDecoration(prefixText: _currency),
-                                keyboardType: TextInputType.emailAddress,
+                                // keyboardType: TextInputType.emailAddress,
+                                keyboardType: TextInputType.number,
+                                // ignore: deprecated_member_use
+                                inputFormatters: [WhitelistingTextInputFormatter(RegExp('[0-9]')),],
                                 onChanged: (string) {
                                   string = '${_formatNumber(string.replaceAll(',', ''))}';
                                   _controller.value = TextEditingValue(
@@ -484,6 +517,7 @@ class _RegisterState extends State<Register> {
                                   print('jobAmt ================== $string');
                                   setState(()=> jobAmt = string);
                                 },
+                                textAlign: TextAlign.right,
                               ),
                             ),
                             Expanded( flex: 2,
@@ -522,6 +556,10 @@ class _RegisterState extends State<Register> {
                               child: Padding( padding: EdgeInsets.only(right: defaultSize * 2),
                                 child: InkWell(
                                   onTap: (){
+                                    FocusScopeNode currentFocus = FocusScope.of(context);
+                                    if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+                                      currentFocus.focusedChild.unfocus();
+                                    }
                                     _selectDate(context);
                                     },
                                   child: Container(
@@ -530,21 +568,24 @@ class _RegisterState extends State<Register> {
                                   margin: EdgeInsets.only(top: 0),
                                   alignment: Alignment.center,
                                   // decoration: BoxDecoration(border:Border.all(color: Colors.grey)),
-                                  child: TextFormField(
-                                    style: TextStyle(fontSize: 20),
-                                    textAlign: TextAlign.center,
-                                    enabled: false,
-                                    keyboardType: TextInputType.text,
-                                    controller: _dateController,
-                                    onSaved: (String val) {
-                                      _setDate = val;
-                                    },
-                                    decoration: InputDecoration(
-                                        disabledBorder:
-                                        UnderlineInputBorder(borderSide: BorderSide.none),
-                                        // labelText: 'Time',
-                                        contentPadding: EdgeInsets.only(top: 0.0)),
-                                  ),
+                                    child: Text( selectedDate.toString().substring(0, 10) ?? '시작일을 선택하세요.',
+                                      style:  TextStyle(fontSize: 15),
+                                      textAlign: TextAlign.right, ),
+                                  // child: TextFormField(
+                                  //   style: TextStyle(fontSize: 20),
+                                  //   textAlign: TextAlign.center,
+                                  //   enabled: false,
+                                  //   keyboardType: TextInputType.text,
+                                  //   controller: _dateController,
+                                  //   onSaved: (String val) {
+                                  //     _setDate = val;
+                                  //   },
+                                  //   decoration: InputDecoration(
+                                  //       disabledBorder:
+                                  //       UnderlineInputBorder(borderSide: BorderSide.none),
+                                  //       // labelText: 'Time',
+                                  //       contentPadding: EdgeInsets.only(top: 0.0)),
+                                  // ),
                                 ),
                                   // child: Text( jobStDtm ?? '시작날짜를 선택하세요.', textAlign: TextAlign.right),
                                 ),
@@ -562,6 +603,10 @@ class _RegisterState extends State<Register> {
                         Text('시작 시간'),
                         InkWell(
                           onTap: () {
+                            FocusScopeNode currentFocus = FocusScope.of(context);
+                            if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+                              currentFocus.focusedChild.unfocus();
+                            }
                             _selectTime(context);
                           },
                           child:
@@ -597,6 +642,12 @@ class _RegisterState extends State<Register> {
                                   );
                                 }).toList() : [],
                                 underline: Container(),
+                                onTap: () {
+                                  FocusScopeNode currentFocus = FocusScope.of(context);
+                                  if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+                                    currentFocus.focusedChild.unfocus();
+                                  }
+                                },
                                 onChanged: (value) { setState(() { twnCd = value; }); print('twnCd ======== $twnCd'); },
                                 hint: Text('동네', style: TextStyle(fontSize: defaultSize * 1.7)),
                                 value:twnCd,
@@ -613,6 +664,12 @@ class _RegisterState extends State<Register> {
                                   );
                                 }).toList(),
                                 underline: Container(),
+                                onTap: () {
+                                  FocusScopeNode currentFocus = FocusScope.of(context);
+                                  if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+                                    currentFocus.focusedChild.unfocus();
+                                  }
+                                },
                                 onChanged: (value) { setState(() { twnGc = value; }); print('twnGc ======== $twnGc'); },
                                 hint:  Text(registerItems.rangeItems[0]["name"],style: TextStyle(fontSize: defaultSize * 1.7)),
                                 value:twnGc,
@@ -634,6 +691,12 @@ class _RegisterState extends State<Register> {
                                   );
                                 }).toList(),
                                 underline: Container(),
+                                onTap: () {
+                                  FocusScopeNode currentFocus = FocusScope.of(context);
+                                  if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+                                    currentFocus.focusedChild.unfocus();
+                                  }
+                                },
                                 onChanged: (value) { setState(() { hanGnd = value; }); print('hanGnd ======== $hanGnd'); },
                                 hint:  Text(registerItems.genderItems[0]["name"],style: TextStyle(fontSize: defaultSize * 1.7)),
                                 value:hanGnd,
