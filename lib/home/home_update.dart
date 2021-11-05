@@ -18,7 +18,7 @@ import 'package:any_rent/settings/custom_shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-
+import 'package:date_format/date_format.dart';
 import 'home_server.dart';
 
 // const url = 'http://211.253.20.112'; //개발서버
@@ -33,6 +33,8 @@ class HomeUpdate extends StatefulWidget {
 }
 
 class _HomeUpdateState extends State<HomeUpdate> {
+  double _width;
+  DateTime selectedDate = DateTime.now();
   String token, jobTp1, jobTp2, twnCd, twnGc, jobStDtm, bidDlDtm, jobAmt, aucMtd, payMtd, jobTtl, jobCtn, hanGnd, townCd1, townCd2, townNm1, townNm2, auctionTimeString, twnGcName, hanGndName;
   String result, jobId, junId, tp1Nm, tp2Nm, twnNm, junNic,  jobIts, tp1Cd, tp2Cd;
   String message = '';
@@ -55,19 +57,84 @@ class _HomeUpdateState extends State<HomeUpdate> {
   bool isHttpSend = false;
   bool isNextPage = false;
   Map <String, dynamic> homeUpdateResultList;
-
+  TextEditingController _dateController = TextEditingController();
+  TextEditingController _timeController = TextEditingController();
   TextEditingController moneyController = TextEditingController();
   TextEditingController titleController = TextEditingController();
   TextEditingController contentController = TextEditingController();
+  TimeOfDay selectedTime = TimeOfDay(hour: DateTime.now().hour, minute: DateTime.now().minute,);
   static const _locale = 'ko';
   String _formatNumber(String s) => NumberFormat.decimalPattern(_locale).format(int.parse(s));
   String get _currency => NumberFormat.compactSimpleCurrency(locale: _locale).currencySymbol;
+
+  Future<Null>_selectDate(BuildContext context) async {
+    final format = DateFormat("yyyy-MM-dd");
+    final DateTime picked = await showDatePicker(
+        context: context,
+        // locale: Locale('kr'),
+        // locale: const Locale("kr", "KR"),
+        initialDate: selectedDate,
+        // initialDatePickerMode: DatePickerMode.day,
+        firstDate: DateTime(2021),
+        lastDate: DateTime(2100)
+    );
+    if(picked != null)
+      setState(() {
+        selectedDate = picked;
+        print("selectedDate ============");
+        String formattedDate = format.format(picked);
+        print(selectedDate.toString());
+        print("selectedDate ============$formattedDate");
+        print("selectedDate ============");
+
+        _dateController.text =
+        // DateFormat.yMd('ko_KR').format(selectedDate);
+        formattedDate;
+      });
+  }
+
+  Future<Null> _selectTime(BuildContext context) async {
+    final TimeOfDay picked = await showTimePicker(
+      context: context,
+      initialTime: selectedTime,
+
+    );
+    if (picked != null)
+      setState(() {
+        // jobStDtm = date.toString().substring(0.16); start =date;
+        selectedTime = picked;
+        print("selectedTime ============");
+        print(selectedTime.toString());
+        print(selectedTime.format(context));
+        print(selectedTime.hourOfPeriod);
+
+        String timeSub = selectedTime.toString().substring(10,15);
+        print(timeSub);
+        print("selectedTime ============");
+
+        // _hour = selectedTime.hour.toString();
+        // _minute = selectedTime.minute.toString();
+        // _time = _hour + ' : ' + _minute;
+        // _timeController.text = _time;
+        //
+        // print("_time =========== $_time");
+
+        jobStDtm =  selectedDate.toString().substring(0,11) + timeSub;
+        print("jobStdtm ============ $jobStDtm");
+
+        _timeController.text = formatDate(
+            DateTime(2019, 08, 1, selectedTime.hour, selectedTime.minute),
+            [hh, ':', nn, " ", am]).toString();
+      });
+  }
 
   @override
   void initState() {
     super.initState();
     loadToken();
   }
+
+  final _controller = TextEditingController();
 
   @override
   void dispose() {
@@ -289,7 +356,7 @@ class _HomeUpdateState extends State<HomeUpdate> {
         key: globalKey,
         appBar: AppBar(
           centerTitle: true,
-          title: Text('수정하기', style: TextStyle(color: Colors.amber),),
+          title: Text('수정하기', style: TextStyle(color: Colors.black),),
           // actions: <Widget>[ FlatButton(onPressed: () => sendRegister(),  child: Text('수정'),),],
         ),
         body: ListView(
@@ -300,7 +367,7 @@ class _HomeUpdateState extends State<HomeUpdate> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding: EdgeInsets.fromLTRB(defaultSize * 2, defaultSize * 3, defaultSize, defaultSize * 2),
+                    padding: EdgeInsets.fromLTRB(defaultSize * 2.5, defaultSize * 2, defaultSize, defaultSize),
                     child: Text('카테고리', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),
                   ),
                   Container(
@@ -309,50 +376,73 @@ class _HomeUpdateState extends State<HomeUpdate> {
                       children: [
                         Container(
                           padding: EdgeInsets.only(left: defaultSize, right: defaultSize),
+                          height: 40,
+                          width: 130,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10.0), // 동그라미 모양
-                              border: Border.all()),
+                              color: Colors.lightGreen
+                          ),
                           child: (tp1List != null) ?
                           DropdownButton(
                             isExpanded: false,
                             items: tp1List.map((item) {
                               return  DropdownMenuItem(
-                                  child: Padding( padding: EdgeInsets.symmetric(horizontal: defaultSize), child: Text( item['tp1Nm'], style: TextStyle(fontSize: defaultSize * 1.6,)), ),
+                                  child: Padding( padding: EdgeInsets.symmetric(horizontal: defaultSize), child: Text( item['tp1Nm'], style: TextStyle(color: Colors.white,fontSize: defaultSize * 1.6,fontWeight: FontWeight.bold)), ),
                                   value: item['tp1Cd']
                               );
                             }).toList(),
                             underline: Container(),
+                            onTap: () {
+                              FocusScopeNode currentFocus = FocusScope.of(context);
+                              if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+                                currentFocus.focusedChild.unfocus();
+                              }
+                            },
                             onChanged: (value) {
-                              setState(() { jobTp1 = value; });
+                              setState(() { jobTp1 = value; jobTp2 = null;});
                               print('jobTp1 ======== $jobTp1');
                               getTp2();
                             },
-                            hint:  Text(tp1Nm ?? '',style: TextStyle(fontSize: 17, color:  Colors.black)),
+                            hint:  Text(('카테고리1'),style: TextStyle(color: Colors.lightGreen[100],fontSize: 17)),
+                            dropdownColor: Colors.lightGreen,
                             value:jobTp1,
                             iconEnabledColor: Colors.amber,
                           ) : Padding( padding: EdgeInsets.symmetric(horizontal: 5.0), child: SizedBox( width: defaultSize, height: defaultSize, child: CircularProgressIndicator(), ),),
                         ),
                         SizedBox( width: defaultSize * 2, ),
+                        SizedBox( width: defaultSize * 1, ),
                         Container(
                           padding: EdgeInsets.only(left: defaultSize, right: defaultSize),
+                          height: 40,
+                          width: 130,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.0), // 동그라미 모양
-                              border: Border.all()),
+                            borderRadius: BorderRadius.circular(10.0), // 동그라미 모양
+                            color: Colors.lightGreen,
+                          ),
                           child: DropdownButton(
                             isExpanded: false,
                             items: (tp2List != null) ?
                             tp2List.map((item) {
                               return  DropdownMenuItem(
-                                  child: Padding( padding: EdgeInsets.symmetric(horizontal: defaultSize),  child: Text( item['tp2Nm'],  style: TextStyle(fontSize: defaultSize * 1.6,) ), ),
+                                  child: Padding( padding: EdgeInsets.symmetric(horizontal: defaultSize),  child: Text( item['tp2Nm'],  style: TextStyle(color: Colors.white,fontSize: defaultSize * 1.6,fontWeight: FontWeight.bold) ), ),
                                   value: item['tp2Cd']
                               );
                             }).toList() : [],
                             underline: Container(),
+                            onTap: () {
+                              FocusScopeNode currentFocus = FocusScope.of(
+                                  context);
+                              if (!currentFocus.hasPrimaryFocus &&
+                                  currentFocus.focusedChild != null) {
+                                currentFocus.focusedChild.unfocus();
+                              }
+                            },
                             onChanged: (value) {
                               setState(() { jobTp2 = value; });
                               print('jobTp2 ======== $jobTp2');
                             },
-                            hint:  Text(tp2Nm ?? '',style: TextStyle(fontSize: 17,color:  Colors.black)),
+                            hint:  Text(('카테고리2'),style: TextStyle(color: Colors.lightGreen[100],fontSize: defaultSize * 1.7)),
+                            dropdownColor: Colors.lightGreen,
                             value:jobTp2,
                             iconEnabledColor: Colors.amber,
                           ),
@@ -368,27 +458,63 @@ class _HomeUpdateState extends State<HomeUpdate> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('입찰방식', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),
+                        SizedBox(height: 10,),
                         Row(
                           children: [
                             Expanded(
-                              flex: 4,
-                              child: DropdownButton(
-                                items: registerItems.auctionMethod.map((item) {
-                                  return  DropdownMenuItem(
+                              flex: 0,
+                              child:Container(
+                                margin: EdgeInsets.only(left: 30),
+                                padding: EdgeInsets.only(left: defaultSize, right: defaultSize),
+                                height: 40,
+                                // width: 100,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0), // 동그라미 모양
+                                  color: Colors.lightGreen,
+                                  // border: Border.all(color: Colors.grey)
+                                ),
+                                child: DropdownButton(
+                                  items: registerItems.auctionMethod.map((item) {
+                                    return  DropdownMenuItem(
                                       child: Padding(
                                         padding: EdgeInsets.symmetric(horizontal: defaultSize),
-                                        child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.7,) ), ),
-                                      value: item['id']
-                                  );
-                                }).toList(),
-                                underline: Container(),
-                                onChanged: (value) { setState(() { aucMtd = value; }); print('aucMtd ======== $aucMtd'); },
-                                hint:  Text(registerItems.auctionMethod[0]["name"],style: TextStyle(fontSize: defaultSize * 1.7)),
-                                value:aucMtd,
-                                iconEnabledColor: Colors.amber, //화살표 색
+                                        child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.7,color: Colors.white,) ), ),
+                                      value: item['id'],
+                                    );
+                                  }).toList(),
+                                  underline: Container(),
+                                  onTap: () {
+                                    FocusScopeNode currentFocus = FocusScope.of(
+                                        context);
+                                    if (!currentFocus.hasPrimaryFocus &&
+                                        currentFocus.focusedChild != null) {
+                                      currentFocus.focusedChild.unfocus();
+                                    }
+                                  },
+                                  onChanged: (value) { setState(() { aucMtd = value; }); print('aucMtd ======== $aucMtd'); },
+                                  hint:  Text(registerItems.auctionMethod[0]["name"],style:TextStyle(fontSize: defaultSize * 1.7,color: Colors.white,), textAlign: TextAlign.center,),
+                                  dropdownColor: Colors.lightGreen,
+                                  value:aucMtd,
+                                  iconEnabledColor: Colors.amber, //화살표 색
+                                ),
                               ),
                             ),
-                            Expanded( flex: 4,  child: (aucMtd == '2') ?  InkWell( child: Text(auctionTimeString ?? '터치 후 압찰시간 선택', style: TextStyle(fontSize: defaultSize * 1.7)),  onTap: () => setAuctionTime(), )  :  Container(), ),
+                            SizedBox(width: 10,),
+                            Container(padding: EdgeInsets.only(top: defaultSize),
+                                width: 175,
+                                height: 40,
+                                decoration:BoxDecoration(
+                                  color: Colors.grey[200],
+                                  borderRadius: BorderRadius.circular(20.0
+                                  ),
+                                ),
+                                child:
+                                Expanded(flex: 4,  child: (aucMtd == '2')
+                                    ?  InkWell( child: Text(auctionTimeString
+                                    ?? '터치 후 압찰시간 선택', style: TextStyle(fontSize: defaultSize * 1.7,fontWeight: FontWeight.bold,color: Colors.lightGreen[700]),textAlign: TextAlign.center,),
+                                  onTap: () => setAuctionTime(), )  :  Container(),
+                                )
+                            ),
                           ],
                         ),
                       ],
@@ -405,68 +531,53 @@ class _HomeUpdateState extends State<HomeUpdate> {
                           children: [
                             Expanded(
                               flex: 1,
-                              child: Text('결제', style: TextStyle(fontSize: defaultSize * 1.6),),
+                              child: Text('금액', style: TextStyle(fontSize: defaultSize * 1.6),),
                             ),
                             Expanded( flex: 4,
                               child: TextField(
-                                controller: moneyController,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold
+                                ),
+                                controller: _controller,
                                 decoration: InputDecoration(prefixText: _currency),
+                                // keyboardType: TextInputType.emailAddress,
                                 keyboardType: TextInputType.number,
+                                // ignore: deprecated_member_use
+                                inputFormatters: [WhitelistingTextInputFormatter(RegExp('[0-9]')),],
                                 onChanged: (string) {
                                   string = '${_formatNumber(string.replaceAll(',', ''))}';
-                                  print('string ============================ $string');
-                                  moneyController.value = TextEditingValue(
+                                  _controller.value = TextEditingValue(
                                     text: string,
                                     selection: TextSelection.collapsed(offset: string.length), );
+                                  print('jobAmt ================== $string');
+                                  setState(()=> jobAmt = string);
                                 },
+                                textAlign: TextAlign.right,
                               ),
                             ),
-                            Expanded( flex: 2,
-                              child:DropdownButton(
-                                items: registerItems.paymentItmes.map((item) {
-                                  return  DropdownMenuItem(
-                                      child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.7,) ),
-                                      value: item['id']
-                                  );
-                                }).toList(),
-                                underline: Container(),
-                                onChanged: (value) { setState(() { payMtd = value; }); print('payMtd ======== $payMtd'); },
-                                hint:  Text(registerItems.paymentItmes[0]["name"],style: TextStyle(fontSize: defaultSize * 1.7)),
-                                value:payMtd,
-                                iconEnabledColor: Colors.amber, //화살표 색
+                            SizedBox(width: 15),
+                            Container(
+                              margin: EdgeInsets.only(right: 30),
+                              padding: EdgeInsets.only(left: 10),
+                              height: defaultSize * 5,
+                              decoration: BoxDecoration(
+                                  color: Colors.lightGreen,
+                                  borderRadius: BorderRadius.circular(defaultSize* 1 )
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  Divider(),
-                  Container(
-                    padding: EdgeInsets.fromLTRB(defaultSize * 2, defaultSize * 3, defaultSize, defaultSize * 2),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('날짜', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),
-                        Padding(padding: EdgeInsets.only(top: 10)),
-                        Row(
-                          children: [
-                            Expanded(flex: 2 ,child: Text('시작일', style: TextStyle(fontSize: defaultSize * 1.6),),),
-                            Expanded( flex: 6 ,
-                              child: Padding( padding: EdgeInsets.only(right: defaultSize * 2),
-                                child: InkWell(
-                                  onTap: (){
-                                    print('시작날짜');
-                                    // DatePicker.showDateTimePicker(context,
-                                    //     showTitleActions: true,
-                                    //     minTime: DateTime.now().add(Duration(seconds: auctionTime)),
-                                    //     onConfirm: (date) {
-                                    //       print('confirm $date');
-                                    //       setState(() { jobStDtm = date.toString().substring(0,16); start =date; });
-                                    //       print('jobStDtm ======== $jobStDtm');
-                                    //     }, locale: LocaleType.ko);
-                                  },
-                                  child: Text( jobStDtm ?? '시작날짜를 선택하세요.', textAlign: TextAlign.right),
+                              child: Expanded( flex: 2,
+                                child:DropdownButton(
+                                  dropdownColor: Colors.lightGreen,
+                                  items: registerItems.paymentItmes.map((item) {
+                                    return  DropdownMenuItem(
+                                        child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.7,color: Colors.white) ),
+                                        value: item['id']
+                                    );
+                                  }).toList(),
+                                  underline: Container(),
+                                  onChanged: (value) { setState(() { payMtd = value; }); print('payMtd ======== $payMtd'); },
+                                  hint:  Text(registerItems.paymentItmes[0]["name"],style: TextStyle(fontSize: defaultSize * 1.7,color: Colors.white)),
+                                  value:payMtd,
+                                  iconEnabledColor: Colors.amber, //화살표 색
                                 ),
                               ),
                             ),
@@ -477,13 +588,98 @@ class _HomeUpdateState extends State<HomeUpdate> {
                   ),
                   Divider(),
                   Container(
+                    padding: EdgeInsets.fromLTRB(defaultSize * 2.5, defaultSize , defaultSize, defaultSize * 2),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('날짜', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),
+                        Padding(padding: EdgeInsets.only(top: 10)),
+                        Row(
+                          children: [Padding(padding: EdgeInsets.only(left: 43)),
+                            Expanded(flex: 2 ,
+                              child: Text('시작일', style: TextStyle(fontSize: defaultSize * 1.6),),),
+                            Expanded( flex: 6 ,
+                              child: Padding( padding: EdgeInsets.only(right: defaultSize * 2),
+                                child: InkWell(
+                                  onTap: (){
+                                    FocusScopeNode currentFocus = FocusScope.of(context);
+                                    if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+                                      currentFocus.focusedChild.unfocus();
+                                    }
+                                    _selectDate(context);
+                                  },
+                                  child: Container(
+                                    width: 200,
+                                    height: 30,
+                                    margin: EdgeInsets.only(top: 0),
+                                    alignment: Alignment.center,
+                                    // decoration: BoxDecoration(border:Border.all(color: Colors.grey)),
+                                    child: Text( selectedDate.toString().substring(0, 10) ?? '시작일을 선택하세요.',
+                                      style:  TextStyle(fontSize: defaultSize * 2,),
+                                      textAlign: TextAlign.right, ),
+                                    // child: TextFormField(
+                                    //   style: TextStyle(fontSize: 20),
+                                    //   textAlign: TextAlign.center,
+                                    //   enabled: false,
+                                    //   keyboardType: TextInputType.text,
+                                    //   controller: _dateController,
+                                    //   onSaved: (String val) {
+                                    //     _setDate = val;
+                                    //   },
+                                    //   decoration: InputDecoration(
+                                    //       disabledBorder:
+                                    //       UnderlineInputBorder(borderSide: BorderSide.none),
+                                    //       // labelText: 'Time',
+                                    //       contentPadding: EdgeInsets.only(top: 0.0)),
+                                    // ),
+                                  ),
+                                  // child: Text( jobStDtm ?? '시작날짜를 선택하세요.', textAlign: TextAlign.right),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                      padding: EdgeInsets.all(10.0),
+                      child:Row(
+                        children: [ Padding(padding: EdgeInsets.only(left: 55)),
+                          Text('시작 시간'),
+                          InkWell(
+                            onTap: () {
+                              FocusScopeNode currentFocus = FocusScope.of(context);
+                              if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+                                currentFocus.focusedChild.unfocus();
+                              }
+                              _selectTime(context);
+                            },
+                            child:
+                            Container(
+                              margin: EdgeInsets.only(left:12),
+                              width: 220,
+                              height: 20,
+                              alignment: Alignment.center,
+                              child: Text( selectedTime.format(context) ?? '시작시간을 선택하세요.',
+                                style:  TextStyle(fontSize: defaultSize * 2),
+                                textAlign: TextAlign.right, ),
+                            ),
+                          )
+                        ],
+                      )
+                  ),
+                  Divider(),
+                  Container(
                     child: Column(
                       children: [
                         Row(
                           children: [
-                            Padding(padding: EdgeInsets.all(defaultSize)),
-                            Expanded(flex: 1, child: Text('동네', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),),
-                            Expanded( flex: 2,
+                            Padding(padding: EdgeInsets.fromLTRB(defaultSize,defaultSize,defaultSize,defaultSize)),
+                            Container( width: 35,
+                              child: Text('동네',
+                                style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.7),),),
+                            Container( padding: EdgeInsets.only(left: 10), height: 40,width: 80,decoration: BoxDecoration(border: Border.all(color: Colors.lightGreen),borderRadius: BorderRadius.circular(15)),
                               child: (areaItems == null) ? Padding( padding: EdgeInsets.symmetric(horizontal: 5.0), child: SizedBox( width: defaultSize, height: defaultSize, child: CircularProgressIndicator(), ),) :
                               DropdownButton(
                                 items: (areaItems != null) ?
@@ -494,15 +690,22 @@ class _HomeUpdateState extends State<HomeUpdate> {
                                   );
                                 }).toList() : [],
                                 underline: Container(),
+                                onTap: () {
+                                  FocusScopeNode currentFocus = FocusScope.of(context);
+                                  if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+                                    currentFocus.focusedChild.unfocus();
+                                  }
+                                },
                                 onChanged: (value) { setState(() { twnCd = value; }); print('twnCd ======== $twnCd'); },
-                                hint: Text(twnNm?? '', style: TextStyle(fontSize: defaultSize * 1.7, color: Colors.black)),
+                                hint: Text('동네', style: TextStyle(fontSize: defaultSize * 1.7)),
                                 value:twnCd,
                                 iconEnabledColor: Colors.amber, //화살표 색
                               ),
-                            ),
-                            Expanded(flex: 2, child: Text('범위', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),),
-                            Expanded( flex: 2,
-                              child:DropdownButton(
+                            ),SizedBox(width:8,),
+                            Container( width: 35,child: Text('범위', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),),
+                            Container( padding: EdgeInsets.only(left: 10), height: 40,width: 65,decoration: BoxDecoration(border: Border.all(color: Colors.lightGreen),borderRadius: BorderRadius.circular(15)),
+
+                              child: DropdownButton(
                                 items: registerItems.rangeItems.map((item) {
                                   return  DropdownMenuItem(
                                       child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.7,) ),
@@ -510,19 +713,22 @@ class _HomeUpdateState extends State<HomeUpdate> {
                                   );
                                 }).toList(),
                                 underline: Container(),
+                                onTap: () {
+                                  FocusScopeNode currentFocus = FocusScope.of(context);
+                                  if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+                                    currentFocus.focusedChild.unfocus();
+                                  }
+                                },
                                 onChanged: (value) { setState(() { twnGc = value; }); print('twnGc ======== $twnGc'); },
-                                hint:  Text(twnGcName ?? '',style: TextStyle(fontSize: defaultSize * 1.7, color:  Colors.black)),
+                                hint:  Text(registerItems.rangeItems[0]["name"],style: TextStyle(fontSize: defaultSize * 1.7)),
                                 value:twnGc,
                                 iconEnabledColor: Colors.amber, //화살표 색
                               ),
                             ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Padding(padding: EdgeInsets.all(defaultSize)),
-                            Expanded(flex: 1, child: Text('희망성별', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),),
-                            Expanded( flex: 2,
+                            SizedBox(width: 8,),
+
+                            Container(width: 40, child: Text('희망성별', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),),
+                            Container( padding: EdgeInsets.only(left: 10), height: 40,width: 65,decoration: BoxDecoration(border: Border.all(color: Colors.lightGreen),borderRadius: BorderRadius.circular(15)),
                               child:DropdownButton(
                                 items: registerItems.genderItems.map((item) {
                                   return  DropdownMenuItem(
@@ -531,8 +737,14 @@ class _HomeUpdateState extends State<HomeUpdate> {
                                   );
                                 }).toList(),
                                 underline: Container(),
+                                onTap: () {
+                                  FocusScopeNode currentFocus = FocusScope.of(context);
+                                  if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+                                    currentFocus.focusedChild.unfocus();
+                                  }
+                                },
                                 onChanged: (value) { setState(() { hanGnd = value; }); print('hanGnd ======== $hanGnd'); },
-                                hint:  Text(hanGndName ?? '',style: TextStyle(fontSize: defaultSize * 1.7, color: Colors.black)),
+                                hint:  Text(registerItems.genderItems[0]["name"],style: TextStyle(fontSize: defaultSize * 1.7)),
                                 value:hanGnd,
                                 iconEnabledColor: Colors.amber, //화살표 색
                               ),
@@ -660,51 +872,51 @@ class _HomeUpdateState extends State<HomeUpdate> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   RaisedButton(onPressed: () {Navigator.pop(context, false); setState(() { auctionTime = 1260; auctionTimeString ='20분';});},
-                    child: Text('20분', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.amber),),
-                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.purple) ),color: Colors.white,),
+                    child: Text('20분', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.lightGreen[700]),),
+                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.amber) ),color: Colors.white,),
                   RaisedButton(onPressed: () {Navigator.pop(context, false); setState(() { auctionTime = 1860; auctionTimeString ='30분';});},
-                    child: Text('30분', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.amber),),
-                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.purple) ),color: Colors.white,),
+                    child: Text('30분', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.lightGreen[700]),),
+                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.amber) ),color: Colors.white,),
                   RaisedButton(onPressed: () {Navigator.pop(context, false); setState(() { auctionTime = 2460; auctionTimeString ='40분';});},
-                    child: Text('40분', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.amber),),
-                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.purple) ),color: Colors.white,),
+                    child: Text('40분', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.lightGreen[700]),),
+                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.amber) ),color: Colors.white,),
                   RaisedButton(onPressed: () {Navigator.pop(context, false); setState(() { auctionTime = 3060; auctionTimeString ='50분';});},
-                    child: Text('50분', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.amber),),
-                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0), side: BorderSide(color: Colors.purple) ),color: Colors.white,),
+                    child: Text('50분', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.lightGreen[700]),),
+                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0), side: BorderSide(color: Colors.amber) ),color: Colors.white,),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   RaisedButton(onPressed: () {Navigator.pop(context, false); setState(() { auctionTime = 3660; auctionTimeString ='1시간';});},
-                    child: Text('1시간', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.amber),),
-                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.purple) ),color: Colors.white,),
+                    child: Text('1시간', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.lightGreen[700]),),
+                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.amber) ),color: Colors.white,),
                   RaisedButton(onPressed: () {Navigator.pop(context, false); setState(() { auctionTime = 7260; auctionTimeString ='2시간';});},
-                    child: Text('2시간', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.amber),),
-                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.purple) ),color: Colors.white,),
+                    child: Text('2시간', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.lightGreen[700]),),
+                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.amber) ),color: Colors.white,),
                   RaisedButton(onPressed: () {Navigator.pop(context, false); setState(() { auctionTime = 10860; auctionTimeString ='3시간';});},
-                    child: Text('3시간', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.amber),),
-                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.purple) ),color: Colors.white,),
+                    child: Text('3시간', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.lightGreen[700]),),
+                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.amber) ),color: Colors.white,),
                   RaisedButton(onPressed: () {Navigator.pop(context, false); setState(() { auctionTime = 21660; auctionTimeString ='4시간';});},
-                    child: Text('6시간', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.amber),),
-                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.purple) ),color: Colors.white,),
+                    child: Text('6시간', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.lightGreen[700]),),
+                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.amber) ),color: Colors.white,),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   RaisedButton(onPressed: () {Navigator.pop(context, false); setState(() { auctionTime = 86460; auctionTimeString ='1일';});},
-                    child: Text('1일', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.amber),),
-                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.purple) ),color: Colors.white,),
+                    child: Text('1일', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.lightGreen[700]),),
+                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.amber) ),color: Colors.white,),
                   RaisedButton(onPressed: () {Navigator.pop(context, false); setState(() { auctionTime = 172860; auctionTimeString ='2일';});},
-                    child: Text('2일', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.amber),),
-                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.purple) ),color: Colors.white,),
+                    child: Text('2일', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.lightGreen[700]),),
+                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.amber) ),color: Colors.white,),
                   RaisedButton(onPressed: () {Navigator.pop(context, false); setState(() { auctionTime = 259260; auctionTimeString ='3일';});},
-                    child: Text('3일', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.amber),),
-                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.purple) ),color: Colors.white,),
+                    child: Text('3일', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.lightGreen[700]),),
+                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.amber) ),color: Colors.white,),
                   RaisedButton(onPressed: () {Navigator.pop(context, false); setState(() { auctionTime = 345660; auctionTimeString ='5일';});},
-                    child: Text('5일', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.amber),),
-                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.purple) ),color: Colors.white,),
+                    child: Text('5일', style: TextStyle(fontSize: defaultSize * 1.6, color: Colors.lightGreen[700]),),
+                    shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(18.0),  side: BorderSide(color: Colors.amber) ),color: Colors.white,),
                 ],
               ),
             ],

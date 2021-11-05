@@ -213,25 +213,6 @@ class _HomeDetailState extends State<HomeDetail> {
               Navigator.pop(context);
             },
           ),
-          // actions: [
-          //   PopupMenuButton<WhyFarther>(
-          //     icon: Icon(Icons.more_vert),
-          //     itemBuilder: (BuildContext context) => [
-          //       PopupMenuItem<WhyFarther>(
-          //         value: WhyFarther.report,
-          //         child: Text('신고하기'),
-          //       ),
-          //       PopupMenuItem<WhyFarther>(
-          //         value: WhyFarther.hiding,
-          //         child: Text('숨김'),
-          //       ),
-          //     ],
-          //     onSelected: (value){
-          //       print(value);
-          //       // Navigator.push(context, MaterialPageRoute(builder: (context) => HomeDetail()));
-          //     },
-          //   )
-          // ],
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -243,12 +224,12 @@ class _HomeDetailState extends State<HomeDetail> {
                     children: [
                       Row(
                         children: [
-                          Expanded(
-                            flex: 7,
+                          Container(
+                            margin: EdgeInsets.only(left: 24,right: 70),
                             child: Text( jobTtl ?? '',  style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.8, fontWeight: FontWeight.bold), ),
                           ),
-                          Expanded(flex: 3, child: Text('희망 성별 :', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7),)),
-                          Expanded(flex: 2, child: Text(hanGndName ?? '', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7),)),
+                          Container(child: Text('희망 성별 :', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7,fontWeight:FontWeight.bold),)),
+                          Container(margin: EdgeInsets.only(left: 10), child: Text(hanGndName ?? '', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7),)),
                           Expanded(
                             flex: 3,
                             child: Column(
@@ -291,8 +272,8 @@ class _HomeDetailState extends State<HomeDetail> {
                                   border: Border.all(
                                       color: Colors.yellow.withOpacity(0.8),
                                       width: 5)),
-                              width: defaultSize * 10,
-                              height: defaultSize * 17
+                              width: defaultSize * 9,
+                              height: defaultSize * 15
                             // child: (junPrfSeq == null) ? Icon(Icons.account_box_rounded, size: 40,) : Image.network('$url/api/mypage/images?recieveToken=$junPrfSeq')
                           ),
                           Expanded(
@@ -341,8 +322,8 @@ class _HomeDetailState extends State<HomeDetail> {
                   child: Row(
                     children: [
                       // Padding(),
-                      Expanded(
-                        flex: 2,
+                      Container(
+                        margin: EdgeInsets.only(left: 28),
                         child: Padding(
                           padding: EdgeInsets.only(left: 10),
                           child: Container(
@@ -368,6 +349,7 @@ class _HomeDetailState extends State<HomeDetail> {
                     ],
                   ),
                 ),
+                SizedBox(height: 10,),
                 Container(
                   child: Row(
                     children: [
@@ -392,7 +374,7 @@ class _HomeDetailState extends State<HomeDetail> {
                         child: Container(
                           child: Text(
                             (payMtd == null) ? '' : (payMtd == '1') ? '직접결제' : (payMtd == '2')? '안전결제' : '',
-                            style: TextStyle(color: Colors.pink, fontSize:  defaultSize * 1.2 , fontWeight: FontWeight.bold,),
+                            style: TextStyle(color: Colors.pink, fontSize:  defaultSize * 1.7 , fontWeight: FontWeight.bold,),
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -400,9 +382,10 @@ class _HomeDetailState extends State<HomeDetail> {
                       Expanded(
                         flex: 1,
                         child: Container(
+                          margin: EdgeInsets.only(right: 35),
                           child: Text(
                             (aucMtd == null) ? '' : (aucMtd == '1') ? '선착순' : (aucMtd == '2')? '입찰식' : '',
-                            style: TextStyle(color: Colors.brown, fontSize:  defaultSize * 1.2, fontWeight: FontWeight.bold),
+                            style: TextStyle(color: Colors.brown, fontSize:  defaultSize * 1.7, fontWeight: FontWeight.bold),
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -410,9 +393,18 @@ class _HomeDetailState extends State<HomeDetail> {
                     ],
                   ),
                 ),
-                Divider(height: defaultSize * 3,),
+                // Divider(height: defaultSize * 3,),
                 (picCnt == 0) ?  Container() : SizedBox(height: defaultSize * 45, child: buildGridView(jobId, picCnt)),
-                SizedBox( height: defaultSize * 17,  child:  Container( child: Padding( padding: EdgeInsets.all(10),  child: Text(jobCtn ?? '', style:  TextStyle(fontSize:  defaultSize * 1.5),), ), ), ),
+                Container( 
+                  margin: EdgeInsets.all(20.0),
+                  height: defaultSize * 30,
+                  child:  Container(
+                    decoration: BoxDecoration(
+                     border: Border.all(color: Colors.lightGreen,width: 1),
+                      borderRadius: BorderRadius.circular(20.0)
+                    ),
+                    width: 350,
+                    child: Padding( padding: EdgeInsets.all(20),  child: Text(jobCtn ?? '', style:  TextStyle(fontSize:  defaultSize * 1.5),), ), ), ),
                 Divider(height: defaultSize * 4,),
               ],
             ),
@@ -449,14 +441,14 @@ class _HomeDetailState extends State<HomeDetail> {
     print('MessageBottomNavigationBar message ============================= $hanResult');
     if(jobSts == "8"){
       return Container(
-        color: Colors.purple,
+        color: Colors.grey[700],
         child: SizedBox(
           width: double.infinity,
           height: defaultSize * 6,
           child: FlatButton(
-            color: Colors.purple,
+            color: Colors.grey[700],
             onPressed: null,
-            child: Text( "시간초과",  style: TextStyle( color: Colors.amber,  fontSize: defaultSize * 1.3,), ),
+            child: Text( "시간초과",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.3,), ),
           ),
         ),
       );
@@ -511,10 +503,12 @@ class _HomeDetailState extends State<HomeDetail> {
                 child: Text( "수정하기",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 2,), ),
               ),
             ),
-            Expanded(
-              child: FlatButton(
-                onPressed: () => homeDetailDialog.onDeletePressed(context, jobId, token),
-                child: Text("삭제하기",style: TextStyle(fontSize: defaultSize*2),),
+            Expanded(flex: 2,
+              child: Expanded(
+                child: FlatButton(
+                  onPressed: () => homeDetailDialog.onDeletePressed(context, jobId, token),
+                  child: Text("삭제하기",style: TextStyle(fontSize: defaultSize*2),),
+                ),
               ),
             ),
           ],

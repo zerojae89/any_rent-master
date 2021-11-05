@@ -30,14 +30,28 @@ class HomeDetailDialog {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    SizedBox( height: 10, ),
-                    Text( "주니 프로필", style: TextStyle( fontSize: defaultSize * 2.5,  fontWeight: FontWeight.bold, ), ),
+                    SizedBox( height: 20, ),
+                    Text( "프로필", style: TextStyle( fontSize: defaultSize * 2.5,  fontWeight: FontWeight.bold, ), ),
                     SizedBox( height: defaultSize * 3, ),
-                    (junPrfSeq == null) ? Icon(Icons.account_box_rounded, size: defaultSize * 8,) : SizedBox( width: defaultSize * 8, child: Image.network('$url/api/mypage/images?recieveToken=$junPrfSeq'),),
+                    Container(decoration: BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                            fit: BoxFit.fill,
+                            image: (junPrfSeq == null)
+                                ? AssetImage('assets/noimage.jpg')
+                                : NetworkImage(
+                                '$url/api/mypage/images?recieveToken=$junPrfSeq')), //.
+                        // border: Border.all(
+                        //     color: Colors.yellow.withOpacity(0.8),
+                        //     width: 5)
+                    ),
+                        width: defaultSize * 12,
+                        height: defaultSize * 15),
                     SizedBox( height: defaultSize * 3, ),
-                    Text( junNic, style: TextStyle( fontSize: defaultSize * 2.5,  fontWeight: FontWeight.bold, ), ),
+                    Text( junNic, style: TextStyle( fontSize: defaultSize * 2.5, color: Colors.lightGreen, fontWeight: FontWeight.bold, ), ),
                     SizedBox( height: defaultSize * 2, ),
-                    Text( "평점 : $mbrGrd", style: TextStyle( fontSize: defaultSize * 2.5,  fontWeight: FontWeight.bold, ), ),
+                    Text( "평점 : $mbrGrd", style: TextStyle( fontSize: defaultSize * 2.0,  fontWeight: FontWeight.bold, ), ),
                     Padding(
                       padding: EdgeInsets.all(defaultSize * 2),
                       child:  Center(child: RaisedButton(onPressed: ()=> Navigator.pop(context), child: Text("닫기"),)),

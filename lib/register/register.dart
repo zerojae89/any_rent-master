@@ -19,6 +19,7 @@ import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
+
 // const url = 'http://211.253.20.112'; //개발서버
 // const url = "http://192.168.1.3:4001"; //재승 내부 ip
 const url = UrlConfig.url;
@@ -767,6 +768,7 @@ class _RegisterState extends State<Register> {
                           padding: EdgeInsets.all(defaultSize * 1.3),
                           child: TextFormField(
                             decoration: InputDecoration(labelText: '제목을 입력하세요.'),
+                            maxLength: (20),
                             validator: (value){
                               if (value.trim().isEmpty){ return '공백은 입력할 수 없습니다.'; }
                               if (value.isEmpty) { return '제목을 입력해 주세요.'; } else  return null; },
@@ -777,7 +779,7 @@ class _RegisterState extends State<Register> {
                           padding: EdgeInsets.all(defaultSize * 1.3),
                           child: TextFormField(
                             decoration: InputDecoration(labelText: '상세내용을 입력하세요.'),
-                            maxLines: 6,
+                            maxLength: (50),
                             validator: (value){
                               if (value.trim().isEmpty){ return '공백은 입력할 수 없습니다.'; }
                               if (value.isEmpty) { return '상세내용을 입력하세요.'; } else  return null; },
