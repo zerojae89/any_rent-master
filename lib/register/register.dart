@@ -123,6 +123,7 @@ class _RegisterState extends State<Register> {
   Map <String, dynamic> addressResult;
   List<dynamic> tp1List, tp2List;
   List<Asset> images = List<Asset>();
+  // List<AssetImage> images = List<AssetImage>();
   String _error;
   bool boolImages = false;
   final globalKey = GlobalKey<ScaffoldState>();
@@ -758,80 +759,92 @@ class _RegisterState extends State<Register> {
                     ),
                   ),
                   Divider(),
+
                   Container(
-                    padding: EdgeInsets.fromLTRB(defaultSize * 2.5, defaultSize * 3, defaultSize, defaultSize * 2),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    margin: EdgeInsets.only(top: 10),
+                    padding: EdgeInsets.fromLTRB(defaultSize * 2.5, defaultSize , defaultSize, defaultSize * 2),
+                    child:Row(
                       children: [
-                        Text('일내용', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),
-                        Padding(
-                          padding: EdgeInsets.all(defaultSize * 1.3),
-                          child: TextFormField(
-                            decoration: InputDecoration(labelText: '제목을 입력하세요.'),
-                            maxLength: (20),
-                            validator: (value){
-                              if (value.trim().isEmpty){ return '공백은 입력할 수 없습니다.'; }
-                              if (value.isEmpty) { return '제목을 입력해 주세요.'; } else  return null; },
-                            onChanged: (value){ print('value =============$value'); setState(() => jobTtl = value );},
-                          ),
+                        Container(
+                          child: Text('일 제목', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),
                         ),
-                        Padding(
-                          padding: EdgeInsets.all(defaultSize * 1.3),
-                          child: TextFormField(
-                            decoration: InputDecoration(labelText: '상세내용을 입력하세요.'),
-                            maxLength: (50),
-                            validator: (value){
-                              if (value.trim().isEmpty){ return '공백은 입력할 수 없습니다.'; }
-                              if (value.isEmpty) { return '상세내용을 입력하세요.'; } else  return null; },
-                            onChanged: (value){ print('value =============$value'); setState(() => jobCtn = value );},
-                            onSaved: (value){ jobCtn = value; },
+                        Container(margin: EdgeInsets.only(left: 20),
+                          width: 250,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20.0),
+                            color: Colors.grey[200]
                           ),
-                        ),
-                        Column(
-                          children: [
-                            // Row(
-                            //   mainAxisAlignment: MainAxisAlignment.center,
-                            //   children: [
-                            //
-                            //   ],
-                            // ),
-                            SizedBox( height: defaultSize * 45,  child: (images.length > 0) ? InkWell( onTap: loadAssets, child: buildGridView()) :
-                              InkWell(
-                                onTap: loadAssets,
-                                child: Container( padding: EdgeInsets.only(top: defaultSize * 2),
-                                    child: Center(child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Text('터치하여 이미지를 선택 하세요.\n\n', style: TextStyle(fontSize: defaultSize * 1.6)),
-                                        Text('이미지는 3장까지 가능 합니다.', style: TextStyle(fontSize: defaultSize * 1.4)),
-                                      ],
-                                    ))
-                                ),
+                          child: TextFormField(
+                                textAlign: TextAlign.left,
+                                decoration: InputDecoration(contentPadding: EdgeInsets.zero,),
+                                validator: (value){
+                                  if (value.trim().isEmpty){ return '공백은 입력할 수 없습니다.'; }
+                                  if (value.isEmpty) { return '제목을 입력해 주세요.'; } else  return null; },
+                                onChanged: (value){ print('value =============$value'); setState(() => jobTtl = value );},
                               ),
-                            ),
-                            SizedBox(height:  defaultSize * 3,),
-                            // Container(
-                            //   width: defaultSize * 20, height: defaultSize * 8,
-                            //   decoration: BoxDecoration(
-                            //   color: Colors.blueAccent[700],
-                            //     boxShadow: [
-                            //       BoxShadow(
-                            //         color: Colors.amber[100],
-                            //         blurRadius: 5.0,
-                            //         spreadRadius: 3.0
-                            //       )
-                            //     ],
-                            //     borderRadius: BorderRadius.circular(30.0), ),
-                            //   child: FlatButton(
-                            //     child: Text('소일 등록 !', style: TextStyle(fontSize: defaultSize * 2.5,color: Colors.white)),
-                            //     onPressed: sendRegister,
-                            //   ),
-                            // ),
-                          ],
                         ),
                       ],
                     ),
                   ),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(defaultSize * 2, defaultSize , defaultSize, defaultSize * 2),
+                    child: Column(
+                      children: [
+                        Container(),
+                        Container(
+                          margin: EdgeInsets.only(right: 280),
+                          child: Text('상세내용', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),
+                          ),
+                        Container(
+                          padding: EdgeInsets.all(20.0),
+                          margin: EdgeInsets.only(top: 10),
+                          height: 100,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20.0),
+                            color: Colors.grey[200]
+                          ),
+                          child: TextFormField(
+                                maxLength: (50),
+                                validator: (value){
+                                  if (value.trim().isEmpty){ return '공백은 입력할 수 없습니다.'; }
+                                  if (value.isEmpty) { return '상세내용을 입력하세요.'; } else  return null; },
+                                onChanged: (value){ print('value =============$value'); setState(() => jobCtn = value );},
+                                onSaved: (value){ jobCtn = value; },
+                              ),
+                        ),
+                    Container(
+                      margin: EdgeInsets.only(top:40),
+                      child: Text('사진 첨부',style: TextStyle(fontSize: defaultSize*2,fontWeight: FontWeight.bold),),
+                    ),
+                    Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+
+                            ],
+                          ),
+                          SizedBox( height: defaultSize * 45,  child: (images.length > 0) ? InkWell( onTap: loadAssets, child: buildGridView()) :
+                            InkWell(
+                              onTap: loadAssets,
+                              child: Container( padding: EdgeInsets.only(top: defaultSize * 2), decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
+                                  child: Center(child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text('터치하여 이미지를 선택 하세요.\n\n', style: TextStyle(fontSize: defaultSize * 1.6)),
+                                      Text('이미지는 3장까지 가능 합니다.', style: TextStyle(fontSize: defaultSize * 1.4)),
+                                    ],
+                                  ))
+                              ),
+                            ),
+                          ),
+                          SizedBox(height:  defaultSize * 3,),
+                        ],
+                      ),
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),
@@ -922,7 +935,7 @@ class _RegisterState extends State<Register> {
               scale: 0.9,
               viewportFraction: 0.8,
               pagination: SwiperPagination( alignment: Alignment.bottomRight, ),
-              itemCount: images.length,
+              itemCount: images?.length ?? 0,
               itemBuilder: (BuildContext context, int index){
                 Asset asset = images[index];
                 return AssetThumb(
@@ -936,6 +949,7 @@ class _RegisterState extends State<Register> {
       );
     else
       return Container(color: Colors.white);
+
   }
 
   Future<void> loadAssets() async { //이미지 선택 및 카메라 환경 설정
