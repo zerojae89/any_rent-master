@@ -385,7 +385,7 @@ class _RegisterState extends State<Register> {
                             iconEnabledColor: Colors.amber,
                           ) : Padding( padding: EdgeInsets.symmetric(horizontal: 5.0), child: SizedBox( width: defaultSize, height: defaultSize, child: CircularProgressIndicator(), ),),
                         ),
-                        SizedBox( width: defaultSize * 2, ),
+                        SizedBox( width: defaultSize * 1, ),
                         Container(
                           padding: EdgeInsets.only(left: defaultSize, right: defaultSize),
                           height: 40,
@@ -439,47 +439,54 @@ class _RegisterState extends State<Register> {
                             Expanded(
                               flex: 0,
                                 child:Container(
-                                  // margin: EdgeInsets.only(left: 27),
+                                  margin: EdgeInsets.only(left: 30),
                                   padding: EdgeInsets.only(left: defaultSize, right: defaultSize),
-                                  // height: 40,
+                                  height: 40,
                                   // width: 100,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10.0), // 동그라미 모양
                                       color: Colors.lightGreen,
+                                    // border: Border.all(color: Colors.grey)
                                   ),
-                                  child:    DropdownButton(
-                                    items: registerItems.auctionMethod.map((item) {
-                                      return  DropdownMenuItem(
-                                        child: Padding(
-                                          padding: EdgeInsets.symmetric(horizontal: defaultSize),
-                                          child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.7,color: Colors.white,) ), ),
-                                        value: item['id'],
-                                      );
-                                    }).toList(),
-                                    underline: Container(),
-                                    onTap: () {
-                                      FocusScopeNode currentFocus = FocusScope.of(
-                                          context);
-                                      if (!currentFocus.hasPrimaryFocus &&
-                                          currentFocus.focusedChild != null) {
-                                        currentFocus.focusedChild.unfocus();
-                                      }
-                                    },
-                                    onChanged: (value) { setState(() { aucMtd = value; }); print('aucMtd ======== $aucMtd'); },
-                                    hint:  Text(registerItems.auctionMethod[0]["name"],style: TextStyle(fontSize: defaultSize * 1.7,color: Colors.white)),
-                                    dropdownColor: Colors.lightGreen,
-                                    value:aucMtd,
-                                    iconEnabledColor: Colors.amber, //화살표 색
+                                    child: DropdownButton(
+                                      items: registerItems.auctionMethod.map((item) {
+                                        return  DropdownMenuItem(
+                                          child: Padding(
+                                            padding: EdgeInsets.symmetric(horizontal: defaultSize),
+                                            child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.7,color: Colors.white,) ), ),
+                                          value: item['id'],
+                                        );
+                                      }).toList(),
+                                      underline: Container(),
+                                      onTap: () {
+                                        FocusScopeNode currentFocus = FocusScope.of(
+                                            context);
+                                        if (!currentFocus.hasPrimaryFocus &&
+                                            currentFocus.focusedChild != null) {
+                                          currentFocus.focusedChild.unfocus();
+                                        }
+                                      },
+                                      onChanged: (value) { setState(() { aucMtd = value; }); print('aucMtd ======== $aucMtd'); },
+                                      hint:  Text(registerItems.auctionMethod[0]["name"],style:TextStyle(fontSize: defaultSize * 1.7,color: Colors.white,), textAlign: TextAlign.center,),
+                                      dropdownColor: Colors.lightGreen,
+                                      value:aucMtd,
+                                      iconEnabledColor: Colors.amber, //화살표 색
+                                    ),
                                   ),
                                 ),
-                            ),SizedBox(width: 50,),
-                            Container(padding: EdgeInsets.only(left: defaultSize,top: defaultSize),
-                                width: 160,
+                            SizedBox(width: 10,),
+                            Container(padding: EdgeInsets.only(top: defaultSize),
+                                width: 175,
                                 height: 40,
+                                decoration:BoxDecoration(
+                                  color: Colors.grey[200],
+                                  borderRadius: BorderRadius.circular(20.0
+                                ),
+                                ),
                                 child:
                             Expanded(flex: 4,  child: (aucMtd == '2')
                                 ?  InkWell( child: Text(auctionTimeString
-                                ?? '터치 후 압찰시간 선택', style: TextStyle(fontSize: defaultSize * 1.7,fontWeight: FontWeight.bold,color: Colors.lightGreen[700])),
+                                ?? '터치 후 압찰시간 선택', style: TextStyle(fontSize: defaultSize * 1.7,fontWeight: FontWeight.bold,color: Colors.lightGreen[700]),textAlign: TextAlign.center,),
                               onTap: () => setAuctionTime(), )  :  Container(),
                             )
                             ),
@@ -499,10 +506,13 @@ class _RegisterState extends State<Register> {
                           children: [
                             Expanded(
                               flex: 1,
-                              child: Text('결제', style: TextStyle(fontSize: defaultSize * 1.6),),
+                              child: Text('금액', style: TextStyle(fontSize: defaultSize * 1.6),),
                             ),
                             Expanded( flex: 4,
                               child: TextField(
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold
+                                ),
                                 controller: _controller,
                                 decoration: InputDecoration(prefixText: _currency),
                                 // keyboardType: TextInputType.emailAddress,
@@ -520,19 +530,30 @@ class _RegisterState extends State<Register> {
                                 textAlign: TextAlign.right,
                               ),
                             ),
-                            Expanded( flex: 2,
-                              child:DropdownButton(
-                                items: registerItems.paymentItmes.map((item) {
-                                  return  DropdownMenuItem(
-                                      child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.7,) ),
-                                      value: item['id']
-                                  );
-                                }).toList(),
-                                underline: Container(),
-                                onChanged: (value) { setState(() { payMtd = value; }); print('payMtd ======== $payMtd'); },
-                                hint:  Text(registerItems.paymentItmes[0]["name"],style: TextStyle(fontSize: defaultSize * 1.7)),
-                                value:payMtd,
-                                iconEnabledColor: Colors.amber, //화살표 색
+                            SizedBox(width: 15),
+                            Container(
+                              margin: EdgeInsets.only(right: 30),
+                              padding: EdgeInsets.only(left: 10),
+                              height: defaultSize * 5,
+                              decoration: BoxDecoration(
+                              color: Colors.lightGreen,
+                              borderRadius: BorderRadius.circular(defaultSize* 1 )
+                            ),
+                              child: Expanded( flex: 2,
+                                child:DropdownButton(
+                                  dropdownColor: Colors.lightGreen,
+                                  items: registerItems.paymentItmes.map((item) {
+                                    return  DropdownMenuItem(
+                                        child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.7,color: Colors.white) ),
+                                        value: item['id']
+                                    );
+                                  }).toList(),
+                                  underline: Container(),
+                                  onChanged: (value) { setState(() { payMtd = value; }); print('payMtd ======== $payMtd'); },
+                                  hint:  Text(registerItems.paymentItmes[0]["name"],style: TextStyle(fontSize: defaultSize * 1.7,color: Colors.white)),
+                                  value:payMtd,
+                                  iconEnabledColor: Colors.amber, //화살표 색
+                                ),
                               ),
                             ),
                           ],
@@ -548,10 +569,10 @@ class _RegisterState extends State<Register> {
                       children: [
                         Text('날짜', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),
                         SizedBox(height: 10,),
-                        Padding(padding: EdgeInsets.only(top: 10)),
                         Row(
-                          children: [
-                            Expanded(flex: 2 ,child: Text('시작일', style: TextStyle(fontSize: defaultSize * 1.6),),),
+                          children: [Padding(padding: EdgeInsets.only(left: 43)),
+                            Expanded(flex: 2 ,
+                              child: Text('시작일', style: TextStyle(fontSize: defaultSize * 1.6),),),
                             Expanded( flex: 6 ,
                               child: Padding( padding: EdgeInsets.only(right: defaultSize * 2),
                                 child: InkWell(
@@ -569,7 +590,7 @@ class _RegisterState extends State<Register> {
                                   alignment: Alignment.center,
                                   // decoration: BoxDecoration(border:Border.all(color: Colors.grey)),
                                     child: Text( selectedDate.toString().substring(0, 10) ?? '시작일을 선택하세요.',
-                                      style:  TextStyle(fontSize: 15),
+                                      style:  TextStyle(fontSize: defaultSize * 2,),
                                       textAlign: TextAlign.right, ),
                                   // child: TextFormField(
                                   //   style: TextStyle(fontSize: 20),
@@ -597,9 +618,9 @@ class _RegisterState extends State<Register> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.all(20.0),
+                    padding: EdgeInsets.all(10.0),
                     child:Row(
-                      children: [
+                      children: [ Padding(padding: EdgeInsets.only(left: 55)),
                         Text('시작 시간'),
                         InkWell(
                           onTap: () {
@@ -611,12 +632,12 @@ class _RegisterState extends State<Register> {
                           },
                           child:
                           Container(
-                            margin: EdgeInsets.only(left:45),
+                            margin: EdgeInsets.only(left:12),
                             width: _width / 1.7,
                             height: 20,
                             alignment: Alignment.center,
                             child: Text( selectedTime.format(context) ?? '시작시간을 선택하세요.',
-                              style:  TextStyle(fontSize: 15),
+                              style:  TextStyle(fontSize: defaultSize * 2),
                               textAlign: TextAlign.right, ),
                           ),
                         )
@@ -629,60 +650,60 @@ class _RegisterState extends State<Register> {
                       children: [
                         Row(
                           children: [
-                            Padding(padding: EdgeInsets.fromLTRB(defaultSize*2.5,defaultSize,defaultSize,defaultSize)),
-                            Expanded(flex: 1, child: Text('동네', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),),
-                            Expanded( flex: 2,
+                            Padding(padding: EdgeInsets.fromLTRB(defaultSize,defaultSize,defaultSize,defaultSize)),
+                            Container( width: 35,
+                              child: Text('동네',
+                                style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.7),),),
+                            Container( padding: EdgeInsets.only(left: 10), height: 40,width: 80,decoration: BoxDecoration(border: Border.all(color: Colors.lightGreen),borderRadius: BorderRadius.circular(15)),
                               child: (areaItems == null) ? Padding( padding: EdgeInsets.symmetric(horizontal: 5.0), child: SizedBox( width: defaultSize, height: defaultSize, child: CircularProgressIndicator(), ),) :
                               DropdownButton(
-                                items: (areaItems != null) ?
-                                areaItems.map((item) {
-                                  return  DropdownMenuItem(
-                                      child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.7,) ),
-                                      value: item['id']
-                                  );
-                                }).toList() : [],
-                                underline: Container(),
-                                onTap: () {
-                                  FocusScopeNode currentFocus = FocusScope.of(context);
-                                  if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
-                                    currentFocus.focusedChild.unfocus();
-                                  }
-                                },
-                                onChanged: (value) { setState(() { twnCd = value; }); print('twnCd ======== $twnCd'); },
-                                hint: Text('동네', style: TextStyle(fontSize: defaultSize * 1.7)),
-                                value:twnCd,
-                                iconEnabledColor: Colors.amber, //화살표 색
+                                  items: (areaItems != null) ?
+                                  areaItems.map((item) {
+                                    return  DropdownMenuItem(
+                                        child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.7,) ),
+                                        value: item['id']
+                                    );
+                                  }).toList() : [],
+                                  underline: Container(),
+                                  onTap: () {
+                                    FocusScopeNode currentFocus = FocusScope.of(context);
+                                    if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+                                      currentFocus.focusedChild.unfocus();
+                                    }
+                                  },
+                                  onChanged: (value) { setState(() { twnCd = value; }); print('twnCd ======== $twnCd'); },
+                                  hint: Text('동네', style: TextStyle(fontSize: defaultSize * 1.7)),
+                                  value:twnCd,
+                                  iconEnabledColor: Colors.amber, //화살표 색
+                                ),
+                              ),SizedBox(width:8,),
+                            Container( width: 35,child: Text('범위', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),),
+                            Container( padding: EdgeInsets.only(left: 10), height: 40,width: 65,decoration: BoxDecoration(border: Border.all(color: Colors.lightGreen),borderRadius: BorderRadius.circular(15)),
+
+                                child: DropdownButton(
+                                  items: registerItems.rangeItems.map((item) {
+                                    return  DropdownMenuItem(
+                                        child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.7,) ),
+                                        value: item['id']
+                                    );
+                                  }).toList(),
+                                  underline: Container(),
+                                  onTap: () {
+                                    FocusScopeNode currentFocus = FocusScope.of(context);
+                                    if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+                                      currentFocus.focusedChild.unfocus();
+                                    }
+                                  },
+                                  onChanged: (value) { setState(() { twnGc = value; }); print('twnGc ======== $twnGc'); },
+                                  hint:  Text(registerItems.rangeItems[0]["name"],style: TextStyle(fontSize: defaultSize * 1.7)),
+                                  value:twnGc,
+                                  iconEnabledColor: Colors.amber, //화살표 색
+                                ),
                               ),
-                            ),
-                            Expanded(flex: 2, child: Text('범위', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),),
-                            Expanded( flex: 2,
-                              child:DropdownButton(
-                                items: registerItems.rangeItems.map((item) {
-                                  return  DropdownMenuItem(
-                                      child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.7,) ),
-                                      value: item['id']
-                                  );
-                                }).toList(),
-                                underline: Container(),
-                                onTap: () {
-                                  FocusScopeNode currentFocus = FocusScope.of(context);
-                                  if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
-                                    currentFocus.focusedChild.unfocus();
-                                  }
-                                },
-                                onChanged: (value) { setState(() { twnGc = value; }); print('twnGc ======== $twnGc'); },
-                                hint:  Text(registerItems.rangeItems[0]["name"],style: TextStyle(fontSize: defaultSize * 1.7)),
-                                value:twnGc,
-                                iconEnabledColor: Colors.amber, //화살표 색
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Padding(padding: EdgeInsets.fromLTRB(defaultSize*2.5,defaultSize,defaultSize,defaultSize)),
-                            Expanded(flex: 1, child: Text('희망성별', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),),
-                            Expanded( flex: 2,
+                            SizedBox(width: 8,),
+
+                            Container(width: 40, child: Text('희망성별', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),),
+                            Container( padding: EdgeInsets.only(left: 10), height: 40,width: 65,decoration: BoxDecoration(border: Border.all(color: Colors.lightGreen),borderRadius: BorderRadius.circular(15)),
                               child:DropdownButton(
                                 items: registerItems.genderItems.map((item) {
                                   return  DropdownMenuItem(
@@ -705,6 +726,33 @@ class _RegisterState extends State<Register> {
                             ),
                           ],
                         ),
+                        // Row(
+                        //   children: [
+                        //     Padding(padding: EdgeInsets.fromLTRB(defaultSize*2.5,defaultSize,defaultSize,defaultSize)),
+                        //     Expanded(flex: 1, child: Text('희망성별', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),),
+                        //     Expanded( flex: 2,
+                        //       child:DropdownButton(
+                        //         items: registerItems.genderItems.map((item) {
+                        //           return  DropdownMenuItem(
+                        //               child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.7,) ),
+                        //               value: item['id']
+                        //           );
+                        //         }).toList(),
+                        //         underline: Container(),
+                        //         onTap: () {
+                        //           FocusScopeNode currentFocus = FocusScope.of(context);
+                        //           if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+                        //             currentFocus.focusedChild.unfocus();
+                        //           }
+                        //         },
+                        //         onChanged: (value) { setState(() { hanGnd = value; }); print('hanGnd ======== $hanGnd'); },
+                        //         hint:  Text(registerItems.genderItems[0]["name"],style: TextStyle(fontSize: defaultSize * 1.7)),
+                        //         value:hanGnd,
+                        //         iconEnabledColor: Colors.amber, //화살표 색
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
                       ],
                     ),
                   ),

@@ -247,8 +247,8 @@ class _HomeDetailState extends State<HomeDetail> {
                             flex: 7,
                             child: Text( jobTtl ?? '',  style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.8, fontWeight: FontWeight.bold), ),
                           ),
-                          Expanded(flex: 3, child: Text('희망 성별 :', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.5),)),
-                          Expanded(flex: 1, child: Text(hanGndName ?? '', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.4),)),
+                          Expanded(flex: 3, child: Text('희망 성별 :', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7),)),
+                          Expanded(flex: 2, child: Text(hanGndName ?? '', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7),)),
                           Expanded(
                             flex: 3,
                             child: Column(
@@ -278,9 +278,22 @@ class _HomeDetailState extends State<HomeDetail> {
                       padding: EdgeInsets.all(defaultSize * 1.6),
                       child: Row(
                         children: [
-                          Expanded(
-                            flex: 3,
-                            child: (junPrfSeq == null) ? Icon(Icons.account_box_rounded, size: 40,) : Image.network('$url/api/mypage/images?recieveToken=$junPrfSeq')
+                          Container(margin: EdgeInsets.only(right: 50),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image: (junPrfSeq == null)
+                                          ? AssetImage('assets/noimage.jpg')
+                                          : NetworkImage(
+                                          '$url/api/mypage/images?recieveToken=$junPrfSeq')), //.
+                                  border: Border.all(
+                                      color: Colors.yellow.withOpacity(0.8),
+                                      width: 5)),
+                              width: defaultSize * 10,
+                              height: defaultSize * 17
+                            // child: (junPrfSeq == null) ? Icon(Icons.account_box_rounded, size: 40,) : Image.network('$url/api/mypage/images?recieveToken=$junPrfSeq')
                           ),
                           Expanded(
                             flex: 3,
@@ -290,11 +303,12 @@ class _HomeDetailState extends State<HomeDetail> {
                               children: [
                                 Text(
                                   junNic ?? '',
-                                  style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize:  defaultSize * 1.4),
+                                  style: TextStyle(color: Colors.lightGreen[700], fontWeight: FontWeight.bold, fontSize:  defaultSize * 2),
                                 ),
+                                SizedBox(height: 5,),
                                 Text(
                                   twnNm ?? '',
-                                  style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.2),
+                                  style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7),
                                 ),
                               ],
                             ),
@@ -307,10 +321,11 @@ class _HomeDetailState extends State<HomeDetail> {
                               children: [
                                 Text(
                                   "User평점",
-                                  style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: defaultSize * 1.2),
+                                  style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: defaultSize * 1.7),
                                 ),
+                                SizedBox(height: 5,),
                                 Text( '$mbrGrd',
-                                  style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.1),
+                                  style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.4),
                                   textAlign: TextAlign.center,
                                 ),
                               ],
@@ -333,7 +348,7 @@ class _HomeDetailState extends State<HomeDetail> {
                           child: Container(
                             child: Text(
                               '$tp1Nm / $tp2Nm',
-                              style: TextStyle(color: Colors.lightBlue, fontSize: defaultSize * 1.2, fontWeight: FontWeight.bold),
+                              style: TextStyle(color: Colors.lightBlue, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -341,12 +356,12 @@ class _HomeDetailState extends State<HomeDetail> {
                       ),
                       Expanded(flex:1,child: SizedBox()),
                       Expanded(
-                        flex: 2,
+                        flex: 3,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Container( child: Text( jobStDtm ?? '',  style: TextStyle(color: Colors.orange, fontSize: defaultSize * 1.2, fontWeight: FontWeight.bold), ), ),
+                            Container( child: Text( jobStDtm ?? '',  style: TextStyle(color: Colors.orange, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold), ), ),
                           ],
                         ),
                       ),
@@ -357,12 +372,12 @@ class _HomeDetailState extends State<HomeDetail> {
                   child: Row(
                     children: [
                       Expanded(
-                        flex: 1,
+                        flex: 2,
                         child: Container(
                           child: Text(
                             (aucMtd == "1") ? '금액 : '+ formJobAmt +'원': '희망 금액 : '+formJobAmt+'원',
                             // (jobAmt != null) ? '금액 : '+formatter.format(jobAmt) +'원': '금액 : 0 원',
-                            style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.2, fontWeight: FontWeight.bold,),
+                            style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold,),
                             textAlign: TextAlign.center,
                           ),
                           padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
@@ -491,15 +506,15 @@ class _HomeDetailState extends State<HomeDetail> {
               width: size.width / 2,
               height: defaultSize * 6,
               child: FlatButton(
-                color: Colors.purple,
+                color: Colors.lightGreen,
                 onPressed: () => homeDetailDialog.onUpdatePressed(context, jobId),
-                child: Text( "수정하기",  style: TextStyle( color: Colors.amber,  fontSize: defaultSize * 1.3,), ),
+                child: Text( "수정하기",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 2,), ),
               ),
             ),
             Expanded(
               child: FlatButton(
                 onPressed: () => homeDetailDialog.onDeletePressed(context, jobId, token),
-                child: Text("삭제하기"),
+                child: Text("삭제하기",style: TextStyle(fontSize: defaultSize*2),),
               ),
             ),
           ],
