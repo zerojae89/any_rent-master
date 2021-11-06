@@ -933,10 +933,11 @@ class _RegisterState extends State<Register> {
         child: Padding(
           padding: EdgeInsets.all(10),
           child: Swiper(
+            loop: false,
               scale: 0.9,
               viewportFraction: 0.8,
               pagination: SwiperPagination( alignment: Alignment.bottomRight, ),
-              itemCount: images?.length ?? 0,
+              itemCount: images.length,
               itemBuilder: (BuildContext context, int index){
                 Asset asset = images[index];
                 return AssetThumb(
