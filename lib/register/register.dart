@@ -825,7 +825,8 @@ class _RegisterState extends State<Register> {
 
                             ],
                           ),
-                          SizedBox( height: defaultSize * 45,  child: (images.length > 0) ? InkWell( onTap: loadAssets, child: buildGridView()) :
+                          SizedBox( height: defaultSize * 45,
+                            child: (images.length > 0 && images.length != null) ? InkWell( onTap: loadAssets, child: buildGridView()) :
                             InkWell(
                               onTap: loadAssets,
                               child: Container( padding: EdgeInsets.only(top: defaultSize * 2), decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
