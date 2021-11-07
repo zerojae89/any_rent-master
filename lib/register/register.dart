@@ -516,7 +516,27 @@ class _RegisterState extends State<Register> {
                                   fontWeight: FontWeight.bold
                                 ),
                                 controller: _controller,
-                                decoration: InputDecoration(prefixText: _currency),
+                                decoration: InputDecoration(
+                                    prefixText: _currency,
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(20.0),
+                                      borderSide: BorderSide( width: 3, )
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.lightGreen[700],
+                                    width: 3,
+                                  ),
+                                ),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(20.0),
+                                      borderSide: BorderSide(
+                                        color:Colors.lime,
+                                        width: 2,
+                                      )
+                                  ),
+                                ),
                                 // keyboardType: TextInputType.emailAddress,
                                 keyboardType: TextInputType.number,
                                 // ignore: deprecated_member_use
@@ -655,14 +675,14 @@ class _RegisterState extends State<Register> {
                             Padding(padding: EdgeInsets.fromLTRB(defaultSize,defaultSize,defaultSize,defaultSize)),
                             Container( width: 35,
                               child: Text('동네',
-                                style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.7),),),
+                                style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.5),),),
                             Container( padding: EdgeInsets.only(left: 10), height: 40,width: 80,decoration: BoxDecoration(border: Border.all(color: Colors.lightGreen),borderRadius: BorderRadius.circular(15)),
                               child: (areaItems == null) ? Padding( padding: EdgeInsets.symmetric(horizontal: 5.0), child: SizedBox( width: defaultSize, height: defaultSize, child: CircularProgressIndicator(), ),) :
                               DropdownButton(
                                   items: (areaItems != null) ?
                                   areaItems.map((item) {
                                     return  DropdownMenuItem(
-                                        child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.7,) ),
+                                        child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.5,) ),
                                         value: item['id']
                                     );
                                   }).toList() : [],
@@ -674,18 +694,18 @@ class _RegisterState extends State<Register> {
                                     }
                                   },
                                   onChanged: (value) { setState(() { twnCd = value; }); print('twnCd ======== $twnCd'); },
-                                  hint: Text('동네', style: TextStyle(fontSize: defaultSize * 1.7)),
+                                  hint: Text('동네', style: TextStyle(fontSize: defaultSize * 1.5)),
                                   value:twnCd,
                                   iconEnabledColor: Colors.amber, //화살표 색
                                 ),
                               ),SizedBox(width:8,),
-                            Container( width: 35,child: Text('범위', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),),
-                            Container( padding: EdgeInsets.only(left: 10), height: 40,width: 65,decoration: BoxDecoration(border: Border.all(color: Colors.lightGreen),borderRadius: BorderRadius.circular(15)),
+                            Container( width: 35,child: Text('범위', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.5),),),
+                            Container( padding: EdgeInsets.only(left: 10), height: 40,width: 80,decoration: BoxDecoration(border: Border.all(color: Colors.lightGreen),borderRadius: BorderRadius.circular(15)),
 
                                 child: DropdownButton(
                                   items: registerItems.rangeItems.map((item) {
                                     return  DropdownMenuItem(
-                                        child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.7,) ),
+                                        child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.5,) ),
                                         value: item['id']
                                     );
                                   }).toList(),
@@ -697,19 +717,19 @@ class _RegisterState extends State<Register> {
                                     }
                                   },
                                   onChanged: (value) { setState(() { twnGc = value; }); print('twnGc ======== $twnGc'); },
-                                  hint:  Text(registerItems.rangeItems[0]["name"],style: TextStyle(fontSize: defaultSize * 1.7)),
+                                  hint:  Text(registerItems.rangeItems[0]["name"],style: TextStyle(fontSize: defaultSize * 1.5)),
                                   value:twnGc,
                                   iconEnabledColor: Colors.amber, //화살표 색
                                 ),
                               ),
                             SizedBox(width: 8,),
 
-                            Container(width: 40, child: Text('희망성별', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),),
-                            Container( padding: EdgeInsets.only(left: 10), height: 40,width: 65,decoration: BoxDecoration(border: Border.all(color: Colors.lightGreen),borderRadius: BorderRadius.circular(15)),
+                            Container(width: 40, child: Text('희망성별', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.5),),),
+                            Container( padding: EdgeInsets.only(left: 10), height: 40,width: 80,decoration: BoxDecoration(border: Border.all(color: Colors.lightGreen),borderRadius: BorderRadius.circular(15)),
                               child:DropdownButton(
                                 items: registerItems.genderItems.map((item) {
                                   return  DropdownMenuItem(
-                                      child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.7,) ),
+                                      child: Text( item['name'],  style: TextStyle(fontSize: defaultSize * 1.5,) ),
                                       value: item['id']
                                   );
                                 }).toList(),
@@ -721,7 +741,7 @@ class _RegisterState extends State<Register> {
                                   }
                                 },
                                 onChanged: (value) { setState(() { hanGnd = value; }); print('hanGnd ======== $hanGnd'); },
-                                hint:  Text(registerItems.genderItems[0]["name"],style: TextStyle(fontSize: defaultSize * 1.7)),
+                                hint:  Text(registerItems.genderItems[0]["name"],style: TextStyle(fontSize: defaultSize * 1.5)),
                                 value:hanGnd,
                                 iconEnabledColor: Colors.amber, //화살표 색
                               ),
@@ -768,16 +788,43 @@ class _RegisterState extends State<Register> {
                         Container(
                           child: Text('일 제목', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),
                         ),
-                        Container(margin: EdgeInsets.only(left: 20),
-                          width: 250,
+                        Container(
+                          margin: EdgeInsets.only(left: 20),
+                          // width: 280,
+                          width: defaultSize * 30,
                           height: 50,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20.0),
-                            color: Colors.grey[200]
+                            // color: Colors.grey[200],
+                            // color: Colors.grey[100],
                           ),
                           child: TextFormField(
                                 textAlign: TextAlign.left,
-                                decoration: InputDecoration(contentPadding: EdgeInsets.zero,),
+                                decoration: InputDecoration(
+                                  // border: InputBorder.none,
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(20.0),
+                                      borderSide: BorderSide( width: 3, )
+                                  ),
+                                  errorBorder: InputBorder.none,
+                                  disabledBorder: InputBorder.none,
+                                  contentPadding: EdgeInsets.only(left: 15, right: 15),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                    borderSide: BorderSide(
+                                      color: Colors.lightGreen[700],
+                                      width: 3,
+                                    ),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(20.0),
+                                      borderSide: BorderSide(
+                                        color:Colors.lime,
+                                        width: 2,
+                                      )
+                                  ),
+                                ),
+
                                 validator: (value){
                                   if (value.trim().isEmpty){ return '공백은 입력할 수 없습니다.'; }
                                   if (value.isEmpty) { return '제목을 입력해 주세요.'; } else  return null; },
@@ -793,22 +840,49 @@ class _RegisterState extends State<Register> {
                       children: [
                         Container(),
                         Container(
-                          margin: EdgeInsets.only(right: 280),
+                          margin: EdgeInsets.only(right: 300),
                           child: Text('상세내용', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),
                           ),
                         Container(
                           padding: EdgeInsets.all(20.0),
                           margin: EdgeInsets.only(top: 10),
-                          height: 100,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20.0),
-                            color: Colors.grey[200]
-                          ),
+                          // height: 300,
+                          // decoration: BoxDecoration(
+                          //   borderRadius: BorderRadius.circular(20.0),
+                          //   color: Colors.grey[200]
+                          // ),
                           child: TextFormField(
-                                maxLength: (50),
+                                maxLines: 20,
+                                minLines: 20,
+                                // maxLength: (50),
+                            decoration: InputDecoration(
+                              // border: InputBorder.none,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                    borderSide: BorderSide( width: 3, )
+                                ),
+                                errorBorder: InputBorder.none,
+                                disabledBorder: InputBorder.none,
+                                contentPadding: EdgeInsets.only(left: 15, right: 15, top: 15),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.lightGreen[700],
+                                    width: 3,
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                    borderSide: BorderSide(
+                                      color:Colors.lime,
+                                      width: 2,
+                                    )
+                                ),
+                            ),
                                 validator: (value){
                                   if (value.trim().isEmpty){ return '공백은 입력할 수 없습니다.'; }
-                                  if (value.isEmpty) { return '상세내용을 입력하세요.'; } else  return null; },
+                                  if (value.isEmpty) { return '상세내용을 입력하세요.'; } else  return null;
+                                  },
                                 onChanged: (value){ print('value =============$value'); setState(() => jobCtn = value );},
                                 onSaved: (value){ jobCtn = value; },
                               ),
@@ -826,7 +900,7 @@ class _RegisterState extends State<Register> {
                             ],
                           ),
                           SizedBox( height: defaultSize * 45,
-                            child: (images.length > 0 && images.length != null) ? InkWell( onTap: loadAssets, child: buildGridView()) :
+                            child: (images.length > 0 && images != null) ? InkWell( onTap: loadAssets, child: buildGridView()) :
                             InkWell(
                               onTap: loadAssets,
                               child: Container( padding: EdgeInsets.only(top: defaultSize * 2), decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
@@ -936,7 +1010,15 @@ class _RegisterState extends State<Register> {
             loop: false,
               scale: 0.9,
               viewportFraction: 0.8,
-              pagination: SwiperPagination( alignment: Alignment.bottomRight, ),
+              pagination: SwiperPagination(
+                alignment: Alignment.bottomRight,
+                builder: new DotSwiperPaginationBuilder(
+                  color: Colors.grey, activeColor: Colors.lightGreen[700]
+                ),
+              ),
+              control: new SwiperControl(
+                color: Colors.lightGreen[700],
+              ),
               itemCount: images.length,
               itemBuilder: (BuildContext context, int index){
                 Asset asset = images[index];
@@ -985,6 +1067,9 @@ class _RegisterState extends State<Register> {
     }
     if (!mounted) return;
     setState(() {
+      if(resultList == null) {
+        resultList = [];
+      }
       images = resultList;
       if (error == null) _error = 'No Error Dectected';
     });
