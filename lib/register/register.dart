@@ -888,7 +888,7 @@ class _RegisterState extends State<Register> {
                               ),
                         ),
                     Container(
-                      margin: EdgeInsets.only(top:40),
+                      margin: EdgeInsets.only(top:40,bottom: 30),
                       child: Text('사진 첨부',style: TextStyle(fontSize: defaultSize*2,fontWeight: FontWeight.bold),),
                     ),
                     Column(
@@ -903,7 +903,7 @@ class _RegisterState extends State<Register> {
                             child: (images.length > 0 && images != null) ? InkWell( onTap: loadAssets, child: buildGridView()) :
                             InkWell(
                               onTap: loadAssets,
-                              child: Container( padding: EdgeInsets.only(top: defaultSize * 2), decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
+                              child: Container( padding: EdgeInsets.only(top: defaultSize * 2), margin: EdgeInsets.only(right: 8),decoration: BoxDecoration(border: Border.all(color: Colors.grey),borderRadius: BorderRadius.circular(20.0)),
                                   child: Center(child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
