@@ -235,7 +235,7 @@ class _HomeDetailState extends State<HomeDetail> {
                             child: Column(
                               children: [
                                 (token == null) ? Container() :
-                                (jobIts == widget.jobId) ? IconButton(icon: Icon(Icons.favorite), iconSize: defaultSize * 2, onPressed: () => sendAttentionDelete(context) ) :
+                                (jobIts == widget.jobId) ? IconButton(icon: Icon(Icons.favorite,color: Colors.redAccent,), iconSize: defaultSize * 2, onPressed: () => sendAttentionDelete(context) ) :
                                 IconButton(icon: Icon(Icons.favorite_border_outlined), iconSize: defaultSize * 2, onPressed: () => sendAttention(context) ),
                               ],
                             ),
@@ -462,7 +462,7 @@ class _HomeDetailState extends State<HomeDetail> {
               width: size.width / 2,
               height: defaultSize * 6,
               child: FlatButton(
-                color: Colors.purple,
+                color: Colors.lightGreen,
                 onPressed: () {
                   if(jobSts != "1") return globalKey.currentState.showSnackBar(const SnackBar(content: const Text('예약 할수 없습니다.')));
                   print('aucMtd ===================================== $aucMtd');
@@ -477,13 +477,13 @@ class _HomeDetailState extends State<HomeDetail> {
                     }
                   }
                 },
-                child: Text( hanResult,  style: TextStyle( color: Colors.amber,  fontSize: defaultSize * 1.3,), ),
+                child: Text( hanResult,  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.3,), ),
               ),
             ),
             Expanded(
               child: FlatButton(
                 onPressed: () => sendMessage(),
-                child: Text("메세지"),
+                child: Text("메세지",style: TextStyle(fontSize: defaultSize * 2),),
               ),
             ),
           ],
@@ -520,11 +520,11 @@ class _HomeDetailState extends State<HomeDetail> {
           width: double.infinity,
           height: defaultSize * 6,
           child: FlatButton(
-            color: Colors.purple,
+            color: Colors.lightGreen,
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
             },
-            child: Text( "로그인",  style: TextStyle( color: Colors.amber,  fontSize: defaultSize * 1.3,), ),
+            child: Text( "로그인",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.3,), ),
           ),
         ),
       );

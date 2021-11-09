@@ -97,8 +97,8 @@ class HomeDetailDialog {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        FlatButton(color: Colors.purple, onPressed: ()=> reservation(context, token, jobId), child: Text('예', style: TextStyle(color: Colors.amber),),),
-                        FlatButton(color: Colors.purple, onPressed: ()=> Navigator.pop(context), child: Text("아니오",style: TextStyle(color: Colors.amber), ),)
+                        FlatButton(color: Colors.lightGreen, onPressed: ()=> reservation(context, token, jobId), child: Text('예', style: TextStyle(color: Colors.white),),),
+                        FlatButton(color: Colors.lightGreen, onPressed: ()=> Navigator.pop(context), child: Text("아니오",style: TextStyle(color: Colors.white), ),)
                       ],
                     ),
                   ),

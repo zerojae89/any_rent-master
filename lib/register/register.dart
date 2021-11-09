@@ -261,20 +261,23 @@ class _RegisterState extends State<Register> {
         var auctionTimeFromNow = now.add(new Duration(seconds: auctionTime));
         print('auctionTimeFromNow ================= $auctionTimeFromNow');
         print('start ================= $start');
+        start = DateTime.now();
         print('jobStDtm ================= $jobStDtm');
         bidDlDtm = auctionTimeFromNow.toString().substring(0,16);
         print('bidDlDtm ================= $bidDlDtm');
         // print(start > auctionTimeFromNow);
 
         int compare = start.compareTo(auctionTimeFromNow); //날짜 비교 작업 시작날짜와 입찰 날짜 비교
-        if (compare < 0 ){
+        print('======================================= $compare');
+        if (compare > 0 ){
           print('start < auctionTimeFromNow  $start < $auctionTimeFromNow');
           return globalKey.currentState.showSnackBar(const SnackBar(content: const Text('입찰 마감시간보다 시작 시간이 빠릅니다.')));
         }
         request.fields['bidDlDtm'] = bidDlDtm;
-        print('=======================================입찰식 업로드?');
+        print('=======================================입찰식 업로드?2');
       }
       //여러 이미지 업로드를 위한 반복문
+      print('=======================================입찰식 업로드?3');
       for (int i = 0; i < images.length; i++) {
         // ByteData byteData = await images[i].getByteData();
         print('images ===============================================================');
@@ -724,7 +727,7 @@ class _RegisterState extends State<Register> {
                               ),
                             SizedBox(width: 8,),
 
-                            Container(width: 40, child: Text('희망성별', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.5),),),
+                            Container(width: 30, child: Text('희망성별', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.5),),),
                             Container( padding: EdgeInsets.only(left: 10), height: 40,width: 80,decoration: BoxDecoration(border: Border.all(color: Colors.lightGreen),borderRadius: BorderRadius.circular(15)),
                               child:DropdownButton(
                                 items: registerItems.genderItems.map((item) {
@@ -840,7 +843,7 @@ class _RegisterState extends State<Register> {
                       children: [
                         Container(),
                         Container(
-                          margin: EdgeInsets.only(right: 300),
+                          margin: EdgeInsets.only(right: 282),
                           child: Text('상세내용', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),
                           ),
                         Container(

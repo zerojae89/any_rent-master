@@ -211,8 +211,8 @@ class _MyPageJunDetailState extends State<MyPageJunDetail> {
                             child: Column(
                               children: [
                                 (token == null) ? Container() :
-                                (jobIts == widget.jobId) ? IconButton(icon: Icon(Icons.favorite), iconSize: defaultSize * 2, onPressed: () => sendAttentionDelete(context) ) :
-                                IconButton(icon: Icon(Icons.favorite_border_outlined), iconSize: defaultSize * 2, onPressed: () => sendAttention(context) ),
+                                (jobIts == widget.jobId) ? IconButton(icon: Icon(Icons.favorite,color: Colors.redAccent,), iconSize: defaultSize * 2, onPressed: () => sendAttentionDelete(context) ) :
+                                IconButton(icon: Icon(Icons.favorite_border_outlined,), iconSize: defaultSize * 2, onPressed: () => sendAttention(context) ),
                               ],
                             ),
                           ),
@@ -221,7 +221,7 @@ class _MyPageJunDetailState extends State<MyPageJunDetail> {
                       ),
                       (aucMtd == "1") ? Container() : Text(
                         '남은 입찰시간 : '+timeToDisplay,
-                        style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.4,),
+                        style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.5,fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
@@ -448,15 +448,15 @@ class _MyPageJunDetailState extends State<MyPageJunDetail> {
               width: size.width / 2,
               height: defaultSize * 6,
               child: FlatButton(
-                color: Colors.purple,
+                color: Colors.lightGreen,
                 onPressed: () => onComplComplete(context, jobId, token),
-                child: Text( "소일 완료하기",  style: TextStyle( color: Colors.amber,  fontSize: defaultSize * 1.3,), ),
+                child: Text( "소일 완료하기",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 2,), ),
               ),
             ),
             Expanded(
               child: FlatButton(
                 onPressed: () => sendMessage(),
-                child: Text("메세지 보내기"),
+                child: Text("메세지 보내기",style: TextStyle(fontSize: defaultSize * 2),),
               ),
             ),
           ],
@@ -468,11 +468,11 @@ class _MyPageJunDetailState extends State<MyPageJunDetail> {
           width: double.infinity,
           height: defaultSize * 6,
           child: FlatButton(
-            color: Colors.purple,
+            color: Colors.lightGreen,
             onPressed: () {
               print( '작업 완료 ');
             },
-            child: Text( "작업 완료",  style: TextStyle( color: Colors.amber,  fontSize: defaultSize * 1.3,), ),
+            child: Text( "작업 완료",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.3,), ),
           ),
         ),
       );
@@ -485,9 +485,9 @@ class _MyPageJunDetailState extends State<MyPageJunDetail> {
               width: size.width / 2,
               height: defaultSize * 6,
               child: FlatButton(
-                color: Colors.purple,
+                color: Colors.lightGreen,
                 onPressed: () => onComplComplete(context, jobId, token),
-                child: Text( "소일 완료하기",  style: TextStyle( color: Colors.amber,  fontSize: defaultSize * 1.3,), ),
+                child: Text( "소일 완료하기",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.3,), ),
               ),
             ),
             Expanded(
@@ -505,9 +505,9 @@ class _MyPageJunDetailState extends State<MyPageJunDetail> {
           width: double.infinity,
           height: defaultSize * 6,
           child: FlatButton(
-            color: Colors.purple,
+            color: Colors.amber[700],
             onPressed: () => null,
-            child: Text( "시간초과",  style: TextStyle( color: Colors.amber,  fontSize: defaultSize * 1.3,), ),
+            child: Text( "시간초과",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.3,), ),
           ),
         ),
       );
@@ -517,19 +517,19 @@ class _MyPageJunDetailState extends State<MyPageJunDetail> {
           width: double.infinity,
           height: defaultSize * 6,
           child: FlatButton(
-            color: Colors.purple,
+            color: Colors.lightGreen,
             onPressed: () => null,
-            child: Text( "취소",  style: TextStyle( color: Colors.amber,  fontSize: defaultSize * 1.3,), ),
+            child: Text( "취소",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.3,), ),
           ),
         ),
       );
     } else {
       return Container(
-        color: Colors.purple,
+        color: Colors.lightGreen,
         child: SizedBox(
           width: double.infinity,
           height: defaultSize * 6,
-          child: Center(child: Text( "상태없음",  style: TextStyle( color: Colors.amber,  fontSize: defaultSize * 1.3,), )),
+          child: Center(child: Text( "상태없음",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.3,), )),
         ),
       );
     }

@@ -20,12 +20,12 @@ class AttentionBottom {
               width: size.width / 2,
               height: defaultSize * 6,
               child: FlatButton(
-                color: Colors.purple,
+                color: Colors.lightGreen,
                 onPressed: () {
                   if(jobSts != "1") return Scaffold.of(context).showSnackBar( SnackBar(content: Text("예약 할 수 없습니다.",), duration: Duration(seconds: 3),) );
                   homeDetailDialog.showDialogFunc(context, defaultSize, jobTtl, jobCtn, jobStDtm, token, jobId);
                 },
-                child: Text( "예약하기",  style: TextStyle( color: Colors.amber,  fontSize: defaultSize * 1.3,), ),
+                child: Text( "예약하기",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.7,), ),
               ),
             ),
             Expanded(
@@ -47,9 +47,9 @@ class AttentionBottom {
                 width: size.width / 2,
                 height: defaultSize * 6,
                 child: FlatButton(
-                  color: Colors.purple,
+                  color: Colors.lightGreen,
                   onPressed: () => onComplComplete(context, jobId, token),
-                  child: Text( "소일 완료하기",  style: TextStyle( color: Colors.amber,  fontSize: defaultSize * 1.3,), ),
+                  child: Text( "소일 완료하기",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.7,), ),
                 ),
               ),
               Expanded(
@@ -72,9 +72,9 @@ class AttentionBottom {
                 width: size.width / 2,
                 height: defaultSize * 6,
                 child: FlatButton(
-                  color: Colors.purple,
+                  color: Colors.lightGreen,
                   onPressed: () => null,
-                  child: Text( "주니 완료 대기중",  style: TextStyle( color: Colors.amber,  fontSize: defaultSize * 1.3,), ),
+                  child: Text( "주니 완료 대기중",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.7,), ),
                 ),
               ),
               Expanded(
@@ -90,33 +90,33 @@ class AttentionBottom {
       break;
       case "8":{
         return Container(
-          color: Colors.purple,
+          color: Colors.lightGreen,
           child: SizedBox(
             width: double.infinity,
             height: defaultSize * 6,
-            child: Center(child: Text( "시간초과",  style: TextStyle( color: Colors.amber,  fontSize: defaultSize * 1.3,), )),
+            child: Center(child: Text( "시간초과",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.7,), )),
           ),
         );
       }
       break;
       case "9":{
         return Container(
-          color: Colors.purple,
+          color: Colors.lightGreen,
           child: SizedBox(
             width: double.infinity,
             height: defaultSize * 6,
-            child: Center(child: Text( "취소",  style: TextStyle( color: Colors.amber,  fontSize: defaultSize * 1.3,), )),
+            child: Center(child: Text( "취소",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.7,), )),
           ),
         );
       }
       break;
       default :{
         return Container(
-          color: Colors.purple,
+          color: Colors.lightGreen,
           child: SizedBox(
             width: double.infinity,
             height: defaultSize * 6,
-            child: Center(child: Text( "완료",  style: TextStyle( color: Colors.amber,  fontSize: defaultSize * 1.3,), )),
+            child: Center(child: Text( "완료",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.7,), )),
           ),
         );
       }
@@ -136,10 +136,10 @@ class AttentionBottom {
                 width: size.width / 2,
                 height: defaultSize * 6,
                 child: FlatButton(
-                  color: Colors.purple,
+                  color: Colors.lightGreen,
                   onPressed: () => homeDetailDialog.onUpdatePressed(context, jobId),
                   child: Text("수정하기", style: TextStyle(
-                    color: Colors.amber, fontSize: defaultSize * 1.3,),),
+                    color: Colors.white, fontSize: defaultSize * 1.7,),),
                 ),
               ),
               Expanded(
@@ -161,9 +161,9 @@ class AttentionBottom {
                 width: size.width / 2,
                 height: defaultSize * 6,
                 child: FlatButton(
-                  color: Colors.purple,
+                  color: Colors.lightGreen,
                   onPressed: () => onComplComplete(context, jobId, token),
-                  child: Text( "소일 완료하기",  style: TextStyle( color: Colors.amber,  fontSize: defaultSize * 1.3,), ),
+                  child: Text( "소일 완료하기",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.7,), ),
                 ),
               ),
               Expanded(
@@ -182,11 +182,11 @@ class AttentionBottom {
           width: double.infinity,
           height: defaultSize * 6,
           child: FlatButton(
-            color: Colors.purple,
+            color: Colors.lightGreen,
             onPressed: () {
               print( '완료');
             },
-            child: Text( "완료",  style: TextStyle( color: Colors.amber,  fontSize: defaultSize * 1.3,), ),
+            child: Text( "완료",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.7,), ),
           ),
         );
       }
@@ -196,11 +196,11 @@ class AttentionBottom {
           width: double.infinity,
           height: defaultSize * 6,
           child: FlatButton(
-            color: Colors.purple,
+            color: Colors.lightGreen,
             onPressed: () {
               print( '하니 선정중 ');
             },
-            child: Text( "하니 선정중",  style: TextStyle( color: Colors.amber,  fontSize: defaultSize * 1.3,), ),
+            child: Text( "하니 선정중",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.7,), ),
           ),
         );
       }
@@ -214,9 +214,9 @@ class AttentionBottom {
                 width: size.width / 2,
                 height: defaultSize * 6,
                 child: FlatButton(
-                  color: Colors.purple,
+                  color: Colors.lightGreen,
                   onPressed: () => onComplComplete(context, jobId, token),
-                  child: Text( "소일 완료하기",  style: TextStyle( color: Colors.amber,  fontSize: defaultSize * 1.3,), ),
+                  child: Text( "소일 완료하기",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.7,), ),
                 ),
               ),
               Expanded(
@@ -235,9 +235,9 @@ class AttentionBottom {
           width: double.infinity,
           height: defaultSize * 6,
           child: FlatButton(
-            color: Colors.purple,
+            color: Colors.lightGreen,
             onPressed: () => null,
-            child: Text( "시간초과",  style: TextStyle( color: Colors.amber,  fontSize: defaultSize * 1.3,), ),
+            child: Text( "시간초과",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.7,), ),
           ),
         );
       }
@@ -247,20 +247,20 @@ class AttentionBottom {
           width: double.infinity,
           height: defaultSize * 6,
           child: FlatButton(
-            color: Colors.purple,
+            color: Colors.lightGreen,
             onPressed: () => null,
-            child: Text( "취소",  style: TextStyle( color: Colors.amber,  fontSize: defaultSize * 1.3,), ),
+            child: Text( "취소",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.7,), ),
           ),
         );
       }
       break;
       default:{
         return Container(
-          color: Colors.purple,
+          color: Colors.lightGreen,
           child: SizedBox(
             width: double.infinity,
             height: defaultSize * 6,
-            child: Center(child: Text( "상태없음",  style: TextStyle( color: Colors.amber,  fontSize: defaultSize * 1.3,), )),
+            child: Center(child: Text( "상태없음",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.7,), )),
           ),
         );
       }

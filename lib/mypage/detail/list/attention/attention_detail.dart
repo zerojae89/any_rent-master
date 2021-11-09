@@ -143,27 +143,26 @@ class _MyPageAttentionDetailState extends State<MyPageAttentionDetail> {
             children: [
               Padding(
                 padding: EdgeInsets.only(left: defaultSize * 1.6 , top: defaultSize * 1.6),
-                child: Row(
+                child:
+                Row(
                   children: [
-                    Expanded(
-                      flex: 7,
+                    Container(
+                      margin: EdgeInsets.only(left: 24,right: 70),
                       child: Text( jobTtl ?? '',  style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.8, fontWeight: FontWeight.bold), ),
                     ),
-                    Expanded(flex: 3, child: Text('희망 성별 :', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.5),)),
-                    Expanded(flex: 1, child: Text(hanGndName ?? '', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.4),)),
+                    Container(child: Text('희망 성별 :', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7,fontWeight:FontWeight.bold),)),
+                    Container(margin: EdgeInsets.only(left: 10), child: Text(hanGndName ?? '', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7),)),
                     Expanded(
                       flex: 3,
                       child: Column(
                         children: [
+                          (token == null) ? Container() :
                           (jobIts == widget.jobId) ? IconButton(icon: Icon(Icons.favorite), iconSize: defaultSize * 2, onPressed: () => sendAttentionDelete(context) ) :
                           IconButton(icon: Icon(Icons.favorite_border_outlined), iconSize: defaultSize * 2, onPressed: () => sendAttention(context) ),
-                          // (bidDlDtm == "null") ? null : Text(
-                          //   "job id 대신 입찰 식일시 남은 시간 넣자",
-                          //   style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.4,),
-                          // ),
                         ],
                       ),
                     ),
+
                   ],
                 ),
               ),
@@ -176,9 +175,22 @@ class _MyPageAttentionDetailState extends State<MyPageAttentionDetail> {
                     padding: EdgeInsets.all(defaultSize * 1.6),
                     child: Row(
                       children: [
-                        Expanded(
-                          flex: 3,
-                          child: (junPrfSeq == null) ? Icon(Icons.account_box_rounded, size: 40,) : Image.network('$url/api/mypage/images?recieveToken=$junPrfSeq')
+                        Container(margin: EdgeInsets.only(right: 50),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: (junPrfSeq == null)
+                                        ? AssetImage('assets/noimage.jpg')
+                                        : NetworkImage(
+                                        '$url/api/mypage/images?recieveToken=$junPrfSeq')), //.
+                                border: Border.all(
+                                    color: Colors.yellow.withOpacity(0.8),
+                                    width: 5)),
+                            width: defaultSize * 9,
+                            height: defaultSize * 15
+                          // child: (junPrfSeq == null) ? Icon(Icons.account_box_rounded, size: 40,) : Image.network('$url/api/mypage/images?recieveToken=$junPrfSeq')
                         ),
                         Expanded(
                           flex: 3,
@@ -188,11 +200,12 @@ class _MyPageAttentionDetailState extends State<MyPageAttentionDetail> {
                             children: [
                               Text(
                                 junNic ?? '',
-                                style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize:  defaultSize * 1.4),
+                                style: TextStyle(color: Colors.lightGreen[700], fontWeight: FontWeight.bold, fontSize:  defaultSize * 2),
                               ),
+                              SizedBox(height: 5,),
                               Text(
                                 twnNm ?? '',
-                                style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.2),
+                                style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7),
                               ),
                             ],
                           ),
@@ -205,10 +218,11 @@ class _MyPageAttentionDetailState extends State<MyPageAttentionDetail> {
                             children: [
                               Text(
                                 "User평점",
-                                style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: defaultSize * 1.2),
+                                style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: defaultSize * 1.7),
                               ),
+                              SizedBox(height: 5,),
                               Text( '$mbrGrd',
-                                style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.1),
+                                style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.4),
                                 textAlign: TextAlign.center,
                               ),
                             ],
@@ -224,14 +238,14 @@ class _MyPageAttentionDetailState extends State<MyPageAttentionDetail> {
                 child: Row(
                   children: [
                     // Padding(),
-                    Expanded(
-                      flex: 2,
+                    Container(
+                      margin: EdgeInsets.only(left: 28),
                       child: Padding(
                         padding: EdgeInsets.only(left: 10),
                         child: Container(
                           child: Text(
                             '$tp1Nm / $tp2Nm',
-                            style: TextStyle(color: Colors.lightBlue, fontSize: defaultSize * 1.2, fontWeight: FontWeight.bold),
+                            style: TextStyle(color: Colors.lightBlue, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -239,27 +253,28 @@ class _MyPageAttentionDetailState extends State<MyPageAttentionDetail> {
                     ),
                     Expanded(flex:1,child: SizedBox()),
                     Expanded(
-                      flex: 2,
+                      flex: 3,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Container( child: Text( jobStDtm ?? '',  style: TextStyle(color: Colors.orange, fontSize: defaultSize * 1.2, fontWeight: FontWeight.bold), ), ),
+                          Container( child: Text( jobStDtm ?? '',  style: TextStyle(color: Colors.orange, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold), ), ),
                         ],
                       ),
                     ),
                   ],
                 ),
               ),
+              SizedBox(height: 10,),
               Container(
                 child: Row(
                   children: [
                     Expanded(
-                      flex: 1,
+                      flex: 2,
                       child: Container(
                         child: Text(
                           (aucMtd == "1") ? '금액 : '+formatter.format(jobAmt) +'원': '금액 : 0 원',
-                          style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.2, fontWeight: FontWeight.bold,),
+                          style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold,),
                           textAlign: TextAlign.center,
                         ),
                         padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
@@ -274,7 +289,7 @@ class _MyPageAttentionDetailState extends State<MyPageAttentionDetail> {
                       child: Container(
                         child: Text(
                           (payMtd == null) ? '' : (payMtd == '1') ? '직접결제' : (payMtd == '2')? '안전결제' : '',
-                          style: TextStyle(color: Colors.pink, fontSize:  defaultSize * 1.2 , fontWeight: FontWeight.bold,),
+                          style: TextStyle(color: Colors.pink, fontSize:  defaultSize * 1.7 , fontWeight: FontWeight.bold,),
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -284,7 +299,7 @@ class _MyPageAttentionDetailState extends State<MyPageAttentionDetail> {
                       child: Container(
                         child: Text(
                           (aucMtd == null) ? '' : (aucMtd == '1') ? '선착순' : (aucMtd == '2')? '입찰식' : '',
-                          style: TextStyle(color: Colors.brown, fontSize:  defaultSize * 1.2, fontWeight: FontWeight.bold),
+                          style: TextStyle(color: Colors.brown, fontSize:  defaultSize * 1.7, fontWeight: FontWeight.bold),
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -294,7 +309,16 @@ class _MyPageAttentionDetailState extends State<MyPageAttentionDetail> {
               ),
               Divider(height: defaultSize * 3,),
               (picCnt == 0) ?  Container() : SizedBox(height: defaultSize * 45, child: buildGridView(jobId, picCnt)),
-              SizedBox( height: defaultSize * 17,  child:  Container( child: Padding( padding: EdgeInsets.all(10),  child: Text(jobCtn ?? '', style:  TextStyle(fontSize:  defaultSize * 1.5),), ), ), ),
+              Container(
+                margin: EdgeInsets.all(20.0),
+                height: defaultSize * 30,
+                child:  Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.lightGreen,width: 1),
+                      borderRadius: BorderRadius.circular(20.0)
+                  ),
+                  width: 350,
+                  child: Padding( padding: EdgeInsets.all(20),  child: Text(jobCtn ?? '', style:  TextStyle(fontSize:  defaultSize * 1.5),), ), ), ),
               Divider(height: defaultSize * 4,),
             ],
           ),
@@ -343,11 +367,11 @@ class _MyPageAttentionDetailState extends State<MyPageAttentionDetail> {
       break;
       default :{
         return Container(
-          color: Colors.purple,
+          color: Colors.lightGreen,
           child: SizedBox(
             width: double.infinity,
             height: defaultSize * 6,
-            child: Center(child: Text( "상태없음",  style: TextStyle( color: Colors.amber,  fontSize: defaultSize * 1.3,), )),
+            child: Center(child: Text( "상태없음",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.3,), )),
           ),
         );
       }

@@ -152,7 +152,7 @@ class _MyPageHanDetailState extends State<MyPageHanDetail> {
                       child: Column(
                         children: [
                           // panorama shop raid  lens  label  favorite
-                          (jobIts == widget.jobId) ? IconButton(icon: Icon(Icons.favorite), iconSize: defaultSize * 2, onPressed: () => sendAttentionDelete(context) ) :
+                          (jobIts == widget.jobId) ? IconButton(icon: Icon(Icons.favorite,color: Colors.redAccent,), iconSize: defaultSize * 2, onPressed: () => sendAttentionDelete(context) ) :
                           IconButton(icon: Icon(Icons.favorite_border_outlined), iconSize: defaultSize * 2, onPressed: () => sendAttention(context) ),
 
                           // (bidDlDtm == "null") ? null : Text(
@@ -174,9 +174,22 @@ class _MyPageHanDetailState extends State<MyPageHanDetail> {
                     padding: EdgeInsets.all(defaultSize * 1.6),
                     child: Row(
                       children: [
-                        Expanded(
-                          flex: 3,
-                          child: (junPrfSeq == null) ? Icon(Icons.account_box_rounded, size: 40,) : Image.network('$url/api/mypage/images?recieveToken=$junPrfSeq')
+                        Container(margin: EdgeInsets.only(right: 50),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: (junPrfSeq == null)
+                                        ? AssetImage('assets/noimage.jpg')
+                                        : NetworkImage(
+                                        '$url/api/mypage/images?recieveToken=$junPrfSeq')), //.
+                                border: Border.all(
+                                    color: Colors.yellow.withOpacity(0.8),
+                                    width: 5)),
+                            width: defaultSize * 9,
+                            height: defaultSize * 15
+                          // child: (junPrfSeq == null) ? Icon(Icons.account_box_rounded, size: 40,) : Image.network('$url/api/mypage/images?recieveToken=$junPrfSeq')
                         ),
                         Expanded(
                           flex: 3,
@@ -186,11 +199,12 @@ class _MyPageHanDetailState extends State<MyPageHanDetail> {
                             children: [
                               Text(
                                 junNic ?? '',
-                                style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize:  defaultSize * 1.4),
+                                style: TextStyle(color: Colors.lightGreen[700], fontWeight: FontWeight.bold, fontSize:  defaultSize * 2),
                               ),
+                              SizedBox(height: 5,),
                               Text(
                                 twnNm ?? '',
-                                style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.2),
+                                style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7),
                               ),
                             ],
                           ),
@@ -203,10 +217,11 @@ class _MyPageHanDetailState extends State<MyPageHanDetail> {
                             children: [
                               Text(
                                 "User평점",
-                                style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: defaultSize * 1.2),
+                                style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: defaultSize * 1.7),
                               ),
+                              SizedBox(height: 5,),
                               Text( '$mbrGrd',
-                                style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.1),
+                                style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.4),
                                 textAlign: TextAlign.center,
                               ),
                             ],
@@ -222,14 +237,14 @@ class _MyPageHanDetailState extends State<MyPageHanDetail> {
                 child: Row(
                   children: [
                     // Padding(),
-                    Expanded(
-                      flex: 2,
+                    Container(
+                      margin: EdgeInsets.only(left: 28),
                       child: Padding(
                         padding: EdgeInsets.only(left: 10),
                         child: Container(
                           child: Text(
                             '$tp1Nm / $tp2Nm',
-                            style: TextStyle(color: Colors.lightBlue, fontSize: defaultSize * 1.2, fontWeight: FontWeight.bold),
+                            style: TextStyle(color: Colors.lightBlue, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -237,27 +252,28 @@ class _MyPageHanDetailState extends State<MyPageHanDetail> {
                     ),
                     Expanded(flex:1,child: SizedBox()),
                     Expanded(
-                      flex: 2,
+                      flex: 3,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Container( child: Text( jobStDtm ?? '',  style: TextStyle(color: Colors.orange, fontSize: defaultSize * 1.2, fontWeight: FontWeight.bold), ), ),
+                          Container( child: Text( jobStDtm ?? '',  style: TextStyle(color: Colors.orange, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold), ), ),
                         ],
                       ),
                     ),
                   ],
                 ),
               ),
+              SizedBox(height: 10,),
               Container(
                 child: Row(
                   children: [
                     Expanded(
-                      flex: 1,
+                      flex: 2,
                       child: Container(
                         child: Text(
                           (aucMtd == "1") ? '금액 : '+formatter.format(jobAmt) +'원': '금액 : 0 원',
-                          style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.2, fontWeight: FontWeight.bold,),
+                          style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold,),
                           textAlign: TextAlign.center,
                         ),
                         padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
@@ -272,7 +288,7 @@ class _MyPageHanDetailState extends State<MyPageHanDetail> {
                       child: Container(
                         child: Text(
                           (payMtd == null) ? '' : (payMtd == '1') ? '직접결제' : (payMtd == '2')? '안전결제' : '',
-                          style: TextStyle(color: Colors.pink, fontSize:  defaultSize * 1.2 , fontWeight: FontWeight.bold,),
+                          style: TextStyle(color: Colors.pink, fontSize:  defaultSize * 1.7 , fontWeight: FontWeight.bold,),
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -280,9 +296,10 @@ class _MyPageHanDetailState extends State<MyPageHanDetail> {
                     Expanded(
                       flex: 1,
                       child: Container(
+                        margin: EdgeInsets.only(right: 35),
                         child: Text(
                           (aucMtd == null) ? '' : (aucMtd == '1') ? '선착순' : (aucMtd == '2')? '입찰식' : '',
-                          style: TextStyle(color: Colors.brown, fontSize:  defaultSize * 1.2, fontWeight: FontWeight.bold),
+                          style: TextStyle(color: Colors.brown, fontSize:  defaultSize * 1.7, fontWeight: FontWeight.bold),
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -292,7 +309,16 @@ class _MyPageHanDetailState extends State<MyPageHanDetail> {
               ),
               Divider(height: defaultSize * 3,),
               (picCnt == 0) ?  Container() : SizedBox(height: defaultSize * 45, child: buildGridView(jobId, picCnt)),
-              SizedBox( height: defaultSize * 17,  child:  Container( child: Padding( padding: EdgeInsets.all(10),  child: Text(jobCtn ?? '', style:  TextStyle(fontSize:  defaultSize * 1.5),), ), ), ),
+              Container(
+                margin: EdgeInsets.all(20.0),
+                height: defaultSize * 30,
+                child:  Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.lightGreen,width: 1),
+                      borderRadius: BorderRadius.circular(20.0)
+                  ),
+                  width: 350,
+                  child: Padding( padding: EdgeInsets.all(20),  child: Text(jobCtn ?? '', style:  TextStyle(fontSize:  defaultSize * 1.5),), ), ), ),
               Divider(height: defaultSize * 4,),
             ],
           ),
@@ -335,9 +361,9 @@ class _MyPageHanDetailState extends State<MyPageHanDetail> {
               width: size.width / 2,
               height: defaultSize * 6,
               child: FlatButton(
-                color: Colors.purple,
+                color: Colors.lightGreen,
                 onPressed: () => homeDetailDialog.onUpdatePressed(context, jobId),
-                child: Text( "수정하기",  style: TextStyle( color: Colors.amber,  fontSize: defaultSize * 1.3,), ),
+                child: Text( "수정하기",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.3,), ),
               ),
             ),
             Expanded(
@@ -358,15 +384,15 @@ class _MyPageHanDetailState extends State<MyPageHanDetail> {
               width: size.width / 2,
               height: defaultSize * 6,
               child: FlatButton(
-                color: Colors.purple,
+                color: Colors.lightGreen,
                 onPressed: () => onComplComplete(context, jobId, token),
-                child: Text( "소일 완료하기",  style: TextStyle( color: Colors.amber,  fontSize: defaultSize * 1.3,), ),
+                child: Text( "소일 완료하기",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 2,), ),
               ),
             ),
             Expanded(
               child: FlatButton(
                 onPressed: () => sendMessage(),
-                child: Text("메세지 보내기"),
+                child: Text("메세지 보내기",style: TextStyle(fontSize: defaultSize * 2),),
               ),
             ),
           ],
@@ -378,9 +404,9 @@ class _MyPageHanDetailState extends State<MyPageHanDetail> {
           width: double.infinity,
           height: defaultSize * 6,
           child: FlatButton(
-            color: Colors.purple,
+            color: Colors.lightGreen,
             onPressed: () => null,
-            child: Text( "작업 완료",  style: TextStyle( color: Colors.amber,  fontSize: defaultSize * 1.3,), ),
+            child: Text( "작업 완료",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.3,), ),
           ),
         ),
       );
@@ -393,9 +419,9 @@ class _MyPageHanDetailState extends State<MyPageHanDetail> {
               width: size.width / 2,
               height: defaultSize * 6,
               child: FlatButton(
-                color: Colors.purple,
+                color: Colors.lightGreen,
                 onPressed: () => null,
-                child: Text( "주니 완료 대기중",  style: TextStyle( color: Colors.amber,  fontSize: defaultSize * 1.3,), ),
+                child: Text( "주니 완료 대기중",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.3,), ),
               ),
             ),
             Expanded(
@@ -413,19 +439,19 @@ class _MyPageHanDetailState extends State<MyPageHanDetail> {
           width: double.infinity,
           height: defaultSize * 6,
           child: FlatButton(
-            color: Colors.purple,
+            color: Colors.lightGreen,
             onPressed: () => null,
-            child: Text( "취소",  style: TextStyle( color: Colors.amber,  fontSize: defaultSize * 1.3,), ),
+            child: Text( "취소",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.3,), ),
           ),
         ),
       );
     } else {
       return Container(
-        color: Colors.purple,
+        color: Colors.lightGreen,
         child: SizedBox(
           width: double.infinity,
           height: defaultSize * 6,
-          child: Center(child: Text( "상태없음",  style: TextStyle( color: Colors.amber,  fontSize: defaultSize * 1.3,), )),
+          child: Center(child: Text( "상태없음",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.3,), )),
         ),
       );
     }
