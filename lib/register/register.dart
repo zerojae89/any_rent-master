@@ -679,7 +679,7 @@ class _RegisterState extends State<Register> {
                             Container( width: 35,
                               child: Text('동네',
                                 style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.5),),),
-                            Container( padding: EdgeInsets.only(left: 10), height: 40,width: 80,decoration: BoxDecoration(border: Border.all(color: Colors.lightGreen),borderRadius: BorderRadius.circular(15)),
+                            Container( padding: EdgeInsets.only(left: 10), height: 40,width: 71,decoration: BoxDecoration(border: Border.all(color: Colors.lightGreen),borderRadius: BorderRadius.circular(15)),
                               child: (areaItems == null) ? Padding( padding: EdgeInsets.symmetric(horizontal: 5.0), child: SizedBox( width: defaultSize, height: defaultSize, child: CircularProgressIndicator(), ),) :
                               DropdownButton(
                                   items: (areaItems != null) ?
@@ -703,7 +703,7 @@ class _RegisterState extends State<Register> {
                                 ),
                               ),SizedBox(width:8,),
                             Container( width: 35,child: Text('범위', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.5),),),
-                            Container( padding: EdgeInsets.only(left: 10), height: 40,width: 80,decoration: BoxDecoration(border: Border.all(color: Colors.lightGreen),borderRadius: BorderRadius.circular(15)),
+                            Container( padding: EdgeInsets.only(left: 10), height: 40,width: 70,decoration: BoxDecoration(border: Border.all(color: Colors.lightGreen),borderRadius: BorderRadius.circular(15)),
 
                                 child: DropdownButton(
                                   items: registerItems.rangeItems.map((item) {
@@ -728,7 +728,7 @@ class _RegisterState extends State<Register> {
                             SizedBox(width: 8,),
 
                             Container(width: 30, child: Text('희망성별', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.5),),),
-                            Container( padding: EdgeInsets.only(left: 10), height: 40,width: 80,decoration: BoxDecoration(border: Border.all(color: Colors.lightGreen),borderRadius: BorderRadius.circular(15)),
+                            Container( padding: EdgeInsets.only(left: 10), height: 40,width: 70,decoration: BoxDecoration(border: Border.all(color: Colors.lightGreen),borderRadius: BorderRadius.circular(15)),
                               child:DropdownButton(
                                 items: registerItems.genderItems.map((item) {
                                   return  DropdownMenuItem(

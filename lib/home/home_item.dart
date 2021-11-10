@@ -2,18 +2,22 @@ import 'dart:async';
 
 import 'package:any_rent/home/home_detail.dart';
 import 'package:any_rent/home/home_server.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:any_rent/settings/size_config.dart';
 import 'package:intl/intl.dart';
+import 'package:any_rent/settings/url.dart';
+
 
 class HomeItem extends StatefulWidget {
   
   String token, jobId, jobTtl, aucMtd, jobStDtm, bidDlDtm, payMtd, jobIts, twnNm;
-  int index, jobAmt;
+  int index, jobAmt,junPrfSeq;
   HomeItem(this.token, this.jobId, this.jobTtl, this.aucMtd, this.jobStDtm, this.bidDlDtm, this.jobAmt, this.index, this.payMtd, this.jobIts, this.twnNm);
   @override
   _HomeItemState createState() => _HomeItemState();
 }
+
 
 class _HomeItemState  extends State<HomeItem> with RouteAware, WidgetsBindingObserver{
   final formatter = new NumberFormat("###,###,###,###,###");
@@ -109,25 +113,55 @@ class _HomeItemState  extends State<HomeItem> with RouteAware, WidgetsBindingObs
           padding: EdgeInsets.only(left: 25,top: 20),
           child: Column(
             children: [
-              Padding(
-                padding: EdgeInsets.only(bottom: defaultSize * 2),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(widget.jobTtl ?? '일거리',style: TextStyle(fontWeight: FontWeight.bold),),
-                    Text(
-                      // '남은 입찰시간 : DD일 HH시 mm분 ',
-                      (widget.aucMtd == "1") ? '' : '남은 입찰시간 : '+timeToDisplay, //남은시간 카운트 해야됨
-                      style: TextStyle(color: Colors.deepOrange, fontSize: defaultSize * 1.2),
-                    )
-                  ],
-                ),
-              ),
+              Padding(padding: EdgeInsets.only(top: 5)),
+              // Padding(
+              //   padding: EdgeInsets.only(bottom: defaultSize * 2),
+              //   // child: Row(
+              //   //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   //   // children: [
+              //   //   //   Text(widget.jobTtl ?? '일거리',style: TextStyle(fontWeight: FontWeight.bold),),
+              //   //   //   // Text(
+              //   //   //   //   // '남은 입찰시간 : DD일 HH시 mm분 ',
+              //   //   //   //   (widget.aucMtd == "1") ? '' : '남은 입찰시간 : '+timeToDisplay, //남은시간 카운트 해야됨
+              //   //   //   //   style: TextStyle(color: Colors.deepOrange, fontSize: defaultSize * 1.2),
+              //   //   //   // )
+              //   //   // ],
+              //   // ),
+              // ),
               Row(
                 children: [
                   Container(
+                    margin: EdgeInsets.only(right: 20),
+                    width: 60,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: Colors.redAccent[100],
+                      shape: BoxShape.circle
+                    ),
+                  ),
+                  Column(
+                    children: [
+                      Container(
+                        width: 185,
+                        margin: EdgeInsets.only(bottom: 10),
+                        alignment: Alignment.centerLeft,
+                        child: Text(widget.jobTtl ?? '일거리',style: TextStyle(fontWeight: FontWeight.bold)),
+                      ),
+                      Row(
+                        children: [
+
+                  Container(
+                    padding: EdgeInsets.only(left: 10,top: 5),
+                    height: 30,
+                    width: 120,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: Colors.lightGreen
+                    ),
+                    margin: EdgeInsets.only(right: 10),
+
                     child: (widget.aucMtd == "1") ? Text(
-                      '금액 : '+formatter.format(widget.jobAmt) +'원'
+                      '금액 : '+formatter.format(widget.jobAmt) +'원',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
                       // style: TextStyle(color: Colors.orange, fontSize: 12, fontWeight: FontWeight.bold),
                     ) :
                     Text(
@@ -135,16 +169,26 @@ class _HomeItemState  extends State<HomeItem> with RouteAware, WidgetsBindingObs
                       // style: TextStyle(color: Colors.orange, fontSize: 12, fontWeight: FontWeight.bold),
                     ),
                   ),
-                  SizedBox( width: defaultSize ),
                   Container(
+                    padding: EdgeInsets.only(left: 10,top: 7),
+                    height: 30,
+                    width: 60,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: Colors.blueAccent
+                    ),
                     child: Text(
                       widget.twnNm,
-                      style: TextStyle(color: Colors.black, fontSize: defaultSize *1.5, fontWeight: FontWeight.bold),
+                      style: TextStyle(color: Colors.white, fontSize: defaultSize *1.5, fontWeight: FontWeight.bold),
                     ),
-                    padding: EdgeInsets.symmetric(horizontal: 2, vertical: 4),
-                    // decoration: BoxDecoration( color: Colors.lightBlue[50],  borderRadius: BorderRadius.circular(2), ),
+
+
                   ),
-                  SizedBox( width: defaultSize ),
+                        ],
+                      ),
+                  SizedBox(height: 10,),
+                  Row(
+                    children: [
                   Container(
                     child: Text(
                       (widget.aucMtd == "1") ? '선착순' : '입찰식',
@@ -162,10 +206,15 @@ class _HomeItemState  extends State<HomeItem> with RouteAware, WidgetsBindingObs
                     padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                     // decoration: BoxDecoration( color: Colors.pink[50],  borderRadius: BorderRadius.circular(2), ),
                   ),
+                    ],
+                  )
+                      ]
+                  )
                 ],
               ),
+
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8),
+                padding: const EdgeInsets.symmetric(vertical: 1),
                 child: Row(
                   children: [
                     Expanded(
