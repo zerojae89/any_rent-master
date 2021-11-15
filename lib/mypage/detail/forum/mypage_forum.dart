@@ -8,11 +8,11 @@ class MyPageDetailForum extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           MyPageDetailAppbar( title: '고객센터',),
+          SizedBox(height: 30,),
           MyPageMenuItem(
-            icon: Icon(Icons.info_outline, color: Colors.lightGreen[400],),
+            icon: Icon(Icons.info_outline, color: Colors.black,),
             title: '서비스 소개',
             press: (){
               print('서비스 소개');
@@ -21,7 +21,7 @@ class MyPageDetailForum extends StatelessWidget {
             horizontal: 1,
           ),
           MyPageMenuItem(
-            icon: Icon(Icons.perm_identity, color: Colors.lightGreen[400],),
+            icon: Icon(Icons.perm_identity, color: Colors.black,),
             title: '이용안내',
             press: (){
               print('이용안내');
@@ -30,7 +30,7 @@ class MyPageDetailForum extends StatelessWidget {
             horizontal: 1,
           ),
           MyPageMenuItem(
-            icon: Icon(Icons.account_balance_outlined, color: Colors.lightGreen[400],),
+            icon: Icon(Icons.account_balance_outlined, color: Colors.black,),
             title: '이용약관',
             press: (){
               print('이용약관');
@@ -39,7 +39,7 @@ class MyPageDetailForum extends StatelessWidget {
             horizontal: 1,
           ),
           MyPageMenuItem(
-            icon: Icon(Icons.admin_panel_settings_outlined, color:Colors.lightGreen[400]),
+            icon: Icon(Icons.admin_panel_settings_outlined, color:Colors.black),
             title: '개인정보취급방침',
             press: (){
               print('개인정보취급방침');
@@ -48,7 +48,7 @@ class MyPageDetailForum extends StatelessWidget {
             horizontal: 1,
           ),
           MyPageMenuItem(
-            icon: Icon(Icons.add_comment_outlined, color: Colors.lightGreen[400],),
+            icon: Icon(Icons.add_comment_outlined, color: Colors.black,),
             title: '자주묻는 질문',
             press: (){
               print('자주묻는 질문');
@@ -57,7 +57,7 @@ class MyPageDetailForum extends StatelessWidget {
             horizontal: 1,
           ),
           MyPageMenuItem(
-            icon: Icon(Icons.mail_outline, color: Colors.lightGreen[400]),
+            icon: Icon(Icons.mail_outline, color: Colors.black),
             title: '문의하기',
             press: (){
               print('문의하기');

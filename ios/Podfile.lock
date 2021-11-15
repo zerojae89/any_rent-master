@@ -95,6 +95,8 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (6.6.0):
     - GoogleUtilities/Logger
+  - kakao_flutter_sdk (0.4.2):
+    - Flutter
   - "location_permissions (3.0.0+1)":
     - Flutter
   - multi_image_picker (4.7.15):
@@ -105,6 +107,8 @@ PODS:
     - nanopb/encode (= 1.30905.0)
   - nanopb/decode (1.30905.0)
   - nanopb/encode (1.30905.0)
+  - package_info (0.0.1):
+    - Flutter
   - "permission_handler (4.4.0+hotfix.4)":
     - Flutter
   - PromisesObjC (1.2.8)
@@ -121,8 +125,10 @@ DEPENDENCIES:
   - flutter_webview_plugin (from `.symlinks/plugins/flutter_webview_plugin/ios`)
   - geocoder (from `.symlinks/plugins/geocoder/ios`)
   - geolocator (from `.symlinks/plugins/geolocator/ios`)
+  - kakao_flutter_sdk (from `.symlinks/plugins/kakao_flutter_sdk/ios`)
   - location_permissions (from `.symlinks/plugins/location_permissions/ios`)
   - multi_image_picker (from `.symlinks/plugins/multi_image_picker/ios`)
+  - package_info (from `.symlinks/plugins/package_info/ios`)
   - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
   - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
@@ -162,10 +168,14 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/geocoder/ios"
   geolocator:
     :path: ".symlinks/plugins/geolocator/ios"
+  kakao_flutter_sdk:
+    :path: ".symlinks/plugins/kakao_flutter_sdk/ios"
   location_permissions:
     :path: ".symlinks/plugins/location_permissions/ios"
   multi_image_picker:
     :path: ".symlinks/plugins/multi_image_picker/ios"
+  package_info:
+    :path: ".symlinks/plugins/package_info/ios"
   permission_handler:
     :path: ".symlinks/plugins/permission_handler/ios"
   shared_preferences:
@@ -196,15 +206,17 @@ SPEC CHECKSUMS:
   GoogleDataTransport: f6f8eba931df03ebd2232ff4645aa85f8f47b5ab
   GoogleDataTransportCCTSupport: d70a561f7d236af529fee598835caad5e25f6d3d
   GoogleUtilities: 39530bc0ad980530298e9c4af8549e991fd033b1
+  kakao_flutter_sdk: d9f909ec8b12a263ce2c1c7a7eb6f8de02e7c253
   location_permissions: 7e0f9aa0f60deb8ff93ddf0e2a164c7e8197bc94
   multi_image_picker: 58577ab96d99b35c82d626db7d81906d14c2b667
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
+  package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62
   permission_handler: 8278954f2382902f63f00dd8828769c0bd6d511b
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   Protobuf: 2793fcd0622a00b546c60e7cbbcc493e043e9bb9
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
   url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
 
-PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+PODFILE CHECKSUM: 57c8aed26fba39d3ec9424816221f294a07c58eb
 
 COCOAPODS: 1.11.2

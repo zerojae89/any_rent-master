@@ -33,6 +33,7 @@ class _MyPageDetailKeywordState extends State<MyPageDetailKeyword> {
         children: [
           MyPageDetailAppbar(title: '키워드',),
           Container(
+            margin: EdgeInsets.all(20.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -48,7 +49,8 @@ class _MyPageDetailKeywordState extends State<MyPageDetailKeyword> {
                       padding: EdgeInsets.only(left: defaultSize, right: defaultSize),
                       child: Row(
                         children: [
-                          Expanded( flex: 6,
+                          Container(
+                            width: 220,
                             child: TextField(
                               controller: _controller,
                               autofocus: true,
@@ -59,8 +61,13 @@ class _MyPageDetailKeywordState extends State<MyPageDetailKeyword> {
                               ),
                             ),
                           ),
-                          Expanded( flex: 2,
-                            child:  RaisedButton( color: Colors.lightGreen[400],
+                          Container( width: 80,
+                            decoration: (BoxDecoration(
+                              borderRadius: BorderRadius.circular(20.0)
+                            )),
+                            child:  RaisedButton( color: Colors.lightGreen[400],shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0)
+                            ),
                               child: Text( '등록', style: TextStyle( color: Colors.white ), ),
                               onPressed: (){
                                 keyWord = _controller.text;

@@ -16,9 +16,10 @@ class MyPageMenuItem extends StatelessWidget{
       onTap: press,
       child: Column(
         children: [
-          SafeArea(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: defaultSize * horizontal, vertical: 0),
+          Container(
+            height: 80,
+            child: Container(
+              padding: EdgeInsets.only(top:5,bottom: 0,left: 20,right: 20),
               child: Row(
                 children: [
                   icon,
@@ -33,7 +34,7 @@ class MyPageMenuItem extends StatelessWidget{
                   Icon(
                     Icons.arrow_forward_ios,
                     size: defaultSize * 1.6,
-                    color: Colors.blue,
+                    color: Colors.grey[600],
                   ),
                 ],
               ),

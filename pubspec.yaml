@@ -46,6 +46,11 @@ dependencies:
   socket_io_client: ^0.9.12
   flutter_socket_io: ^0.6.0
   scoped_model: ^1.0.1
+  kakao_flutter_sdk: ^0.4.2
+  dio:
+  json_annotation:
+  package_info:
+  platform:
 
 dev_dependencies:
   flutter_test:

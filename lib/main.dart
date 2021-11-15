@@ -2,8 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'main_home.dart';
+import 'package:kakao_flutter_sdk/all.dart';
 
-void main() => runApp(MyApp());
+void main() {
+    KakaoContext.clientId="3f2e549baa12899e3d42afa90cf782b7";
+    KakaoContext.javascriptClientId="53906cd63e84ac614ce233df62b103a1";
+    runApp(MyApp());
+}
+
 
 class MyApp extends StatelessWidget {
   @override

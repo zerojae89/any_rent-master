@@ -195,6 +195,7 @@ class _MyPageDetailMyTownState extends State<MyPageDetailMyTown> {
           MyPageDetailAppbar( title: '내 동네',),
           Expanded( flex: 2,
             child: Container(
+              margin: EdgeInsets.all(20.0),
               child: Padding(
                 padding: EdgeInsets.all(10.0),
                 child: Column(
@@ -224,7 +225,8 @@ class _MyPageDetailMyTownState extends State<MyPageDetailMyTown> {
               ),
             ),
           ),
-          Expanded( flex: 3,
+          Container(
+            margin: EdgeInsets.only(bottom: 200,left: 20),
               child: Column(
                 children: [
                   (substringCert1 == null) ? Container() : reCertText2(substringCert1, townCnt1, cert1, true),

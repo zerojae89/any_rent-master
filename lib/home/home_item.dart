@@ -131,11 +131,11 @@ class _HomeItemState  extends State<HomeItem> with RouteAware, WidgetsBindingObs
               Row(
                 children: [
                   Container(
-                    margin: EdgeInsets.only(right: 20),
+                    margin: EdgeInsets.only(right: 15),
                     width: 60,
                     height: 60,
                     decoration: BoxDecoration(
-                      color: Colors.redAccent[100],
+                      border: Border.all(color: Colors.black),
                       shape: BoxShape.circle
                     ),
                   ),
@@ -150,18 +150,18 @@ class _HomeItemState  extends State<HomeItem> with RouteAware, WidgetsBindingObs
                       Row(
                         children: [
 
-                  Container(
-                    padding: EdgeInsets.only(left: 10,top: 5),
-                    height: 30,
-                    width: 120,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: Colors.lightGreen
-                    ),
-                    margin: EdgeInsets.only(right: 10),
 
-                    child: (widget.aucMtd == "1") ? Text(
-                      '금액 : '+formatter.format(widget.jobAmt) +'원',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
+                  Container(
+                    padding: EdgeInsets.only(left: 15,top: 5),
+                    margin: EdgeInsets.only(right: 10,),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        // color: Colors.lightGreen
+                    ),
+                    height: 30,
+                    width: 130,
+                    child:(widget.aucMtd == "1") ? Text(
+                      '금액 : '+formatter.format(widget.jobAmt) +'원',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),
                       // style: TextStyle(color: Colors.orange, fontSize: 12, fontWeight: FontWeight.bold),
                     ) :
                     Text(
@@ -169,17 +169,23 @@ class _HomeItemState  extends State<HomeItem> with RouteAware, WidgetsBindingObs
                       // style: TextStyle(color: Colors.orange, fontSize: 12, fontWeight: FontWeight.bold),
                     ),
                   ),
+
+
+
+
+
+
                   Container(
-                    padding: EdgeInsets.only(left: 10,top: 7),
+                    padding: EdgeInsets.only(left: 17,top: 7),
                     height: 30,
-                    width: 60,
+                    width: 70,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: Colors.blueAccent
+                        // color: Colors.blueAccent
                     ),
                     child: Text(
                       widget.twnNm,
-                      style: TextStyle(color: Colors.white, fontSize: defaultSize *1.5, fontWeight: FontWeight.bold),
+                      style: TextStyle(color: Colors.black, fontSize: defaultSize *1.5, fontWeight: FontWeight.bold),
                     ),
 
 
@@ -192,7 +198,7 @@ class _HomeItemState  extends State<HomeItem> with RouteAware, WidgetsBindingObs
                   Container(
                     child: Text(
                       (widget.aucMtd == "1") ? '선착순' : '입찰식',
-                      style: TextStyle(color: Colors.lightBlue, fontSize: defaultSize * 1.5, fontWeight: FontWeight.bold),
+                      style: TextStyle(color: Colors.lightBlue, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),
                     ),
                     padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                     // decoration: BoxDecoration( color: Colors.lightBlue[50],  borderRadius: BorderRadius.circular(2), ),
@@ -201,7 +207,7 @@ class _HomeItemState  extends State<HomeItem> with RouteAware, WidgetsBindingObs
                   Container(
                     child: Text(
                       (widget.payMtd == "1") ? '직접결제' : '안전결제',
-                      style: TextStyle(color: Colors.pink, fontSize: defaultSize * 1.5, fontWeight: FontWeight.bold),
+                      style: TextStyle(color: Colors.pink, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),
                     ),
                     padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                     // decoration: BoxDecoration( color: Colors.pink[50],  borderRadius: BorderRadius.circular(2), ),

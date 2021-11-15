@@ -31,6 +31,7 @@ class Register extends StatefulWidget {
 }
 
 
+
 class _RegisterState extends State<Register> {
   double _height;
   double _width;
@@ -335,7 +336,7 @@ class _RegisterState extends State<Register> {
         actions: <Widget>[
           FlatButton(onPressed: sendRegister,
               textColor: Colors.black,
-              child: Text("소일등록",style: TextStyle(fontSize: 17.0),),)
+              child: Text("완료",style: TextStyle(fontSize: 17.0),),)
         ],
       ),
       body: ListView(
@@ -351,14 +352,16 @@ class _RegisterState extends State<Register> {
                     padding: EdgeInsets.fromLTRB(defaultSize * 2.5, defaultSize * 2, defaultSize, defaultSize),
                     child: Text('카테고리', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),
                   ),
+                  SizedBox(height: 5,),
                   Container(
+                    margin: EdgeInsets.only(left: 5),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
                           padding: EdgeInsets.only(left: defaultSize, right: defaultSize),
-                          height: 40,
-                          width: 130,
+                          height: defaultSize * 4.5,
+                          width: defaultSize * 17,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10.0), // 동그라미 모양
                               color: Colors.lightGreen
@@ -390,11 +393,11 @@ class _RegisterState extends State<Register> {
                             iconEnabledColor: Colors.amber,
                           ) : Padding( padding: EdgeInsets.symmetric(horizontal: 5.0), child: SizedBox( width: defaultSize, height: defaultSize, child: CircularProgressIndicator(), ),),
                         ),
-                        SizedBox( width: defaultSize * 1, ),
+                        SizedBox( width: defaultSize * 2, ),
                         Container(
                           padding: EdgeInsets.only(left: defaultSize, right: defaultSize),
-                          height: 40,
-                          width: 130,
+                          height: defaultSize * 4.5,
+                          width: defaultSize * 17,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10.0), // 동그라미 모양
                               color: Colors.lightGreen,
@@ -438,15 +441,15 @@ class _RegisterState extends State<Register> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('입찰방식', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),
-                        SizedBox(height: 10,),
+                        SizedBox(height: 14,),
                         Row(
                           children: [
-                            Expanded(
-                              flex: 0,
+                            Container(
                                 child:Container(
-                                  margin: EdgeInsets.only(left: 30),
+                                  margin: EdgeInsets.only(left: 7),
                                   padding: EdgeInsets.only(left: defaultSize, right: defaultSize),
-                                  height: 40,
+                                  height: defaultSize * 4.5,
+                                  width: defaultSize * 17,
                                   // width: 100,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10.0), // 동그라미 모양
@@ -479,13 +482,13 @@ class _RegisterState extends State<Register> {
                                     ),
                                   ),
                                 ),
-                            SizedBox(width: 10,),
-                            Container(padding: EdgeInsets.only(top: defaultSize),
-                                width: 175,
-                                height: 40,
+                            SizedBox(width: defaultSize * 2,),
+                            Container(padding: EdgeInsets.only(top: defaultSize * 1.3),
+                                width: defaultSize * 16.7,
+                                height: defaultSize * 4.5,
                                 decoration:BoxDecoration(
                                   color: Colors.grey[200],
-                                  borderRadius: BorderRadius.circular(20.0
+                                  borderRadius: BorderRadius.circular(10.0
                                 ),
                                 ),
                                 child:
@@ -509,11 +512,14 @@ class _RegisterState extends State<Register> {
                         Text('결제', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),
                         Row(
                           children: [
-                            Expanded(
-                              flex: 1,
+                            SizedBox(width: defaultSize*1.5,),
+                            Container(
                               child: Text('금액', style: TextStyle(fontSize: defaultSize * 1.6),),
+                              width: 50,
                             ),
-                            Expanded( flex: 4,
+                            Container(
+                              width: 150,
+                              height: defaultSize *4.5,
                               child: TextField(
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold
@@ -522,18 +528,18 @@ class _RegisterState extends State<Register> {
                                 decoration: InputDecoration(
                                     prefixText: _currency,
                                   border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(20.0),
+                                      // borderRadius: BorderRadius.circular(20.0),
                                       borderSide: BorderSide( width: 3, )
                                   ),
                                   focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20.0),
+                                  // borderRadius: BorderRadius.circular(20.0),
                                   borderSide: BorderSide(
                                     color: Colors.lightGreen[700],
                                     width: 3,
                                   ),
                                 ),
                                   enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(20.0),
+                                      // borderRadius: BorderRadius.circular(20.0),
                                       borderSide: BorderSide(
                                         color:Colors.lime,
                                         width: 2,
@@ -557,9 +563,9 @@ class _RegisterState extends State<Register> {
                             ),
                             SizedBox(width: 15),
                             Container(
-                              margin: EdgeInsets.only(right: 30),
+                              margin: EdgeInsets.only(right: 10),
                               padding: EdgeInsets.only(left: 10),
-                              height: defaultSize * 5,
+                              height: defaultSize * 4.5,
                               decoration: BoxDecoration(
                               color: Colors.lightGreen,
                               borderRadius: BorderRadius.circular(defaultSize* 1 )
@@ -617,21 +623,6 @@ class _RegisterState extends State<Register> {
                                     child: Text( selectedDate.toString().substring(0, 10) ?? '시작일을 선택하세요.',
                                       style:  TextStyle(fontSize: defaultSize * 2,),
                                       textAlign: TextAlign.right, ),
-                                  // child: TextFormField(
-                                  //   style: TextStyle(fontSize: 20),
-                                  //   textAlign: TextAlign.center,
-                                  //   enabled: false,
-                                  //   keyboardType: TextInputType.text,
-                                  //   controller: _dateController,
-                                  //   onSaved: (String val) {
-                                  //     _setDate = val;
-                                  //   },
-                                  //   decoration: InputDecoration(
-                                  //       disabledBorder:
-                                  //       UnderlineInputBorder(borderSide: BorderSide.none),
-                                  //       // labelText: 'Time',
-                                  //       contentPadding: EdgeInsets.only(top: 0.0)),
-                                  // ),
                                 ),
                                   // child: Text( jobStDtm ?? '시작날짜를 선택하세요.', textAlign: TextAlign.right),
                                 ),
@@ -669,17 +660,23 @@ class _RegisterState extends State<Register> {
                       ],
                     )
                   ),
+                  SizedBox(height: 5,),
                   Divider(),
+                  SizedBox(height: 10,),
                   Container(
                     child: Column(
                       children: [
                         Row(
                           children: [
                             Padding(padding: EdgeInsets.fromLTRB(defaultSize,defaultSize,defaultSize,defaultSize)),
-                            Container( width: 35,
+                            Container( width: 30,
                               child: Text('동네',
                                 style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.5),),),
-                            Container( padding: EdgeInsets.only(left: 10), height: 40,width: 71,decoration: BoxDecoration(border: Border.all(color: Colors.lightGreen),borderRadius: BorderRadius.circular(15)),
+                            Container(
+                              padding: EdgeInsets.only(left: 10),
+                              height: 40,
+                              width: defaultSize * 8.3,
+                              decoration: BoxDecoration(border: Border.all(color: Colors.lightGreen),borderRadius: BorderRadius.circular(15)),
                               child: (areaItems == null) ? Padding( padding: EdgeInsets.symmetric(horizontal: 5.0), child: SizedBox( width: defaultSize, height: defaultSize, child: CircularProgressIndicator(), ),) :
                               DropdownButton(
                                   items: (areaItems != null) ?
@@ -702,8 +699,8 @@ class _RegisterState extends State<Register> {
                                   iconEnabledColor: Colors.amber, //화살표 색
                                 ),
                               ),SizedBox(width:8,),
-                            Container( width: 35,child: Text('범위', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.5),),),
-                            Container( padding: EdgeInsets.only(left: 10), height: 40,width: 70,decoration: BoxDecoration(border: Border.all(color: Colors.lightGreen),borderRadius: BorderRadius.circular(15)),
+                            Container( width: 30,child: Text('범위', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.5),),),
+                            Container( padding: EdgeInsets.only(left: 10), height: 40,width: defaultSize * 8.1,decoration: BoxDecoration(border: Border.all(color: Colors.lightGreen),borderRadius: BorderRadius.circular(15)),
 
                                 child: DropdownButton(
                                   items: registerItems.rangeItems.map((item) {
@@ -728,7 +725,7 @@ class _RegisterState extends State<Register> {
                             SizedBox(width: 8,),
 
                             Container(width: 30, child: Text('희망성별', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.5),),),
-                            Container( padding: EdgeInsets.only(left: 10), height: 40,width: 70,decoration: BoxDecoration(border: Border.all(color: Colors.lightGreen),borderRadius: BorderRadius.circular(15)),
+                            Container( padding: EdgeInsets.only(left: 10), height: 40,width: defaultSize * 8.3,decoration: BoxDecoration(border: Border.all(color: Colors.lightGreen),borderRadius: BorderRadius.circular(15)),
                               child:DropdownButton(
                                 items: registerItems.genderItems.map((item) {
                                   return  DropdownMenuItem(
@@ -781,10 +778,11 @@ class _RegisterState extends State<Register> {
                       ],
                     ),
                   ),
+                  SizedBox(height: 10,),
                   Divider(),
 
                   Container(
-                    margin: EdgeInsets.only(top: 10),
+                    margin: EdgeInsets.only(top:defaultSize * 0.5),
                     padding: EdgeInsets.fromLTRB(defaultSize * 2.5, defaultSize , defaultSize, defaultSize * 2),
                     child:Row(
                       children: [
@@ -794,10 +792,10 @@ class _RegisterState extends State<Register> {
                         Container(
                           margin: EdgeInsets.only(left: 20),
                           // width: 280,
-                          width: defaultSize * 30,
-                          height: 50,
+                          width: defaultSize * 28,
+                          height: defaultSize * 4.5,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20.0),
+                            // borderRadius: BorderRadius.circular(20.0),
                             // color: Colors.grey[200],
                             // color: Colors.grey[100],
                           ),
@@ -806,21 +804,21 @@ class _RegisterState extends State<Register> {
                                 decoration: InputDecoration(
                                   // border: InputBorder.none,
                                   border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(20.0),
+                                      // borderRadius: BorderRadius.circular(20.0),
                                       borderSide: BorderSide( width: 3, )
                                   ),
                                   errorBorder: InputBorder.none,
                                   disabledBorder: InputBorder.none,
                                   contentPadding: EdgeInsets.only(left: 15, right: 15),
                                   focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0),
+                                    // borderRadius: BorderRadius.circular(20.0),
                                     borderSide: BorderSide(
                                       color: Colors.lightGreen[700],
                                       width: 3,
                                     ),
                                   ),
                                   enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(20.0),
+                                      // borderRadius: BorderRadius.circular(20.0),
                                       borderSide: BorderSide(
                                         color:Colors.lime,
                                         width: 2,
@@ -843,12 +841,12 @@ class _RegisterState extends State<Register> {
                       children: [
                         Container(),
                         Container(
-                          margin: EdgeInsets.only(right: 282),
+                          width: 80,
+                          margin: EdgeInsets.only(right: 245),
                           child: Text('상세내용', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),
                           ),
                         Container(
-                          padding: EdgeInsets.all(20.0),
-                          margin: EdgeInsets.only(top: 10),
+                          padding: EdgeInsets.only(left: 9,top: 20,right: 16,bottom: 20),
                           // height: 300,
                           // decoration: BoxDecoration(
                           //   borderRadius: BorderRadius.circular(20.0),
@@ -861,21 +859,21 @@ class _RegisterState extends State<Register> {
                             decoration: InputDecoration(
                               // border: InputBorder.none,
                                 border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0),
+                                    // borderRadius: BorderRadius.circular(20.0),
                                     borderSide: BorderSide( width: 3, )
                                 ),
                                 errorBorder: InputBorder.none,
                                 disabledBorder: InputBorder.none,
                                 contentPadding: EdgeInsets.only(left: 15, right: 15, top: 15),
                                 focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20.0),
+                                  // borderRadius: BorderRadius.circular(20.0),
                                   borderSide: BorderSide(
                                     color: Colors.lightGreen[700],
                                     width: 3,
                                   ),
                                 ),
                                 enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0),
+                                    // borderRadius: BorderRadius.circular(20.0),
                                     borderSide: BorderSide(
                                       color:Colors.lime,
                                       width: 2,
@@ -891,8 +889,9 @@ class _RegisterState extends State<Register> {
                               ),
                         ),
                     Container(
-                      margin: EdgeInsets.only(top:40,bottom: 30),
-                      child: Text('사진 첨부',style: TextStyle(fontSize: defaultSize*2,fontWeight: FontWeight.bold),),
+                      width: 80,
+                      margin: EdgeInsets.only(top:10,bottom: 18,right: 240),
+                      child: Text('사진 첨부',style: TextStyle(fontSize: defaultSize*1.8,fontWeight: FontWeight.bold),),
                     ),
                     Column(
                         children: [
@@ -902,11 +901,14 @@ class _RegisterState extends State<Register> {
 
                             ],
                           ),
-                          SizedBox( height: defaultSize * 45,
+                          Container( height: defaultSize * 45,
                             child: (images.length > 0 && images != null) ? InkWell( onTap: loadAssets, child: buildGridView()) :
                             InkWell(
                               onTap: loadAssets,
-                              child: Container( padding: EdgeInsets.only(top: defaultSize * 2), margin: EdgeInsets.only(right: 8),decoration: BoxDecoration(border: Border.all(color: Colors.grey),borderRadius: BorderRadius.circular(20.0)),
+                              child: Container( padding: EdgeInsets.only(top: 0), margin: EdgeInsets.only(left: 10,right: 15),
+                                  decoration: BoxDecoration(border: Border.all(color: Colors.grey),
+                                      // borderRadius: BorderRadius.circular(20.0)
+                                      ),
                                   child: Center(child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [

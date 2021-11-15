@@ -225,13 +225,12 @@ class _HomeDetailState extends State<HomeDetail> {
                       Row(
                         children: [
                           Container(
-                            margin: EdgeInsets.only(left: 24,right: 70),
+                            margin: EdgeInsets.only(left: 24,right: defaultSize * 4),
                             child: Text( jobTtl ?? '',  style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.8, fontWeight: FontWeight.bold), ),
                           ),
                           Container(child: Text('희망 성별 :', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7,fontWeight:FontWeight.bold),)),
                           Container(margin: EdgeInsets.only(left: 10), child: Text(hanGndName ?? '', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7),)),
-                          Expanded(
-                            flex: 3,
+                          Container(
                             child: Column(
                               children: [
                                 (token == null) ? Container() :

@@ -71,6 +71,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.1"
+  dio:
+    dependency: "direct main"
+    description:
+      name: dio
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.10"
   equatable:
     dependency: transitive
     description:
@@ -196,6 +203,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.16.1"
+  json_annotation:
+    dependency: "direct main"
+    description:
+      name: json_annotation
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.1.1"
+  kakao_flutter_sdk:
+    dependency: "direct main"
+    description:
+      name: kakao_flutter_sdk
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.2"
   location_permissions:
     dependency: transitive
     description:
@@ -231,6 +252,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.7.15"
+  package_info:
+    dependency: "direct main"
+    description:
+      name: package_info
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.3+4"
   path:
     dependency: transitive
     description:
@@ -281,7 +309,7 @@ packages:
     source: hosted
     version: "1.0.0"
   platform:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: platform
       url: "https://pub.dartlang.org"
