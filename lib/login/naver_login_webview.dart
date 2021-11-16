@@ -13,16 +13,14 @@ import 'login_server.dart';
 import 'package:any_rent/main_home.dart';
 import '../mypage/profile/mypage_profile.dart';
 
-// const LoginUrl = 'https://211.253.20.112/api/auth/pass'; //개발서버
-// const LoginUrl = 'https://192.168.1.3:4000/api/auth/pass';
-const LoginUrl = UrlConfig.url+'/api/auth/pass';
+const LoginUrl = UrlConfig.url+'/api/auth/naver';
 
-class LoginWebView extends StatefulWidget{
+class NaverLoginWebView extends StatefulWidget{
   @override
-  _LoginWebViewState createState() => _LoginWebViewState();
+  _NaverLoginWebViewState createState() => _NaverLoginWebViewState();
 }
 
-class _LoginWebViewState extends State<LoginWebView> {
+class _NaverLoginWebViewState extends State<NaverLoginWebView> {
 
   final globalKey = GlobalKey<ScaffoldState>();
   FlutterWebviewPlugin webviewPlugin = FlutterWebviewPlugin();

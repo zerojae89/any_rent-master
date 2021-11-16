@@ -2,6 +2,7 @@ import 'package:any_rent/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:any_rent/settings/size_config.dart';
 import 'pass_login_webview.dart';
+import 'naver_login_webview.dart';
 import 'package:kakao_flutter_sdk/all.dart';
 
 class Login extends StatefulWidget {
@@ -81,7 +82,7 @@ class _LoginState extends State<Login> {
                 ),
                 child:
                 FlatButton(
-                  onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => LoginWebView())),
+                  onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PassLoginWebView())),
                   child: Text( 'PASS 로그인 ',  style: TextStyle( fontSize: defaultSize * 2,color: Colors.white), ),
                 ),
               ),
@@ -124,7 +125,7 @@ class _LoginState extends State<Login> {
                 ),
                 child:
                 FlatButton(
-                  onPressed: (){},
+                  onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => NaverLoginWebView())),
                   child: Text( 'NAVER 로그인',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white),)
                 ),
               )

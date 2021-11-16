@@ -17,12 +17,12 @@ import '../mypage/profile/mypage_profile.dart';
 // const LoginUrl = 'https://192.168.1.3:4000/api/auth/pass';
 const LoginUrl = UrlConfig.url+'/api/auth/pass';
 
-class LoginWebView extends StatefulWidget{
+class PassLoginWebView extends StatefulWidget{
   @override
-  _LoginWebViewState createState() => _LoginWebViewState();
+  _PassLoginWebViewState createState() => _PassLoginWebViewState();
 }
 
-class _LoginWebViewState extends State<LoginWebView> {
+class _PassLoginWebViewState extends State<PassLoginWebView> {
 
   final globalKey = GlobalKey<ScaffoldState>();
   FlutterWebviewPlugin webviewPlugin = FlutterWebviewPlugin();
