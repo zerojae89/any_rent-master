@@ -321,11 +321,11 @@ class _RegisterState extends State<Register> {
     _height = MediaQuery.of(context).size.height;
     _width = MediaQuery.of(context).size.width;
     CircularProgressIndicator();
-    // return Scaffold( body: Center(child: Container( width: defaultSize * 10, height: defaultSize * 10, color: Colors.white, child: CircularProgressIndicator())) );
+    // return Scaffold( body: Center(child: Container( width: defaultSize * 10, height: defaultSize *d 10, color: Colors.white, child: CircularProgressIndicator())) );
     return isHttpSend ?  Scaffold( key: globalKey, body: SizedBox.expand( child: Container( color: Colors.grey[50],  child: Center(child:
     isNextPage ?
       AlertDialog(
-        title: Center(child: Text('정상 등록 되었습니다!', style: TextStyle(fontSize: defaultSize * 2),)),
+        title: Center(child: Text('정상 등록 되었습니다!', style: TextStyle(fontSize: defaultSize * 2,color: Colors.lightGreen),)),
       ) : CircularProgressIndicator(),
     ) ), ), ):
      state ? Scaffold(

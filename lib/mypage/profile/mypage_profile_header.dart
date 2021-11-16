@@ -148,12 +148,12 @@ class _MyPageProfileHeaderState extends State<MyPageProfileHeader> {
       child: Container(
         decoration: BoxDecoration(
           boxShadow: [BoxShadow(
-            color: Colors.lightGreen.withOpacity(0.4),
+            color: Colors.lightGreen,
             blurRadius: 5.0,
             spreadRadius: 3.0
           )]
         ),
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+        padding: EdgeInsets.symmetric(vertical: 25, horizontal: 30),
         child: Column(
           children: [
             Padding(

@@ -130,11 +130,11 @@ class _HomeDetailState extends State<HomeDetail> {
         hanGnd = homeDetailResultList['homeDetailSub']['hanGnd']; // 하니 희망 성별
         (hanGnd == "0") ? hanGndName = '무관' : (hanGnd == "M") ?  hanGndName = '남성' : hanGndName = '여성';
         formJobAmt = formatter.format(jobAmt);
-        hanResult = homeDetailResultList['homeDetailSub']['result']; // 하니 입찰식 예약 여부
+        hanResult = homeDetailResultList['homeDetailSub']['aucMtd']; // 하니 입찰식 예약 여부
       });
 
       // debugPrint('HomeDetail jobId ========= ${widget.jobId}');
-      print('aucMtd ====================== $aucMtd');
+      print('hanResult ====================== $hanResult');
       if(aucMtd == '2'){
         _timer = Timer.periodic(_duration, (timer) {
           DateFormat dateFormat = DateFormat(dateFormatString); //날짜 방식 정하기
@@ -476,7 +476,7 @@ class _HomeDetailState extends State<HomeDetail> {
                     }
                   }
                 },
-                child: Text( hanResult,  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.3,), ),
+                child: Text((aucMtd == "1") ? '선착순예약': '입찰식예약',  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 2,), ),
               ),
             ),
             Expanded(

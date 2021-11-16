@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:any_rent/settings/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:any_rent/main_home.dart';
+import 'package:flutter/rendering.dart';
 import '../mypage_menu_item.dart';
 import 'mypage_profile_menu_item.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,13 +19,21 @@ class MyPageProfile extends StatefulWidget{
 
 class _MyPageProfileState extends State<MyPageProfile> {
   SharedPreferences _prefs;
-  String token, result, mbrId, nicNm, cpNo, prfSeq;
+  String token, result, mbrId, nicNm, cpNo, prfSeq,cpNo1;
   double defaultSize = SizeConfig.defaultSize;
+
+
 
   @override
   void initState() {
     super.initState();
     _loadToken();
+  }
+
+  @override
+  void num(cpNum){
+    var regex = new RegExp("/^\d{3}\-\d{3,4}\-\d{4}/",caseSensitive: false, multiLine: false);
+
   }
 
   _loadToken() async{
@@ -36,10 +45,14 @@ class _MyPageProfileState extends State<MyPageProfile> {
     setState(() {
       mbrId = profile['mbrId'];
       nicNm = profile['nicNm'];
-      cpNo = profile['cpNo'];
+      cpNo1 = profile['cpNo'].toString();
+      print("cpNo1===========$cpNo1");
+      cpNo = cpNo1.substring(0, 3) + "-" + cpNo1.substring(3, 7) + "-" + cpNo1.substring(7, 11);
+      print("cpNo===========$cpNo");
       prfSeq = profile['prfSeq'].toString();
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -60,20 +73,22 @@ class _MyPageProfileState extends State<MyPageProfile> {
                 MyPageProfileHeader(),
                 MyPageProfileNicName(
                   title: nicNm,
-                  icon: Icon(Icons.perm_identity_outlined , color: Colors.amber,),
+                  icon: Icon(Icons.perm_identity_outlined , color: Colors.black,),
                   vertical: 3,
                   horizontal: 2,
                   token: token,
                 ),
+                SizedBox(height: 8,),
                 MypageProfileMenuItem(
-                  icon: Icon(Icons.call, color: Colors.amber,),
+                  icon: Icon(Icons.call, color: Colors.black,),
                   title: '전화번호',
                   contents: cpNo,
                   vertical: 3,
                   horizontal: 2,
                 ),
+                SizedBox(height: 5,),
                 MypageProfileMenuItem(
-                  icon: Icon(Icons.mood_outlined, color: Colors.amber,),
+                  icon: Icon(Icons.mood_outlined, color: Colors.black,),
                   title: '아이디',
                   contents: mbrId,
                   vertical: 3,
@@ -89,15 +104,17 @@ class _MyPageProfileState extends State<MyPageProfile> {
                 //   vertical: 3,
                 //   horizontal: 2,
                 // ),
+                SizedBox(height:17,),
                 MyPageMenuItem(
-                  icon: Icon(Icons.logout, color: Colors.amber,),
+                  icon: Icon(Icons.logout, color: Colors.black,),
                   title: '로그아웃',
                   press: logoutDialog,
                   vertical: 3,
                   horizontal: 2,
                 ),
+                SizedBox(height: 14,),
                 MyPageMenuItem(
-                  icon: Icon(Icons.not_interested_outlined, color: Colors.amber,),
+                  icon: Icon(Icons.not_interested_outlined, color: Colors.black,),
                   title: '탈퇴하기',
                   press: joinoutDialog,
                   vertical: 3,

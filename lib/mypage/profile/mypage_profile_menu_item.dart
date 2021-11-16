@@ -18,34 +18,37 @@ class MypageProfileMenuItem extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     double defaultSize = SizeConfig.defaultSize;
-    return Column(
-      children: [
-        SafeArea(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: defaultSize * horizontal, vertical: 10),
-            child: Row(
-              children: [
-                icon,
-                SizedBox(width: defaultSize * 2,),
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: defaultSize * 1.8,fontWeight: FontWeight.bold //16
+    return Container(
+      margin: EdgeInsets.only(top: 20,bottom: 0),
+      child: Column(
+        children: [
+          SafeArea(
+            child:Padding(
+              padding: EdgeInsets.symmetric(horizontal: defaultSize * horizontal, vertical: 10),
+              child: Row(
+                children: [
+                  icon,
+                  SizedBox(width: defaultSize * 2,),
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: defaultSize * 1.8,fontWeight: FontWeight.bold //16
+                    ),
                   ),
-                ),
-                Spacer(),
-                Text(
-                  (contents ?? ''),
-                  style: TextStyle(
-                    fontSize: defaultSize * 1.5, //16
+                  Spacer(),
+                  Text(
+                    (contents ?? ''),
+                    style: TextStyle(
+                      fontSize: defaultSize * 2,fontWeight: FontWeight.bold,//16
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-        ),
-        // Divider()
-      ],
+          // Divider()
+        ],
+      ),
     );
   }
 }
