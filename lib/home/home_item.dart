@@ -110,28 +110,14 @@ class _HomeItemState  extends State<HomeItem> with RouteAware, WidgetsBindingObs
         shape: widget.index != 0  ? RoundedRectangleBorder( borderRadius: BorderRadius.circular(4),  side: BorderSide( color: Colors.grey[400], )) : null,
         margin: EdgeInsets.only(bottom: 10, left: 1, right: 1),
         child: Padding(
-          padding: EdgeInsets.only(left: 25,top: 20),
+          padding: EdgeInsets.only(left: 25,top: 10,bottom: 8),
           child: Column(
             children: [
               Padding(padding: EdgeInsets.only(top: 5)),
-              // Padding(
-              //   padding: EdgeInsets.only(bottom: defaultSize * 2),
-              //   // child: Row(
-              //   //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   //   // children: [
-              //   //   //   Text(widget.jobTtl ?? '일거리',style: TextStyle(fontWeight: FontWeight.bold),),
-              //   //   //   // Text(
-              //   //   //   //   // '남은 입찰시간 : DD일 HH시 mm분 ',
-              //   //   //   //   (widget.aucMtd == "1") ? '' : '남은 입찰시간 : '+timeToDisplay, //남은시간 카운트 해야됨
-              //   //   //   //   style: TextStyle(color: Colors.deepOrange, fontSize: defaultSize * 1.2),
-              //   //   //   // )
-              //   //   // ],
-              //   // ),
-              // ),
               Row(
                 children: [
                   Container(
-                    margin: EdgeInsets.only(right: 15),
+                    margin: EdgeInsets.only(right: 15,top: 15),
                     width: 60,
                     height: 60,
                     decoration: BoxDecoration(
@@ -143,9 +129,14 @@ class _HomeItemState  extends State<HomeItem> with RouteAware, WidgetsBindingObs
                     children: [
                       Container(
                         width: 185,
-                        margin: EdgeInsets.only(bottom: 10),
+                        margin: EdgeInsets.only(bottom: 5,left: 5),
                         alignment: Alignment.centerLeft,
                         child: Text(widget.jobTtl ?? '일거리',style: TextStyle(fontWeight: FontWeight.bold)),
+                      ),
+                      Row(
+                        children: [
+
+                        ],
                       ),
                       Row(
                         children: [
@@ -154,10 +145,6 @@ class _HomeItemState  extends State<HomeItem> with RouteAware, WidgetsBindingObs
                   Container(
                     padding: EdgeInsets.only(left: 15,top: 5),
                     margin: EdgeInsets.only(right: 10,),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        // color: Colors.lightGreen
-                    ),
                     height: 30,
                     width: 130,
                     child:(widget.aucMtd == "1") ? Text(
@@ -179,37 +166,31 @@ class _HomeItemState  extends State<HomeItem> with RouteAware, WidgetsBindingObs
                     padding: EdgeInsets.only(left: 17,top: 7),
                     height: 30,
                     width: 70,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        // color: Colors.blueAccent
-                    ),
                     child: Text(
                       widget.twnNm,
                       style: TextStyle(color: Colors.black, fontSize: defaultSize *1.5, fontWeight: FontWeight.bold),
                     ),
-
-
                   ),
                         ],
                       ),
-                  SizedBox(height: 10,),
                   Row(
                     children: [
                   Container(
                     child: Text(
                       (widget.aucMtd == "1") ? '선착순' : '입찰식',
-                      style: TextStyle(color: Colors.lightBlue, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),
+                      style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),
                     ),
                     padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                     // decoration: BoxDecoration( color: Colors.lightBlue[50],  borderRadius: BorderRadius.circular(2), ),
                   ),
                   SizedBox( width: defaultSize ),
                   Container(
+                    margin: EdgeInsets.only(right: 80),
                     child: Text(
                       (widget.payMtd == "1") ? '직접결제' : '안전결제',
-                      style: TextStyle(color: Colors.pink, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),
+                      style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),
                     ),
-                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                    padding: EdgeInsets.symmetric(horizontal: 0, vertical: 4),
                     // decoration: BoxDecoration( color: Colors.pink[50],  borderRadius: BorderRadius.circular(2), ),
                   ),
                     ],
@@ -223,23 +204,23 @@ class _HomeItemState  extends State<HomeItem> with RouteAware, WidgetsBindingObs
                 padding: const EdgeInsets.symmetric(vertical: 1),
                 child: Row(
                   children: [
-                    Expanded(
-                      flex: 3,
+                    Container(
+                      margin: EdgeInsets.only(left: 75,top: 3),
                       child: Container(
                         child: Text(
                           "시작 시간 : ${widget.jobStDtm}",
-                          style: TextStyle(color: Colors.orange, fontSize: defaultSize * 1.5, fontWeight: FontWeight.bold),
+                          style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.5, fontWeight: FontWeight.bold),
                         ),
-                        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
                         // decoration: BoxDecoration( color: Colors.orange[50],  borderRadius: BorderRadius.circular(2), ),
                       ),
                     ),
-                    Expanded(
-                      child:
-                      (widget.token == null) ? Container() :
-                          (jobIts == widget.jobId) ? IconButton(icon: Icon(Icons.favorite,color: Colors.redAccent,), iconSize: defaultSize * 2, onPressed: () => sendAttentionDelete(context) ) :
-                        IconButton(icon: Icon(Icons.favorite_border_outlined), iconSize: defaultSize * 2, onPressed: () => sendAttention(context) ),
-                    ),
+                    // Expanded(
+                    //   child:
+                    //   (widget.token == null) ? Container() :
+                    //       (jobIts == widget.jobId) ? IconButton(icon: Icon(Icons.favorite,color: Colors.redAccent,), iconSize: defaultSize * 2, onPressed: () => sendAttentionDelete(context) ) :
+                    //     IconButton(icon: Icon(Icons.favorite_border_outlined), iconSize: defaultSize * 2, onPressed: () => sendAttention(context) ),
+                    // ),
                   ],
                 ),
               ),
