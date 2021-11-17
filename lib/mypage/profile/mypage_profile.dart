@@ -37,6 +37,7 @@ class _MyPageProfileState extends State<MyPageProfile> {
   }
 
   _loadToken() async{
+    RegExp phone = RegExp(r'(\d{3})(\d{3,4})(\d{4})');
     _prefs = await SharedPreferences.getInstance();
     token = _prefs.getString('token');
     result = await myPageServer.getProfile(token);
@@ -45,11 +46,13 @@ class _MyPageProfileState extends State<MyPageProfile> {
     setState(() {
       mbrId = profile['mbrId'];
       nicNm = profile['nicNm'];
-      cpNo1 = profile['cpNo'].toString();
-      print("cpNo1===========$cpNo1");
-      cpNo = cpNo1.substring(0, 3) + "-" + cpNo1.substring(3, 7) + "-" + cpNo1.substring(7, 11);
-      print("cpNo===========$cpNo");
+      cpNo1 = profile['cpNo'];
       prfSeq = profile['prfSeq'].toString();
+      var matches = phone.allMatches(cpNo1);
+      var match = matches.elementAt(0);
+      cpNo = '${match.group(1)}-${match.group(2)}-${match.group(3)}';
+      // cpNo = cpNo1.substring(0, 3) + "-" + cpNo1.substring(3, 7) + "-" + cpNo1.substring(7, 11);
+      print(cpNo);
     });
   }
 

@@ -13,6 +13,17 @@ class Chat extends StatefulWidget {
 }
 
 class _ChatState extends State<Chat> {
+  bool _running = true;
+  Stream<String> _clock() async* {
+    // This loop will run forever because _running is always true
+    while (_running) {
+      print("_______________AAAAA");
+      await Future<void>.delayed(Duration(seconds: 1));
+      DateTime _now = DateTime.now();
+      // This will be displayed on the screen as current time
+      yield "${_now.hour} : ${_now.minute} : ${_now.second}";
+    }
+  }
 
   String token, mbrId;
   bool state = true;
@@ -30,6 +41,8 @@ class _ChatState extends State<Chat> {
     isDisposed = true;
     super.dispose();
   }
+
+
 
   loadToken() async{
     print('mbrId ===================================== $mbrId');
@@ -78,17 +91,30 @@ class _ChatState extends State<Chat> {
                           child: Column(
                             children: [
                               Expanded(
-                                flex: 15,
-                                child:
-                                (chatItems.length == 0 ) ? // 데이터 없을 때 처리
-                                Center(child:  roadChatList(chatItems)) :
-                                ListView.builder(
-                                  itemCount: chatItems.length,
-                                  itemBuilder: (context, index) {
-                                    return ChatItem(chatItems: chatItems[index]);
-                                  },
-                                ),
+                                  child:StreamBuilder(
+                                    stream: _clock(),
+                                    builder: (context, AsyncSnapshot<String> snapshot) {
+                                      return ListView.builder(
+                                          itemBuilder: (context, index) {
+                                            return ChatItem(chatItems: chatItems[index]);
+                                          },
+                                          itemCount: chatItems.length
+                                      );
+                                    },
+                                  )
                               )
+                              // Expanded(
+                              //   flex: 15,
+                              //   child:
+                              //   (chatItems.length == 0 ) ? // 데이터 없을 때 처리
+                              //   Center(child:  roadChatList(chatItems)) :
+                              //   ListView.builder(
+                              //     itemCount: chatItems.length,
+                              //     itemBuilder: (context, index) {
+                              //       return ChatItem(chatItems: chatItems[index]);
+                              //     },
+                              //   ),
+                              // )
                             ],
                           )
                       )
