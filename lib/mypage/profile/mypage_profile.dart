@@ -30,12 +30,6 @@ class _MyPageProfileState extends State<MyPageProfile> {
     _loadToken();
   }
 
-  @override
-  void num(cpNum){
-    var regex = new RegExp("/^\d{3}\-\d{3,4}\-\d{4}/",caseSensitive: false, multiLine: false);
-
-  }
-
   _loadToken() async{
     RegExp phone = RegExp(r'(\d{3})(\d{3,4})(\d{4})');
     _prefs = await SharedPreferences.getInstance();
@@ -51,7 +45,6 @@ class _MyPageProfileState extends State<MyPageProfile> {
       var matches = phone.allMatches(cpNo1);
       var match = matches.elementAt(0);
       cpNo = '${match.group(1)}-${match.group(2)}-${match.group(3)}';
-      // cpNo = cpNo1.substring(0, 3) + "-" + cpNo1.substring(3, 7) + "-" + cpNo1.substring(7, 11);
       print(cpNo);
     });
   }
