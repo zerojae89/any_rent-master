@@ -78,6 +78,9 @@ class _MyHomePageState extends State<MyHomePage> {
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15))
+          ),
           title: Text("앱을 종료 하시겠습니까?"),
           actions: <Widget>[
             FlatButton(
