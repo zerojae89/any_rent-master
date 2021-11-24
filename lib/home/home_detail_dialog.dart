@@ -74,6 +74,10 @@ class HomeDetailDialog {
             type: MaterialType.transparency,
             child: Container(
               decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.lightGreen[700],
+                  width: 5
+                ),
                 borderRadius: BorderRadius.circular(10),
                 color: Colors.white,
               ),
@@ -83,21 +87,24 @@ class HomeDetailDialog {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  SizedBox( height: 10, ),
+                  SizedBox( height: 25, ),
                   Text( "예약 확인", style: TextStyle( fontSize: defaultSize * 2.3,  fontWeight: FontWeight.bold, ), ),
-                  SizedBox( height: defaultSize * 3, ),
+                  SizedBox( height: defaultSize * 2, ),
                   Text( jobTtl,  style: TextStyle( fontSize: defaultSize *1.7, fontWeight: FontWeight.bold, ), ),
+                  SizedBox( height: defaultSize * 2, ),
+                  Container(height: defaultSize * 7,width: defaultSize * 20,
+                      // decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
+                      child: Text( jobCtn,  style: TextStyle( fontSize: defaultSize * 1.5, fontWeight: FontWeight.bold, ), )),
                   SizedBox( height: defaultSize * 3, ),
-                  Text( jobCtn,  style: TextStyle( fontSize: defaultSize * 1.5, fontWeight: FontWeight.bold, ), ),
-                  SizedBox( height: defaultSize * 3, ),
-                  Text( "작업 시작시간 :  \n $jobStDtm",  style: TextStyle( fontSize: defaultSize * 1.2, fontWeight: FontWeight.bold, ), ),
-                  SizedBox( height: defaultSize * 3, ),
+                  Text( "작업 시작시간 :  \n $jobStDtm",  style: TextStyle( fontSize: defaultSize * 1.5, fontWeight: FontWeight.bold, ), ),
+                  SizedBox( height: defaultSize * 0.5, ),
                   Padding(
-                    padding: EdgeInsets.all(defaultSize * 2),
+                    padding: EdgeInsets.all(defaultSize * 1.5),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         FlatButton(color: Colors.lightGreen, onPressed: ()=> reservation(context, token, jobId), child: Text('예', style: TextStyle(color: Colors.white),),),
+                        SizedBox(width: defaultSize*1,),
                         FlatButton(color: Colors.lightGreen, onPressed: ()=> Navigator.pop(context), child: Text("아니오",style: TextStyle(color: Colors.white), ),)
                       ],
                     ),
