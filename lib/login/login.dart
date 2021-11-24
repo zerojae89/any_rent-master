@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:any_rent/settings/size_config.dart';
 import 'pass_login_webview.dart';
 import 'naver_login_webview.dart';
+import 'kakao_login_webview.dart';
 import 'package:kakao_flutter_sdk/all.dart';
 
 class Login extends StatefulWidget {
@@ -96,7 +97,7 @@ class _LoginState extends State<Login> {
                 ),
                 child:
                 FlatButton.icon(
-                  onPressed: () => _isKakaoTalkInstalled ? _loginWithTalk() : _loginWithKakao(),
+                  onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => KakaoLoginWebView())),
                   label: Text( 'KAKAO Talk 로그인',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
                   icon: Icon(Icons.chat),
                 ),

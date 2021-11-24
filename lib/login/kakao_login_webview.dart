@@ -13,14 +13,14 @@ import 'login_server.dart';
 import 'package:any_rent/main_home.dart';
 import '../mypage/profile/mypage_profile.dart';
 
-const LoginUrl = UrlConfig.url+'/api/auth/naver';
+const LoginUrl = UrlConfig.url+'/api/auth/kakao';
 
-class NaverLoginWebView extends StatefulWidget{
+class KakaoLoginWebView extends StatefulWidget{
   @override
-  _NaverLoginWebViewState createState() => _NaverLoginWebViewState();
+  _KakaoLoginWebViewState createState() => _KakaoLoginWebViewState();
 }
 
-class _NaverLoginWebViewState extends State<NaverLoginWebView> {
+class _KakaoLoginWebViewState extends State<KakaoLoginWebView> {
 
   final globalKey = GlobalKey<ScaffoldState>();
   FlutterWebviewPlugin webviewPlugin = FlutterWebviewPlugin();
