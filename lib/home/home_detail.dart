@@ -225,21 +225,24 @@ class _HomeDetailState extends State<HomeDetail> {
                       Row(
                         children: [
                           Container(
-                            margin: EdgeInsets.only(left: 24,right: defaultSize * 4),
-                            child: Text( jobTtl ?? '',  style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.8, fontWeight: FontWeight.bold), ),
-                          ),
-                          Container(child: Text('희망 성별 :', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7,fontWeight:FontWeight.bold),)),
-                          Container(margin: EdgeInsets.only(left: 10), child: Text(hanGndName ?? '', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7),)),
-                          Container(
-                            child: Column(
-                              children: [
-                                (token == null) ? Container() :
-                                (jobIts == widget.jobId) ? IconButton(icon: Icon(Icons.favorite,color: Colors.redAccent,), iconSize: defaultSize * 2, onPressed: () => sendAttentionDelete(context) ) :
-                                IconButton(icon: Icon(Icons.favorite_border_outlined), iconSize: defaultSize * 2, onPressed: () => sendAttention(context) ),
-                              ],
-                            ),
+                            margin: EdgeInsets.only(left: defaultSize * 2,),
+                            padding: EdgeInsets.only(top: defaultSize * 0.4),
+                            // decoration: BoxDecoration(border: Border.all(color:Colors.grey)),
+                            width: defaultSize * 30,
+                            height: defaultSize * 5,
+                            child: Text( jobTtl ?? '',  style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.8, fontWeight: FontWeight.bold),textAlign: TextAlign.left, ),
                           ),
 
+                        // Container(margin:EdgeInsets.only(left: defaultSize * 0.5),child: Text('희망 성별 :', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7,fontWeight:FontWeight.bold),)),
+                        // Container(margin: EdgeInsets.only(left: 10), child: Text(hanGndName ?? '', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7),)),
+                        Container(margin: EdgeInsets.only(right: 20),width: defaultSize * 4,
+                          child: Column(children: [
+                           (token == null) ? Container() :
+                           (jobIts == widget.jobId) ? IconButton(icon: Icon(Icons.favorite,color: Colors.redAccent,), iconSize: defaultSize * 2, onPressed: () => sendAttentionDelete(context) ) :
+                            IconButton(icon: Icon(Icons.favorite_border_outlined), iconSize: defaultSize * 2, onPressed: () => sendAttention(context) ),
+                 ],
+                ),
+              ),
                         ],
                       ),
                       (aucMtd == "1") ? Container() : Text(
@@ -252,13 +255,13 @@ class _HomeDetailState extends State<HomeDetail> {
                 Divider(height: 10,),
                 InkWell(
                   onTap: () => homeDetailDialog.showDialogProfile(context, defaultSize, junNic, junPrfSeq, mbrGrd),
-                  child: SizedBox(
-                    height: defaultSize * 14,
+                  child: Container(
+                    height: defaultSize * 11,
                     child: Container(
-                      padding: EdgeInsets.all(defaultSize * 1.6),
+                      padding: EdgeInsets.only(left:defaultSize * 4,right: defaultSize * 1.6),
                       child: Row(
                         children: [
-                          Container(margin: EdgeInsets.only(right: 50),
+                          Container(margin: EdgeInsets.only(right: defaultSize * 2.5),
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   shape: BoxShape.circle,
@@ -275,38 +278,68 @@ class _HomeDetailState extends State<HomeDetail> {
                               height: defaultSize * 15
                             // child: (junPrfSeq == null) ? Icon(Icons.account_box_rounded, size: 40,) : Image.network('$url/api/mypage/images?recieveToken=$junPrfSeq')
                           ),
-                          Expanded(
-                            flex: 3,
+                          Container(
+                            width: defaultSize * 12,
+                            // decoration: BoxDecoration(
+                            //   border: Border.all(
+                            //     color: Colors.grey
+                            //   )
+                            // ),
+                            // margin: EdgeInsets.only(right: defaultSize * 5),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(
-                                  junNic ?? '',
-                                  style: TextStyle(color: Colors.lightGreen[700], fontWeight: FontWeight.bold, fontSize:  defaultSize * 2),
+                                Container(),
+                                Container(
+                                  // decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
+                                  width: defaultSize * 10.5,
+                                  child: Text(
+                                    junNic ?? '',
+                                    style: TextStyle(color: Colors.lightGreen[700], fontWeight: FontWeight.bold, fontSize:  defaultSize * 1.7),textAlign: TextAlign.center,
+                                  ),
                                 ),
-                                SizedBox(height: 5,),
-                                Text(
-                                  twnNm ?? '',
-                                  style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7),
+                                SizedBox(height: defaultSize * 1.5,),
+                                Container(
+                                  width: defaultSize * 10.5,
+                                  // decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
+                                  child: Text(
+                                    twnNm ?? '',
+                                    style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7),
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ),
                               ],
                             ),
                           ),
-                          Expanded(
-                            flex: 2,
+                          Container(
+                            // decoration: BoxDecoration(
+                            //   border: Border.all(
+                            //     color: Colors.grey
+                            //   )
+                            // ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(
-                                  "User평점",
-                                  style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: defaultSize * 1.7),
+                                Container(
+                                  margin: EdgeInsets.only(left: defaultSize * 1),
+                                  child: Text(
+                                    "사용자 평점",
+                                    style: TextStyle(color: Colors.lightGreen[700], fontWeight: FontWeight.bold, fontSize: defaultSize * 1.7),
+                                  ),
                                 ),
-                                SizedBox(height: 5,),
-                                Text( '$mbrGrd',
-                                  style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.4),
-                                  textAlign: TextAlign.center,
+                                SizedBox(height: defaultSize * 1.2,),
+                                Container(
+                                  margin: EdgeInsets.only(left: defaultSize * 1),
+                                  width: 70,
+                                  // decoration: BoxDecoration(
+                                  //   border: Border.all(color: Colors.grey)
+                                  // ),
+                                  child: Text( '$mbrGrd',
+                                    style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7),
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ),
                               ],
                             ),
@@ -316,35 +349,31 @@ class _HomeDetailState extends State<HomeDetail> {
                     ),
                   ),
                 ),
-                Divider(height: 30,),
+                Divider(height: 15,),
                 Container(
+                  padding: EdgeInsets.only(top: defaultSize * 1.5),
                   child: Row(
                     children: [
                       // Padding(),
                       Container(
-                        margin: EdgeInsets.only(left: 28),
+                        margin: EdgeInsets.only(left: defaultSize * 3.5),
                         child: Padding(
                           padding: EdgeInsets.only(left: 10),
                           child: Container(
+                            width: defaultSize * 14.7,
                             child: Text(
                               '$tp1Nm / $tp2Nm',
-                              style: TextStyle(color: Colors.lightBlue, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),
-                              textAlign: TextAlign.center,
+                              style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7, ),
+                              textAlign: TextAlign.left,
                             ),
                           ),
                         ),
                       ),
-                      Expanded(flex:1,child: SizedBox()),
-                      Expanded(
-                        flex: 3,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container( child: Text( jobStDtm ?? '',  style: TextStyle(color: Colors.orange, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold), ), ),
-                          ],
-                        ),
-                      ),
+                     Container(
+                       // margin: EdgeInsets.only(right: defaultSize * 0),
+                       // decoration: BoxDecoration(border:Border.all(color:Colors.grey)),
+                       width: defaultSize * 17,
+                       child: Text( jobStDtm ?? '',  style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7, ),textAlign: TextAlign.right, ), ),
                     ],
                   ),
                 ),
@@ -352,50 +381,78 @@ class _HomeDetailState extends State<HomeDetail> {
                 Container(
                   child: Row(
                     children: [
-                      Expanded(
-                        flex: 2,
+                      Container(
+                        margin: EdgeInsets.only(left: defaultSize * 4.7,top: defaultSize * 0.7),
                         child: Container(
+                          width: defaultSize * 15,
                           child: Text(
                             (aucMtd == "1") ? '금액 : '+ formJobAmt +'원': '희망 금액 : '+formJobAmt+'원',
                             // (jobAmt != null) ? '금액 : '+formatter.format(jobAmt) +'원': '금액 : 0 원',
-                            style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold,),
-                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7, ),
+                            textAlign: TextAlign.left,
                           ),
-                          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                           decoration: BoxDecoration(
                             // color: Colors.pink[50],
                             borderRadius: BorderRadius.circular(2),
+                            // border: Border.all(color:Colors.grey)
                           ),
                         ),
                       ),
-                      Expanded(
-                        flex: 1,
+                      Container(
+                        margin: EdgeInsets.only(top: defaultSize * 0.7),
+                        padding: EdgeInsets.only(left: defaultSize * 1),
+                        width: defaultSize * 9,
+                        // decoration: BoxDecoration(
+                        //   border:Border.all(color: Colors.grey)
+                        // ),
+                        child: Text(
+                          '결제방식 :',style: TextStyle(fontSize: defaultSize * 1.7),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: defaultSize * 1.5,top: defaultSize * 0.7),
                         child: Container(
                           child: Text(
                             (payMtd == null) ? '' : (payMtd == '1') ? '직접결제' : (payMtd == '2')? '안전결제' : '',
-                            style: TextStyle(color: Colors.pink, fontSize:  defaultSize * 1.7 , fontWeight: FontWeight.bold,),
+                            style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7 , ),
                             textAlign: TextAlign.center,
                           ),
                         ),
                       ),
-                      Expanded(
-                        flex: 1,
-                        child: Container(
-                          margin: EdgeInsets.only(right: 35),
-                          child: Text(
-                            (aucMtd == null) ? '' : (aucMtd == '1') ? '선착순' : (aucMtd == '2')? '입찰식' : '',
-                            style: TextStyle(color: Colors.brown, fontSize:  defaultSize * 1.7, fontWeight: FontWeight.bold),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ),
+
                     ],
                   ),
                 ),
-                // Divider(height: defaultSize * 3,),
+                Row(
+                  children: [
+                    Container(margin:EdgeInsets.only(left: defaultSize * 4.8,top: defaultSize * 2),child: Text('희망 성별 :', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7),)),
+                    Container(margin: EdgeInsets.only(left: 10,top: defaultSize * 2), child: Text(hanGndName ?? '', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7),)),
+                    Container(margin: EdgeInsets.only(top: defaultSize * 2, left: defaultSize * 4.5),child: Text('입찰방식 :',style: TextStyle(fontSize: defaultSize * 1.7,),),),
+                    Container(
+                      margin: EdgeInsets.only(left: defaultSize * 3.8,top: defaultSize * 2),
+                      child: Container(
+                        child: Text(
+                          (aucMtd == null) ? '' : (aucMtd == '1') ? '선착순' : (aucMtd == '2')? '입찰식' : '',
+                          style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7, ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                //     Container(margin: EdgeInsets.only(left: 37),child: Text("관심",style: TextStyle(fontSize: defaultSize * 1.7,fontWeight: FontWeight.bold),),),
+                //     Container(child: Column(children: [
+                //       (token == null) ? Container() :
+                //        (jobIts == widget.jobId) ? IconButton(icon: Icon(Icons.favorite,color: Colors.redAccent,), iconSize: defaultSize * 2, onPressed: () => sendAttentionDelete(context) ) :
+                //         IconButton(icon: Icon(Icons.favorite_border_outlined), iconSize: defaultSize * 2, onPressed: () => sendAttention(context) ),
+                //        ],
+                //       ),
+                //     ),
+                  ],
+                ),
+
+
                 (picCnt == 0) ?  Container() : SizedBox(height: defaultSize * 45, child: buildGridView(jobId, picCnt)),
                 Container( 
-                  margin: EdgeInsets.all(20.0),
+                  margin: EdgeInsets.all(20),
                   height: defaultSize * 30,
                   child:  Container(
                     decoration: BoxDecoration(
@@ -403,7 +460,7 @@ class _HomeDetailState extends State<HomeDetail> {
                       borderRadius: BorderRadius.circular(20.0)
                     ),
                     width: 350,
-                    child: Padding( padding: EdgeInsets.all(20),  child: Text(jobCtn ?? '', style:  TextStyle(fontSize:  defaultSize * 1.5),), ), ), ),
+                    child: Padding( padding: EdgeInsets.all(20),  child: Text(jobCtn ?? '', style:  TextStyle(fontSize:  defaultSize * 1.7),), ), ), ),
                 Divider(height: defaultSize * 4,),
               ],
             ),

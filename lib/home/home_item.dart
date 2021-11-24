@@ -48,12 +48,14 @@ class _HomeItemState extends State<HomeItem>
   Timer _timer;
   Duration _duration = Duration(seconds: 1);
 
+
   @override
   void initState() {
     jobIts = widget.jobIts;
     time();
     super.initState();
   }
+
 
   @override
   void dispose() {
@@ -137,17 +139,15 @@ class _HomeItemState extends State<HomeItem>
       },
       child: Card(
         elevation: widget.index == 0 ? 8 : 4,
-        shape: widget.index != 0
-            ? RoundedRectangleBorder(
+        shape: widget.index != 0 ? RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(4),
                 side: BorderSide(
-                  color: Colors.grey[400],
-                ))
-            : null,
+                  color: Colors.grey[400],)) : null,
         margin: EdgeInsets.only(bottom: 10, left: 1, right: 1),
         child: Padding(
           padding: EdgeInsets.only(left: 25, top: 10, bottom: 8),
-          child: Column(children: [
+          child: Column(
+              children: [
             Padding(padding: EdgeInsets.only(top: 5)),
             Row(
               children: [
@@ -168,10 +168,10 @@ class _HomeItemState extends State<HomeItem>
                           // decoration: BoxDecoration(
                           //     border: Border.all(color: Colors.grey)),
                           padding: EdgeInsets.only(top: 5, left: 5),
-                          height: 30,
+                          height: 40,
                           width: defaultSize * 18,
                           child: Text(widget.jobTtl ?? '일거리',
-                              style: TextStyle(fontWeight: FontWeight.bold)),
+                              style: TextStyle(fontWeight: FontWeight.bold),textAlign: TextAlign.left,),
                         ),
                         Container(
                           height: 30,
@@ -279,7 +279,7 @@ class _HomeItemState extends State<HomeItem>
             Container(
               child: Container(
                 margin: EdgeInsets.only(left:defaultSize * 5.5),
-                padding: EdgeInsets.only(left: 5, top: 5, bottom: 5),
+                padding: EdgeInsets.only(left: 5, top: 5, bottom: 10),
                 // decoration: BoxDecoration(
                 //   border: Border.all(
                 //     color: Colors.grey
