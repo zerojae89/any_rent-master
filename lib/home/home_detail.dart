@@ -247,7 +247,7 @@ class _HomeDetailState extends State<HomeDetail> {
                       ),
                       (aucMtd == "1") ? Container() : Text(
                         '남은 입찰시간 : '+timeToDisplay,
-                        style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.4,),
+                        style: TextStyle(color: Colors.pink, fontSize:  defaultSize * 1.4,),
                       ),
                     ],
                   ),
@@ -448,8 +448,8 @@ class _HomeDetailState extends State<HomeDetail> {
                 //     ),
                   ],
                 ),
-
-
+                SizedBox(height: defaultSize * 1.7,),
+                Divider(),
                 (picCnt == 0) ?  Container() : SizedBox(height: defaultSize * 45, child: buildGridView(jobId, picCnt)),
                 Container( 
                   margin: EdgeInsets.all(20),

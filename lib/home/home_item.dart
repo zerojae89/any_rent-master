@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:convert';
 
+import 'package:any_rent/chat/chat_server.dart';
 import 'package:any_rent/home/home_detail.dart';
 import 'package:any_rent/home/home_server.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,6 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:any_rent/settings/size_config.dart';
 import 'package:intl/intl.dart';
 import 'package:any_rent/settings/url.dart';
+import 'package:any_rent/settings/custom_shared_preferences.dart';
+
+const url = UrlConfig.url;
 
 class HomeItem extends StatefulWidget {
   String token,
@@ -18,8 +23,7 @@ class HomeItem extends StatefulWidget {
       payMtd,
       jobIts,
       twnNm;
-  int index, jobAmt, junPrfSeq;
-
+  int index, jobAmt,prfSeq;
   HomeItem(
       this.token,
       this.jobId,
@@ -31,7 +35,11 @@ class HomeItem extends StatefulWidget {
       this.index,
       this.payMtd,
       this.jobIts,
-      this.twnNm);
+      this.twnNm,
+      this.prfSeq);
+
+
+
 
   @override
   _HomeItemState createState() => _HomeItemState();
@@ -39,6 +47,7 @@ class HomeItem extends StatefulWidget {
 
 class _HomeItemState extends State<HomeItem>
     with RouteAware, WidgetsBindingObserver {
+  final globalKey = GlobalKey<ScaffoldState>();
   final formatter = new NumberFormat("###,###,###,###,###");
   String jobIts;
   String timeToDisplay = '';
@@ -47,13 +56,17 @@ class _HomeItemState extends State<HomeItem>
   bool isDisposed = false;
   Timer _timer;
   Duration _duration = Duration(seconds: 1);
+  int junPrfSeq;
+
 
 
   @override
   void initState() {
     jobIts = widget.jobIts;
+    junPrfSeq = widget.prfSeq;
     time();
     super.initState();
+    loadToken();
   }
 
 
@@ -127,6 +140,23 @@ class _HomeItemState extends State<HomeItem>
     }
   }
 
+  loadToken() async {
+    // token = await customSharedPreferences.getString('token');
+    // state = await customSharedPreferences.getBool('state');
+    //
+    // try{
+    //   if(state){
+    //     if(!isDisposed) {
+    //       setState(() {
+    //         prfSeq = widget.homeItems['prfSeq'];
+    //       });
+    //     }
+    //   }
+    // }catch(e){
+    //   Scaffold.of(context).showSnackBar( SnackBar(content: Text("잠시후 다시 시도해 주세요.",), duration: Duration(seconds: 3),) );
+    // }
+}
+
   @override
   Widget build(BuildContext context) {
     double defaultSize = SizeConfig.defaultSize;
@@ -154,10 +184,16 @@ class _HomeItemState extends State<HomeItem>
                 Container(
                   margin: EdgeInsets.only(top: defaultSize * 2, ),
                   width: 60,
-                  height: 60,
+                  height: 80,
                   decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black),
-                      shape: BoxShape.circle),
+                      shape: BoxShape.circle,
+                  image: DecorationImage(
+                    fit: BoxFit.fill,
+                      image: (junPrfSeq == null)
+                          ? AssetImage('assets/noimage.jpg')
+                          : NetworkImage(
+                          '$url/api/mypage/images?recieveToken=$junPrfSeq')),
+                  ),
                 ),
                 Column(
                   children: [
@@ -219,6 +255,9 @@ class _HomeItemState extends State<HomeItem>
                                   '희망 금액 : ' +
                                       formatter.format(widget.jobAmt) +
                                       '원',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold),
                                   // style: TextStyle(color: Colors.orange, fontSize: 12, fontWeight: FontWeight.bold),
                                 ),
                         ),

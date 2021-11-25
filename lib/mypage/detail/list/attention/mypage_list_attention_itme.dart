@@ -1,8 +1,11 @@
 import 'package:any_rent/home/home_server.dart';
+import 'package:any_rent/settings/url.dart';
 import 'package:flutter/material.dart';
 import 'package:any_rent/settings/size_config.dart';
 import 'package:intl/intl.dart';
 import 'attention_detail.dart';
+
+const url = UrlConfig.url;
 
 class MyPageAttentionItme extends StatefulWidget {
   String token, jobId, jobTtl, aucMtd, jobStDtm, bidDlDtm, payMtd, jobIts, jobSts;
@@ -16,6 +19,7 @@ class MyPageAttentionItme extends StatefulWidget {
 class _MyPageAttentionItmeState extends State<MyPageAttentionItme> {
   final formatter = new NumberFormat("###,###,###,###,###");
   String jobIts, jobSts;
+  String prfSeq;
   @override
   void initState() {
 
@@ -45,12 +49,18 @@ class _MyPageAttentionItmeState extends State<MyPageAttentionItme> {
                Row(
                  children: [
                    Container(
-                     margin: EdgeInsets.only(top: defaultSize * 2,bottom: defaultSize * 3),
+                     margin: EdgeInsets.only(top: defaultSize * 2,bottom: defaultSize * 3 ),
                      width: 60,
                      height: 60,
                      decoration: BoxDecoration(
-                         border: Border.all(color: Colors.black),
-                         shape: BoxShape.circle),
+                       shape: BoxShape.circle,
+                       image: DecorationImage(
+                           fit: BoxFit.fill,
+                           image: (prfSeq == null)
+                               ? AssetImage('assets/noimage.jpg')
+                               : NetworkImage(
+                               '$url/api/mypage/images?recieveToken=$prfSeq')),
+                     ),
                    ),
                    Column(
                      children: [
@@ -111,6 +121,9 @@ class _MyPageAttentionItmeState extends State<MyPageAttentionItme> {
                                '희망 금액 : ' +
                                    formatter.format(widget.jobAmt) +
                                    '원',
+                               style: TextStyle(
+                                   color: Colors.black,
+                                   fontWeight: FontWeight.bold),
                                // style: TextStyle(color: Colors.orange, fontSize: 12, fontWeight: FontWeight.bold),
                              ),
                            ),

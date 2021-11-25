@@ -86,7 +86,7 @@ class _MyPageHeaderState extends State<MyPageHeader> {
                                 image: (prfSeq == null)
                                     ? AssetImage('assets/noimage.jpg')
                                     : NetworkImage(
-                                        '$url/api/mypage/images?recieveToken=$prfSeq')), //.
+                                        '$url/api/mypage/images?recieveToken=$prfSeq'),), //.
                             border: Border.all(
                                 color: Colors.yellow.withOpacity(0.8),
                                 width: 5)),
@@ -142,12 +142,12 @@ class _MyPageHeaderState extends State<MyPageHeader> {
                             ),
                           ),
                           Container(
-                            margin: EdgeInsets.only(bottom: 12,left: 10),
+                            margin: EdgeInsets.only(bottom: 12,left: 10,top: defaultSize * 0.5),
                             child: Text(
                               (mbrGrd ?? ''),
                               style: TextStyle(
                                   color: Colors.yellowAccent,
-                                  fontSize: defaultSize * 1.6,
+                                  fontSize: defaultSize * 2,
                                   fontWeight: FontWeight.bold),
                             ),
                           ),

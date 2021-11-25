@@ -74,10 +74,10 @@ class HomeDetailDialog {
             type: MaterialType.transparency,
             child: Container(
               decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.lightGreen[700],
-                  width: 5
-                ),
+                // border: Border.all(
+                //   color: Colors.lightGreen[700],
+                //   width: 5
+                // ),
                 borderRadius: BorderRadius.circular(10),
                 color: Colors.white,
               ),
@@ -123,14 +123,17 @@ class HomeDetailDialog {
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15))
+          ),
           title: Text("게시물을 삭제 하시겠습니까?"),
           actions: <Widget>[
             FlatButton(
-              child: Text("아니오"),
+              child: Text("아니오",style: TextStyle(color: Colors.lightGreen[800])),
               onPressed: () => Navigator.pop(context, false),
             ),
             FlatButton(
-              child: Text("예"),
+              child: Text("예",style: TextStyle(color: Colors.lightGreen[800])),
               onPressed: () {
                 homeServer.deleteService(token, jobId);
                 Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => MyHomePage(index: 0,)), (route) => false);
@@ -146,14 +149,17 @@ class HomeDetailDialog {
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(15))
+          ),
           title: Text("게시물을 수정 하시겠습니까?"),
           actions: <Widget>[
             FlatButton(
-              child: Text("아니오"),
+              child: Text("아니오",style: TextStyle(color: Colors.lightGreen[800])),
               onPressed: () => Navigator.pop(context, false),
             ),
             FlatButton(
-              child: Text("예"),
+              child: Text("예",style: TextStyle(color: Colors.lightGreen[800])),
               onPressed: () {
                 Navigator.pop(context, true);
                 Navigator.push(context, MaterialPageRoute(builder: (context) => HomeUpdate(jobId: jobId,)));

@@ -232,12 +232,12 @@ class _MyPageJunDetailState extends State<MyPageJunDetail> {
                 InkWell(
                   onTap: () => homeDetailDialog.showDialogProfile(context, defaultSize, junNic, junPrfSeq, mbrGrd),
                   child: SizedBox(
-                    height: defaultSize * 11,
+                    height: defaultSize * 14,
                     child: Container(
                       padding: EdgeInsets.only(left:defaultSize * 4,right: defaultSize * 1.6),
                       child: Row(
                         children: [
-                          Container(margin: EdgeInsets.only(right: 50),
+                          Container(margin: EdgeInsets.only(right: defaultSize * 2.5),
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   shape: BoxShape.circle,
@@ -255,7 +255,7 @@ class _MyPageJunDetailState extends State<MyPageJunDetail> {
                             // child: (junPrfSeq == null) ? Icon(Icons.account_box_rounded, size: 40,) : Image.network('$url/api/mypage/images?recieveToken=$junPrfSeq')
                           ),
                           Container(
-                            width: defaultSize * 10,
+                            width: defaultSize * 12,
                             // decoration: BoxDecoration(
                             //   border: Border.all(
                             //     color: Colors.grey
@@ -266,15 +266,25 @@ class _MyPageJunDetailState extends State<MyPageJunDetail> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(
-                                  junNic ?? '',
-                                  style: TextStyle(color: Colors.lightGreen[700], fontWeight: FontWeight.bold, fontSize:  defaultSize * 2),
-                                ),
+                                Container(),
+                            Container(
+                              // decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
+                              width: defaultSize * 10.5,
+                              child: Text(
+                                junNic ?? '',
+                                style: TextStyle(color: Colors.lightGreen[700], fontWeight: FontWeight.bold, fontSize:  defaultSize * 1.7),textAlign: TextAlign.center,
+                              ),
+                            ),
                                 SizedBox(height: defaultSize * 1.5,),
-                                Text(
-                                  twnNm ?? '',
-                                  style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7,fontWeight: FontWeight.bold),
-                                ),
+                            Container(
+                              width: defaultSize * 10.5,
+                              // decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
+                              child: Text(
+                                twnNm ?? '',
+                                style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
                               ],
                             ),
                           ),
@@ -289,20 +299,21 @@ class _MyPageJunDetailState extends State<MyPageJunDetail> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Container(
-                                  // margin: EdgeInsets.only(right: defaultSize * 5),
+                                  margin: EdgeInsets.only(left: defaultSize * 1),
                                   child: Text(
                                     "사용자 평점",
-                                    style: TextStyle(color: Colors.lightGreen[700], fontWeight: FontWeight.bold, fontSize: defaultSize * 2),
+                                    style: TextStyle(color: Colors.lightGreen[700], fontWeight: FontWeight.bold, fontSize: defaultSize * 1.7),
                                   ),
                                 ),
-                                SizedBox(height: defaultSize * 1.5,),
+                                SizedBox(height: defaultSize * 1.2,),
                                 Container(
+                                  margin: EdgeInsets.only(left: defaultSize * 1),
                                   width: 70,
                                   // decoration: BoxDecoration(
                                   //   border: Border.all(color: Colors.grey)
                                   // ),
                                   child: Text( '$mbrGrd',
-                                    style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7,fontWeight: FontWeight.bold),
+                                    style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7),
                                     textAlign: TextAlign.center,
                                   ),
                                 ),
@@ -325,67 +336,60 @@ class _MyPageJunDetailState extends State<MyPageJunDetail> {
                         child: Padding(
                           padding: EdgeInsets.only(left: 10),
                           child: Container(
+                            width: defaultSize * 14.7,
                             child: Text(
                               '$tp1Nm / $tp2Nm',
-                              style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),
-                              textAlign: TextAlign.center,
+                              style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7, ),
+                              textAlign: TextAlign.left,
                             ),
                           ),
                         ),
                       ),
-                      Expanded(flex:1,child: SizedBox()),
-                      Expanded(
-                        flex: 3,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container( child: Text( jobStDtm ?? '',  style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold), ), ),
+                      Container(
+                        // margin: EdgeInsets.only(right: defaultSize * 0),
+                        // decoration: BoxDecoration(border:Border.all(color:Colors.grey)),
+                        width: defaultSize * 17,
+                        child: Text( jobStDtm ?? '',  style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7, ),textAlign: TextAlign.right, ), ),
                           ],
                         ),
                       ),
-                    ],
-                  ),
-                ),
                 SizedBox(height: 10,),
                 Container(
                   child: Row(
                     children: [
                       Container(
+                        margin: EdgeInsets.only(left: defaultSize * 4.7,top: defaultSize * 0.7),
                         child: Container(
-                          margin: EdgeInsets.only(left: defaultSize * 4.7,top: defaultSize * 0.7),
-                          child: Container(
-                            width: defaultSize * 15,
-                            child: Text(
-                              (aucMtd == "1") ? '금액 : '+ formJobAmt +'원': '희망 금액 : '+formJobAmt+'원',
-                              // (jobAmt != null) ? '금액 : '+formatter.format(jobAmt) +'원': '금액 : 0 원',
-                              style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold,),
-                              textAlign: TextAlign.left,
-                            ),
+                          width: defaultSize * 15,
+                          child: Text(
+                            (aucMtd == "1") ? '금액 : '+formatter.format(jobAmt) +'원': '금액 : 0 원',
+                            style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7,),
+                            textAlign: TextAlign.left,
                           ),
                           decoration: BoxDecoration(
                             // color: Colors.pink[50],
                             borderRadius: BorderRadius.circular(2),
+                            // border: Border.all(color:Colors.grey)
                           ),
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(left: defaultSize * 1),
+                        margin: EdgeInsets.only(top: defaultSize * 0.7),
+                        padding: EdgeInsets.only(left: defaultSize * 1),
+                        width: defaultSize * 9,
+                        // decoration: BoxDecoration(
+                        //   border:Border.all(color: Colors.grey)
+                        // ),
+                        child: Text(
+                          '결제방식 :',style: TextStyle(fontSize: defaultSize * 1.7),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: defaultSize * 1.5,top: defaultSize * 0.7),
                         child: Container(
                           child: Text(
                             (payMtd == null) ? '' : (payMtd == '1') ? '직접결제' : (payMtd == '2')? '안전결제' : '',
-                            style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7 , fontWeight: FontWeight.bold,),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(left: defaultSize * 5.8),
-                        child: Container(
-                          margin: EdgeInsets.only(right: 35),
-                          child: Text(
-                            (aucMtd == null) ? '' : (aucMtd == '1') ? '선착순' : (aucMtd == '2')? '입찰식' : '',
-                            style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7, fontWeight: FontWeight.bold),
+                            style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7 , ),
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -393,6 +397,24 @@ class _MyPageJunDetailState extends State<MyPageJunDetail> {
                     ],
                   ),
                 ),
+                Row(
+                  children: [
+                    Container(margin:EdgeInsets.only(left: defaultSize * 4.8,top: defaultSize * 2),child: Text('희망 성별 :', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7),)),
+                    Container(margin: EdgeInsets.only(left: 10,top: defaultSize * 2), child: Text(hanGndName ?? '', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7),)),
+                    Container(margin: EdgeInsets.only(top: defaultSize * 2, left: defaultSize * 4.5),child: Text('입찰방식 :',style: TextStyle(fontSize: defaultSize * 1.7,),),),
+                    Container(
+                      margin: EdgeInsets.only(left: defaultSize * 3.8,top: defaultSize * 2),
+                      child: Container(
+                        child: Text(
+                          (aucMtd == null) ? '' : (aucMtd == '1') ? '선착순' : (aucMtd == '2')? '입찰식' : '',
+                          style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7, ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Divider(height: defaultSize * 3,),
                 (picCnt == 0) ?  Container() : SizedBox(height: defaultSize * 45, child: buildGridView(jobId, picCnt)),
                 Container(
                   margin: EdgeInsets.all(20.0),
@@ -403,7 +425,7 @@ class _MyPageJunDetailState extends State<MyPageJunDetail> {
                         borderRadius: BorderRadius.circular(20.0)
                     ),
                     width: 350,
-                    child: Padding( padding: EdgeInsets.all(20),  child: Text(jobCtn ?? '', style:  TextStyle(fontSize:  defaultSize * 1.5),), ), ), ),
+                    child: Padding( padding: EdgeInsets.all(20),  child: Text(jobCtn ?? '', style:  TextStyle(fontSize:  defaultSize * 1.7),), ), ), ),
                 Divider(height: defaultSize * 4,),
               ],
             ),
@@ -474,7 +496,7 @@ class _MyPageJunDetailState extends State<MyPageJunDetail> {
               child: FlatButton(
                 color: Colors.lightGreen,
                 onPressed: () => onComplComplete(context, jobId, token),
-                child: Text( "소일 완료하기",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 2,), ),
+                child: Text( "완료하기",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 2,), ),
               ),
             ),
             Expanded(
@@ -511,7 +533,7 @@ class _MyPageJunDetailState extends State<MyPageJunDetail> {
               child: FlatButton(
                 color: Colors.lightGreen,
                 onPressed: () => onComplComplete(context, jobId, token),
-                child: Text( "소일 완료하기",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.3,), ),
+                child: Text( "완료하기",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.3,), ),
               ),
             ),
             Expanded(
@@ -531,7 +553,7 @@ class _MyPageJunDetailState extends State<MyPageJunDetail> {
           child: FlatButton(
             color: Colors.amber[700],
             onPressed: () => null,
-            child: Text( "시간초과",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.3,), ),
+            child: Text( "시간초과",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.7,), ),
           ),
         ),
       );
@@ -586,14 +608,17 @@ class _MyPageJunDetailState extends State<MyPageJunDetail> {
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15))
+          ),
           title: Text("게시물을 삭제 하시겠습니까?"),
           actions: <Widget>[
             FlatButton(
-              child: Text("아니오"),
+              child: Text("아니오",style: TextStyle(color: Colors.lightGreen[800],fontWeight: FontWeight.bold)),
               onPressed: () => Navigator.pop(context, false),
             ),
             FlatButton(
-                child: Text("예"),
+                child: Text("예",style: TextStyle(color: Colors.lightGreen[800],fontWeight: FontWeight.bold)),
                 onPressed: (){
                   try{
                     homeServer.deleteService(token, jobId);
@@ -613,14 +638,17 @@ class _MyPageJunDetailState extends State<MyPageJunDetail> {
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
-          title: Text("소일을 완료 하시겠습니까?"),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15))
+          ),
+          title: Text("완료 하시겠습니까?"),
           actions: <Widget>[
             FlatButton(
-              child: Text("아니오"),
+              child: Text("아니오",style: TextStyle(color: Colors.lightGreen[800]),),
               onPressed: () => Navigator.pop(context, false),
             ),
             FlatButton(
-              child: Text("예"),
+              child: Text("예",style: TextStyle(color: Colors.lightGreen[800]),),
               onPressed: (){
                 try{
                   myPageServer.sendServiceComplete(token, jobId);

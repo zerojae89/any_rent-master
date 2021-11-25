@@ -116,41 +116,51 @@ class _MyPageBidderItemState extends State<MyPageBidderItem> {
               Row(
                 children: [
                   Container(
-                    child: Text( widget.jobTtl, style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.5 ),),
-                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                  ),
-                  SizedBox(
-                    width: 24,
-                  ),
-                  Container(
-                    child: Text( '남은 입찰시간 :  $timeToDisplay', style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.5 ), ),
+                    // decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
+                    width: defaultSize * 34,
+                    height: defaultSize * 5,
+                    child: Text( widget.jobTtl, style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7,fontWeight: FontWeight.bold ),),
                     padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 3,
-                      child: Container(
-                        child: Text( '입찰 인원 ${widget.count}명', style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.5 ),),
-                        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                        // decoration: BoxDecoration( color: Colors.orange[50],  borderRadius: BorderRadius.circular(2), ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 3,
-                      child: Container(
-                        child: Text( '희망 금액 $formJobAmt 원', style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.5 ),),
-                        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                        // decoration: BoxDecoration( color: Colors.orange[50],  borderRadius: BorderRadius.circular(2), ),
-                      ),
-                    ),
-                  ],
-                ),
+              Row(
+                children: [
+                  Container(
+                    child: Text( '남은 입찰시간 :  $timeToDisplay', style: TextStyle(color: Colors.pinkAccent, fontSize: defaultSize * 1.7 ), ),
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                  ),
+                ],
               ),
+              Row(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(left: defaultSize * 1.6,top: defaultSize * 1),
+                    padding: EdgeInsets.only(bottom: defaultSize * 2),
+                    child: Row(
+                      children: [
+                        Container(
+                          child: Container(
+                            child: Text( '입찰 인원 ${widget.count}명', style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7 ),),
+                            // decoration: BoxDecoration( color: Colors.orange[50],  borderRadius: BorderRadius.circular(2), ),
+                          ),
+                        ),
+                        Container(
+                          // decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
+                          margin: EdgeInsets.only(left: defaultSize * 5),
+                          width: defaultSize * 20,
+                          child: Container(
+                            child: Text( '희망 금액 $formJobAmt 원', style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7 ),
+                            textAlign: TextAlign.right,),
+                            // decoration: BoxDecoration( color: Colors.orange[50],  borderRadius: BorderRadius.circular(2), ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+
             ],
           ),
         ),

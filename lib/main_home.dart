@@ -83,13 +83,28 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           title: Text("앱을 종료 하시겠습니까?"),
           actions: <Widget>[
-            FlatButton(
-              child: Text("아니오"),
-              onPressed: () => Navigator.pop(context, false),
+            Container(
+              height: 35,
+              // decoration: BoxDecoration(
+              //   color: Colors.lightGreen,
+              //   borderRadius: BorderRadius.circular(15)
+              // ),
+              child: FlatButton(
+                child: Text("아니오",style: TextStyle(color: Colors.lightGreen[800],fontWeight: FontWeight.bold),),
+                onPressed: () => Navigator.pop(context, false),
+              ),
             ),
-            FlatButton(
-              child: Text("예"),
-              onPressed: ()=>Navigator.pop(context, true),
+            Container(
+              height: 35,
+              // decoration: BoxDecoration(
+              //     borderRadius: BorderRadius.circular(15),
+              //   color: Colors.lightGreen,
+              // ),
+
+              child: FlatButton(
+                child: Text("예",style: TextStyle(color: Colors.lightGreen[800],fontWeight: FontWeight.bold),),
+                onPressed: ()=>Navigator.pop(context, true),
+              ),
             )
           ],
         )

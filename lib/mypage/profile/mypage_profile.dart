@@ -128,16 +128,23 @@ class _MyPageProfileState extends State<MyPageProfile> {
       barrierDismissible: false,
       builder: (BuildContext context){
         return AlertDialog(
-          title: Center(child: Text('로그아웃')),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15))
+          ),
+          title: Container(margin: EdgeInsets.only(bottom: 10),child: Center(child: Text('로그아웃'))),
           content: Text('로그아웃 하시겠습니까?'),
           actions: <Widget>[
-            FlatButton(onPressed: ()=> Navigator.pop(context, false), child: Text('취소')),
+            FlatButton(onPressed: ()=> Navigator.pop(context, false), child: Text('취소',style: TextStyle(color: Colors.lightGreen[800],fontWeight: FontWeight.bold),),
+              // color: Colors.lightGreen,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            ),
             FlatButton(onPressed: () {
               _prefs.remove('token');
               _prefs.remove('state');
               loginServer.logout(token);
               Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (BuildContext context) => MyHomePage(index: 0,)), (route) => false);
-            }, child: Text('로그아웃')),
+            }, child: Text('로그아웃',style: TextStyle(color: Colors.lightGreen[800],fontWeight: FontWeight.bold)),
+                // color: Colors.lightGreen,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
+            ),
           ],
         );
       }
@@ -149,6 +156,9 @@ class _MyPageProfileState extends State<MyPageProfile> {
         barrierDismissible: false,
         builder: (BuildContext context){
           return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(15))
+            ),
             title: Center(child: Text('회원 탈퇴 (이용계약 해지)')),
             content: Text(
                 "신청하신 회원탈퇴는 약관에 따라 신속히 처리 해 드리겠습니다.\n"
@@ -158,8 +168,8 @@ class _MyPageProfileState extends State<MyPageProfile> {
                 "탈퇴를 진행 하시겠습니까?"
                 ),
             actions: <Widget>[
-              FlatButton(onPressed: ()=> Navigator.pop(context, false), child: Text('아니오')),
-              FlatButton(onPressed: ()=> unJoin(), child: Text('예')),
+              FlatButton(onPressed: ()=> Navigator.pop(context, false), child: Text('아니오',style: TextStyle(color: Colors.lightGreen[800]),)),
+              FlatButton(onPressed: ()=> unJoin(), child: Text('예',style: TextStyle(color: Colors.lightGreen[800]),)),
             ],
           );
         }

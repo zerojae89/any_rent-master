@@ -26,7 +26,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   String token, townCd1, townCd2, townNm1, townNm2, auctionTimeString, twnCd, latitude, longitude, thoroughfare, sortId;
   String jobId, jobTtl, aucMtd, jobStDtm, bidDlDtm, payMtd, jobIts, twnNm;
-  int jobAmt;
+  int jobAmt, prfSeq;
   bool permission = true;
   bool isDisposed = false;
   bool gpsPermissionBool = true;
@@ -325,7 +325,8 @@ class _HomeState extends State<Home> {
                                     payMtd = homeItems[homeItems.length - index -1]['payMtd'];
                                     jobIts = homeItems[homeItems.length - index -1]['jobIts'];
                                     twnNm = homeItems[homeItems.length - index -1]['twnNm'];
-                                    return HomeItem(token, jobId, jobTtl, aucMtd, jobStDtm, bidDlDtm, jobAmt, index, payMtd, jobIts, twnNm );
+                                    prfSeq = homeItems[homeItems.length - index -1]['prfSeq'];
+                                    return HomeItem(token, jobId, jobTtl, aucMtd, jobStDtm, bidDlDtm, jobAmt, index, payMtd, jobIts, twnNm, prfSeq );
                                   },
                                 ),
                               )

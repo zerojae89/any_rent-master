@@ -37,6 +37,7 @@ class HomeServer{
     }
   }
 
+
   Future<String> sendAttention(String token, String  jobId) async{ //관심 목록 추가 하기
     print("sendAttention====================================================Start");
     http.Response response = await http.post( '$url/api/service/hanItsInsert',

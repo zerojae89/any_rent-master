@@ -145,7 +145,7 @@ class _MyPageListJunWorkItemState extends State<MyPageListJunWorkItem> {
                     width: 60,
                     height: 60,
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black),
+                        // border: Border.all(color: Colors.black),
                         shape: BoxShape.circle,
                     image: DecorationImage(
                       fit: BoxFit.fill,
@@ -162,16 +162,16 @@ class _MyPageListJunWorkItemState extends State<MyPageListJunWorkItem> {
                         //     border: Border.all(color: Colors.grey)),
                         margin: EdgeInsets.only(left: defaultSize * 3),
                         padding: EdgeInsets.only(left: 5, top: 5),
-                        height: 50,
-                        width: defaultSize * 18,
+                        height: 40,
+                        width: defaultSize * 25,
                         child: Text(widget.jobTtl ?? '일거리',
                             style: TextStyle(fontWeight: FontWeight.bold)),
                       ),
                       Container(
+                        margin: EdgeInsets.only(left: defaultSize * 3,bottom: defaultSize * 1,right: defaultSize * 6.7),
+                        width: defaultSize * 17,
                         // decoration: BoxDecoration(
                         //     border: Border.all(color: Colors.grey)),
-                        margin: EdgeInsets.only(right: defaultSize * 3,bottom: defaultSize * 1),
-                        padding: EdgeInsets.only(left: 5),
                         child: (widget.aucMtd == "1")
                             ? Text(
                                 '금액 : ' + formatter.format(widget.jobAmt) + '원',
@@ -179,6 +179,7 @@ class _MyPageListJunWorkItemState extends State<MyPageListJunWorkItem> {
                                     fontSize: defaultSize * 1.7,
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.left,
                               )
                             : Text(
                                 '희망 금액 : ' +
@@ -186,7 +187,8 @@ class _MyPageListJunWorkItemState extends State<MyPageListJunWorkItem> {
                                     '원',
                                 style: TextStyle(
                                     fontSize: defaultSize * 1.7,
-                                    color: Colors.black),
+                                    color: Colors.black,fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.left,
                               ),
                       ),
                       Row(
@@ -207,7 +209,7 @@ class _MyPageListJunWorkItemState extends State<MyPageListJunWorkItem> {
                           ),
                           Container(
                             padding:EdgeInsets.only(bottom: defaultSize * 1),
-                            margin: EdgeInsets.only(left: defaultSize * 3),
+                            margin: EdgeInsets.only(left: defaultSize * 3,right: defaultSize * 6.7),
                             // decoration: BoxDecoration(
                             //     border: Border.all(color: Colors.grey)),
                             child: Text(
@@ -224,7 +226,7 @@ class _MyPageListJunWorkItemState extends State<MyPageListJunWorkItem> {
                       ),
 
                       Container(
-                        margin: EdgeInsets.only(right: defaultSize * 5.5),
+                        margin: EdgeInsets.only(right: defaultSize * 12.5),
                         width: defaultSize * 10,
                         // decoration: BoxDecoration(
                         //     border: Border.all(color: Colors.grey)),
