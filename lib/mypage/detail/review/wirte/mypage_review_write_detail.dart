@@ -669,13 +669,13 @@ class _MyPageReviewWriteDetailState extends State<MyPageReviewWriteDetail> {
                 body: Center(
                   child: Container(
                     width: defaultSize * 25,
-                    height: defaultSize * 18,
+                    height: defaultSize * 14,
                     decoration: BoxDecoration( color: Colors.white, borderRadius: BorderRadius.circular(15), ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(margin: EdgeInsets.only(top: defaultSize *3),child: Text("후기를 수정 하시겠습니까?", style: TextStyle(fontSize: defaultSize * 1.9))),
-                        Padding(padding: EdgeInsets.only(top: defaultSize *5)),
+                        Padding(padding: EdgeInsets.only(top: defaultSize *2)),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [

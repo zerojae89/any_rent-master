@@ -67,7 +67,13 @@ class _MyPageReviewWirteItemState extends State<MyPageReviewWirteItem> {
                 ],
               ),
               Container(
-                margin: EdgeInsets.only(right: defaultSize * 21.5,top: defaultSize*1),
+                width: defaultSize * 15,
+                // decoration: BoxDecoration(
+                //   border: Border.all(
+                //     color: Colors.grey
+                //   )
+                // ),
+                margin: EdgeInsets.only(right: defaultSize * 17,top: defaultSize*1),
                 padding: EdgeInsets.only(bottom: defaultSize * 0.7),
                 child: Text(
                   (widget.mbrGrd == 9) ? '후기 작성 하기' : '후기 수정 / 삭제' ,

@@ -140,104 +140,189 @@ class _MyPageReviewReadDetailState extends State<MyPageReviewReadDetail> {
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
+                Container(
                   padding: EdgeInsets.only(left: defaultSize * 1.6 , top: defaultSize * 1.6),
                   child: Row(
                     children: [
-                      Expanded( flex: 7,  child: Text( jobTtl ?? '',  style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.8, fontWeight: FontWeight.bold), ), ),
-                      Expanded(flex: 3, child: Text('희망 성별 :', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.5),)),
-                      Expanded(flex: 2, child: Text(hanGndName ?? '', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.4),)),
+                      Row(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(left: defaultSize * 2,),
+                            padding: EdgeInsets.only(top: defaultSize * 0.4),
+                            // decoration: BoxDecoration(border: Border.all(color:Colors.grey)),
+                            width: defaultSize * 36,
+                            height: defaultSize * 5,
+                            child: Text( jobTtl ?? '',  style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.8, fontWeight: FontWeight.bold),textAlign: TextAlign.left, ),
+                          ),
+                        ],
+                      ),
+                      // Expanded(flex: 3, child: Text('희망 성별:', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.5),)),
+                      // Expanded(flex: 2, child: Text(hanGndName ?? '', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.4),)),
                     ],
                   ),
                 ),
                 Divider(height: 10,),
                 InkWell(
                   onTap: () => homeDetailDialog.showDialogProfile(context, defaultSize, junNic, junPrfSeq, mbrGrd),
-                  child: SizedBox(
-                    height: defaultSize * 14,
+                  child: Container(
+                    height: defaultSize * 11,
                     child: Container(
-                      padding: EdgeInsets.all(defaultSize * 1.6),
+                      padding: EdgeInsets.only(left:defaultSize * 4,right: defaultSize * 1.6),
                       child: Row(
                         children: [
-                          Expanded( flex: 3,  child: (junPrfSeq == null) ? Icon(Icons.account_box_rounded, size: 40,) : Image.network('$url/api/mypage/images?recieveToken=$junPrfSeq') ),
-                          Expanded( flex: 3,
+                          Container(margin: EdgeInsets.only(right: defaultSize * 2.5),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image: (junPrfSeq == null)
+                                          ? AssetImage('assets/noimage.jpg')
+                                          : NetworkImage(
+                                          '$url/api/mypage/images?recieveToken=$junPrfSeq')), //.
+                                  border: Border.all(
+                                      color: Colors.yellow.withOpacity(0.8),
+                                      width: defaultSize * 0.3)),
+                              width: defaultSize * 9,
+                              height: defaultSize * 15
+                            // child: (junPrfSeq == null) ? Icon(Icons.account_box_rounded, size: 40,) : Image.network('$url/api/mypage/images?recieveToken=$junPrfSeq')
+                          ),
+                          Container(
+                            width: defaultSize * 12,
+                            // decoration: BoxDecoration(
+                            //   border: Border.all(
+                            //     color: Colors.grey
+                            //   )
+                            // ),
+                            // margin: EdgeInsets.only(right: defaultSize * 5),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text( junNic ?? '',  style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize:  defaultSize * 1.4), ),
-                                Text( twnNm ?? '',  style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.2), ),
+                                Container(),
+                                Container(
+                                  // decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
+                                  width: defaultSize * 10.5,
+                                  child: Text(
+                                    junNic ?? '',
+                                    style: TextStyle(color: Colors.lightGreen[700], fontWeight: FontWeight.bold, fontSize:  defaultSize * 1.7),textAlign: TextAlign.center,
+                                  ),
+                                ),
+                                SizedBox(height: defaultSize * 1.5,),
+                                Container(
+                                  width: defaultSize * 10.5,
+                                  // decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
+                                  child: Text(
+                                    twnNm ?? '',
+                                    style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
                               ],
                             ),
                           ),
-                          Expanded( flex: 2,
+                          Container(
+                            // decoration: BoxDecoration(
+                            //   border: Border.all(
+                            //     color: Colors.grey
+                            //   )
+                            // ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(
-                                  "User평점",
-                                  style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: defaultSize * 1.2),
+                                Container(
+                                  margin: EdgeInsets.only(left: defaultSize * 1),
+                                  child: Text(
+                                    "사용자 평점",
+                                    style: TextStyle(color: Colors.lightGreen[700], fontWeight: FontWeight.bold, fontSize: defaultSize * 1.7),
+                                  ),
                                 ),
-                                Text( '$mbrGrd',
-                                  style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.1),
-                                  textAlign: TextAlign.center,
+                                SizedBox(height: defaultSize * 1.2,),
+                                Container(
+                                  margin: EdgeInsets.only(left: defaultSize * 1),
+                                  width: 70,
+                                  // decoration: BoxDecoration(
+                                  //   border: Border.all(color: Colors.grey)
+                                  // ),
+                                  child: Text( '$mbrGrd',
+                                    style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7),
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ),
                               ],
                             ),
-                          ),
+                          )
                         ],
                       ),
                     ),
                   ),
                 ),
-                Divider(height: 30,),
+                Divider(height: 15,),
                 Container(
+                  padding: EdgeInsets.only(top: defaultSize * 1.5),
                   child: Row(
                     children: [
-                      Expanded( flex: 2,
-                        child: Container( padding: EdgeInsets.only(left: 10),
-                          child: Text( '$tp1Nm / $tp2Nm',
-                            style: TextStyle(color: Colors.lightBlue, fontSize: defaultSize * 1.2, fontWeight: FontWeight.bold),
-                            textAlign: TextAlign.center,
+                      // Padding(),
+                      Container(
+                        margin: EdgeInsets.only(left: defaultSize * 3.5),
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 10),
+                          child: Container(
+                            width: defaultSize * 14.7,
+                            child: Text(
+                              '$tp1Nm / $tp2Nm',
+                              style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7, ),
+                              textAlign: TextAlign.left,
+                            ),
                           ),
                         ),
                       ),
-                      Expanded(flex:1,child: SizedBox()),
-                      Expanded( flex: 2,
-                        child: Container( child: Text( jobStDtm ?? '',  style: TextStyle(color: Colors.orange, fontSize: defaultSize * 1.2, fontWeight: FontWeight.bold), ), ),
-                      ),
+                      Container(
+                        // margin: EdgeInsets.only(right: defaultSize * 0),
+                        // decoration: BoxDecoration(border:Border.all(color:Colors.grey)),
+                        width: defaultSize * 17,
+                        child: Text( jobStDtm ?? '',  style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7, ),textAlign: TextAlign.right, ), ),
                     ],
                   ),
                 ),
+                SizedBox(height: 10,),
                 Container(
                   child: Row(
                     children: [
-                      Expanded( flex: 1,
+                      Container(
+                        margin: EdgeInsets.only(left: defaultSize * 4.7,top: defaultSize * 0.7),
                         child: Container(
+                          width: defaultSize * 15,
                           child: Text(
                             (aucMtd == "1") ? '금액 : '+formatter.format(jobAmt) +'원': '금액 : 0 원',
-                            style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.2, fontWeight: FontWeight.bold,),
-                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7),
+                            textAlign: TextAlign.left,
                           ),
-                          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                          decoration: BoxDecoration( borderRadius: BorderRadius.circular(2), ),
+                          decoration: BoxDecoration(
+                            // color: Colors.pink[50],
+                            borderRadius: BorderRadius.circular(2),
+                            // border: Border.all(color:Colors.grey)
+                          ),
                         ),
                       ),
-                      Expanded( flex: 1,
+                      Container(
+                        margin: EdgeInsets.only(top: defaultSize * 0.7),
+                        padding: EdgeInsets.only(left: defaultSize * 1),
+                        width: defaultSize * 9,
+                        // decoration: BoxDecoration(
+                        //   border:Border.all(color: Colors.grey)
+                        // ),
+                        child: Text(
+                          '결제방식 :',style: TextStyle(fontSize: defaultSize * 1.7),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: defaultSize * 1.5,top: defaultSize * 0.7),
                         child: Container(
                           child: Text(
                             (payMtd == null) ? '' : (payMtd == '1') ? '직접결제' : (payMtd == '2')? '안전결제' : '',
-                            style: TextStyle(color: Colors.pink, fontSize:  defaultSize * 1.2 , fontWeight: FontWeight.bold,),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ),
-                      Expanded( flex: 1,
-                        child: Container(
-                          child: Text(
-                            (aucMtd == null) ? '' : (aucMtd == '1') ? '선착순' : (aucMtd == '2')? '입찰식' : '',
-                            style: TextStyle(color: Colors.brown, fontSize:  defaultSize * 1.2, fontWeight: FontWeight.bold),
+                            style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7 , ),
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -245,26 +330,48 @@ class _MyPageReviewReadDetailState extends State<MyPageReviewReadDetail> {
                     ],
                   ),
                 ),
-                Divider(height: defaultSize * 3,),
+                // Divider(height: defaultSize * 3,),
+                SizedBox(height: defaultSize * 2.6,),
                 (picCnt == 0) ?  Container() : SizedBox(height: defaultSize * 40, child: buildGridView(jobId, picCnt)),
-                SizedBox( height: defaultSize * 17,  child:  Container( child: Padding( padding: EdgeInsets.all(10),  child: Text(jobCtn ?? '', style:  TextStyle(fontSize:  defaultSize * 1.5),), ), ), ),
-                Divider(height: defaultSize * 4,),
-                Container( height: defaultSize * 16,  width: double.infinity,
+                Container(
+                  margin: EdgeInsets.only(left: defaultSize * 1.8,),
+                  width: defaultSize * 38,
+                  height: defaultSize * 20,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                      border: Border.all(
+                          color: Colors.lightGreen[400],width: defaultSize * 0.3
+                      )
+                  ),
+                  padding: EdgeInsets.only(left: defaultSize* 3 ),
+                  child:  Container(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: defaultSize*2),
+                      child: Text(jobCtn ?? '',
+                        style:  TextStyle(fontSize:  defaultSize * 1.7),), ), ), ),
+                //Divider(height: defaultSize * 4,),
+                SizedBox(height: defaultSize * 1,),
+                Container( height: defaultSize * 20,  width: double.infinity,
                   child: Column(
                     children: [
                       opNicView(defaultSize, widget.opNicNm, widget.myNicNm),
                       opGrdView(defaultSize, widget.opNicNm, widget.myNicNm, widget.mbrGrd),
-                      Container( height: defaultSize * 10, width:  double.infinity,  padding: EdgeInsets.only(top: defaultSize * 4),
+                      Container(
+                        padding: EdgeInsets.only(bottom: 10),
+                        decoration:
+                        BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(15),border: Border.all(color: Colors.blueAccent,width: defaultSize * 0.2)),
+                        height: defaultSize * 10,
+                        width:  defaultSize * 36,
                         child: Center(
                           child:  Text( (opGrd != 9) ? revCtn ?? "후기 내용이 없습니다." : '후기 내용이 없습니다.',
-                            style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.2 ),
+                            style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7 ),
                           ),
                         ),
                       ),
                     ],
                   ),
                 ),
-                Container(height:  defaultSize * 5, ),
               ],
             ),
         ),
@@ -292,17 +399,20 @@ class _MyPageReviewReadDetailState extends State<MyPageReviewReadDetail> {
     return Container(
       margin: EdgeInsets.only(right: defaultSize * 7),
       child: Text( '$opNicNm 님이  $myNicNm 대한 후기와 평점 입니다.',
-        style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.5, fontWeight: FontWeight.bold), ),
-      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-      decoration: BoxDecoration( borderRadius: BorderRadius.circular(2), ),
+        style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.5, fontWeight: FontWeight.bold),
+      ),
+      decoration: BoxDecoration(
+        // color: Colors.orange[50],
+        borderRadius: BorderRadius.circular(2),
+      ),
     );
   }
 
   Widget opGrdView(defaultSize, opNicNm, myNicNm, grd){
     return Container(
-      margin: EdgeInsets.only(right: defaultSize * 7),
+      margin: EdgeInsets.only(right: defaultSize * 0,top: defaultSize*1,bottom: defaultSize * 1),
       child: Text( (grd == 9) ? '' : '$opNicNm 님이  $myNicNm 에게 준 평점은 $grd 점 입니다.',
-        style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.3, fontWeight: FontWeight.bold), ),
+        style: TextStyle(color: Colors.blueAccent, fontSize: defaultSize * 2, fontWeight: FontWeight.bold), ),
       padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       decoration: BoxDecoration( borderRadius: BorderRadius.circular(2), ),
     );

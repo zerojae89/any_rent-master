@@ -71,7 +71,13 @@ class _MyPageReviewReadItemState extends State<MyPageReviewReadItem> {
                 ],
               ),
               Container(
-                margin: EdgeInsets.only(right: defaultSize * 24),
+                width: defaultSize * 13,
+                // decoration: BoxDecoration(
+                //   border: Border.all(
+                //     color: Colors.grey
+                //   )
+                // ),
+                margin: EdgeInsets.only(right: defaultSize * 19.5),
                 padding: EdgeInsets.only(bottom: defaultSize * 0.7),
                 child: Text(
                         (widget.mbrGrd == 9) ? '후기 미 작성' : '후기 확인하기' ,
