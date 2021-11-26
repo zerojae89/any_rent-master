@@ -12,7 +12,7 @@ class MyPageAttentionWorkList extends StatefulWidget {
 
 class _MyPageAttentionWorkListState extends State<MyPageAttentionWorkList> {
   String token, townCd1, townCd2, townNm1, townNm2, auctionTimeString, twnCd;
-  String jobId, jobTtl, aucMtd, jobStDtm, bidDlDtm, payMtd, jobIts, jobSts;
+  String jobId, jobTtl, aucMtd, jobStDtm, bidDlDtm, payMtd, jobIts, jobSts, twnNm;
   int jobAmt, bidAmt;
   bool isDisposed = false;
   Map <String, dynamic> attentionResult;

@@ -1,7 +1,6 @@
 import 'dart:async';
-import 'dart:convert';
 
-import 'package:any_rent/chat/chat_server.dart';
+
 import 'package:any_rent/home/home_detail.dart';
 import 'package:any_rent/home/home_server.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:any_rent/settings/size_config.dart';
 import 'package:intl/intl.dart';
 import 'package:any_rent/settings/url.dart';
-import 'package:any_rent/settings/custom_shared_preferences.dart';
+
 
 const url = UrlConfig.url;
 
@@ -64,9 +63,10 @@ class _HomeItemState extends State<HomeItem>
   void initState() {
     jobIts = widget.jobIts;
     junPrfSeq = widget.prfSeq;
-    time();
     super.initState();
+    time();
     loadToken();
+
   }
 
 
@@ -171,9 +171,10 @@ class _HomeItemState extends State<HomeItem>
         elevation: widget.index == 0 ? 8 : 4,
         shape: widget.index != 0 ? RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(4),
-                side: BorderSide(
-                  color: Colors.grey[400],)) : null,
-        margin: EdgeInsets.only(bottom: 10, left: 1, right: 1),
+                // side: BorderSide(
+                //   color: Colors.grey,)
+        ) : null,
+        margin: EdgeInsets.only(bottom: 6, left: 1, right: 1),
         child: Padding(
           padding: EdgeInsets.only(left: 25, top: 10, bottom: 8),
           child: Column(
@@ -182,10 +183,11 @@ class _HomeItemState extends State<HomeItem>
             Row(
               children: [
                 Container(
-                  margin: EdgeInsets.only(top: defaultSize * 2, ),
-                  width: 60,
-                  height: 80,
+                  margin: EdgeInsets.only(top: defaultSize * 2,bottom: defaultSize * 3 ),
+                  width: defaultSize * 8,
+                  height: defaultSize * 10,
                   decoration: BoxDecoration(
+                    border: Border.all(color: Colors.yellow.withOpacity(0.8),width: defaultSize * 0.3),
                       shape: BoxShape.circle,
                   image: DecorationImage(
                     fit: BoxFit.fill,
@@ -200,7 +202,7 @@ class _HomeItemState extends State<HomeItem>
                     Row(
                       children: [
                         Container(
-                          margin: EdgeInsets.only(left: 15),
+                          margin: EdgeInsets.only(left: 15,),
                           // decoration: BoxDecoration(
                           //     border: Border.all(color: Colors.grey)),
                           padding: EdgeInsets.only(top: 5, left: 5),
@@ -310,31 +312,36 @@ class _HomeItemState extends State<HomeItem>
                           // decoration: BoxDecoration( color: Colors.pink[50],  borderRadius: BorderRadius.circular(2), ),
                         ),
                       ],
-                    )
+                    ),
+                    Container(
+                        child: Container(
+                          padding: EdgeInsets.only(left: 5, top: 5, bottom: 10),
+                          child: Text(
+                            "시작 시간 : ${widget.jobStDtm}",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: defaultSize * 1.5,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
                   ],
                 ),
               ],
             ),
-            Container(
-              child: Container(
-                margin: EdgeInsets.only(left:defaultSize * 5.5),
-                padding: EdgeInsets.only(left: 5, top: 5, bottom: 10),
-                // decoration: BoxDecoration(
-                //   border: Border.all(
-                //     color: Colors.grey
-                //   )
-                // ),
-                child: Text(
-                  "시작 시간 : ${widget.jobStDtm}",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: defaultSize * 1.5,
-                      fontWeight: FontWeight.bold),
-                ),
-
-                // decoration: BoxDecoration( color: Colors.orange[50],  borderRadius: BorderRadius.circular(2), ),
-              ),
-            ),
+            // Container(
+            //   child: Container(
+            //     margin: EdgeInsets.only(left:defaultSize * 5.5),
+            //     padding: EdgeInsets.only(left: 5, top: 5, bottom: 10),
+            //     child: Text(
+            //       "시작 시간 : ${widget.jobStDtm}",
+            //       style: TextStyle(
+            //           color: Colors.black,
+            //           fontSize: defaultSize * 1.5,
+            //           fontWeight: FontWeight.bold),
+            //     ),
+            //   ),
+            // ),
           ]),
         ),
       ),

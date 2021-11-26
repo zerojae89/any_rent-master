@@ -273,7 +273,7 @@ class _HomeDetailState extends State<HomeDetail> {
                                           '$url/api/mypage/images?recieveToken=$junPrfSeq')), //.
                                   border: Border.all(
                                       color: Colors.yellow.withOpacity(0.8),
-                                      width: 5)),
+                                      width: defaultSize * 0.3)),
                               width: defaultSize * 9,
                               height: defaultSize * 15
                             // child: (junPrfSeq == null) ? Icon(Icons.account_box_rounded, size: 40,) : Image.network('$url/api/mypage/images?recieveToken=$junPrfSeq')
@@ -504,7 +504,7 @@ class _HomeDetailState extends State<HomeDetail> {
           child: FlatButton(
             color: Colors.grey[700],
             onPressed: null,
-            child: Text( "시간초과",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.3,), ),
+            child: Text( "시간초과",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.7,), ),
           ),
         ),
       );
@@ -580,7 +580,7 @@ class _HomeDetailState extends State<HomeDetail> {
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
             },
-            child: Text( "로그인",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.3,), ),
+            child: Text( "로그인",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.7,), ),
           ),
         ),
       );
@@ -657,8 +657,8 @@ class _HomeDetailState extends State<HomeDetail> {
               FlatButton(onPressed: () {
                 Navigator.pop(context, false);
                 _controller.clear();
-              }, child: Text('취소', style: TextStyle(color: Colors.purple),)),
-              FlatButton(onPressed: sendReservationAucMtd, child: Text('예약', style: TextStyle(color: Colors.purple),)),
+              }, child: Text('취소', style: TextStyle(color: Colors.lightGreen[800]),)),
+              FlatButton(onPressed: sendReservationAucMtd, child: Text('예약', style: TextStyle(color:Colors.lightGreen[800]),)),
               // FlatButton(onPressed: validateAndSave , child: Text('변경', style: TextStyle(color: Colors.purple),)),
             ],
           );

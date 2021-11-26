@@ -450,9 +450,9 @@ class _MyPageHanDetailState extends State<MyPageHanDetail> {
           width: double.infinity,
           height: defaultSize * 6,
           child: FlatButton(
-            color: Colors.lightGreen,
+            color: Colors.blue,
             onPressed: () => null,
-            child: Text( "작업 완료",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 2,), ),
+            child: Text( "완료",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 2,), ),
           ),
         ),
       );

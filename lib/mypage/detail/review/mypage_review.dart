@@ -47,12 +47,10 @@ class _MyPageReviewState extends State<MyPageReview> {
             items: [
               BottomNavigationBarItem(
                 icon: Icon(Icons.brush_outlined),
-                title: Text('후기작성'),
-              ),
+                label: '후기작성'),
               BottomNavigationBarItem(
                 icon: Icon(Icons.chrome_reader_mode_outlined),
-                title: Text('후기확인'),
-              ),
+                label: '후기확인'),
             ]
         ),
       ),

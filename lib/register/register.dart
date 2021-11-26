@@ -167,10 +167,13 @@ class _RegisterState extends State<Register> {
             barrierDismissible: false,
             builder: (BuildContext context) {
               return AlertDialog(
-                title: Text("동네가 등록 되있지 않습니다."),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15)
+                ),
+                title: Text("동네가 등록 되있지 않습니다.",style: TextStyle(fontSize: defaultSize * 2.2,fontWeight: FontWeight.bold),),
                 content:const Text('동네를 등록해 주세요.'),
                 actions: <Widget>[
-                  FlatButton(child: Text('동네 등록으로 이동'),
+                  FlatButton(child: Text('동네 등록으로 이동',style: TextStyle(color: Colors.lightGreen[800])),
                     onPressed: () { //동네가 등록 되있지 않을 시 동네 등록 페이지로 이동한다.
                       Navigator.pop(context, false);
                       Navigator.push(context, MaterialPageRoute(builder: (context) => MyPageDetailMyTown(token: token,)));

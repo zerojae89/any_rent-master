@@ -198,15 +198,18 @@ class _MyPageProfileHeaderState extends State<MyPageProfileHeader> {
         barrierDismissible: false,
         builder: (BuildContext context){
           return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15)
+            ),
             title: Center(child: Text('프로필 이미지 변경')),
             content: Text('\n이미지를 변경 하시겠습니까?\n'),
             actions: <Widget>[
-              FlatButton(onPressed: ()=> Navigator.pop(context, false), child: Text('취소')),
-              (prfSeq != null) ? FlatButton(onPressed: ()=> removeProfileDialog(), child: Text('삭제')) : null,
+              FlatButton(onPressed: ()=> Navigator.pop(context, false), child: Text('취소',style: TextStyle(color: Colors.lightGreen[800]),)),
+              (prfSeq != null) ? FlatButton(onPressed: ()=> removeProfileDialog(), child: Text('삭제',style: TextStyle(color: Colors.lightGreen[800]))) : null,
               FlatButton(onPressed: (){
                 loadAssets();
                 Navigator.pop(context, false);
-                }, child: Text('변경')),
+                }, child: Text('변경',style: TextStyle(color: Colors.lightGreen[800]))),
             ],
           );
         }
@@ -218,14 +221,17 @@ class _MyPageProfileHeaderState extends State<MyPageProfileHeader> {
         barrierDismissible: false,
         builder: (BuildContext context){
           return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15)
+            ),
             title: Center(child: Text('프로필 이미지 삭제')),
             content: Text('\n이미지를 삭제 하시겠습니까?\n'),
             actions: <Widget>[
-              FlatButton(onPressed: ()=> Navigator.pop(context, false), child: Text('아니오')),
+              FlatButton(onPressed: ()=> Navigator.pop(context, false), child: Text('아니오',style: TextStyle(color: Colors.lightGreen[800]))),
               FlatButton(onPressed: (){
                 removeProfileImg();
                 Navigator.pop(context, false);
-              }, child: Text('예')),
+              }, child: Text('예',style: TextStyle(color: Colors.lightGreen[800]))),
             ],
           );
         }

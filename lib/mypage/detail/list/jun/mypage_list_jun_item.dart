@@ -129,23 +129,21 @@ class _MyPageListJunWorkItemState extends State<MyPageListJunWorkItem> {
       child: Card(
         elevation: widget.index == 0 ? 8 : 4,
         shape: widget.index != 0 ? RoundedRectangleBorder(borderRadius: BorderRadius.circular(4), side: BorderSide(color: Colors.grey[400],)) : null,
-        margin: EdgeInsets.only(bottom: 7, left: 1, right: 1),
+        margin: EdgeInsets.only(bottom: 6, left: 1, right: 1),
         child: Padding(
-          padding: EdgeInsets.only(top: defaultSize * 1, left: defaultSize * 3),
+          padding: EdgeInsets.only(left: 25, top: 10, bottom: 8),
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.only(bottom: defaultSize),
-
-              ),
+                padding: EdgeInsets.only(top: 5),),
               Row(
                 children: [
                   Container(
-                    margin: EdgeInsets.only(bottom: defaultSize * 3),
-                    width: 60,
-                    height: 60,
+                    margin: EdgeInsets.only(top: defaultSize * 2,bottom: defaultSize * 3),
+                    width: defaultSize * 8,
+                    height: defaultSize * 10,
                     decoration: BoxDecoration(
-                        // border: Border.all(color: Colors.black),
+                        border: Border.all(color: Colors.yellow.withOpacity(0.5),width: defaultSize * 0.3),
                         shape: BoxShape.circle,
                     image: DecorationImage(
                       fit: BoxFit.fill,
@@ -231,8 +229,7 @@ class _MyPageListJunWorkItemState extends State<MyPageListJunWorkItem> {
                         // decoration: BoxDecoration(
                         //     border: Border.all(color: Colors.grey)),
                         child: jobStsText( jobSts, defaultSize),
-                        padding:
-                            EdgeInsets.only(left: defaultSize * 1),
+                        padding: EdgeInsets.only(left: defaultSize * 1),
                         // decoration: BoxDecoration( color: Colors.orange[50],  borderRadius: BorderRadius.circular(2), ),
                       ),
                       SizedBox(height: defaultSize * 2,)

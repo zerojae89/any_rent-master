@@ -14,7 +14,7 @@ class _MyPageHanWorkListState extends State<MyPageHanWorkList> {
 
   String token, townCd1, townCd2, townNm1, townNm2, auctionTimeString, twnCd;
   String jobId, jobTtl, aucMtd, jobStDtm, bidDlDtm, payMtd, jobIts, jobSts, junId;
-  int jobAmt, bidAmt;
+  int jobAmt, bidAmt,prfSeq;
   bool isDisposed = false;
   Map <String, dynamic> hanWorkResult;
   List<dynamic> hanWorkItems = [];
@@ -79,8 +79,9 @@ class _MyPageHanWorkListState extends State<MyPageHanWorkList> {
             jobIts = hanWorkItems[hanWorkItems.length - index -1]['jobIts'];
             jobSts = hanWorkItems[hanWorkItems.length - index -1]['jobSts'];
             junId = hanWorkItems[hanWorkItems.length - index -1]['junId'];
+            prfSeq = hanWorkItems[hanWorkItems.length - index -1]['prfSeq'];
             // return Center(child: Text('준일 내역이 없습니다. \n1 \n2 \n3 \n4'));
-            return  MyPageListHanWorkItem(token, jobId, jobTtl, aucMtd, jobStDtm, bidDlDtm, jobAmt, index, payMtd, jobIts, jobSts, junId);
+            return  MyPageListHanWorkItem(token, jobId, jobTtl, aucMtd, jobStDtm, bidDlDtm, jobAmt, index, payMtd, jobIts, jobSts, junId,prfSeq);
           },
         ))
       ],

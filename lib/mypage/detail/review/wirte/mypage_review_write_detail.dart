@@ -208,136 +208,189 @@ class _MyPageReviewWriteDetailState extends State<MyPageReviewWriteDetail> {
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
+                  Container(
                     padding: EdgeInsets.only(left: defaultSize * 1.6 , top: defaultSize * 1.6),
                     child: Row(
                       children: [
-                        Expanded(
-                          flex: 7,
-                          child: Text( jobTtl ?? '',  style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.8, fontWeight: FontWeight.bold), ),
+                        Row(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(left: defaultSize * 2,),
+                              padding: EdgeInsets.only(top: defaultSize * 0.4),
+                              // decoration: BoxDecoration(border: Border.all(color:Colors.grey)),
+                              width: defaultSize * 36,
+                              height: defaultSize * 5,
+                              child: Text( jobTtl ?? '',  style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.8, fontWeight: FontWeight.bold),textAlign: TextAlign.left, ),
+                            ),
+                          ],
                         ),
-                        Expanded(flex: 3, child: Text('희망 성별 :', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.5),)),
-                        Expanded(flex: 2, child: Text(hanGndName ?? '', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.4),)),
+                        // Expanded(flex: 3, child: Text('희망 성별:', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.5),)),
+                        // Expanded(flex: 2, child: Text(hanGndName ?? '', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.4),)),
                       ],
                     ),
                   ),
                   Divider(height: 10,),
                   InkWell(
                     onTap: () => homeDetailDialog.showDialogProfile(context, defaultSize, junNic, junPrfSeq, mbrGrd),
-                    child: SizedBox(
-                      height: defaultSize * 14,
+                    child: Container(
+                      height: defaultSize * 11,
                       child: Container(
-                        padding: EdgeInsets.all(defaultSize * 1.6),
+                        padding: EdgeInsets.only(left:defaultSize * 4,right: defaultSize * 1.6),
                         child: Row(
                           children: [
-                            Expanded(
-                              flex: 3,
-                              child: (junPrfSeq == null) ? Icon(Icons.account_box_rounded, size: 40,) : Image.network('$url/api/mypage/images?recieveToken=$junPrfSeq')
+                            Container(margin: EdgeInsets.only(right: defaultSize * 2.5),
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image: (junPrfSeq == null)
+                                            ? AssetImage('assets/noimage.jpg')
+                                            : NetworkImage(
+                                            '$url/api/mypage/images?recieveToken=$junPrfSeq')), //.
+                                    border: Border.all(
+                                        color: Colors.yellow.withOpacity(0.8),
+                                        width: defaultSize * 0.3)),
+                                width: defaultSize * 9,
+                                height: defaultSize * 15
+                              // child: (junPrfSeq == null) ? Icon(Icons.account_box_rounded, size: 40,) : Image.network('$url/api/mypage/images?recieveToken=$junPrfSeq')
                             ),
-                            Expanded(
-                              flex: 3,
+                            Container(
+                              width: defaultSize * 12,
+                              // decoration: BoxDecoration(
+                              //   border: Border.all(
+                              //     color: Colors.grey
+                              //   )
+                              // ),
+                              // margin: EdgeInsets.only(right: defaultSize * 5),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text(
-                                    junNic ?? '',
-                                    style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize:  defaultSize * 1.4),
+                                  Container(),
+                                  Container(
+                                    // decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
+                                    width: defaultSize * 10.5,
+                                    child: Text(
+                                      junNic ?? '',
+                                      style: TextStyle(color: Colors.lightGreen[700], fontWeight: FontWeight.bold, fontSize:  defaultSize * 1.7),textAlign: TextAlign.center,
+                                    ),
                                   ),
-                                  Text(
-                                    twnNm ?? '',
-                                    style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.2),
+                                  SizedBox(height: defaultSize * 1.5,),
+                                  Container(
+                                    width: defaultSize * 10.5,
+                                    // decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
+                                    child: Text(
+                                      twnNm ?? '',
+                                      style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7),
+                                      textAlign: TextAlign.center,
+                                    ),
                                   ),
                                 ],
                               ),
                             ),
-                            Expanded(
-                              flex: 2,
+                            Container(
+                              // decoration: BoxDecoration(
+                              //   border: Border.all(
+                              //     color: Colors.grey
+                              //   )
+                              // ),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text(
-                                    "User평점",
-                                    style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: defaultSize * 1.2),
+                                  Container(
+                                    margin: EdgeInsets.only(left: defaultSize * 1),
+                                    child: Text(
+                                      "사용자 평점",
+                                      style: TextStyle(color: Colors.lightGreen[700], fontWeight: FontWeight.bold, fontSize: defaultSize * 1.7),
+                                    ),
                                   ),
-                                  Text( '$mbrGrd',
-                                    style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.1),
-                                    textAlign: TextAlign.center,
+                                  SizedBox(height: defaultSize * 1.2,),
+                                  Container(
+                                    margin: EdgeInsets.only(left: defaultSize * 1),
+                                    width: 70,
+                                    // decoration: BoxDecoration(
+                                    //   border: Border.all(color: Colors.grey)
+                                    // ),
+                                    child: Text( '$mbrGrd',
+                                      style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7),
+                                      textAlign: TextAlign.center,
+                                    ),
                                   ),
                                 ],
                               ),
-                            ),
+                            )
                           ],
                         ),
                       ),
                     ),
                   ),
-                  Divider(height: 30,),
+                  Divider(height: 15,),
                   Container(
+                    padding: EdgeInsets.only(top: defaultSize * 1.5),
                     child: Row(
                       children: [
-                        Expanded(
-                          flex: 2,
+                        // Padding(),
+                        Container(
+                          margin: EdgeInsets.only(left: defaultSize * 3.5),
                           child: Padding(
                             padding: EdgeInsets.only(left: 10),
                             child: Container(
+                              width: defaultSize * 14.7,
                               child: Text(
                                 '$tp1Nm / $tp2Nm',
-                                style: TextStyle(color: Colors.lightBlue, fontSize: defaultSize * 1.2, fontWeight: FontWeight.bold),
-                                textAlign: TextAlign.center,
+                                style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7, ),
+                                textAlign: TextAlign.left,
                               ),
                             ),
                           ),
                         ),
-                        Expanded(flex:1,child: SizedBox()),
-                        Expanded(
-                          flex: 2,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container( child: Text( jobStDtm ?? '',  style: TextStyle(color: Colors.orange, fontSize: defaultSize * 1.2, fontWeight: FontWeight.bold), ), ),
-                            ],
-                          ),
-                        ),
+                        Container(
+                          // margin: EdgeInsets.only(right: defaultSize * 0),
+                          // decoration: BoxDecoration(border:Border.all(color:Colors.grey)),
+                          width: defaultSize * 17,
+                          child: Text( jobStDtm ?? '',  style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7, ),textAlign: TextAlign.right, ), ),
                       ],
                     ),
                   ),
+                  SizedBox(height: 10,),
                   Container(
                     child: Row(
                       children: [
-                        Expanded(
-                          flex: 1,
+                        Container(
+                          margin: EdgeInsets.only(left: defaultSize * 4.7,top: defaultSize * 0.7),
                           child: Container(
+                            width: defaultSize * 15,
                             child: Text(
                               (aucMtd == "1") ? '금액 : '+formatter.format(jobAmt) +'원': '금액 : 0 원',
-                              style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.2, fontWeight: FontWeight.bold,),
-                              textAlign: TextAlign.center,
+                              style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7),
+                              textAlign: TextAlign.left,
                             ),
-                            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                             decoration: BoxDecoration(
                               // color: Colors.pink[50],
                               borderRadius: BorderRadius.circular(2),
+                              // border: Border.all(color:Colors.grey)
                             ),
                           ),
                         ),
-                        Expanded(
-                          flex: 1,
+                        Container(
+                          margin: EdgeInsets.only(top: defaultSize * 0.7),
+                          padding: EdgeInsets.only(left: defaultSize * 1),
+                          width: defaultSize * 9,
+                          // decoration: BoxDecoration(
+                          //   border:Border.all(color: Colors.grey)
+                          // ),
+                          child: Text(
+                            '결제방식 :',style: TextStyle(fontSize: defaultSize * 1.7),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: defaultSize * 1.5,top: defaultSize * 0.7),
                           child: Container(
                             child: Text(
                               (payMtd == null) ? '' : (payMtd == '1') ? '직접결제' : (payMtd == '2')? '안전결제' : '',
-                              style: TextStyle(color: Colors.pink, fontSize:  defaultSize * 1.2 , fontWeight: FontWeight.bold,),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Container(
-                            child: Text(
-                              (aucMtd == null) ? '' : (aucMtd == '1') ? '선착순' : (aucMtd == '2')? '입찰식' : '',
-                              style: TextStyle(color: Colors.brown, fontSize:  defaultSize * 1.2, fontWeight: FontWeight.bold),
+                              style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7 , ),
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -345,24 +398,46 @@ class _MyPageReviewWriteDetailState extends State<MyPageReviewWriteDetail> {
                       ],
                     ),
                   ),
-                  Divider(height: defaultSize * 3,),
+                  SizedBox(height: defaultSize * 2.6,),
                   (picCnt == 0) ?  Container() : SizedBox(height: defaultSize * 40, child: buildGridView(jobId, picCnt)),
-                  SizedBox( height: defaultSize * 17,  child:  Container( child: Padding( padding: EdgeInsets.all(10),  child: Text(jobCtn ?? '', style:  TextStyle(fontSize:  defaultSize * 1.5),), ), ), ),
-                  Divider(height: defaultSize * 4,),
+                  Container(
+                    margin: EdgeInsets.only(left: defaultSize * 1.8,),
+                    width: defaultSize * 38,
+                    height: defaultSize * 20,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                      border: Border.all(
+                        color: Colors.lightGreen[400],width: defaultSize * 0.3
+                      )
+                    ),
+                    padding: EdgeInsets.only(left: defaultSize* 3 ),
+                    child:  Container( 
+                      child: Padding( 
+                        padding: EdgeInsets.only(top: defaultSize*2),
+                        child: Text(jobCtn ?? '',
+                          style:  TextStyle(fontSize:  defaultSize * 1.7),), ), ), ),
+                  // Divider(height: defaultSize * 4,),
+                  SizedBox(height: defaultSize*2,),
                   Container( height: defaultSize * 16,  width: double.infinity,
                     child: Column(
                       children: [
-                        opNicView(defaultSize, widget.opNicNm),
-                        opGrdView(defaultSize, widget.opNicNm, widget.myNicNm, giveGrd),
+                        opNicView(defaultSize*1.1, widget.opNicNm),
+                        opGrdView(defaultSize, widget.opNicNm, widget.myNicNm, giveGrd) ,
                         InkWell(
                           onLongPress: ()=> (opGrd != 9) ? deleteQuestionsBox(context) : null,
                           onTap: ()=> (opGrd == 9) ? confirmBox(context, setState) : updateQuestionsBox(context),
                           child: Container(
-                            height: defaultSize * 10, width:  double.infinity,
-                            padding: EdgeInsets.only(top: defaultSize * 4),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              border:Border.all(color: Colors.amber[700],width: defaultSize * 0.3),
+                              borderRadius: BorderRadius.circular(15)
+                            ),
+                            height: defaultSize * 8,
+                            width:  defaultSize * 38,
                             child: Center(
-                              child:  Text( (opGrd != 9) ? revCtn ?? "터치하여 평점과 후기내용을 작성해 주세요." : '터치하여 평점과 후기내용을 작성해 주세요.',
-                                style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.2 ),
+                              child:  Text( (opGrd != 5) ? revCtn ?? "터치하여 평점과 후기내용을 작성해 주세요." : '터치하여 평점과 후기내용을 작성해 주세요.',
+                                style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7),
                               ),
                             ),
                           ),
@@ -370,7 +445,6 @@ class _MyPageReviewWriteDetailState extends State<MyPageReviewWriteDetail> {
                       ],
                     ),
                   ),
-                  Container(height:  defaultSize * 5, ),
                 ],
               ),
           ),
@@ -403,29 +477,29 @@ class _MyPageReviewWriteDetailState extends State<MyPageReviewWriteDetail> {
       return null;
   }
 
-  Widget opGrdView(defaultSize, opNicNm, myNicNm, giveGrd){
-    return Container(
-      margin: EdgeInsets.only(right: defaultSize * 7),
-      child: Text( (giveGrd == 9) ? '' : '$myNicNm 님이  $opNicNm에게 준 평점은 $giveGrd 점 입니다.',
-        style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.3, fontWeight: FontWeight.bold), ),
-      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-      decoration: BoxDecoration( borderRadius: BorderRadius.circular(2), ),
-    );
-  }
-
   Widget opNicView(defaultSize, opNicNm){
     return Container(
-      margin: EdgeInsets.only(right: defaultSize * 7),
+      // margin: EdgeInsets.only(bottom: defaultSiz),
       child: Text( '$opNicNm 님에 대한 후기와 평점을 남겨 주세요',
         style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.5, fontWeight: FontWeight.bold),
       ),
-      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       decoration: BoxDecoration(
         // color: Colors.orange[50],
         borderRadius: BorderRadius.circular(2),
       ),
     );
   }
+
+  Widget opGrdView(defaultSize, opNicNm, myNicNm, giveGrd){
+    return Container(
+      margin: EdgeInsets.only(right: defaultSize * 0,top: defaultSize*1,bottom: defaultSize * 1),
+      child: Text( (giveGrd == 9) ? '' : '$myNicNm 님이  $opNicNm에게 준 평점은 $giveGrd 점 입니다.',
+        style: TextStyle(color: Colors.amber[800], fontSize: defaultSize * 2, fontWeight: FontWeight.bold), ),
+      decoration: BoxDecoration( borderRadius: BorderRadius.circular(2), ),
+    );
+  }
+
+
 
   sendReview(String kind) async{
     Navigator.pop(context, true);
@@ -479,16 +553,16 @@ class _MyPageReviewWriteDetailState extends State<MyPageReviewWriteDetail> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                IconButton(icon: Icon(Icons.remove_circle_outline, color: Colors.purple,size: defaultSize * 4,), onPressed:()=> removeGrd(setState)),
+                                IconButton(icon: Icon(Icons.remove_circle_outline, color: Colors.lightGreen,size: defaultSize * 4,), onPressed:()=> removeGrd(setState)),
                                 // Text('$_grd', style: TextStyle(fontSize: defaultSize * 3),),
                                 Text(
                                   '$grd',
                                   style: TextStyle(color: Colors.black, fontSize: defaultSize * 3.5),
                                 ),
-                                IconButton(icon: Icon(Icons.add_circle_outline, color: Colors.purple,size: defaultSize * 4), onPressed:()=> addGrd(setState))
+                                IconButton(icon: Icon(Icons.add_circle_outline, color: Colors.lightGreen,size: defaultSize * 4), onPressed:()=> addGrd(setState))
                               ],
                             ),
-                            Padding(
+                            Container(
                               padding: EdgeInsets.all(defaultSize * 1.3),
                               child: Form(
                                 key: formKey,
@@ -505,11 +579,11 @@ class _MyPageReviewWriteDetailState extends State<MyPageReviewWriteDetail> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 FlatButton(
-                                  child: Text("취소", style: TextStyle(color: Colors.purple, fontSize: defaultSize * 1.5),),
+                                  child: Text("취소", style: TextStyle(color: Colors.lightGreen[800], fontSize: defaultSize * 1.5),),
                                   onPressed: () => Navigator.pop(context, false),
                                 ),
                                 FlatButton(
-                                  child: Text("작성", style: TextStyle(color: Colors.purple, fontSize: defaultSize * 1.5),),
+                                  child: Text("작성", style: TextStyle(color: Colors.lightGreen[800], fontSize: defaultSize * 1.5),),
                                   onPressed: ()=> sendReview("I"),
                                 )
                               ],
@@ -553,20 +627,25 @@ class _MyPageReviewWriteDetailState extends State<MyPageReviewWriteDetail> {
                 body: Center(
                   child: Container(
                     width: defaultSize * 20,
-                    height: defaultSize * 20,
+                    height: defaultSize * 13,
                     decoration: BoxDecoration( color: Colors.white, borderRadius: BorderRadius.circular(15), ),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Center(child: Text("후기 ${kind == "I" ? '등록' : kind == "U" ? '수정' : '삭제'} 완료!", style: TextStyle(fontSize: defaultSize * 2))),
-                        Padding(padding: EdgeInsets.only(top: defaultSize *3)),
-                        FlatButton(color: Colors.purple,child: Text('확인', style: TextStyle(color: Colors.amber),),
-                            onPressed: () {
-                          if(kind == "D"){
-                            revCtn = "터치하여 평점과 후기내용을 작성해 주세요.";
-                          }
-                          Navigator.pop(context, true);
-                        }),
+                        Container(
+                          margin: EdgeInsets.only(top: defaultSize *2.5),
+                          padding: EdgeInsets.only(top: defaultSize *0),
+                            // decoration:BoxDecoration(border: Border.all(color: Colors.grey)),
+                            child: Text("후기 ${kind == "I" ? '등록' : kind == "U" ? '수정' : '삭제'} 완료!", style: TextStyle(fontSize: defaultSize * 2))),
+                        Container(
+                          margin: EdgeInsets.only(top: defaultSize*2),
+                          child: FlatButton(child: Text('확인', style: TextStyle(color: Colors.lightGreen[800],fontWeight: FontWeight.bold),),
+                              onPressed: () {
+                            if(kind == "D"){
+                              revCtn = "터치하여 평점과 후기내용을 작성해 주세요.";
+                            }
+                            Navigator.pop(context, true);
+                          }),
+                        ),
                       ],
                     ),
                   ),
@@ -590,22 +669,22 @@ class _MyPageReviewWriteDetailState extends State<MyPageReviewWriteDetail> {
                 body: Center(
                   child: Container(
                     width: defaultSize * 25,
-                    height: defaultSize * 25,
+                    height: defaultSize * 18,
                     decoration: BoxDecoration( color: Colors.white, borderRadius: BorderRadius.circular(15), ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Center(child: Text("후기를 수정 하시겠습니까?", style: TextStyle(fontSize: defaultSize * 1.6))),
+                        Container(margin: EdgeInsets.only(top: defaultSize *3),child: Text("후기를 수정 하시겠습니까?", style: TextStyle(fontSize: defaultSize * 1.9))),
                         Padding(padding: EdgeInsets.only(top: defaultSize *5)),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            FlatButton(color: Colors.purple,child: Text('예', style: TextStyle(color: Colors.amber),),
+                            FlatButton(child: Text('예', style: TextStyle(color: Colors.lightGreen[800],fontWeight: FontWeight.bold),),
                                 onPressed: (){
                               Navigator.pop(context, true);
                               updateBox(context, setState);
                             }),
-                            FlatButton(onPressed: ()=> Navigator.pop(context, true), color: Colors.purple,child: Text('아니오', style: TextStyle(color: Colors.amber),)),
+                            FlatButton(onPressed: ()=> Navigator.pop(context, true),child: Text('아니오', style: TextStyle(color: Colors.lightGreen[800],fontWeight: FontWeight.bold),)),
                           ],
                         )
                       ],
@@ -647,26 +726,31 @@ class _MyPageReviewWriteDetailState extends State<MyPageReviewWriteDetail> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                IconButton(icon: Icon(Icons.remove_circle_outline, color: Colors.purple,size: defaultSize * 4,), onPressed:()=> removeGrd(setState)),
+                                IconButton(icon: Icon(Icons.remove_circle_outline, color: Colors.lightGreen,size: defaultSize * 4,), onPressed:()=> removeGrd(setState)),
                                 // Text('$_grd', style: TextStyle(fontSize: defaultSize * 3),),
                                 Text(
                                   '$grd',
                                   style: TextStyle(color: Colors.black, fontSize: defaultSize * 3.5),
                                 ),
-                                IconButton(icon: Icon(Icons.add_circle_outline, color: Colors.purple,size: defaultSize * 4), onPressed:()=> addGrd(setState))
+                                IconButton(icon: Icon(Icons.add_circle_outline, color: Colors.lightGreen,size: defaultSize * 4), onPressed:()=> addGrd(setState))
                               ],
                             ),
-                            Padding(
-                              padding: EdgeInsets.all(defaultSize * 1.3),
-                              child: Form(
-                                key: formKey,
-                                child: TextFormField(
-                                  controller: contentController,
-                                  decoration: InputDecoration(labelText: '후기', hintText: '후기내용'),
-                                  maxLines: 3,
-                                  autofocus: true,
-                                  validator: (value){ if(value.isEmpty){ return '후기를 작성 해주세요.'; } else{ return null; } }, //null check
-                                  onSaved: (value){ revCtn = value; },
+                            Container(
+                              // decoration: BoxDecoration(
+                              //   border: Border.all(color: Colors.grey)
+                              // ),
+                              child: Padding(
+                                padding: EdgeInsets.only(left :defaultSize*4),
+                                child: Form(
+                                  key: formKey,
+                                  child: TextFormField(
+                                    controller: contentController,
+                                    decoration: InputDecoration(labelText: '후기', hintText: '후기내용'),
+                                    maxLines: 3,
+                                    autofocus: true,
+                                    validator: (value){ if(value.isEmpty){ return '후기를 작성 해주세요.'; } else{ return null; } }, //null check
+                                    onSaved: (value){ revCtn = value; },
+                                  ),
                                 ),
                               ),
                             ),
@@ -674,11 +758,11 @@ class _MyPageReviewWriteDetailState extends State<MyPageReviewWriteDetail> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 FlatButton(
-                                  child: Text("취소", style: TextStyle(color: Colors.purple, fontSize: defaultSize * 1.5),),
+                                  child: Text("취소", style: TextStyle(color: Colors.lightGreen[800], fontSize: defaultSize * 1.7),),
                                   onPressed: () => Navigator.pop(context, false),
                                 ),
                                 FlatButton(
-                                  child: Text("작성", style: TextStyle(color: Colors.purple, fontSize: defaultSize * 1.5),),
+                                  child: Text("작성", style: TextStyle(color: Colors.lightGreen[800], fontSize: defaultSize * 1.7),),
                                   onPressed: ()=> sendReview("U"),
                                 )
                               ],
@@ -709,19 +793,19 @@ class _MyPageReviewWriteDetailState extends State<MyPageReviewWriteDetail> {
                 body: Center(
                   child: Container(
                     width: defaultSize * 25,
-                    height: defaultSize * 25,
+                    height: defaultSize * 18,
                     decoration: BoxDecoration( color: Colors.white, borderRadius: BorderRadius.circular(15), ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Center(child: Text("후기를 삭제 하시겠습니까?", style: TextStyle(fontSize: defaultSize * 1.6))),
+                        Container(margin: EdgeInsets.only(top: defaultSize *3),child: Text("후기를 삭제 하시겠습니까?", style: TextStyle(fontSize: defaultSize * 1.9))),
                         Padding(padding: EdgeInsets.only(top: defaultSize *5)),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            FlatButton(color: Colors.purple,child: Text('예', style: TextStyle(color: Colors.amber),),
+                            FlatButton(child: Text('예', style: TextStyle(color: Colors.lightGreen[800],fontWeight: FontWeight.bold),),
                                 onPressed: () => deleteReview()),
-                            FlatButton(onPressed: ()=> Navigator.pop(context, true), color: Colors.purple,child: Text('아니오', style: TextStyle(color: Colors.amber),)),
+                            FlatButton(onPressed: ()=> Navigator.pop(context, true),child: Text('아니오', style: TextStyle(color: Colors.lightGreen[800],fontWeight: FontWeight.bold),)),
                           ],
                         )
                       ],

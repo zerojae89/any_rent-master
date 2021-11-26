@@ -223,7 +223,7 @@ class _MyPageJunDetailState extends State<MyPageJunDetail> {
                       ),
                       (aucMtd == "1") ? Container() : Text(
                         '남은 입찰시간 : '+timeToDisplay,
-                        style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.5,fontWeight: FontWeight.bold),
+                        style: TextStyle(color: Colors.pink, fontSize:  defaultSize * 1.5,fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
@@ -514,11 +514,11 @@ class _MyPageJunDetailState extends State<MyPageJunDetail> {
           width: double.infinity,
           height: defaultSize * 6,
           child: FlatButton(
-            color: Colors.lightGreen,
+            color: Colors.blue,
             onPressed: () {
-              print( '작업 완료 ');
+              print( '완료 ');
             },
-            child: Text( "작업 완료",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.3,), ),
+            child: Text( "완료",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 2,), ),
           ),
         ),
       );

@@ -141,10 +141,13 @@ class _HomeState extends State<Home> {
           barrierDismissible: false,
           builder: (BuildContext context) {
             return AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15)
+              ),
               title: Text("GPS 가 활성화 되있지 않습니다."),
               content:const Text('GPS 를 활성화 시켜주세요.'),
               actions: <Widget>[
-                FlatButton(child: Text('Ok'),
+                FlatButton(child: Text('Ok',style: TextStyle(color: Colors.lightGreen[800])),
                   onPressed: () {
                     final AndroidIntent intent = AndroidIntent( action: 'android.settings.LOCATION_SOURCE_SETTINGS');
                     intent.launch();
@@ -359,16 +362,19 @@ class _HomeState extends State<Home> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("동네가 등록 되있지 않습니다."),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15)
+          ),
+          title: Text("동네가 등록 되있지 않습니다.",style: TextStyle(fontSize: 19,fontWeight: FontWeight.bold)),
           content:const Text('동네를 등록해 주세요.'),
           actions: <Widget>[
-            FlatButton(child: Text('동네 등록으로 이동'),
+            FlatButton(child: Text('동네 등록으로 이동',style: TextStyle(color: Colors.lightGreen[800]),),
               onPressed: () { //동네가 등록 되있지 않을 시 동네 등록 페이지로 이동한다.
                 Navigator.pop(context);
                 Navigator.push(context, MaterialPageRoute(builder: (context) => MyPageDetailMyTown(token: token,)));
               },
             ),
-            FlatButton(onPressed: ()=> Navigator.pop(context), child: Text('현위치로 보기'))
+            FlatButton(onPressed: ()=> Navigator.pop(context), child: Text('현위치로 보기',style: TextStyle(color: Colors.lightGreen[800])))
           ],
         );
       },

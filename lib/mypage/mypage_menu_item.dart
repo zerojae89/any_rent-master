@@ -26,7 +26,7 @@ class MyPageMenuItem extends StatelessWidget{
                   Text(
                     title,
                     style: TextStyle(
-                      fontSize: defaultSize * 1.8//16
+                      fontSize: defaultSize * 1.8,fontWeight: FontWeight.bold//16
                     ),
                   ),
                   Spacer(),

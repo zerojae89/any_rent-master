@@ -49,10 +49,11 @@ class _MyPageAttentionItmeState extends State<MyPageAttentionItme> {
                Row(
                  children: [
                    Container(
-                     margin: EdgeInsets.only(top: defaultSize * 2,bottom: defaultSize * 3 ),
-                     width: 60,
-                     height: 60,
+                     margin: EdgeInsets.only(bottom: defaultSize * 3),
+                     width: defaultSize * 8,
+                     height: defaultSize * 10,
                      decoration: BoxDecoration(
+                       border: Border.all(color: Colors.yellow.withOpacity(0.5),width: defaultSize * 0.3),
                        shape: BoxShape.circle,
                        image: DecorationImage(
                            fit: BoxFit.fill,

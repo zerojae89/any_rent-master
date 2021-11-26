@@ -38,37 +38,40 @@ class _MyPageReviewWirteItemState extends State<MyPageReviewWirteItem> {
         shape: widget.index != 0  ? RoundedRectangleBorder( borderRadius: BorderRadius.circular(4),  side: BorderSide( color: Colors.grey[400], )) : null,
         margin: EdgeInsets.only(bottom: 10, left: 1, right: 1),
         child: Padding(
-          padding: EdgeInsets.all(defaultSize * 1.3),
+          padding: EdgeInsets.only(left: 15, top: 10, bottom: 8),
           child: Column(
             children: [
-              Padding(
-                padding: EdgeInsets.only(bottom: defaultSize),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(widget.jobTtl ?? '일거리'),
-                  ],
-                ),
+              Container(
+                // decoration: BoxDecoration(
+                //     border: Border.all(color: Colors.grey)),
+                padding: EdgeInsets.only(top: 5, left: 5),
+                height: defaultSize * 6,
+                width: defaultSize * 34,
+                child: Text(widget.jobTtl ?? '일거리',
+                  style: TextStyle(fontWeight: FontWeight.bold),textAlign: TextAlign.left,),
               ),
               Row(
                 children: [
                   junView(defaultSize, widget.junHan),
                   SizedBox( width: defaultSize * 2, ),
-                  Container(
-                    child: Text(
-                      (widget.mbrGrd == 9) ? '후기 작성 하기' : '후기 수정 / 삭제' ,
-                      style: TextStyle(color: Colors.green, fontSize: defaultSize * 1.3, fontWeight: FontWeight.bold),
-                    ),
-                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                  ),
-                ],
-              ),
-              Padding(
+
+              Container(
                 padding: const EdgeInsets.symmetric(vertical: 8),
                 child: Row(
                   children: [
                     hanView(defaultSize, widget.junHan),
                   ],
+                ),
+              ),
+
+                ],
+              ),
+              Container(
+                margin: EdgeInsets.only(right: defaultSize * 21.5,top: defaultSize*1),
+                padding: EdgeInsets.only(bottom: defaultSize * 0.7),
+                child: Text(
+                  (widget.mbrGrd == 9) ? '후기 작성 하기' : '후기 수정 / 삭제' ,
+                  style: TextStyle(color: Colors.green, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),
                 ),
               ),
             ],
@@ -81,11 +84,11 @@ class _MyPageReviewWirteItemState extends State<MyPageReviewWirteItem> {
   Widget junView(defaultSize, junHan){
     print('junHan ========================== $junHan');
     return Container(
+      margin: EdgeInsets.only(left: defaultSize * 3.5),
       child: Text(
-        '주니 : ${junHan == "J" ? widget.myNicNm : widget.opNicNm}',
-        style: TextStyle(color: Colors.blue, fontSize: defaultSize * 1.4, fontWeight: FontWeight.bold),
+        '신청자 : ${junHan == "J" ? widget.myNicNm : widget.opNicNm}',
+        style: TextStyle(color: Colors.blue, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),
       ),
-      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       decoration: BoxDecoration(
         // color: Colors.orange[50],
         borderRadius: BorderRadius.circular(2),
@@ -96,11 +99,11 @@ class _MyPageReviewWirteItemState extends State<MyPageReviewWirteItem> {
   Widget hanView(defaultSize, junHan){
     print('junHan ========================== $junHan');
     return Container(
+      margin: EdgeInsets.only(left: defaultSize * 8.2),
       child: Text(
-        '하니 : ${junHan == "H" ? widget.myNicNm : widget.opNicNm}',
-        style: TextStyle(color: Colors.orange, fontSize: defaultSize * 1.4, fontWeight: FontWeight.bold),
+        '완료자 : ${junHan == "H" ? widget.myNicNm : widget.opNicNm}',
+        style: TextStyle(color: Colors.orange, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),
       ),
-      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       decoration: BoxDecoration(
         // color: Colors.orange[50],
         borderRadius: BorderRadius.circular(2),
