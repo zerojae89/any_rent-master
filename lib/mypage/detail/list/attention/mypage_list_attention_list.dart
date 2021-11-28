@@ -13,7 +13,7 @@ class MyPageAttentionWorkList extends StatefulWidget {
 class _MyPageAttentionWorkListState extends State<MyPageAttentionWorkList> {
   String token, townCd1, townCd2, townNm1, townNm2, auctionTimeString, twnCd;
   String jobId, jobTtl, aucMtd, jobStDtm, bidDlDtm, payMtd, jobIts, jobSts, twnNm;
-  int jobAmt, bidAmt;
+  int jobAmt, bidAmt, prfSeq;
   bool isDisposed = false;
   Map <String, dynamic> attentionResult;
   List<dynamic> attentionItems = [];
@@ -63,7 +63,7 @@ class _MyPageAttentionWorkListState extends State<MyPageAttentionWorkList> {
           // ],
         ),
         Expanded( child:
-        (attentionItems.length == 0 ) ?
+          (attentionItems.length == 0 ) ?
         Center(child:  roadAttentionList(attentionItems)) :
         ListView.builder(
           itemCount: attentionItems.length,
@@ -78,8 +78,9 @@ class _MyPageAttentionWorkListState extends State<MyPageAttentionWorkList> {
             payMtd = attentionItems[attentionItems.length - index -1]['payMtd'];
             jobIts = attentionItems[attentionItems.length - index -1]['jobIts'];
             jobSts = attentionItems[attentionItems.length - index -1]['jobSts'];
+            prfSeq = attentionItems[attentionItems.length - index -1]['prfSeq'];
             // return Center(child: Text('준일 내역이 없습니다. \n1 \n2 \n3 \n4'));
-            return  MyPageAttentionItme(token, jobId, jobTtl, aucMtd, jobStDtm, bidDlDtm, jobAmt, index, payMtd, jobIts, jobSts);
+            return  MyPageAttentionItme(token, jobId, jobTtl, aucMtd, jobStDtm, bidDlDtm, jobAmt, index, payMtd, jobIts, jobSts,prfSeq);
           },
         ))
       ],

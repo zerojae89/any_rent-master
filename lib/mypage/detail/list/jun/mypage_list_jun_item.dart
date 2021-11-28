@@ -21,7 +21,7 @@ class MyPageListJunWorkItem extends StatefulWidget {
       payMtd,
       jobIts,
       jobSts;
-  int index, jobAmt;
+  int index, jobAmt, prfSeq;
 
   MyPageListJunWorkItem(
       this.token,
@@ -34,7 +34,8 @@ class MyPageListJunWorkItem extends StatefulWidget {
       this.index,
       this.payMtd,
       this.jobIts,
-      this.jobSts);
+      this.jobSts,
+      this.prfSeq);
 
   @override
   _MyPageListJunWorkItemState createState() => _MyPageListJunWorkItemState();
@@ -49,15 +50,15 @@ class _MyPageListJunWorkItemState extends State<MyPageListJunWorkItem> {
   bool isDisposed = false;
   Timer _timer;
   Duration _duration = Duration(seconds: 1);
-  String token;
-  int prfSeq;
-  bool state;
+  int junPrfSeq;
 
 
   @override
   void initState() {
     jobIts = widget.jobIts;
     jobSts = widget.jobSts;
+    junPrfSeq = widget.prfSeq;
+
     time();
     super.initState();
   }
@@ -104,15 +105,6 @@ class _MyPageListJunWorkItemState extends State<MyPageListJunWorkItem> {
       });
     }
   }
-  // loadToken() async{
-  //   token = await customSharedPreferences.getString('token');
-  //   state = await customSharedPreferences.getBool('state');
-  //   try{
-  //     prfSeq = widget.junItems['prfSeq'];
-  //   } catch(e){
-  //     Scaffold.of(context).showSnackBar( SnackBar(content: Text("잠시후 다시 시도해 주세요."),duration: Duration(seconds: 3),));
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -147,9 +139,9 @@ class _MyPageListJunWorkItemState extends State<MyPageListJunWorkItem> {
                         shape: BoxShape.circle,
                     image: DecorationImage(
                       fit: BoxFit.fill,
-                      image: (prfSeq == null)
+                      image: (junPrfSeq == null)
                         ? AssetImage('assets/noimage.jpg')
-                          : NetworkImage('$url/api/mypage/images?recieveToken=$prfSeq')
+                          : NetworkImage('$url/api/mypage/images?recieveToken=$junPrfSeq')
                     )
                     ),
                   ),

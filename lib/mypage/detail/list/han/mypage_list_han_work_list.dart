@@ -78,10 +78,9 @@ class _MyPageHanWorkListState extends State<MyPageHanWorkList> {
             payMtd = hanWorkItems[hanWorkItems.length - index -1]['payMtd'];
             jobIts = hanWorkItems[hanWorkItems.length - index -1]['jobIts'];
             jobSts = hanWorkItems[hanWorkItems.length - index -1]['jobSts'];
-            junId = hanWorkItems[hanWorkItems.length - index -1]['junId'];
             prfSeq = hanWorkItems[hanWorkItems.length - index -1]['prfSeq'];
             // return Center(child: Text('준일 내역이 없습니다. \n1 \n2 \n3 \n4'));
-            return  MyPageListHanWorkItem(token, jobId, jobTtl, aucMtd, jobStDtm, bidDlDtm, jobAmt, index, payMtd, jobIts, jobSts, junId,prfSeq);
+            return  MyPageListHanWorkItem(token, jobId, jobTtl, aucMtd, jobStDtm, bidDlDtm, jobAmt, index, payMtd, jobIts, jobSts, prfSeq);
           },
         ))
       ],
