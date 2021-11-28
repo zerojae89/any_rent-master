@@ -31,7 +31,7 @@ class _HomeDetailState extends State<HomeDetail> {
 
   final globalKey = GlobalKey<ScaffoldState>();
   bool isDisposed = false;
-  String token, result, jobId, junId, jobTtl,jobCtn, payMtd, jobStDtm, tp1Nm, tp2Nm, twnNm, junNic, bidDlDtm, jobIts, hanGnd, hanGndName, jobSts, mbrId, hanResult;
+  String token, result, jobId, junId, jobTtl,jobCtn, payMtd, jobStDtm, tp1Nm, tp2Nm, twnNm, junNic, bidDlDtm, jobIts, hanGnd, hanGndName, jobSts, mbrId, hanResult,prfSeq;
   String message = '';
   String aucMtd = '1';
   int  jobAmt, bidAmt, junPrfSeq, mbrGrd;
