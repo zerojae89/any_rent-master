@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:any_rent/settings/size_config.dart';
 import 'package:intl/intl.dart';
-import 'mypage_list_han_work_list.dart';
 import 'han_detail.dart';
 
 class MyPageListHanWorkItem extends StatefulWidget {
@@ -29,7 +28,6 @@ class MyPageListHanWorkItem extends StatefulWidget {
       this.payMtd,
       this.jobIts,
       this.jobSts,
-      this.junId,
       this.prfSeq);
 
   @override
