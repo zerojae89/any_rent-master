@@ -101,7 +101,7 @@ class _MyPageListHanWorkItemState extends State<MyPageListHanWorkItem> {
                           style: TextStyle(
                           fontSize: defaultSize* 1.7,
                           color: Colors.black,
-                          fontWeight: FontWeight.bold
+                          // fontWeight: FontWeight.bold
                           ),textAlign: TextAlign.left,
                           // style: TextStyle(color: Colors.orange, fontSize: 12, fontWeight: FontWeight.bold),
                         ),
@@ -117,7 +117,8 @@ class _MyPageListHanWorkItemState extends State<MyPageListHanWorkItem> {
                               style: TextStyle(
                                   color: Colors.black,
                                   fontSize: defaultSize * 1.7,
-                                  fontWeight: FontWeight.bold),
+                                  // fontWeight: FontWeight.bold
+                              ),
                             ),
 
                             // decoration: BoxDecoration( color: Colors.lightBlue[50],  borderRadius: BorderRadius.circular(2), ),
@@ -132,7 +133,8 @@ class _MyPageListHanWorkItemState extends State<MyPageListHanWorkItem> {
                               style: TextStyle(
                                   color: Colors.black,
                                   fontSize: defaultSize * 1.7,
-                                  fontWeight: FontWeight.bold),
+                                  // fontWeight: FontWeight.bold
+                                ),
                             ),
 
                             // decoration: BoxDecoration( color: Colors.pink[50],  borderRadius: BorderRadius.circular(2), ),
@@ -140,12 +142,12 @@ class _MyPageListHanWorkItemState extends State<MyPageListHanWorkItem> {
                         ],
                       ),
                       Container(
-                        margin: EdgeInsets.only(right: defaultSize * 12.5),
-                        width: defaultSize * 10,
+                        margin: EdgeInsets.only(right: defaultSize * 7.5),
+                        width: defaultSize * 15,
+                        // decoration: BoxDecoration( border: Border.all(color: Colors.grey)),
                         child: Container(
                           child: jobStsText(widget.jobSts, defaultSize),
                           padding: EdgeInsets.only(left: defaultSize * 1),
-                          // decoration: BoxDecoration( color: Colors.orange[50],  borderRadius: BorderRadius.circular(2), ),
                         ),
                     ),
                       SizedBox(height: defaultSize * 2,)
@@ -172,11 +174,11 @@ class _MyPageListHanWorkItemState extends State<MyPageListHanWorkItem> {
 
 
   jobStsText(String jobSts, double defaultSize){
-    if(jobSts  == "1"){ return Text('입찰중 ',style: TextStyle(color: Colors.lightGreen, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),); }
-    if(jobSts  == "2"){ return Text('진행중 ',style: TextStyle(color: Colors.purple, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),); }
-    if(jobSts  == "3"){ return Text('완료   ',style: TextStyle(color: Colors.blue[900], fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),); }
-    if(jobSts  == "5"){ return Text('주니 완료 대기중  ',style: TextStyle(color: Colors.amber, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),); }
-    if(jobSts  == "8"){ return Text('시간초과',style: TextStyle(color: Colors.orange, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),); }
-    if(jobSts  == "9"){ return Text('취소   ',style: TextStyle(color: Colors.red, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),); }
+    if(jobSts  == "1"){ return Text('입찰중 ',style: TextStyle(color: Colors.lightGreen, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),textAlign: TextAlign.left); }
+    if(jobSts  == "2"){ return Text('진행중 ',style: TextStyle(color: Colors.purple, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),textAlign: TextAlign.left); }
+    if(jobSts  == "3"){ return Text('완료   ',style: TextStyle(color: Colors.blue[900], fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),textAlign: TextAlign.left); }
+    if(jobSts  == "5"){ return Text('완료 대기중  ',style: TextStyle(color: Colors.lightBlue, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),textAlign: TextAlign.left,); }
+    if(jobSts  == "8"){ return Text('시간초과',style: TextStyle(color: Colors.orange, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),textAlign: TextAlign.left); }
+    if(jobSts  == "9"){ return Text('취소   ',style: TextStyle(color: Colors.red, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),textAlign: TextAlign.left); }
   }
 }

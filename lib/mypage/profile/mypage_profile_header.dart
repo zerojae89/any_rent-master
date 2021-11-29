@@ -10,6 +10,8 @@ import 'package:http_parser/http_parser.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
 import 'package:any_rent/settings/custom_shared_preferences.dart';
 import 'package:any_rent/permission/photo_storage_perminnion.dart';
+import 'package:flutter/services.dart';
+
 
 // const url = 'http://211.253.20.112'; //개발서버
 // const url = "http://192.168.1.3:4001"; //재승 내부 ip
@@ -170,7 +172,7 @@ class _MyPageProfileHeaderState extends State<MyPageProfileHeader> {
                         fit: BoxFit.fill,
                           image: (prfSeq == null)
                             ? AssetImage('assets/noimage.jpg')
-                              : NetworkImage('$url/api/mypage/images?recieveToken=$prfSeq')
+                              :  NetworkImage('$url/api/mypage/images?recieveToken=$prfSeq'),
                       ),
                       border: Border.all(
                         color: Colors.amberAccent.withOpacity(0.8),

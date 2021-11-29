@@ -216,7 +216,9 @@ class _HomeItemState extends State<HomeItem>
                           // decoration: BoxDecoration(
                           //     border: Border.all(color: Colors.grey)),
                           child: (widget.token == null)
-                              ? Container()
+                              ? Container(
+                            width: defaultSize*5.7,
+                          )
                               : (jobIts == widget.jobId)
                                   ? IconButton(
                                       icon: Icon(
@@ -249,8 +251,7 @@ class _HomeItemState extends State<HomeItem>
                                       formatter.format(widget.jobAmt) +
                                       '원',
                                   style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold),
+                                      color: Colors.black,),
                                   // style: TextStyle(color: Colors.orange, fontSize: 12, fontWeight: FontWeight.bold),
                                 )
                               : Text(
@@ -258,8 +259,7 @@ class _HomeItemState extends State<HomeItem>
                                       formatter.format(widget.jobAmt) +
                                       '원',
                             style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold),
+                              color: Colors.black,),
                                   // style: TextStyle(color: Colors.orange, fontSize: 12, fontWeight: FontWeight.bold),
                                 ),
                         ),
@@ -274,8 +274,7 @@ class _HomeItemState extends State<HomeItem>
                             widget.twnNm,
                             style: TextStyle(
                                 color: Colors.black,
-                                fontSize: defaultSize * 1.5,
-                                fontWeight: FontWeight.bold),
+                                fontSize: defaultSize * 1.5,),
                           ),
                         ),
                       ],
@@ -290,8 +289,7 @@ class _HomeItemState extends State<HomeItem>
                             (widget.aucMtd == "1") ? '선착순' : '입찰식',
                             style: TextStyle(
                                 color: Colors.black,
-                                fontSize: defaultSize * 1.7,
-                                fontWeight: FontWeight.bold),
+                                fontSize: defaultSize * 1.7,),
                           ),
                           padding: EdgeInsets.only(left: 5, top: 5, bottom: 5),
                           // decoration: BoxDecoration( color: Colors.lightBlue[50],  borderRadius: BorderRadius.circular(2), ),
@@ -306,7 +304,7 @@ class _HomeItemState extends State<HomeItem>
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: defaultSize * 1.7,
-                                fontWeight: FontWeight.bold),
+                                ),
                           ),
                           padding: EdgeInsets.only(left: 5, top: 5, bottom: 5),
                           // decoration: BoxDecoration( color: Colors.pink[50],  borderRadius: BorderRadius.circular(2), ),
@@ -315,13 +313,13 @@ class _HomeItemState extends State<HomeItem>
                     ),
                     Container(
                         child: Container(
-                          padding: EdgeInsets.only(left: 5, top: 5, bottom: 10),
+                          padding: EdgeInsets.only(left: 1, top: 5, bottom: 10),
                           child: Text(
                             "시작 시간 : ${widget.jobStDtm}",
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: defaultSize * 1.5,
-                                fontWeight: FontWeight.bold),
+                                ),
                           ),
                         ),
                       ),

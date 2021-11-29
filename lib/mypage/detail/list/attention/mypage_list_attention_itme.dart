@@ -136,7 +136,8 @@ class _MyPageAttentionItmeState extends State<MyPageAttentionItme> {
                                    '원',
                                style: TextStyle(
                                    color: Colors.black,
-                                   fontWeight: FontWeight.bold),
+                                   // fontWeight: FontWeight.bold
+                               ),
                                // style: TextStyle(color: Colors.orange, fontSize: 12, fontWeight: FontWeight.bold),
                              )
                                  : Text(
@@ -145,7 +146,8 @@ class _MyPageAttentionItmeState extends State<MyPageAttentionItme> {
                                    '원',
                                style: TextStyle(
                                    color: Colors.black,
-                                   fontWeight: FontWeight.bold),
+                                   // fontWeight: FontWeight.bold
+                               ),
                                // style: TextStyle(color: Colors.orange, fontSize: 12, fontWeight: FontWeight.bold),
                              ),
                            ),
@@ -163,7 +165,8 @@ class _MyPageAttentionItmeState extends State<MyPageAttentionItme> {
                                style: TextStyle(
                                    color: Colors.black,
                                    fontSize: defaultSize * 1.7,
-                                   fontWeight: FontWeight.bold),
+                                   // fontWeight: FontWeight.bold
+                               ),
                              ),
                              padding: EdgeInsets.only(left: 5, top: 5, bottom: 5),
                              // decoration: BoxDecoration( color: Colors.lightBlue[50],  borderRadius: BorderRadius.circular(2), ),
@@ -178,7 +181,8 @@ class _MyPageAttentionItmeState extends State<MyPageAttentionItme> {
                                style: TextStyle(
                                    color: Colors.black,
                                    fontSize: defaultSize * 1.7,
-                                   fontWeight: FontWeight.bold),
+                                   // fontWeight: FontWeight.bold
+                               ),
                              ),
                              padding: EdgeInsets.only(left: 5, top: 5, bottom: 5),
                              // decoration: BoxDecoration( color: Colors.pink[50],  borderRadius: BorderRadius.circular(2), ),
@@ -210,7 +214,9 @@ class _MyPageAttentionItmeState extends State<MyPageAttentionItme> {
                       //     border: Border.all(color: Colors.grey)),
                       child: Text(
                         "시작 시간 : ${widget.jobStDtm}",
-                        style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.5, fontWeight: FontWeight.bold),
+                        style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.5,
+                            // fontWeight: FontWeight.bold
+                        ),
                       ),
 
                       // decoration: BoxDecoration( color: Colors.orange[50],  borderRadius: BorderRadius.circular(2), ),

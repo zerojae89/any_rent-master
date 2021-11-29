@@ -12,17 +12,17 @@ class MyPageWaiterList extends StatefulWidget {
 }
 
 class _MyPageWaiterListState extends State<MyPageWaiterList> {
-  // String token, townCd1, townCd2, townNm1, townNm2, auctionTimeString, twnCd;
-  // String jobId, jobTtl, aucMtd, jobStDtm, bidDlDtm, payMtd, jobIts, jobSts;
-  // int jobAmt, bidAmt;
+  String token, townCd1, townCd2, townNm1, townNm2, auctionTimeString, twnCd;
+  String jobId, jobTtl, aucMtd, jobStDtm, bidDlDtm, payMtd, jobIts, jobSts;
+  int jobAmt, bidAmt;
   bool isDisposed = false;
   // Map <String, dynamic> junWorkResult;
-  // List<dynamic> junWorkItems = [];
+  List<dynamic> waiterItems = [];
 
   @override
   void initState() {
     super.initState();
-    // getJunWorkList();
+    getWaiter();
   }
 
   @override
@@ -31,20 +31,20 @@ class _MyPageWaiterListState extends State<MyPageWaiterList> {
     super.dispose();
   }
 
-  // getJunWorkList() async { //토큰 불러와서 준일 리스트 불러오기
-  //   token =await customSharedPreferences.getString('token');
-  //   if(!isDisposed) setState(() => token);
-  //   try{
-  //     if(token != null){
-  //       String result = await myPageServer.getjunWorkList(token);
-  //       // print('result ================== $result');
-  //       if(!isDisposed){setState(() => junWorkItems = jsonDecode(result)['junWorkList'] );}
-  //       // print('junWorkItems ================ $junWorkItems');
-  //     }
-  //   } catch(e){
-  //     Scaffold.of(context).showSnackBar( SnackBar(content: Text("잠시후 다시 시도해 주세요.",), duration: Duration(seconds: 3),) );
-  //   }
-  // }
+  getWaiter() async { //토큰 불러와서 준일 리스트 불러오기
+    token =await customSharedPreferences.getString('token');
+    if(!isDisposed) setState(() => token);
+    try{
+      if(token != null){
+        String result = await myPageServer.getjunWorkList(token);
+        print('result ================== $result');
+        if(!isDisposed){setState(() => waiterItems = jsonDecode(result)['result'] );}
+        print('junWorkItems ================ $waiterItems');
+      }
+    } catch(e){
+      Scaffold.of(context).showSnackBar( SnackBar(content: Text("잠시후 다시 시도해 주세요.",), duration: Duration(seconds: 3),) );
+    }
+  }
 
 
   @override
@@ -70,18 +70,16 @@ class _MyPageWaiterListState extends State<MyPageWaiterList> {
           // itemCount: junWorkItems.length,
           itemCount: 5,
           itemBuilder: (context, index) {
-            // jobId = junWorkItems[index]['jobId'];
-            // jobTtl = junWorkItems[index]['jobTtl'];
-            // aucMtd = junWorkItems[index]['aucMtd'];
-            // jobStDtm = junWorkItems[index]['jobStDtm'];
-            // bidDlDtm = junWorkItems[index]['bidDlDtm'];
-            // jobAmt = junWorkItems[index]['jobAmt'];
-            // payMtd = junWorkItems[index]['payMtd'];
-            // jobIts = junWorkItems[index]['jobIts'];
-            // jobSts = junWorkItems[index]['jobSts'];
-            // return Center(child: Text('준일 내역이 없습니다. \n1 \n2 \n3 \n4'));
+            jobId = waiterItems[index]['jobId'];
+            jobTtl = waiterItems[index]['jobTtl'];
+            aucMtd = waiterItems[index]['aucMtd'];
+            jobStDtm = waiterItems[index]['jobStDtm'];
+            bidDlDtm = waiterItems[index]['bidDlDtm'];
+            jobAmt = waiterItems[index]['jobAmt'];
+            payMtd = waiterItems[index]['payMtd'];
+            jobIts = waiterItems[index]['jobIts'];
+            jobSts = waiterItems[index]['jobSts'];
             // return  MyPageListJunWorkItem(token, jobId, jobTtl, aucMtd, jobStDtm, bidDlDtm, jobAmt, index, payMtd, jobIts, jobSts);
-            return MyPageWaiterItem(index);
           },
         ))
       ],

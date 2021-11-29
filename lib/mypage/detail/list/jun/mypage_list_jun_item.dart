@@ -168,7 +168,8 @@ class _MyPageListJunWorkItemState extends State<MyPageListJunWorkItem> {
                                 style: TextStyle(
                                     fontSize: defaultSize * 1.7,
                                     color: Colors.black,
-                                    fontWeight: FontWeight.bold),
+                                    // fontWeight: FontWeight.bold
+                                ),
                           textAlign: TextAlign.left,
                               )
                             : Text(
@@ -177,7 +178,9 @@ class _MyPageListJunWorkItemState extends State<MyPageListJunWorkItem> {
                                     '원',
                                 style: TextStyle(
                                     fontSize: defaultSize * 1.7,
-                                    color: Colors.black,fontWeight: FontWeight.bold),
+                                    color: Colors.black,
+                                    // fontWeight: FontWeight.bold
+                                ),
                           textAlign: TextAlign.left,
                               ),
                       ),
@@ -192,7 +195,8 @@ class _MyPageListJunWorkItemState extends State<MyPageListJunWorkItem> {
                               style: TextStyle(
                                   color: Colors.black,
                                   fontSize: defaultSize * 1.7,
-                                  fontWeight: FontWeight.bold),
+                                  // fontWeight: FontWeight.bold
+                              ),
                             ),
 
                             // decoration: BoxDecoration( color: Colors.lightBlue[50],  borderRadius: BorderRadius.circular(2), ),
@@ -207,7 +211,8 @@ class _MyPageListJunWorkItemState extends State<MyPageListJunWorkItem> {
                               style: TextStyle(
                                   color: Colors.black,
                                   fontSize: defaultSize * 1.7,
-                                  fontWeight: FontWeight.bold),
+                                  // fontWeight: FontWeight.bold
+                              ),
                             ),
 
                             // decoration: BoxDecoration( color: Colors.pink[50],  borderRadius: BorderRadius.circular(2), ),
@@ -269,9 +274,9 @@ class _MyPageListJunWorkItemState extends State<MyPageListJunWorkItem> {
     }
     if (jobSts == "5") {
       return Text(
-        '주니 완료 대기중  ',
+        '완료 대기중  ',
         style: TextStyle(
-            color: Colors.blue,
+            color: Colors.amber,
             fontSize: defaultSize * 1.2,
             fontWeight: FontWeight.bold),
         textAlign: TextAlign.left,

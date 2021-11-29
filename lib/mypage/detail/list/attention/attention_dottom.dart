@@ -72,9 +72,9 @@ class AttentionBottom {
                 width: size.width / 2,
                 height: defaultSize * 6,
                 child: FlatButton(
-                  color: Colors.lightGreen,
+                  color: Colors.lightBlue,
                   onPressed: () => null,
-                  child: Text( "주니 완료 대기중",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.7,), ),
+                  child: Text( "완료 대기중",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.7,), ),
                 ),
               ),
               Expanded(

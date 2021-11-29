@@ -37,7 +37,7 @@ class _MyPageJunWorkListState extends State<MyPageJunWorkList> {
       if(token != null){
         String result = await myPageServer.getjunWorkList(token);
         print('result ================== $result');
-        if(!isDisposed){setState(() => junWorkItems = jsonDecode(result)['junWorkList'] );}
+        if(!isDisposed){setState(() => junWorkItems = jsonDecode(result)['result'] );}
         print('junWorkItems ================ $junWorkItems');
       }
     } catch(e){

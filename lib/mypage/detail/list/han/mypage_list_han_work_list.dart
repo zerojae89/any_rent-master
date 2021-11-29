@@ -38,7 +38,7 @@ class _MyPageHanWorkListState extends State<MyPageHanWorkList> {
       if(token != null){
         String result = await myPageServer.getHanWorkList(token);
         print('result ================== $result');
-        if(!isDisposed){setState(() => hanWorkItems = jsonDecode(result)['hanilList'] );}
+        if(!isDisposed){setState(() => hanWorkItems = jsonDecode(result)['result'] );}
         print('hanWorkItems ================ $hanWorkItems');
       }
     } catch(e){
