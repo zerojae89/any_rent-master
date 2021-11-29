@@ -4,6 +4,7 @@ import 'package:any_rent/settings/size_config.dart';
 import 'pass_login_webview.dart';
 import 'naver_login_webview.dart';
 import 'kakao_login_webview.dart';
+import 'facebook_login_webview.dart';
 import 'package:kakao_flutter_sdk/all.dart';
 
 class Login extends StatefulWidget {
@@ -13,52 +14,10 @@ class Login extends StatefulWidget {
 
 
 class _LoginState extends State<Login> {
-  bool _isKakaoTalkInstalled = false;
 
   @override
   void initState() {
-    _initKakaoTalkInstalled();
     super.initState();
-  }
-  _initKakaoTalkInstalled() async{
-    final installed = await isKakaoTalkInstalled();
-    print('kakao Install : ' + installed.toString());
-
-    setState(() {
-      _isKakaoTalkInstalled = installed;
-    });
-  }
-
-  _issueAccessToken(String authCode) async {
-    try {
-      var token = await AuthApi.instance.issueAccessToken(authCode);
-      print(token);
-      Navigator.push(context, MaterialPageRoute(
-          builder: (context) => Home(),
-      ));
-    } catch(e) {
-      print(e.toString());
-    }
-  }
-
-  _loginWithKakao() async {
-    try{
-      var code = await AuthCodeClient.instance.request();
-      print("111 ========== $code");
-      await _issueAccessToken(code);
-    }catch(e) {
-      print(e.toString());
-    }
-  }
-
-  _loginWithTalk() async {
-    try{
-      var code = await AuthCodeClient.instance.requestWithTalk();
-      print("222222222 ======== $code");
-      await _issueAccessToken(code);
-    }catch(e) {
-      print(e.toString());
-    }
   }
 
   @override
@@ -112,7 +71,7 @@ class _LoginState extends State<Login> {
                 ),
                 child:
                 FlatButton(
-                  onPressed: () {},
+                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FacebookLoginWebView())),
                   child: Text( 'Facebook 로그인',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white),),
                 ),
               ),

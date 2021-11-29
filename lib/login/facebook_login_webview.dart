@@ -13,16 +13,14 @@ import 'login_server.dart';
 import 'package:any_rent/main_home.dart';
 import '../mypage/profile/mypage_profile.dart';
 
-// const LoginUrl = 'https://211.253.20.112/api/auth/pass'; //개발서버
-// const LoginUrl = 'https://192.168.1.3:4000/api/auth/pass';
-const LoginUrl = UrlConfig.url+':8443/api/auth/pass';
+const LoginUrl = 'https://211.253.20.112/api/auth/facebook';
 
-class PassLoginWebView extends StatefulWidget{
+class FacebookLoginWebView extends StatefulWidget{
   @override
-  _PassLoginWebViewState createState() => _PassLoginWebViewState();
+  _FacebookLoginWebViewState createState() => _FacebookLoginWebViewState();
 }
 
-class _PassLoginWebViewState extends State<PassLoginWebView> {
+class _FacebookLoginWebViewState extends State<FacebookLoginWebView> {
 
   final globalKey = GlobalKey<ScaffoldState>();
   FlutterWebviewPlugin webviewPlugin = FlutterWebviewPlugin();
@@ -39,21 +37,6 @@ class _PassLoginWebViewState extends State<PassLoginWebView> {
       final type = state.type;
       final url = state.url;
       print(url);
-      if (mounted) {
-        // print('url $url $type');
-        if (isAppLink(url)) {
-          // print(url);
-          getAppUrl(url).then((value) async{
-            // 외부앱 연동시 처리 (외부앱 연결 또는 마켓으로 이동) 아이폰만 처리 하면됨
-            if(await canLaunch(value)){
-              await launch(value);
-            } else {
-              final marketUrl = await getMarketUrl(url);
-              await launch(marketUrl);
-            }
-          });
-        }
-      }
     });
 
     // Add a listener to on destroy WebView, so you can make came actions.
