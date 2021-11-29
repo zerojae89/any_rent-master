@@ -31,7 +31,7 @@ class _HomeDetailState extends State<HomeDetail> {
 
   final globalKey = GlobalKey<ScaffoldState>();
   bool isDisposed = false;
-  String token, result, jobId, junId, jobTtl,jobCtn, payMtd, jobStDtm, tp1Nm, tp2Nm, twnNm, junNic, bidDlDtm, jobIts, hanGnd, hanGndName, jobSts, mbrId, hanResult;
+  String token, result, jobId, junId, jobTtl,jobCtn, payMtd, jobStDtm, tp1Nm, tp2Nm, twnNm, junNic, bidDlDtm, jobIts, hanGnd, hanGndName, jobSts, mbrId, hanResult,prfSeq;
   String message = '';
   String aucMtd = '1';
   int  jobAmt, bidAmt, junPrfSeq, mbrGrd;
@@ -247,7 +247,7 @@ class _HomeDetailState extends State<HomeDetail> {
                       ),
                       (aucMtd == "1") ? Container() : Text(
                         '남은 입찰시간 : '+timeToDisplay,
-                        style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.4,),
+                        style: TextStyle(color: Colors.pink, fontSize:  defaultSize * 1.4,),
                       ),
                     ],
                   ),
@@ -273,7 +273,7 @@ class _HomeDetailState extends State<HomeDetail> {
                                           '$url/api/mypage/images?recieveToken=$junPrfSeq')), //.
                                   border: Border.all(
                                       color: Colors.yellow.withOpacity(0.8),
-                                      width: 5)),
+                                      width: defaultSize * 0.3)),
                               width: defaultSize * 9,
                               height: defaultSize * 15
                             // child: (junPrfSeq == null) ? Icon(Icons.account_box_rounded, size: 40,) : Image.network('$url/api/mypage/images?recieveToken=$junPrfSeq')
@@ -356,11 +356,11 @@ class _HomeDetailState extends State<HomeDetail> {
                     children: [
                       // Padding(),
                       Container(
-                        margin: EdgeInsets.only(left: defaultSize * 3.5),
+                        margin: EdgeInsets.only(left: defaultSize * 3),
                         child: Padding(
                           padding: EdgeInsets.only(left: 10),
                           child: Container(
-                            width: defaultSize * 14.7,
+                            width: defaultSize * 16,
                             child: Text(
                               '$tp1Nm / $tp2Nm',
                               style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7, ),
@@ -382,9 +382,9 @@ class _HomeDetailState extends State<HomeDetail> {
                   child: Row(
                     children: [
                       Container(
-                        margin: EdgeInsets.only(left: defaultSize * 4.7,top: defaultSize * 0.7),
+                        margin: EdgeInsets.only(left: defaultSize * 4,top: defaultSize * 0.7),
                         child: Container(
-                          width: defaultSize * 15,
+                          width: defaultSize * 16.3,
                           child: Text(
                             (aucMtd == "1") ? '금액 : '+ formJobAmt +'원': '희망 금액 : '+formJobAmt+'원',
                             // (jobAmt != null) ? '금액 : '+formatter.format(jobAmt) +'원': '금액 : 0 원',
@@ -393,7 +393,7 @@ class _HomeDetailState extends State<HomeDetail> {
                           ),
                           decoration: BoxDecoration(
                             // color: Colors.pink[50],
-                            borderRadius: BorderRadius.circular(2),
+                            // borderRadius: BorderRadius.circular(2),
                             // border: Border.all(color:Colors.grey)
                           ),
                         ),
@@ -425,9 +425,9 @@ class _HomeDetailState extends State<HomeDetail> {
                 ),
                 Row(
                   children: [
-                    Container(margin:EdgeInsets.only(left: defaultSize * 4.8,top: defaultSize * 2),child: Text('희망 성별 :', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7),)),
+                    Container(margin:EdgeInsets.only(left: defaultSize * 4.1,top: defaultSize * 2),child: Text('희망 성별 :', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7),)),
                     Container(margin: EdgeInsets.only(left: 10,top: defaultSize * 2), child: Text(hanGndName ?? '', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7),)),
-                    Container(margin: EdgeInsets.only(top: defaultSize * 2, left: defaultSize * 4.5),child: Text('입찰방식 :',style: TextStyle(fontSize: defaultSize * 1.7,),),),
+                    Container(margin: EdgeInsets.only(top: defaultSize * 2, left: defaultSize * 5.6),child: Text('입찰방식 :',style: TextStyle(fontSize: defaultSize * 1.7,),),),
                     Container(
                       margin: EdgeInsets.only(left: defaultSize * 3.8,top: defaultSize * 2),
                       child: Container(
@@ -448,8 +448,8 @@ class _HomeDetailState extends State<HomeDetail> {
                 //     ),
                   ],
                 ),
-
-
+                SizedBox(height: defaultSize * 1.7,),
+                Divider(),
                 (picCnt == 0) ?  Container() : SizedBox(height: defaultSize * 45, child: buildGridView(jobId, picCnt)),
                 Container( 
                   margin: EdgeInsets.all(20),
@@ -504,7 +504,7 @@ class _HomeDetailState extends State<HomeDetail> {
           child: FlatButton(
             color: Colors.grey[700],
             onPressed: null,
-            child: Text( "시간초과",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.3,), ),
+            child: Text( "시간초과",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.7,), ),
           ),
         ),
       );
@@ -525,7 +525,7 @@ class _HomeDetailState extends State<HomeDetail> {
                   if( aucMtd == "1"){
                     homeDetailDialog.showDialogFunc(context, defaultSize, jobTtl, jobCtn, jobStDtm, token, widget.jobId);
                   } else {
-                    if(hanResult == "N"){
+                    if(hanResult == "2"){
                       print('입찰식 예약하기!!!!!!!!!!!!!!!!!!!');
                       reservationAucMtdDialog();
                     }else {
@@ -580,7 +580,7 @@ class _HomeDetailState extends State<HomeDetail> {
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
             },
-            child: Text( "로그인",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.3,), ),
+            child: Text( "로그인",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.7,), ),
           ),
         ),
       );
@@ -627,10 +627,10 @@ class _HomeDetailState extends State<HomeDetail> {
         barrierDismissible: false,
         builder: (BuildContext context){
           return AlertDialog(
-            // RoundedRectangleBorder - Dialog 화면 모서리 둥글게 조절
-            // shape: RoundedRectangleBorder(
-            // borderRadius: BorderRadius.circular(10.0)
-            title: Center(child: Text('입찰하기'),),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15)
+            ),
+            title: Center(child: Text('입찰하기',style: TextStyle(color: Colors.lightGreen[900]),),),
             content: Builder(
               builder: (BuildContext context){
                 return Form(
@@ -657,8 +657,8 @@ class _HomeDetailState extends State<HomeDetail> {
               FlatButton(onPressed: () {
                 Navigator.pop(context, false);
                 _controller.clear();
-              }, child: Text('취소', style: TextStyle(color: Colors.purple),)),
-              FlatButton(onPressed: sendReservationAucMtd, child: Text('예약', style: TextStyle(color: Colors.purple),)),
+              }, child: Text('취소', style: TextStyle(color: Colors.lightGreen[800]),)),
+              FlatButton(onPressed: sendReservationAucMtd, child: Text('예약', style: TextStyle(color:Colors.lightGreen[800]),)),
               // FlatButton(onPressed: validateAndSave , child: Text('변경', style: TextStyle(color: Colors.purple),)),
             ],
           );

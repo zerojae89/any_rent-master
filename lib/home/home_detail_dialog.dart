@@ -25,7 +25,7 @@ class HomeDetailDialog {
                   color: Colors.white,
                 ),
                 padding: EdgeInsets.all(15),
-                height: defaultSize * 48,
+                height: defaultSize * 43,
                 width: MediaQuery.of(context).size.width * 0.7,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -34,6 +34,7 @@ class HomeDetailDialog {
                     Text( "프로필", style: TextStyle( fontSize: defaultSize * 2.5,  fontWeight: FontWeight.bold, ), ),
                     SizedBox( height: defaultSize * 3, ),
                     Container(decoration: BoxDecoration(
+                      border: Border.all(color: Colors.yellow.withOpacity(0.7),width: defaultSize*0.3),
                         color: Colors.white,
                         shape: BoxShape.circle,
                         image: DecorationImage(
@@ -48,13 +49,14 @@ class HomeDetailDialog {
                     ),
                         width: defaultSize * 12,
                         height: defaultSize * 15),
-                    SizedBox( height: defaultSize * 3, ),
+                    SizedBox( height: defaultSize * 2, ),
                     Text( junNic, style: TextStyle( fontSize: defaultSize * 2.5, color: Colors.lightGreen, fontWeight: FontWeight.bold, ), ),
                     SizedBox( height: defaultSize * 2, ),
                     Text( "평점 : $mbrGrd", style: TextStyle( fontSize: defaultSize * 2.0,  fontWeight: FontWeight.bold, ), ),
+                    SizedBox(height: 0.3,),
                     Padding(
-                      padding: EdgeInsets.all(defaultSize * 2),
-                      child:  Center(child: RaisedButton(onPressed: ()=> Navigator.pop(context), child: Text("닫기"),)),
+                      padding: EdgeInsets.all(defaultSize * 1),
+                      child:  Center(child: FlatButton(onPressed: ()=> Navigator.pop(context), child: Text("닫기",style: TextStyle(color: Colors.lightGreen[800],fontWeight: FontWeight.bold,fontSize: defaultSize * 2),),)),
                     ),
                   ],
                 ),
@@ -74,15 +76,15 @@ class HomeDetailDialog {
             type: MaterialType.transparency,
             child: Container(
               decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.lightGreen[700],
-                  width: 5
-                ),
+                // border: Border.all(
+                //   color: Colors.lightGreen[700],
+                //   width: 5
+                // ),
                 borderRadius: BorderRadius.circular(10),
                 color: Colors.white,
               ),
-              padding: EdgeInsets.all(15),
-              height: defaultSize * 40,
+              padding: EdgeInsets.only(left: 10,top: 10,right: 10),
+              height: defaultSize * 36,
               width: MediaQuery.of(context).size.width * 0.7,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -90,12 +92,19 @@ class HomeDetailDialog {
                   SizedBox( height: 25, ),
                   Text( "예약 확인", style: TextStyle( fontSize: defaultSize * 2.3,  fontWeight: FontWeight.bold, ), ),
                   SizedBox( height: defaultSize * 2, ),
-                  Text( jobTtl,  style: TextStyle( fontSize: defaultSize *1.7, fontWeight: FontWeight.bold, ), ),
-                  SizedBox( height: defaultSize * 2, ),
+                  Container(
+                    padding: EdgeInsets.only(left: 10,right: 10,top: 5),
+                      // decoration: BoxDecoration(
+                      //   border: Border.all(color: Colors.grey)
+                      // ),
+                      width: defaultSize * 23,
+                      height: defaultSize * 5,
+                      child: Text( jobTtl,  style: TextStyle( fontSize: defaultSize *1.7, fontWeight: FontWeight.bold,color: Colors.lightGreen[800]),textAlign: TextAlign.center, )),
+                  SizedBox( height: defaultSize * 1, ),
                   Container(height: defaultSize * 7,width: defaultSize * 20,
                       // decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
                       child: Text( jobCtn,  style: TextStyle( fontSize: defaultSize * 1.5, fontWeight: FontWeight.bold, ), )),
-                  SizedBox( height: defaultSize * 3, ),
+                  SizedBox( height: defaultSize * 1, ),
                   Text( "작업 시작시간 :  \n $jobStDtm",  style: TextStyle( fontSize: defaultSize * 1.5, fontWeight: FontWeight.bold, ), ),
                   SizedBox( height: defaultSize * 0.5, ),
                   Padding(
@@ -103,9 +112,9 @@ class HomeDetailDialog {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        FlatButton(color: Colors.lightGreen, onPressed: ()=> reservation(context, token, jobId), child: Text('예', style: TextStyle(color: Colors.white),),),
+                        FlatButton(onPressed: ()=> reservation(context, token, jobId), child: Text('예', style: TextStyle(fontSize:defaultSize*1.7,color: Colors.lightGreen[800],fontWeight: FontWeight.bold),),),
                         SizedBox(width: defaultSize*1,),
-                        FlatButton(color: Colors.lightGreen, onPressed: ()=> Navigator.pop(context), child: Text("아니오",style: TextStyle(color: Colors.white), ),)
+                        FlatButton(onPressed: ()=> Navigator.pop(context), child: Text("아니오",style: TextStyle(fontSize: defaultSize*1.7,color: Colors.lightGreen[800],fontWeight: FontWeight.bold), ),)
                       ],
                     ),
                   ),
@@ -123,14 +132,17 @@ class HomeDetailDialog {
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15))
+          ),
           title: Text("게시물을 삭제 하시겠습니까?"),
           actions: <Widget>[
             FlatButton(
-              child: Text("아니오"),
+              child: Text("아니오",style: TextStyle(color: Colors.lightGreen[800])),
               onPressed: () => Navigator.pop(context, false),
             ),
             FlatButton(
-              child: Text("예"),
+              child: Text("예",style: TextStyle(color: Colors.lightGreen[800])),
               onPressed: () {
                 homeServer.deleteService(token, jobId);
                 Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => MyHomePage(index: 0,)), (route) => false);
@@ -146,14 +158,17 @@ class HomeDetailDialog {
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(15))
+          ),
           title: Text("게시물을 수정 하시겠습니까?"),
           actions: <Widget>[
             FlatButton(
-              child: Text("아니오"),
+              child: Text("아니오",style: TextStyle(color: Colors.lightGreen[800])),
               onPressed: () => Navigator.pop(context, false),
             ),
             FlatButton(
-              child: Text("예"),
+              child: Text("예",style: TextStyle(color: Colors.lightGreen[800])),
               onPressed: () {
                 Navigator.pop(context, true);
                 Navigator.push(context, MaterialPageRoute(builder: (context) => HomeUpdate(jobId: jobId,)));

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+
 import 'package:any_rent/home/home_detail.dart';
 import 'package:any_rent/home/home_server.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,6 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:any_rent/settings/size_config.dart';
 import 'package:intl/intl.dart';
 import 'package:any_rent/settings/url.dart';
+
+
+const url = UrlConfig.url;
 
 class HomeItem extends StatefulWidget {
   String token,
@@ -18,8 +22,7 @@ class HomeItem extends StatefulWidget {
       payMtd,
       jobIts,
       twnNm;
-  int index, jobAmt, junPrfSeq;
-
+  int index, jobAmt,prfSeq;
   HomeItem(
       this.token,
       this.jobId,
@@ -31,7 +34,11 @@ class HomeItem extends StatefulWidget {
       this.index,
       this.payMtd,
       this.jobIts,
-      this.twnNm);
+      this.twnNm,
+      this.prfSeq);
+
+
+
 
   @override
   _HomeItemState createState() => _HomeItemState();
@@ -39,6 +46,7 @@ class HomeItem extends StatefulWidget {
 
 class _HomeItemState extends State<HomeItem>
     with RouteAware, WidgetsBindingObserver {
+  final globalKey = GlobalKey<ScaffoldState>();
   final formatter = new NumberFormat("###,###,###,###,###");
   String jobIts;
   String timeToDisplay = '';
@@ -47,13 +55,18 @@ class _HomeItemState extends State<HomeItem>
   bool isDisposed = false;
   Timer _timer;
   Duration _duration = Duration(seconds: 1);
+  int junPrfSeq;
+
 
 
   @override
   void initState() {
     jobIts = widget.jobIts;
-    time();
+    junPrfSeq = widget.prfSeq;
     super.initState();
+    time();
+    loadToken();
+
   }
 
 
@@ -127,6 +140,23 @@ class _HomeItemState extends State<HomeItem>
     }
   }
 
+  loadToken() async {
+    // token = await customSharedPreferences.getString('token');
+    // state = await customSharedPreferences.getBool('state');
+    //
+    // try{
+    //   if(state){
+    //     if(!isDisposed) {
+    //       setState(() {
+    //         prfSeq = widget.homeItems['prfSeq'];
+    //       });
+    //     }
+    //   }
+    // }catch(e){
+    //   Scaffold.of(context).showSnackBar( SnackBar(content: Text("잠시후 다시 시도해 주세요.",), duration: Duration(seconds: 3),) );
+    // }
+}
+
   @override
   Widget build(BuildContext context) {
     double defaultSize = SizeConfig.defaultSize;
@@ -141,9 +171,10 @@ class _HomeItemState extends State<HomeItem>
         elevation: widget.index == 0 ? 8 : 4,
         shape: widget.index != 0 ? RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(4),
-                side: BorderSide(
-                  color: Colors.grey[400],)) : null,
-        margin: EdgeInsets.only(bottom: 10, left: 1, right: 1),
+                // side: BorderSide(
+                //   color: Colors.grey,)
+        ) : null,
+        margin: EdgeInsets.only(bottom: 6, left: 1, right: 1),
         child: Padding(
           padding: EdgeInsets.only(left: 25, top: 10, bottom: 8),
           child: Column(
@@ -152,19 +183,26 @@ class _HomeItemState extends State<HomeItem>
             Row(
               children: [
                 Container(
-                  margin: EdgeInsets.only(top: defaultSize * 2, ),
-                  width: 60,
-                  height: 60,
+                  margin: EdgeInsets.only(top: defaultSize * 2,bottom: defaultSize * 3 ),
+                  width: defaultSize * 8,
+                  height: defaultSize * 10,
                   decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black),
-                      shape: BoxShape.circle),
+                    border: Border.all(color: Colors.yellow.withOpacity(0.8),width: defaultSize * 0.3),
+                      shape: BoxShape.circle,
+                  image: DecorationImage(
+                    fit: BoxFit.fill,
+                      image: (junPrfSeq == null)
+                          ? AssetImage('assets/noimage.jpg')
+                          : NetworkImage(
+                          '$url/api/mypage/images?recieveToken=$junPrfSeq')),
+                  ),
                 ),
                 Column(
                   children: [
                     Row(
                       children: [
                         Container(
-                          margin: EdgeInsets.only(left: 15),
+                          margin: EdgeInsets.only(left: 15,),
                           // decoration: BoxDecoration(
                           //     border: Border.all(color: Colors.grey)),
                           padding: EdgeInsets.only(top: 5, left: 5),
@@ -178,7 +216,9 @@ class _HomeItemState extends State<HomeItem>
                           // decoration: BoxDecoration(
                           //     border: Border.all(color: Colors.grey)),
                           child: (widget.token == null)
-                              ? Container()
+                              ? Container(
+                            width: defaultSize*5.7,
+                          )
                               : (jobIts == widget.jobId)
                                   ? IconButton(
                                       icon: Icon(
@@ -211,14 +251,15 @@ class _HomeItemState extends State<HomeItem>
                                       formatter.format(widget.jobAmt) +
                                       '원',
                                   style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold),
+                                      color: Colors.black,),
                                   // style: TextStyle(color: Colors.orange, fontSize: 12, fontWeight: FontWeight.bold),
                                 )
                               : Text(
                                   '희망 금액 : ' +
                                       formatter.format(widget.jobAmt) +
                                       '원',
+                            style: TextStyle(
+                              color: Colors.black,),
                                   // style: TextStyle(color: Colors.orange, fontSize: 12, fontWeight: FontWeight.bold),
                                 ),
                         ),
@@ -233,8 +274,7 @@ class _HomeItemState extends State<HomeItem>
                             widget.twnNm,
                             style: TextStyle(
                                 color: Colors.black,
-                                fontSize: defaultSize * 1.5,
-                                fontWeight: FontWeight.bold),
+                                fontSize: defaultSize * 1.5,),
                           ),
                         ),
                       ],
@@ -249,8 +289,7 @@ class _HomeItemState extends State<HomeItem>
                             (widget.aucMtd == "1") ? '선착순' : '입찰식',
                             style: TextStyle(
                                 color: Colors.black,
-                                fontSize: defaultSize * 1.7,
-                                fontWeight: FontWeight.bold),
+                                fontSize: defaultSize * 1.7,),
                           ),
                           padding: EdgeInsets.only(left: 5, top: 5, bottom: 5),
                           // decoration: BoxDecoration( color: Colors.lightBlue[50],  borderRadius: BorderRadius.circular(2), ),
@@ -265,37 +304,42 @@ class _HomeItemState extends State<HomeItem>
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: defaultSize * 1.7,
-                                fontWeight: FontWeight.bold),
+                                ),
                           ),
                           padding: EdgeInsets.only(left: 5, top: 5, bottom: 5),
                           // decoration: BoxDecoration( color: Colors.pink[50],  borderRadius: BorderRadius.circular(2), ),
                         ),
                       ],
-                    )
+                    ),
+                    Container(
+                        child: Container(
+                          padding: EdgeInsets.only(left: 1, top: 5, bottom: 10),
+                          child: Text(
+                            "시작 시간 : ${widget.jobStDtm}",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: defaultSize * 1.5,
+                                ),
+                          ),
+                        ),
+                      ),
                   ],
                 ),
               ],
             ),
-            Container(
-              child: Container(
-                margin: EdgeInsets.only(left:defaultSize * 5.5),
-                padding: EdgeInsets.only(left: 5, top: 5, bottom: 10),
-                // decoration: BoxDecoration(
-                //   border: Border.all(
-                //     color: Colors.grey
-                //   )
-                // ),
-                child: Text(
-                  "시작 시간 : ${widget.jobStDtm}",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: defaultSize * 1.5,
-                      fontWeight: FontWeight.bold),
-                ),
-
-                // decoration: BoxDecoration( color: Colors.orange[50],  borderRadius: BorderRadius.circular(2), ),
-              ),
-            ),
+            // Container(
+            //   child: Container(
+            //     margin: EdgeInsets.only(left:defaultSize * 5.5),
+            //     padding: EdgeInsets.only(left: 5, top: 5, bottom: 10),
+            //     child: Text(
+            //       "시작 시간 : ${widget.jobStDtm}",
+            //       style: TextStyle(
+            //           color: Colors.black,
+            //           fontSize: defaultSize * 1.5,
+            //           fontWeight: FontWeight.bold),
+            //     ),
+            //   ),
+            // ),
           ]),
         ),
       ),

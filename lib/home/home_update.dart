@@ -1273,14 +1273,17 @@ class _HomeUpdateState extends State<HomeUpdate> {
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15)
+          ),
               title: Text("수정을 종료 하시겠습니까?"),
               actions: <Widget>[
                 FlatButton(
-                  child: Text("아니오"),
+                  child: Text("아니오",style: TextStyle(color: Colors.lightGreen[800]),),
                   onPressed: () => Navigator.pop(context, false),
                 ),
                 FlatButton(
-                  child: Text("예"),
+                  child: Text("예",style: TextStyle(color: Colors.lightGreen[800]),),
                   onPressed: () => Navigator.pop(context, true),
                 )
               ],

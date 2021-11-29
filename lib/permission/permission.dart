@@ -21,6 +21,9 @@ class _PermissionState extends State<Permission> {
   Widget build(BuildContext context) {
     double defaultSize = SizeConfig.defaultSize;
     return AlertDialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(15))
+      ),
       title: Container(
           margin:EdgeInsets.only(top:100),child: Text( 'AnyRent 앱 접근 권한 안내',  textAlign: TextAlign.center,  style: TextStyle(fontWeight: FontWeight.bold,color: Colors.lightGreen[700]), )),
       content:Column(

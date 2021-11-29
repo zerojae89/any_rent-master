@@ -1,13 +1,36 @@
 import 'package:any_rent/home/home_server.dart';
+import 'package:any_rent/settings/url.dart';
 import 'package:flutter/material.dart';
 import 'package:any_rent/settings/size_config.dart';
 import 'package:intl/intl.dart';
 import 'attention_detail.dart';
 
+const url = UrlConfig.url;
+
 class MyPageAttentionItme extends StatefulWidget {
-  String token, jobId, jobTtl, aucMtd, jobStDtm, bidDlDtm, payMtd, jobIts, jobSts;
-  int index, jobAmt;
-  MyPageAttentionItme(this.token, this.jobId, this.jobTtl, this.aucMtd, this.jobStDtm, this.bidDlDtm, this.jobAmt, this.index, this.payMtd, this.jobIts, this.jobSts);
+  String token,
+      jobId,
+      jobTtl,
+      aucMtd,
+      jobStDtm,
+      bidDlDtm,
+      payMtd,
+      jobIts,
+      jobSts;
+  int index, jobAmt, prfSeq;
+  MyPageAttentionItme(
+      this.token,
+      this.jobId,
+      this.jobTtl,
+      this.aucMtd,
+      this.jobStDtm,
+      this.bidDlDtm,
+      this.jobAmt,
+      this.index,
+      this.payMtd,
+      this.jobIts,
+      this.jobSts,
+      this.prfSeq);
 
   @override
   _MyPageAttentionItmeState createState() => _MyPageAttentionItmeState();
@@ -16,11 +39,13 @@ class MyPageAttentionItme extends StatefulWidget {
 class _MyPageAttentionItmeState extends State<MyPageAttentionItme> {
   final formatter = new NumberFormat("###,###,###,###,###");
   String jobIts, jobSts;
+  int junPrfSeq;
   @override
   void initState() {
 
     jobIts = widget.jobIts;
     jobSts = widget.jobSts;
+    junPrfSeq = widget.prfSeq;
     super.initState();
   }
 
@@ -45,12 +70,19 @@ class _MyPageAttentionItmeState extends State<MyPageAttentionItme> {
                Row(
                  children: [
                    Container(
-                     margin: EdgeInsets.only(top: defaultSize * 2,bottom: defaultSize * 3),
-                     width: 60,
-                     height: 60,
+                     margin: EdgeInsets.only(bottom: defaultSize * 1,right: defaultSize * 2.6),
+                     width: defaultSize * 8,
+                     height: defaultSize * 10,
                      decoration: BoxDecoration(
-                         border: Border.all(color: Colors.black),
-                         shape: BoxShape.circle),
+                       border: Border.all(color: Colors.yellow.withOpacity(0.5),width: defaultSize * 0.3),
+                       shape: BoxShape.circle,
+                       image: DecorationImage(
+                           fit: BoxFit.fill,
+                           image: (junPrfSeq == null)
+                               ? AssetImage('assets/noimage.jpg')
+                               : NetworkImage(
+                               '$url/api/mypage/images?recieveToken=$junPrfSeq')),
+                     ),
                    ),
                    Column(
                      children: [
@@ -61,7 +93,7 @@ class _MyPageAttentionItmeState extends State<MyPageAttentionItme> {
                              // decoration: BoxDecoration(
                              //     border: Border.all(color: Colors.grey)),
                              height: 50,
-                             width: defaultSize * 18,
+                             width: defaultSize * 19,
                              child: Text(widget.jobTtl ?? '일거리',
                                  style: TextStyle(fontWeight: FontWeight.bold)),
                            ),
@@ -104,13 +136,18 @@ class _MyPageAttentionItmeState extends State<MyPageAttentionItme> {
                                    '원',
                                style: TextStyle(
                                    color: Colors.black,
-                                   fontWeight: FontWeight.bold),
+                                   // fontWeight: FontWeight.bold
+                               ),
                                // style: TextStyle(color: Colors.orange, fontSize: 12, fontWeight: FontWeight.bold),
                              )
                                  : Text(
                                '희망 금액 : ' +
                                    formatter.format(widget.jobAmt) +
                                    '원',
+                               style: TextStyle(
+                                   color: Colors.black,
+                                   // fontWeight: FontWeight.bold
+                               ),
                                // style: TextStyle(color: Colors.orange, fontSize: 12, fontWeight: FontWeight.bold),
                              ),
                            ),
@@ -128,7 +165,8 @@ class _MyPageAttentionItmeState extends State<MyPageAttentionItme> {
                                style: TextStyle(
                                    color: Colors.black,
                                    fontSize: defaultSize * 1.7,
-                                   fontWeight: FontWeight.bold),
+                                   // fontWeight: FontWeight.bold
+                               ),
                              ),
                              padding: EdgeInsets.only(left: 5, top: 5, bottom: 5),
                              // decoration: BoxDecoration( color: Colors.lightBlue[50],  borderRadius: BorderRadius.circular(2), ),
@@ -143,33 +181,49 @@ class _MyPageAttentionItmeState extends State<MyPageAttentionItme> {
                                style: TextStyle(
                                    color: Colors.black,
                                    fontSize: defaultSize * 1.7,
-                                   fontWeight: FontWeight.bold),
+                                   // fontWeight: FontWeight.bold
+                               ),
                              ),
                              padding: EdgeInsets.only(left: 5, top: 5, bottom: 5),
                              // decoration: BoxDecoration( color: Colors.pink[50],  borderRadius: BorderRadius.circular(2), ),
                            ),
                          ],
                        ),
-                       Container(
-                         child: Container(
-                           padding: EdgeInsets.only(left: defaultSize * 3.5),
-                           margin: EdgeInsets.only(top: defaultSize * 1,),
-                           width: defaultSize * 30,
-                           height: defaultSize * 3,
-                           // decoration: BoxDecoration(
-                           //     border: Border.all(color: Colors.grey)),
-                           child: Text(
-                             "시작 시간 : ${widget.jobStDtm}",
-                             style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.5, fontWeight: FontWeight.bold),
-                           ),
 
-                           // decoration: BoxDecoration( color: Colors.orange[50],  borderRadius: BorderRadius.circular(2), ),
-                         ),
-                       ),
                      ],
                    ),
                  ],
                ),
+              Row(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(right: defaultSize * 1.5),
+                    width: defaultSize * 10,
+                    // decoration: BoxDecoration(
+                    //     border: Border.all(color: Colors.grey)),
+                    child: jobStsText( jobSts, defaultSize),
+                    // decoration: BoxDecoration( color: Colors.orange[50],  borderRadius: BorderRadius.circular(2), ),
+                  ),
+                  Container(
+                    child: Container(
+                      // padding: EdgeInsets.only(right:de ),
+                      margin: EdgeInsets.only(top: defaultSize * 0.8,right: defaultSize * 0),
+                      width: defaultSize * 23,
+                      height: defaultSize * 3,
+                      // decoration: BoxDecoration(
+                      //     border: Border.all(color: Colors.grey)),
+                      child: Text(
+                        "시작 시간 : ${widget.jobStDtm}",
+                        style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.5,
+                            // fontWeight: FontWeight.bold
+                        ),
+                      ),
+
+                      // decoration: BoxDecoration( color: Colors.orange[50],  borderRadius: BorderRadius.circular(2), ),
+                    ),
+                  ),
+                ],
+              )
             ],
           ),
         ),
@@ -205,10 +259,10 @@ class _MyPageAttentionItmeState extends State<MyPageAttentionItme> {
 }
 
  jobStsText(String jobSts, double defaultSize){
-  if(jobSts  == "1"){ return Text('입찰중 ',style: TextStyle(color: Colors.orange, fontSize: defaultSize * 1.2, fontWeight: FontWeight.bold),); }
-  if(jobSts  == "2"){ return Text('진행중 ',style: TextStyle(color: Colors.orange, fontSize: defaultSize * 1.2, fontWeight: FontWeight.bold),); }
-  if(jobSts  == "3"){ return Text('완료   ',style: TextStyle(color: Colors.orange, fontSize: defaultSize * 1.2, fontWeight: FontWeight.bold),); }
-  if(jobSts  == "5"){ return Text('주니 완료 대기중  ',style: TextStyle(color: Colors.orange, fontSize: defaultSize * 1.2, fontWeight: FontWeight.bold),); }
-  if(jobSts  == "8"){ return Text('시간초과',style: TextStyle(color: Colors.orange, fontSize: defaultSize * 1.2, fontWeight: FontWeight.bold),); }
-  if(jobSts  == "9"){ return Text('취소   ',style: TextStyle(color: Colors.orange, fontSize: defaultSize * 1.2, fontWeight: FontWeight.bold),); }
+  if(jobSts  == "1"){ return Text('입찰중 ',style: TextStyle(color: Colors.lightGreen, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),textAlign: TextAlign.center,); }
+  if(jobSts  == "2"){ return Text('진행중 ',style: TextStyle(color: Colors.purple, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),textAlign: TextAlign.center); }
+  if(jobSts  == "3"){ return Text('완료   ',style: TextStyle(color: Colors.blue[900], fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),textAlign: TextAlign.center); }
+  if(jobSts  == "5"){ return Text('완료 대기중  ',style: TextStyle(color: Colors.amber, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),textAlign: TextAlign.center); }
+  if(jobSts  == "8"){ return Text('시간초과',style: TextStyle(color: Colors.orange, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),textAlign: TextAlign.center); }
+  if(jobSts  == "9"){ return Text('취소   ',style: TextStyle(color: Colors.red, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),textAlign: TextAlign.center); }
 }

@@ -39,7 +39,7 @@ class MypageProfileMenuItem extends StatelessWidget{
                   Text(
                     (contents ?? ''),
                     style: TextStyle(
-                      fontSize: defaultSize * 2,fontWeight: FontWeight.bold,//16
+                      fontSize: defaultSize * 1.8,fontWeight: FontWeight.bold,//16
                     ),
                   ),
                 ],

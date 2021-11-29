@@ -21,7 +21,7 @@ class MyPageListJunWorkItem extends StatefulWidget {
       payMtd,
       jobIts,
       jobSts;
-  int index, jobAmt;
+  int index, jobAmt, prfSeq;
 
   MyPageListJunWorkItem(
       this.token,
@@ -34,7 +34,8 @@ class MyPageListJunWorkItem extends StatefulWidget {
       this.index,
       this.payMtd,
       this.jobIts,
-      this.jobSts);
+      this.jobSts,
+      this.prfSeq);
 
   @override
   _MyPageListJunWorkItemState createState() => _MyPageListJunWorkItemState();
@@ -49,15 +50,15 @@ class _MyPageListJunWorkItemState extends State<MyPageListJunWorkItem> {
   bool isDisposed = false;
   Timer _timer;
   Duration _duration = Duration(seconds: 1);
-  String token;
-  int prfSeq;
-  bool state;
+  int junPrfSeq;
 
 
   @override
   void initState() {
     jobIts = widget.jobIts;
     jobSts = widget.jobSts;
+    junPrfSeq = widget.prfSeq;
+
     time();
     super.initState();
   }
@@ -104,15 +105,6 @@ class _MyPageListJunWorkItemState extends State<MyPageListJunWorkItem> {
       });
     }
   }
-  // loadToken() async{
-  //   token = await customSharedPreferences.getString('token');
-  //   state = await customSharedPreferences.getBool('state');
-  //   try{
-  //     prfSeq = widget.junItems['prfSeq'];
-  //   } catch(e){
-  //     Scaffold.of(context).showSnackBar( SnackBar(content: Text("잠시후 다시 시도해 주세요."),duration: Duration(seconds: 3),));
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -129,29 +121,27 @@ class _MyPageListJunWorkItemState extends State<MyPageListJunWorkItem> {
       child: Card(
         elevation: widget.index == 0 ? 8 : 4,
         shape: widget.index != 0 ? RoundedRectangleBorder(borderRadius: BorderRadius.circular(4), side: BorderSide(color: Colors.grey[400],)) : null,
-        margin: EdgeInsets.only(bottom: 7, left: 1, right: 1),
+        margin: EdgeInsets.only(bottom: 6, left: 1, right: 1),
         child: Padding(
-          padding: EdgeInsets.only(top: defaultSize * 1, left: defaultSize * 3),
+          padding: EdgeInsets.only(left: 25, top: 10, bottom: 8),
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.only(bottom: defaultSize),
-
-              ),
+                padding: EdgeInsets.only(top: 5),),
               Row(
                 children: [
                   Container(
-                    margin: EdgeInsets.only(bottom: defaultSize * 3),
-                    width: 60,
-                    height: 60,
+                    margin: EdgeInsets.only(top: defaultSize * 2,bottom: defaultSize * 3),
+                    width: defaultSize * 8,
+                    height: defaultSize * 10,
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black),
+                        border: Border.all(color: Colors.yellow.withOpacity(0.5),width: defaultSize * 0.3),
                         shape: BoxShape.circle,
                     image: DecorationImage(
                       fit: BoxFit.fill,
-                      image: (prfSeq == null)
+                      image: (junPrfSeq == null)
                         ? AssetImage('assets/noimage.jpg')
-                          : NetworkImage('$url/api/mypage/images?recieveToken=$prfSeq')
+                          : NetworkImage('$url/api/mypage/images?recieveToken=$junPrfSeq')
                     )
                     ),
                   ),
@@ -162,23 +152,25 @@ class _MyPageListJunWorkItemState extends State<MyPageListJunWorkItem> {
                         //     border: Border.all(color: Colors.grey)),
                         margin: EdgeInsets.only(left: defaultSize * 3),
                         padding: EdgeInsets.only(left: 5, top: 5),
-                        height: 50,
-                        width: defaultSize * 18,
+                        height: 40,
+                        width: defaultSize * 25,
                         child: Text(widget.jobTtl ?? '일거리',
                             style: TextStyle(fontWeight: FontWeight.bold)),
                       ),
                       Container(
+                        margin: EdgeInsets.only(left: defaultSize * 3,bottom: defaultSize * 1,right: defaultSize * 6.7),
+                        width: defaultSize * 17,
                         // decoration: BoxDecoration(
                         //     border: Border.all(color: Colors.grey)),
-                        margin: EdgeInsets.only(right: defaultSize * 3,bottom: defaultSize * 1),
-                        padding: EdgeInsets.only(left: 5),
                         child: (widget.aucMtd == "1")
                             ? Text(
                                 '금액 : ' + formatter.format(widget.jobAmt) + '원',
                                 style: TextStyle(
                                     fontSize: defaultSize * 1.7,
                                     color: Colors.black,
-                                    fontWeight: FontWeight.bold),
+                                    // fontWeight: FontWeight.bold
+                                ),
+                          textAlign: TextAlign.left,
                               )
                             : Text(
                                 '희망 금액 : ' +
@@ -186,7 +178,10 @@ class _MyPageListJunWorkItemState extends State<MyPageListJunWorkItem> {
                                     '원',
                                 style: TextStyle(
                                     fontSize: defaultSize * 1.7,
-                                    color: Colors.black),
+                                    color: Colors.black,
+                                    // fontWeight: FontWeight.bold
+                                ),
+                          textAlign: TextAlign.left,
                               ),
                       ),
                       Row(
@@ -200,14 +195,15 @@ class _MyPageListJunWorkItemState extends State<MyPageListJunWorkItem> {
                               style: TextStyle(
                                   color: Colors.black,
                                   fontSize: defaultSize * 1.7,
-                                  fontWeight: FontWeight.bold),
+                                  // fontWeight: FontWeight.bold
+                              ),
                             ),
 
                             // decoration: BoxDecoration( color: Colors.lightBlue[50],  borderRadius: BorderRadius.circular(2), ),
                           ),
                           Container(
                             padding:EdgeInsets.only(bottom: defaultSize * 1),
-                            margin: EdgeInsets.only(left: defaultSize * 3),
+                            margin: EdgeInsets.only(left: defaultSize * 3,right: defaultSize * 6.7),
                             // decoration: BoxDecoration(
                             //     border: Border.all(color: Colors.grey)),
                             child: Text(
@@ -215,7 +211,8 @@ class _MyPageListJunWorkItemState extends State<MyPageListJunWorkItem> {
                               style: TextStyle(
                                   color: Colors.black,
                                   fontSize: defaultSize * 1.7,
-                                  fontWeight: FontWeight.bold),
+                                  // fontWeight: FontWeight.bold
+                              ),
                             ),
 
                             // decoration: BoxDecoration( color: Colors.pink[50],  borderRadius: BorderRadius.circular(2), ),
@@ -224,13 +221,12 @@ class _MyPageListJunWorkItemState extends State<MyPageListJunWorkItem> {
                       ),
 
                       Container(
-                        margin: EdgeInsets.only(right: defaultSize * 5.5),
+                        margin: EdgeInsets.only(right: defaultSize * 12.5),
                         width: defaultSize * 10,
                         // decoration: BoxDecoration(
                         //     border: Border.all(color: Colors.grey)),
                         child: jobStsText( jobSts, defaultSize),
-                        padding:
-                            EdgeInsets.only(left: defaultSize * 1),
+                        padding: EdgeInsets.only(left: defaultSize * 1),
                         // decoration: BoxDecoration( color: Colors.orange[50],  borderRadius: BorderRadius.circular(2), ),
                       ),
                       SizedBox(height: defaultSize * 2,)
@@ -278,9 +274,9 @@ class _MyPageListJunWorkItemState extends State<MyPageListJunWorkItem> {
     }
     if (jobSts == "5") {
       return Text(
-        '주니 완료 대기중  ',
+        '완료 대기중  ',
         style: TextStyle(
-            color: Colors.blue,
+            color: Colors.amber,
             fontSize: defaultSize * 1.2,
             fontWeight: FontWeight.bold),
         textAlign: TextAlign.left,

@@ -142,22 +142,31 @@ class _MypageBidderDetailState extends State<MypageBidderDetail> {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: EdgeInsets.only(left: defaultSize * 3 , top: defaultSize * 1.6),
-              child: Row(
+            Container(
+              padding: EdgeInsets.only(left: defaultSize * 3 , top: defaultSize * 1.6,right: defaultSize * 3),
+              child: Column(
                 children: [
-                  Expanded( flex: 4,  child: Text( widget.jobTtl, style: TextStyle(color: Colors.black, fontSize: defaultSize * 2 ),), ),
-                  Expanded( flex: 6, child: Text('남은 입찰시간 :  $timeToDisplay', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.4),)),
+                  Container(),
+                  Container(
+                    width: defaultSize * 35,
+                    height: defaultSize * 5,
+                    // decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
+                    child: Text( widget.jobTtl, style: TextStyle(color: Colors.black, fontSize: defaultSize * 2 ,fontWeight: FontWeight.bold),), ),
+                  Container(child: Text('남은 입찰시간 :  $timeToDisplay', style: TextStyle(color: Colors.pink, fontSize:  defaultSize * 1.5),)),
                 ],
               ),
             ),
             Divider(height: 10,),
             Padding(
-              padding: EdgeInsets.only(left: defaultSize * 3 , top: defaultSize * 1.6),
+              padding: EdgeInsets.only(left: defaultSize * 3 , top: defaultSize * 1.6,bottom: defaultSize * 0.8,right: defaultSize * 3),
               child: Row(
                 children: [
-                  Expanded( flex: 3,  child: Text( '입찰인원  ${widget.count} 명', style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.5 ),), ),
-                  Expanded( flex: 4, child: Text('희망금액 $formJobAmt원', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.5),)),
+                  Container(child: Text( '입찰인원  ${widget.count} 명', style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7 ),), ),
+                  SizedBox(width: defaultSize * 9.8,),
+                  Container(
+                      // decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
+                      width: defaultSize * 16,
+                      child: Text('희망금액 $formJobAmt원', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7),textAlign: TextAlign.right,)),
                 ],
               ),
             ),

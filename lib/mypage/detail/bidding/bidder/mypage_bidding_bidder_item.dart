@@ -48,50 +48,60 @@ class _MyPageBidderItemState extends State<MyPageBidderItem> {
   time(){
     _timer = Timer.periodic(_duration, (timer) {
       DateFormat dateFormat = DateFormat(dateFormatString); //날짜 방식 정하기
-      DateTime nowDateTime = dateFormat.parse(DateFormat(dateFormatString).format(DateTime.now())); // 날짜 방식에 맞춰 현재 날짜 가져오기 String
-      DateTime originDateTime = new DateFormat(dateFormatString).parse(widget.bidDlDtm); // 남은 입찰 날짜 넣어야됨
+      DateTime nowDateTime = dateFormat.parse(
+          DateFormat(dateFormatString).format(
+              DateTime.now())); // 날짜 방식에 맞춰 현재 날짜 가져오기 String
+      DateTime originDateTime = new DateFormat(dateFormatString).parse(
+          widget.bidDlDtm); // 남은 입찰 날짜 넣어야됨
       // print('bidDlDtm ============================== ${widget.bidDlDtm}');
       // print('nowDateTime ============================== $nowDateTime');
       // print('originDateTime =========================== $originDateTime');
-      final differenceSeconds = originDateTime.difference(nowDateTime).inSeconds; // 두날짜의 차이를 초단위로 가져온다  앞이 입찰시간 뒤 가 현재 시간으로 해야되나?
-      final differenceDays = originDateTime.difference(nowDateTime).inDays;
+      final differenceSeconds = originDateTime
+          .difference(nowDateTime)
+          .inSeconds; // 두날짜의 차이를 초단위로 가져온다  앞이 입찰시간 뒤 가 현재 시간으로 해야되나?
+      final differenceDays = originDateTime
+          .difference(nowDateTime)
+          .inDays;
       // print('Home differenceSeconds =============== $differenceSeconds');
       // print('Home differenceDays =============== $differenceDays');
       timeForTimer = differenceSeconds;
-
-      if(!isDisposed) {
-        setState(() {
-          if (timeForTimer < 1) {
-            // timeToDisplay = "입찰 시간 종료";
-            // print('timeToDisplay ======================= $timeToDisplay');
-            _timer.cancel();
-          }  else if(differenceDays > 0){
-            timeForTimer = timeForTimer - (differenceDays * 86400);
-            int h = timeForTimer ~/ 3600;
-            int t = timeForTimer - (3600 * h);
-            int m = t ~/ 60;
-            int s = t - (60 * m);
-            // if()
-            timeToDisplay =
-                "$differenceDays일 "+  h.toString() + ":" + m.toString() + ":" + s.toString();
-            timeForTimer = timeForTimer - 1;
-          } else if (timeForTimer < 60) {
-            timeToDisplay = timeForTimer.toString();
-            timeForTimer = timeForTimer - 1;
-          } else if (timeForTimer < 3600) {
-            int m = timeForTimer ~/ 60;
-            int s = timeForTimer - (60 * m);
-            timeToDisplay = m.toString() + ":" + s.toString();
-            timeForTimer = timeForTimer - 1;
-          } else {
-            int h = timeForTimer ~/ 3600;
-            int t = timeForTimer - (3600 * h);
-            int m = t ~/ 60;
-            int s = t - (60 * m);
-            timeToDisplay = h.toString() + ":" + m.toString() + ":" + s.toString();
-            timeForTimer = timeForTimer - 1;
-          }
-        });
+      if (widget.jobSts == "1") {
+        if (!isDisposed) {
+          setState(() {
+            if (timeForTimer < 1) {
+              timeToDisplay = "입찰 시간 종료";
+              print('timeToDisplay ======================= $timeToDisplay');
+              _timer.cancel();
+            } else if (differenceDays > 0) {
+              timeForTimer = timeForTimer - (differenceDays * 86400);
+              int h = timeForTimer ~/ 3600;
+              int t = timeForTimer - (3600 * h);
+              int m = t ~/ 60;
+              int s = t - (60 * m);
+              // if()
+              timeToDisplay =
+                  "$differenceDays일 " + h.toString() + ":" + m.toString() +
+                      ":" + s.toString();
+              timeForTimer = timeForTimer - 1;
+            } else if (timeForTimer < 60) {
+              timeToDisplay = timeForTimer.toString();
+              timeForTimer = timeForTimer - 1;
+            } else if (timeForTimer < 3600) {
+              int m = timeForTimer ~/ 60;
+              int s = timeForTimer - (60 * m);
+              timeToDisplay = m.toString() + ":" + s.toString();
+              timeForTimer = timeForTimer - 1;
+            } else {
+              int h = timeForTimer ~/ 3600;
+              int t = timeForTimer - (3600 * h);
+              int m = t ~/ 60;
+              int s = t - (60 * m);
+              timeToDisplay =
+                  h.toString() + ":" + m.toString() + ":" + s.toString();
+              timeForTimer = timeForTimer - 1;
+            }
+          });
+        }
       }
     });
   }
@@ -116,41 +126,51 @@ class _MyPageBidderItemState extends State<MyPageBidderItem> {
               Row(
                 children: [
                   Container(
-                    child: Text( widget.jobTtl, style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.5 ),),
-                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                  ),
-                  SizedBox(
-                    width: 24,
-                  ),
-                  Container(
-                    child: Text( '남은 입찰시간 :  $timeToDisplay', style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.5 ), ),
+                    // decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
+                    width: defaultSize * 34,
+                    height: defaultSize * 5,
+                    child: Text( widget.jobTtl, style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7,fontWeight: FontWeight.bold ),),
                     padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 3,
-                      child: Container(
-                        child: Text( '입찰 인원 ${widget.count}명', style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.5 ),),
-                        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                        // decoration: BoxDecoration( color: Colors.orange[50],  borderRadius: BorderRadius.circular(2), ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 3,
-                      child: Container(
-                        child: Text( '희망 금액 $formJobAmt 원', style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.5 ),),
-                        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                        // decoration: BoxDecoration( color: Colors.orange[50],  borderRadius: BorderRadius.circular(2), ),
-                      ),
-                    ),
-                  ],
-                ),
+              Row(
+                children: [
+                  Container(
+                    child: Text( '남은 입찰시간 :  $timeToDisplay', style: TextStyle(color: Colors.pinkAccent, fontSize: defaultSize * 1.7 ), ),
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                  ),
+                ],
               ),
+              Row(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(left: defaultSize * 1.6,top: defaultSize * 1),
+                    padding: EdgeInsets.only(bottom: defaultSize * 2),
+                    child: Row(
+                      children: [
+                        Container(
+                          child: Container(
+                            child: Text( '입찰 인원 ${widget.count}명', style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7 ),),
+                            // decoration: BoxDecoration( color: Colors.orange[50],  borderRadius: BorderRadius.circular(2), ),
+                          ),
+                        ),
+                        Container(
+                          // decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
+                          margin: EdgeInsets.only(left: defaultSize * 5),
+                          width: defaultSize * 20,
+                          child: Container(
+                            child: Text( '희망 금액 $formJobAmt 원', style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7 ),
+                            textAlign: TextAlign.right,),
+                            // decoration: BoxDecoration( color: Colors.orange[50],  borderRadius: BorderRadius.circular(2), ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+
             ],
           ),
         ),

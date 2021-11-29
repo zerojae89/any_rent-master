@@ -54,11 +54,11 @@ class _MyPageBidderDetailItemState extends State<MyPageBidderDetailItem> {
             Row(
               children: [
                 Expanded(flex: 4,  child: Container(
-                  child: Text('하니 : ${widget.nicNm}', style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.5 ),),
+                  child: Text('하니 : ${widget.nicNm}', style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7 ),),
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                 ) ),
                 Expanded(flex: 5,  child: Container(
-                  child: Text('입찰 금액 $formBidAmt 원', style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.5 ),),
+                  child: Text('입찰 금액 $formBidAmt 원', style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7 ),),
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                 ) ),
               ],
@@ -72,7 +72,7 @@ class _MyPageBidderDetailItemState extends State<MyPageBidderDetailItem> {
 
   bidderButton(defaultSize, jobSts){
     return Container( width: double.infinity,
-      child: FlatButton( color: Colors.purple,
+      child: FlatButton( color: Colors.white,
         onPressed: () => reservationAucMtdDialog(jobSts),
         child: jobStsText(jobSts, defaultSize),
       ),
@@ -81,11 +81,11 @@ class _MyPageBidderDetailItemState extends State<MyPageBidderDetailItem> {
 
   Widget jobStsText(String jobSts, double defaultSize){
     if(jobSts  == "1"){ return Text('낙찰하기 ',style: TextStyle(color: Colors.orange, fontSize: defaultSize * 1.2, fontWeight: FontWeight.bold),); }
-    if(jobSts  == "2"){ return Text('진행중 ',style: TextStyle(color: Colors.orange, fontSize: defaultSize * 1.2, fontWeight: FontWeight.bold),); }
-    if(jobSts  == "3"){ return Text('완료   ',style: TextStyle(color: Colors.orange, fontSize: defaultSize * 1.2, fontWeight: FontWeight.bold),); }
-    if(jobSts  == "5"){ return Text('주니 완료 대기중  ',style: TextStyle(color: Colors.orange, fontSize: defaultSize * 1.2, fontWeight: FontWeight.bold),); }
+    if(jobSts  == "2"){ return Text('진행중 ',style: TextStyle(color: Colors.lightGreen, fontSize: defaultSize * 1.2, fontWeight: FontWeight.bold),); }
+    if(jobSts  == "3"){ return Text('완료   ',style: TextStyle(color: Colors.blue[900], fontSize: defaultSize * 1.2, fontWeight: FontWeight.bold),); }
+    if(jobSts  == "5"){ return Text('완료 대기중  ',style: TextStyle(color: Colors.lightBlue, fontSize: defaultSize * 1.2, fontWeight: FontWeight.bold),); }
     if(jobSts  == "8"){ return Text('시간초과',style: TextStyle(color: Colors.orange, fontSize: defaultSize * 1.2, fontWeight: FontWeight.bold),); }
-    if(jobSts  == "9"){ return Text('취소   ',style: TextStyle(color: Colors.orange, fontSize: defaultSize * 1.2, fontWeight: FontWeight.bold),); }
+    if(jobSts  == "9"){ return Text('취소   ',style: TextStyle(color: Colors.red, fontSize: defaultSize * 1.2, fontWeight: FontWeight.bold),); }
   }
 
 

@@ -10,6 +10,8 @@ import 'package:http_parser/http_parser.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
 import 'package:any_rent/settings/custom_shared_preferences.dart';
 import 'package:any_rent/permission/photo_storage_perminnion.dart';
+import 'package:flutter/services.dart';
+
 
 // const url = 'http://211.253.20.112'; //개발서버
 // const url = "http://192.168.1.3:4001"; //재승 내부 ip
@@ -170,7 +172,7 @@ class _MyPageProfileHeaderState extends State<MyPageProfileHeader> {
                         fit: BoxFit.fill,
                           image: (prfSeq == null)
                             ? AssetImage('assets/noimage.jpg')
-                              : NetworkImage('$url/api/mypage/images?recieveToken=$prfSeq')
+                              :  NetworkImage('$url/api/mypage/images?recieveToken=$prfSeq'),
                       ),
                       border: Border.all(
                         color: Colors.amberAccent.withOpacity(0.8),
@@ -198,15 +200,18 @@ class _MyPageProfileHeaderState extends State<MyPageProfileHeader> {
         barrierDismissible: false,
         builder: (BuildContext context){
           return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15)
+            ),
             title: Center(child: Text('프로필 이미지 변경')),
             content: Text('\n이미지를 변경 하시겠습니까?\n'),
             actions: <Widget>[
-              FlatButton(onPressed: ()=> Navigator.pop(context, false), child: Text('취소')),
-              (prfSeq != null) ? FlatButton(onPressed: ()=> removeProfileDialog(), child: Text('삭제')) : null,
+              FlatButton(onPressed: ()=> Navigator.pop(context, false), child: Text('취소',style: TextStyle(color: Colors.lightGreen[800]),)),
+              (prfSeq != null) ? FlatButton(onPressed: ()=> removeProfileDialog(), child: Text('삭제',style: TextStyle(color: Colors.lightGreen[800]))) : null,
               FlatButton(onPressed: (){
                 loadAssets();
                 Navigator.pop(context, false);
-                }, child: Text('변경')),
+                }, child: Text('변경',style: TextStyle(color: Colors.lightGreen[800]))),
             ],
           );
         }
@@ -218,14 +223,17 @@ class _MyPageProfileHeaderState extends State<MyPageProfileHeader> {
         barrierDismissible: false,
         builder: (BuildContext context){
           return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15)
+            ),
             title: Center(child: Text('프로필 이미지 삭제')),
             content: Text('\n이미지를 삭제 하시겠습니까?\n'),
             actions: <Widget>[
-              FlatButton(onPressed: ()=> Navigator.pop(context, false), child: Text('아니오')),
+              FlatButton(onPressed: ()=> Navigator.pop(context, false), child: Text('아니오',style: TextStyle(color: Colors.lightGreen[800]))),
               FlatButton(onPressed: (){
                 removeProfileImg();
                 Navigator.pop(context, false);
-              }, child: Text('예')),
+              }, child: Text('예',style: TextStyle(color: Colors.lightGreen[800]))),
             ],
           );
         }
