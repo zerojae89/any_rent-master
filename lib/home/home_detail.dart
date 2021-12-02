@@ -79,12 +79,13 @@ class _HomeDetailState extends State<HomeDetail> {
   void dispose() {
     isDisposed = true;
     _controller.dispose();
+    if(aucMtd == '2')_timer.cancel();
     super.dispose();
   }
 
 
   loadToken() async {
-    token = await customSharedPreferences.getString('token'); //토큰으로 회원 비회원 판단
+    token = await customSharedPreferences.getString('token'); //토큰으로 회원 비회원 판단f
     debugPrint('HomeDetail token ================= $token');
     debugPrint('HomeDetail jobId ================= $jobId');
     var homeDetail;
