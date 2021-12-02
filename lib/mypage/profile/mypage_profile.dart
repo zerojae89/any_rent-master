@@ -84,6 +84,13 @@ class _MyPageProfileState extends State<MyPageProfile> {
                   vertical: 3,
                   horizontal: 2,
                 ),
+                MypageProfileMenuItem(
+                  icon: Icon(Icons.home_outlined, color: Colors.black,),
+                  title: '주소',
+                  contents: '서울시 서초구 강남대로 40-13',
+                  vertical: 3,
+                  horizontal: 2,
+                ),
                 SizedBox(height: 5,),
                 MypageProfileMenuItem(
                   icon: Icon(Icons.mood_outlined, color: Colors.black,),
@@ -92,6 +99,7 @@ class _MyPageProfileState extends State<MyPageProfile> {
                   vertical: 3,
                   horizontal: 2,
                 ),
+
                 // MyPageMenuItem(
                 //   icon: Icon(Icons.monetization_on_rounded, color: Colors.purple,),
                 //   title: '계좌 인증 & 확인',

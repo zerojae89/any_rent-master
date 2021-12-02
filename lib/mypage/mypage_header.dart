@@ -93,27 +93,28 @@ class _MyPageHeaderState extends State<MyPageHeader> {
                         width: defaultSize * 15,
                         height: defaultSize * 18
                       ),
+                      SizedBox(height: defaultSize * 1,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 0),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10)),
+                            width: defaultSize * 16,
+                            // decoration: BoxDecoration(
+                            //     border: Border.all(color:Colors.red),
+                            // ),
                             child: Text(
                               (nicNm ?? ''),
                               style: TextStyle(
                                   fontSize: defaultSize * 2,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
+                              textAlign: TextAlign.right,
                             ),
                           ),
+                          SizedBox(width: defaultSize * 2,),
                           Container(
-                            margin: EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 0),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 2.1),
+                            margin: EdgeInsets.only(
+                                right: defaultSize * 8.5),
                             child: Text(
                               (mbrId ?? ''),
                               style: TextStyle(
@@ -121,41 +122,52 @@ class _MyPageHeaderState extends State<MyPageHeader> {
                                   fontWeight: FontWeight.bold,
                                   color: Colors.yellowAccent),
                             ),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10)),
+                            // decoration: BoxDecoration(
+                            //   border: Border.all(color:Colors.red),
+                            // ),
                           ),
                         ],
                       ),
+                      SizedBox(height: defaultSize * 1.5,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            margin: EdgeInsets.only(bottom: 8),
-                            padding: EdgeInsets.symmetric(
-                                vertical: 2.5, horizontal: 8),
+                            margin: EdgeInsets.only(left: defaultSize * 3),
+                            // decoration: BoxDecoration(
+                            //   border: Border.all(color:Colors.red),),
                             child: Text(
-                              ('평점.'),
+                              ('평점'),
                               style: TextStyle(
                                   fontSize: defaultSize * 2,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
                             ),
                           ),
+                          SizedBox(width: defaultSize*2,),
                           Container(
-                            margin: EdgeInsets.only(bottom: 12,left: 10,top: defaultSize * 0.5),
+                            width: defaultSize * 6,
+                          //   decoration: BoxDecoration(
+                          //     border: Border.all(color:Colors.red),
+                          //
+                          // ),
+                            margin: EdgeInsets.only(right: defaultSize * 1),
                             child: Text(
                               (mbrGrd ?? ''),
                               style: TextStyle(
-                                  color: Colors.yellowAccent,
-                                  fontSize: defaultSize * 2,
-                                  fontWeight: FontWeight.bold),
+                                fontSize: defaultSize * 2,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.yellowAccent
+                            ),
                             ),
                           ),
                         ],
                       ),
+                      SizedBox(height: defaultSize * 1,),
                     ],
                   ),
                 ),
+
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 8),
                   width: defaultSize * 15,

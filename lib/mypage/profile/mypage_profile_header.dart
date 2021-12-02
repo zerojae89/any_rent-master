@@ -155,7 +155,6 @@ class _MyPageProfileHeaderState extends State<MyPageProfileHeader> {
             spreadRadius: 3.0
           )]
         ),
-        padding: EdgeInsets.symmetric(vertical: 25, horizontal: 30),
         child: Column(
           children: [
             Padding(
@@ -164,6 +163,7 @@ class _MyPageProfileHeaderState extends State<MyPageProfileHeader> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
+                    margin: EdgeInsets.only(top: 10),
                     width: defaultSize * 15,
                     height: defaultSize * 18,
                     decoration: BoxDecoration(

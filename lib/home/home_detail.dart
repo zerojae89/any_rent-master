@@ -275,7 +275,7 @@ class _HomeDetailState extends State<HomeDetail> {
                                       color: Colors.yellow.withOpacity(0.8),
                                       width: defaultSize * 0.3)),
                               width: defaultSize * 9,
-                              height: defaultSize * 15
+                              height: defaultSize * 11
                             // child: (junPrfSeq == null) ? Icon(Icons.account_box_rounded, size: 40,) : Image.network('$url/api/mypage/images?recieveToken=$junPrfSeq')
                           ),
                           Container(
@@ -293,7 +293,7 @@ class _HomeDetailState extends State<HomeDetail> {
                                 Container(),
                                 Container(
                                   // decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
-                                  width: defaultSize * 10.5,
+                                  width: defaultSize * 11,
                                   child: Text(
                                     junNic ?? '',
                                     style: TextStyle(color: Colors.lightGreen[700], fontWeight: FontWeight.bold, fontSize:  defaultSize * 1.7),textAlign: TextAlign.center,
@@ -450,8 +450,10 @@ class _HomeDetailState extends State<HomeDetail> {
                 ),
                 SizedBox(height: defaultSize * 1.7,),
                 Divider(),
-                (picCnt == 0) ?  Container() : SizedBox(height: defaultSize * 45, child: buildGridView(jobId, picCnt)),
-                Container( 
+                Container(
+                  // decoration: BoxDecoration(
+                  //   border: Border.all(color: Colors.red)
+                  // ),
                   margin: EdgeInsets.all(20),
                   height: defaultSize * 30,
                   child:  Container(
@@ -461,6 +463,7 @@ class _HomeDetailState extends State<HomeDetail> {
                     ),
                     width: 350,
                     child: Padding( padding: EdgeInsets.all(20),  child: Text(jobCtn ?? '', style:  TextStyle(fontSize:  defaultSize * 1.7),), ), ), ),
+                (picCnt == 0) ?  Container() : SizedBox(height: defaultSize * 45, child: buildGridView(jobId, picCnt)),
                 Divider(height: defaultSize * 4,),
               ],
             ),

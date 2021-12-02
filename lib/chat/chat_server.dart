@@ -1,5 +1,6 @@
 import 'package:any_rent/settings/url.dart';
 import 'package:http/http.dart' as http;
+import 'package:any_rent/settings/custom_shared_preferences.dart';
 
 // const url = 'http://211.253.20.112'; //개발서버
 // const url = "http://192.168.1.3:4001"; //재승 내부 ip
@@ -28,13 +29,15 @@ class ChatServer{
     }
   }
 
-  Future<String> getChatCnt(String jobId, String junId, String hanId ) async{ //채팅방 유저 프로필 가져오기
+  Future<String> getChatCnt(String jobId, String junId, String hanId) async{ //채팅방 유저 프로필 가져오기
     print("getChatProfile====================================================Start");
+    String token = await customSharedPreferences.getString('token');
     http.Response response = await http.post( '$url/api/chat/chatCnt',
         body: {
           "jobId" : jobId,
           "junId" : junId,
           "hanId" : hanId,
+          "recieveToken" : token,
         }
     );
     if (response.statusCode == 200) {

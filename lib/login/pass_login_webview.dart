@@ -15,7 +15,7 @@ import '../mypage/profile/mypage_profile.dart';
 
 // const LoginUrl = 'https://211.253.20.112/api/auth/pass'; //개발서버
 // const LoginUrl = 'https://192.168.1.3:4000/api/auth/pass';
-const LoginUrl = UrlConfig.url+':8443/api/auth/pass';
+const LoginUrl = UrlConfig.url+'/api/auth/pass';
 
 class PassLoginWebView extends StatefulWidget{
   @override

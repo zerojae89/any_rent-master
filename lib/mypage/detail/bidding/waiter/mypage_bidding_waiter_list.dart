@@ -63,25 +63,25 @@ class _MyPageWaiterListState extends State<MyPageWaiterList> {
           // ],
         ),
 
-        Expanded( child:
-        // (junWorkItems.length == 0 ) ?
-        // Center(child:  roadJunWorkList(junWorkItems)) :
-        ListView.builder(
-          // itemCount: junWorkItems.length,
-          itemCount: 5,
-          itemBuilder: (context, index) {
-            jobId = waiterItems[index]['jobId'];
-            jobTtl = waiterItems[index]['jobTtl'];
-            aucMtd = waiterItems[index]['aucMtd'];
-            jobStDtm = waiterItems[index]['jobStDtm'];
-            bidDlDtm = waiterItems[index]['bidDlDtm'];
-            jobAmt = waiterItems[index]['jobAmt'];
-            payMtd = waiterItems[index]['payMtd'];
-            jobIts = waiterItems[index]['jobIts'];
-            jobSts = waiterItems[index]['jobSts'];
-            // return  MyPageListJunWorkItem(token, jobId, jobTtl, aucMtd, jobStDtm, bidDlDtm, jobAmt, index, payMtd, jobIts, jobSts);
-          },
-        ))
+        // Expanded( child:
+        // // (junWorkItems.length == 0 ) ?
+        // // Center(child:  roadJunWorkList(junWorkItems)) :
+        // ListView.builder(
+        //   // itemCount: junWorkItems.length,
+        //   itemCount: 5,
+        //   itemBuilder: (context, index) {
+        //     jobId = waiterItems[index]['jobId'];
+        //     jobTtl = waiterItems[index]['jobTtl'];
+        //     aucMtd = waiterItems[index]['aucMtd'];
+        //     jobStDtm = waiterItems[index]['jobStDtm'];
+        //     bidDlDtm = waiterItems[index]['bidDlDtm'];
+        //     jobAmt = waiterItems[index]['jobAmt'];
+        //     payMtd = waiterItems[index]['payMtd'];
+        //     jobIts = waiterItems[index]['jobIts'];
+        //     jobSts = waiterItems[index]['jobSts'];
+        //     // return  MyPageListJunWorkItem(token, jobId, jobTtl, aucMtd, jobStDtm, bidDlDtm, jobAmt, index, payMtd, jobIts, jobSts);
+        //   },
+        // ))
       ],
     );
   }

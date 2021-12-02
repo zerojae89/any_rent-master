@@ -341,7 +341,6 @@ class _MyPageAttentionDetailState extends State<MyPageAttentionDetail> {
                 ),
               ),
               Divider(height: defaultSize * 3,),
-              (picCnt == 0) ?  Container() : SizedBox(height: defaultSize * 45, child: buildGridView(jobId, picCnt)),
               Container(
                 margin: EdgeInsets.all(20.0),
                 height: defaultSize * 30,
@@ -352,6 +351,7 @@ class _MyPageAttentionDetailState extends State<MyPageAttentionDetail> {
                   ),
                   width: 350,
                   child: Padding( padding: EdgeInsets.all(20),  child: Text(jobCtn ?? '', style:  TextStyle(fontSize:  defaultSize * 1.7),), ), ), ),
+              (picCnt == 0) ?  Container() : SizedBox(height: defaultSize * 45, child: buildGridView(jobId, picCnt)),
               Divider(height: defaultSize * 4,),
             ],
           ),
