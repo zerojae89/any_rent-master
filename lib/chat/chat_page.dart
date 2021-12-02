@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:any_rent/chat/chat_server.dart';
-import 'package:any_rent/settings/custom_shared_preferences.dart';
 import 'package:any_rent/settings/size_config.dart';
 import 'package:any_rent/settings/url.dart';
 import 'package:flutter/material.dart';
@@ -175,7 +174,7 @@ class _ChatPageState extends State<ChatPage> {
                         children: [
                           Container(alignment: messages[messages.length - index -1]['name'] == mbrId  ? Alignment.centerRight  : Alignment.centerLeft, padding: EdgeInsets.all(defaultSize) ,
                               child: Text(
-                                  messages[messages.length - index -1]['name'] == mbrId  ? myNic?? '' : userNic ?? ''
+                                  messages[messages.length - index -1]['name'] == mbrId  ? myNic?? '' : userNic ?? '',style: TextStyle(color: Colors.lightGreen[700],fontWeight: FontWeight.bold),
                               )),
                           Container(
                             padding: EdgeInsets.all( defaultSize ),
@@ -192,11 +191,11 @@ class _ChatPageState extends State<ChatPage> {
                                 dataView(defaultSize, messages.length - index -1),
                                 // Text('${index.toString()}'),
                                 Container(
-                                  padding:  EdgeInsets.all(defaultSize * 1.2 ),
+                                  padding:  EdgeInsets.all(defaultSize * 1 ),
                                   margin:  EdgeInsets.only(left: defaultSize ),
                                   decoration: BoxDecoration(
-                                    color: Colors.purple,
-                                    borderRadius: BorderRadius.circular(20.0),
+                                    color: Colors.amber[700],
+                                    borderRadius: BorderRadius.circular(15.0),
                                   ),
                                   child:textView (defaultSize, messages.length - index -1),
                                 ),
@@ -213,19 +212,26 @@ class _ChatPageState extends State<ChatPage> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Container(
-                                  margin:  EdgeInsets.only(bottom: defaultSize, right: defaultSize),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(defaultSize * 5),
-                                  ),
-                                  child:(userPrfSeq == null) ? Icon(Icons.account_box_rounded, size: defaultSize * 7,) :
-                                  Image.network('$url/api/mypage/images?recieveToken=$userPrfSeq', height:  defaultSize * 8,),),
+                                Container(margin: EdgeInsets.only(right: 30),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      shape: BoxShape.circle,
+                                      image: DecorationImage(
+                                          fit: BoxFit.fill,
+                                          image: (userPrfSeq == null)
+                                              ? AssetImage('assets/noimage.jpg')
+                                              : NetworkImage(
+                                              '$url/api/mypage/images?recieveToken=$userPrfSeq')), //.
+                                    ),
+                                    width: defaultSize * 9,
+                                    height: defaultSize * 12
+
+                                ),
                                 Container(
                                   padding:  EdgeInsets.all(defaultSize * 1.2 ),
                                   margin:  EdgeInsets.only(right: defaultSize ),
                                   decoration: BoxDecoration(
-                                    color: Colors.purple,
+                                    color: Colors.lightGreen[600],
                                     borderRadius: BorderRadius.circular(20.0),
                                   ),
                                   child:textView (defaultSize, messages.length - index -1),
@@ -265,11 +271,14 @@ class _ChatPageState extends State<ChatPage> {
                         ),
                       ),
                     ),
-                    FloatingActionButton(
-                      backgroundColor: Colors.deepPurple,
-                      onPressed: () => sendMessage(),
-                      child: Icon(
-                        Icons.send, size: 30,
+                    Container(
+                      margin: EdgeInsets.only(bottom: defaultSize * 2),
+                      child: FloatingActionButton(
+                        backgroundColor: Colors.lightGreen[600],
+                        onPressed: () => sendMessage(),
+                        child: Icon(
+                          Icons.send, size: 30,
+                        ),
                       ),
                     ),
                   ],
@@ -372,19 +381,20 @@ class _ChatPageState extends State<ChatPage> {
     if(messages[index]['message'].length > 40 ){
       return Text(
         messages[index]['message'].substring(0,16)+"\n"+ messages[index]['message'].substring(16, 33) + "\n" + messages[index]['message'].substring(33),
-        style: TextStyle(color: Colors.amber, fontSize: defaultSize * 1.2), );
+        style: TextStyle(color: Colors.white, fontSize: defaultSize * 1.7), );
     } else if(messages[index]['message'].length > 30 ){
       return Text(
         messages[index]['message'].substring(0,15)+"\n"+ messages[index]['message'].substring(15, 30) + "\n" + messages[index]['message'].substring(30),
-        style: TextStyle(color: Colors.amber, fontSize: defaultSize * 1.2), );
+        style: TextStyle(color: Colors.white, fontSize: defaultSize * 1.7), );
     } else if(messages[index]['message'].length > 10 ){
-      return Text(messages[index]['message'].substring(0,10)+"\n"+ messages[index]['message'].substring(10), style: TextStyle(color: Colors.amber, fontSize: defaultSize * 1.2), );
+      return Text(messages[index]['message'].substring(0,10)+"\n"+ messages[index]['message'].substring(10),
+        style: TextStyle(color: Colors.white, fontSize: defaultSize * 1.7), );
     } else if(messages[index]['message'].length > 20 ){
       return Text(
         messages[index]['message'].substring(0,10)+"\n"+ messages[index]['message'].substring(10, 20) + "\n" +  messages[index]['message'].substring(20),
-        style: TextStyle(color: Colors.amber, fontSize: defaultSize * 1.2), );
+        style: TextStyle(color: Colors.white, fontSize: defaultSize * 1.7), );
     }
-    return Text(messages[index]['message'], style: TextStyle(color: Colors.amber, fontSize: defaultSize * 1.2), );
+    return Text(messages[index]['message'], style: TextStyle(color: Colors.white, fontSize: defaultSize * 1.7), );
   }
 
   Widget dataView(defaultSize, index){

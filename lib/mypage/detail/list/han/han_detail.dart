@@ -354,7 +354,6 @@ class _MyPageHanDetailState extends State<MyPageHanDetail> {
                 ],
               ),
               Divider(height: defaultSize * 3,),
-              (picCnt == 0) ?  Container() : SizedBox(height: defaultSize * 45, child: buildGridView(jobId, picCnt)),
               Container(
                 margin: EdgeInsets.all(20.0),
                 height: defaultSize * 30,
@@ -365,6 +364,7 @@ class _MyPageHanDetailState extends State<MyPageHanDetail> {
                   ),
                   width: 350,
                   child: Padding( padding: EdgeInsets.all(20),  child: Text(jobCtn ?? '', style:  TextStyle(fontSize:  defaultSize * 1.7),), ), ), ),
+              (picCnt == 0) ?  Container() : SizedBox(height: defaultSize * 45, child: buildGridView(jobId, picCnt)),
               Divider(height: defaultSize * 4,),
             ],
           ),
@@ -473,7 +473,7 @@ class _MyPageHanDetailState extends State<MyPageHanDetail> {
             Expanded(
               child: FlatButton(
                 onPressed: () => sendMessage(),
-                child: Text("메세지 보내기"),
+                child: Text("메세지 보내기",style: TextStyle(fontSize: defaultSize * 2),),
               ),
             ),
           ],

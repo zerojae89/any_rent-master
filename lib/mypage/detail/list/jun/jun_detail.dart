@@ -251,7 +251,7 @@ class _MyPageJunDetailState extends State<MyPageJunDetail> {
                                       color: Colors.yellow.withOpacity(0.8),
                                       width: 5)),
                               width: defaultSize * 9,
-                              height: defaultSize * 15
+                              height: defaultSize * 12
                             // child: (junPrfSeq == null) ? Icon(Icons.account_box_rounded, size: 40,) : Image.network('$url/api/mypage/images?recieveToken=$junPrfSeq')
                           ),
                           Container(
@@ -269,7 +269,7 @@ class _MyPageJunDetailState extends State<MyPageJunDetail> {
                                 Container(),
                             Container(
                               // decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
-                              width: defaultSize * 10.5,
+                              width: defaultSize * 11,
                               child: Text(
                                 junNic ?? '',
                                 style: TextStyle(color: Colors.lightGreen[700], fontWeight: FontWeight.bold, fontSize:  defaultSize * 1.7),textAlign: TextAlign.center,
@@ -415,7 +415,6 @@ class _MyPageJunDetailState extends State<MyPageJunDetail> {
                   ],
                 ),
                 Divider(height: defaultSize * 3,),
-                (picCnt == 0) ?  Container() : SizedBox(height: defaultSize * 45, child: buildGridView(jobId, picCnt)),
                 Container(
                   margin: EdgeInsets.all(20.0),
                   height: defaultSize * 30,
@@ -426,6 +425,7 @@ class _MyPageJunDetailState extends State<MyPageJunDetail> {
                     ),
                     width: 350,
                     child: Padding( padding: EdgeInsets.all(20),  child: Text(jobCtn ?? '', style:  TextStyle(fontSize:  defaultSize * 1.7),), ), ), ),
+                (picCnt == 0) ?  Container() : SizedBox(height: defaultSize * 45, child: buildGridView(jobId, picCnt)),
                 Divider(height: defaultSize * 4,),
               ],
             ),

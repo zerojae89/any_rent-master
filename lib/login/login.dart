@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:any_rent/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:any_rent/settings/size_config.dart';
@@ -31,14 +33,14 @@ class _LoginState extends State<Login> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(height: 10),
-              Text('로그인이 필요한 서비스 입니다.', style: TextStyle(fontSize: 15),),
-              Padding(padding: EdgeInsets.only(top: defaultSize * 2,bottom: 3)),
+              Text('로그인이 필요한 서비스 입니다.', style: TextStyle(fontSize: defaultSize * 2.1,fontWeight: FontWeight.bold,color: Colors.black),),
+              Container(padding: EdgeInsets.only(top: defaultSize * 3,bottom: 3),),
               Container(
                 width: defaultSize * 35,
                 height: defaultSize * 5,
                 decoration: BoxDecoration(
                     color: Colors.red,
-                    borderRadius: BorderRadius.circular(15)
+                    borderRadius: BorderRadius.circular(10)
                 ),
                 child:
                 FlatButton(
@@ -51,8 +53,36 @@ class _LoginState extends State<Login> {
                 width: defaultSize * 35,
                 height: defaultSize * 5,
                 decoration: BoxDecoration(
+                    color: Colors.lightGreenAccent[700],
+                    borderRadius: BorderRadius.circular(10)
+                ),
+                child:
+                FlatButton(
+                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => NaverLoginWebView())),
+                    child: Text( 'NAVER 로그인',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white),)
+                ),
+              ),
+              SizedBox(height: 10,),
+              // Container(
+              //   width: defaultSize * 35,
+              //   height: defaultSize * 5,
+              //   decoration: BoxDecoration(
+              //       color: Colors.indigo,
+              //       borderRadius: BorderRadius.circular(15)
+              //   ),
+              //   child:
+              //   FlatButton(
+              //       onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FacebookLoginWebView())),
+              //     child: Text( 'Facebook 로그인',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white),),
+              //   ),
+              // ),
+              // SizedBox(height: 10),
+              Container(
+                width: defaultSize * 35,
+                height: defaultSize * 5,
+                decoration: BoxDecoration(
                     color: Colors.yellow[600],
-                    borderRadius: BorderRadius.circular(15)
+                    borderRadius: BorderRadius.circular(10)
                 ),
                 child:
                 FlatButton.icon(
@@ -61,34 +91,7 @@ class _LoginState extends State<Login> {
                   icon: Icon(Icons.chat),
                 ),
               ),
-              SizedBox(height: 10,),
-              Container(
-                width: defaultSize * 35,
-                height: defaultSize * 5,
-                decoration: BoxDecoration(
-                    color: Colors.indigo,
-                    borderRadius: BorderRadius.circular(15)
-                ),
-                child:
-                FlatButton(
-                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FacebookLoginWebView())),
-                  child: Text( 'Facebook 로그인',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white),),
-                ),
-              ),
-              SizedBox(height: 10),
-              Container(
-                width: defaultSize * 35,
-                height: defaultSize * 5,
-                decoration: BoxDecoration(
-                    color: Colors.lightGreenAccent[700],
-                    borderRadius: BorderRadius.circular(15)
-                ),
-                child:
-                FlatButton(
-                  onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => NaverLoginWebView())),
-                  child: Text( 'NAVER 로그인',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white),)
-                ),
-              )
+
             ],
           ),
 

@@ -103,10 +103,13 @@ class _MyPageDetailMyTownState extends State<MyPageDetailMyTown> {
           barrierDismissible: false,
           builder: (BuildContext context) {
             return AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15)
+              ),
               title: Text("GPS 가 활성화 되있지 않습니다."),
               content:const Text('GPS 를 활성화 시켜주세요.'),
               actions: <Widget>[
-                FlatButton(child: Text('Ok'),
+                FlatButton(child: Text('Ok',style: TextStyle(color: Colors.lightGreen[800],fontSize: defaultSize * 2),),
                   onPressed: () {
                     final AndroidIntent intent = AndroidIntent( action: 'android.settings.LOCATION_SOURCE_SETTINGS');
                     intent.launch();
@@ -154,31 +157,49 @@ class _MyPageDetailMyTownState extends State<MyPageDetailMyTown> {
   Widget reCertText2(String cert, int cnt, String reCert, bool type){
     return (cert == null) ? Container() :
       Container(
+        decoration: BoxDecoration(
+          // color: Colors.lightBlueAccent.withOpacity(0.1)
+        ),
+        margin: EdgeInsets.only(left: defaultSize),
+        // color: Colors.red.withOpacity(0.3),
           padding: EdgeInsets.all(defaultSize * 2),
           child: Column(
             children: [
               Row(
                 children: [
-                  Padding(
-                    padding: EdgeInsets.all(defaultSize * 2),
-                    child: Column(
+                  Container(
+                    // padding: EdgeInsets.all(defaultSize * 2),
+                    child: Row(
                       children: [
-                        Text('동네', style: TextStyle( fontSize:  defaultSize * 1.8),),
-                        Text(cert ?? '' , style: TextStyle( fontSize:  defaultSize * 1.4),),
+                        Container(
+                          // decoration: BoxDecoration(
+                          //     color: Colors.red.withOpacity(0.1)
+                          // ),
+                        child: Text('동네 : ', style: TextStyle( fontSize:  defaultSize * 1.8),)),
+                        SizedBox(width: defaultSize * 1,),
+                        Container(
+                          padding: EdgeInsets.only(top: defaultSize * 0.4),
+                        height: defaultSize * 3,
+                            // decoration: BoxDecoration(
+                            // color: Colors.red.withOpacity(0.1)
+                        // ),
+                        child: Text(cert ?? '' , style: TextStyle( fontSize:  defaultSize * 1.8),)),
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.all(defaultSize * 2),
-                    child: Column(
-                      children: [
-                        Text('인증횟수' , style: TextStyle( fontSize:  defaultSize * 1.8),),
-                        (cnt != null) ?  Text('$cnt', style: TextStyle( fontSize:  defaultSize * 1.4),) : Text('0', style: TextStyle( fontSize:  defaultSize * 1.4),),
-                      ],
-                    ),
-                  ),
-                  IconButton(icon: Icon(Icons.clear, color: Colors.amber,), onPressed: ()=> removeAddressDialog(reCert, type)),
+                  SizedBox(width: defaultSize * 10,),
+                  TextButton(child: Text('동네 삭제',style: TextStyle(fontSize: defaultSize * 2,color: Colors.red[700]),),onPressed: ()=> removeAddressDialog(reCert, type),)
+                  // IconButton(icon: Icon(Icons.clear, color: Colors.amber,), onPressed: ()=> removeAddressDialog(reCert, type)),
                 ],
+              ),
+              Container(
+                child: Row(
+                  children: [
+                    Text('인증횟수 : ' , style: TextStyle( fontSize:  defaultSize * 1.8),),
+                    SizedBox(width: defaultSize * 1,),
+                    (cnt != null) ?  Text('$cnt', style: TextStyle( fontSize:  defaultSize * 1.8,color: Colors.lightGreen[700],fontWeight: FontWeight.bold),) : Text('0', style: TextStyle( fontSize:  defaultSize * 1.4),),
+                  ],
+                ),
               ),
             ],
           )
@@ -193,8 +214,11 @@ class _MyPageDetailMyTownState extends State<MyPageDetailMyTown> {
       body: Column(
         children: [
           MyPageDetailAppbar( title: '내 동네',),
-          Expanded( flex: 2,
+          Container(
             child: Container(
+              // decoration: BoxDecoration(
+              //     color: Colors.red.withOpacity(0.1)
+              // ),
               margin: EdgeInsets.all(20.0),
               child: Padding(
                 padding: EdgeInsets.all(10.0),
@@ -204,33 +228,55 @@ class _MyPageDetailMyTownState extends State<MyPageDetailMyTown> {
                     Text( '현재위치\n',  style: TextStyle( fontSize: defaultSize * 2.6,  fontWeight: FontWeight.bold ), ),
                     Text( (thoroughfare == null) ? '죄송합니다. 현재 위치정보를 가져올 수 없습니다. 다시 시도해 주세요.' : '' , style: TextStyle( fontSize: defaultSize * 1.9, ),),
                     Divider(),
+                    SizedBox(height: defaultSize * 2,),
                     Row(
                       children: [
                         Expanded( flex: 4, child: Text( (thoroughfare != null) ? '현재위치) $thoroughfare' : '', style: TextStyle( fontSize: defaultSize * 2, ), ) ),
                         Expanded( flex: 2,
                           child: Container(
+                            height: defaultSize * 4.5,
+                            width: defaultSize * 12,
                             decoration: BoxDecoration(
-                              color: Colors.lightGreen[400],
-                              borderRadius: BorderRadius.circular(35),
+                              color: Colors.lightGreen,
+                              borderRadius: BorderRadius.circular(10),
                             ),
                             child:permission ?
-                            FlatButton( child: Text( '등록',  style: TextStyle( color: Colors.white, ), ), onPressed: () => _sendAddress(),) :
-                              FlatButton( child: Text( '새로고침',  style: TextStyle( color: Colors.white, ), ), onPressed: () => getGpsPermission() ,),
+                            FlatButton( child: Text( '등 록',  style: TextStyle( color: Colors.white,fontWeight: FontWeight.bold ), ), onPressed: () => _sendAddress(),) :
+                              FlatButton( child: Text( '새로고침',  style: TextStyle( color: Colors.white, fontWeight: FontWeight.bold), ), onPressed: () => getGpsPermission() ,),
                           ),
                         ),
                       ],
                     ),
+                    SizedBox(height: defaultSize * 3,),
+                    Container(
+                      margin: EdgeInsets.only(top:defaultSize * 3),
+                      height: defaultSize * 20,
+                      width: defaultSize * 40,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.amberAccent),
+                          // color: Colors.lightBlueAccent.withOpacity(0.1),
+                        image: DecorationImage(
+                          image: AssetImage('assets/locationicon.png'),
+                          fit: BoxFit.cover
+                        )
+                      ),
+                    )
                   ],
                 ),
               ),
             ),
           ),
           Container(
-            margin: EdgeInsets.only(bottom: 200,left: 20),
+            width: defaultSize * 35,
+            // decoration: BoxDecoration(
+            //   color: Colors.red.withOpacity(0.1)
+            // ),
+            // margin: EdgeInsets.only(left: defaultSize * 1),
               child: Column(
                 children: [
-                  (substringCert1 == null) ? Container() : reCertText2(substringCert1, townCnt1, cert1, true),
-                  (substringCert2 == null) ? Container() : reCertText2(substringCert2, townCnt2, cert2, false),
+                  Container(
+                      child: (substringCert1 == null) ? Container() : reCertText2(substringCert1, townCnt1, cert1, true)),
+                  Container( child: (substringCert2 == null) ? Container() : reCertText2(substringCert2, townCnt2, cert2, false)),
                 ],
               ),
           ),
@@ -238,13 +284,14 @@ class _MyPageDetailMyTownState extends State<MyPageDetailMyTown> {
             child: Container(
               child: Center(
                 child:  Container(
-                  width: defaultSize * 27,
+                  width: defaultSize * 12,
+                  height: defaultSize * 4.5,
                   decoration: BoxDecoration(
-                      color: Colors.lightGreen[400],
-                    borderRadius: BorderRadius.circular(35),
+                      color: Colors.lightGreen,
+                    borderRadius: BorderRadius.circular(10),
                   ),
                   child: FlatButton(
-                    child: Text( '인증',  style: TextStyle( color: Colors.white, ), ),
+                    child: Text( '동네 인증',  style: TextStyle( color: Colors.white,fontWeight: FontWeight.bold ), ),
                     onPressed: ()=> certificationAddress(),
                   ),
                 ),
@@ -262,13 +309,16 @@ class _MyPageDetailMyTownState extends State<MyPageDetailMyTown> {
           barrierDismissible: false,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text("동네를 삭제하시겠습니까?."),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15)
+              ),
+              title: Text("동네를 삭제하시겠습니까?"),
               content:const Text('동네를 삭제하시면 \n인증횟수가 초기화 됩니다.'),
               actions: <Widget>[
-                FlatButton(child: Text('예'),
+                FlatButton(child: Text('예',style: TextStyle(color: Colors.lightGreen[800]),),
                   onPressed: ()=> removeAddress(reCert, type),
                 ),
-                FlatButton(child: Text('아니요'),
+                FlatButton(child: Text('아니요',style: TextStyle(color: Colors.lightGreen[800])),
                   onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
                 ),
               ],

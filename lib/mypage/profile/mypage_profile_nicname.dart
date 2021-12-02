@@ -56,8 +56,8 @@ class _MyPageProfileNicNameState extends State<MyPageProfileNicName> {
                   widget.icon,
                   SizedBox(width: defaultSize * 2,),
                   Text( '닉네임 : ',  style: TextStyle( fontSize: 19,fontWeight: FontWeight.bold ),),
-                  SizedBox(width: defaultSize * 4,),
-                  Container(width:110,child: Text( (nicNm ?? '' ),  style: TextStyle( fontSize: 19,fontWeight: FontWeight.bold,color: Colors.lightGreen[700]), )),
+                  SizedBox(width: defaultSize * 1,),
+                  Container(width:130,child: Text( (nicNm ?? '' ),  style: TextStyle( fontSize: 19,fontWeight: FontWeight.bold,color: Colors.lightGreen[700]), )),
                   // Spacer(),
                   Container(
                       height: 40,
