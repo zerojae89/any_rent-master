@@ -559,7 +559,10 @@ class _HomeDetailState extends State<HomeDetail> {
               height: defaultSize * 6,
               child: FlatButton(
                 color: Colors.lightGreen,
-                onPressed: () => homeDetailDialog.onUpdatePressed(context, jobId),
+                onPressed: () {
+                  if(aucMtd == '2')_timer.cancel();
+                  homeDetailDialog.onUpdatePressed(context, jobId);
+                },
                 child: Text( "수정하기",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 2,), ),
               ),
             ),

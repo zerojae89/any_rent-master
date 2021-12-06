@@ -147,16 +147,6 @@ class _HomeUpdateState extends State<HomeUpdate> {
         print(timeSub);
         print("selectedTime ============");
 
-        // _hour = selectedTime.hour.toString();
-        // _minute = selectedTime.minute.toString();
-        // _time = _hour + ' : ' + _minute;
-        // _timeController.text = _time;
-        //
-        // print("_time =========== $_time");
-
-        // jobStDtm = selectedDate.toString().substring(0, 11) + timeSub;
-        // print("jobStdtm ============ $jobStDtm");
-
         _timeController.text = formatDate(
             DateTime(2019, 08, 1, selectedTime.hour, selectedTime.minute),
             [hh, ':', nn, " ", am]).toString();
@@ -168,8 +158,6 @@ class _HomeUpdateState extends State<HomeUpdate> {
     super.initState();
     loadToken();
   }
-
-  final _controller = TextEditingController();
 
   @override
   void dispose() {
@@ -469,7 +457,7 @@ class _HomeUpdateState extends State<HomeUpdate> {
                   builder: (BuildContext context) => MyPageDetailList(
                         index: 0,
                       )),
-              (route) => false);
+              (route) => true);
         });
       });
     } catch (e) {

@@ -68,7 +68,7 @@ class _MyPageDetailListState extends State<MyPageDetailList> {
   }
 
   Future<bool> onBackPressed() {//뒤로가기 마이페이지로 이동
-    return Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => MyHomePage(index: 3,)), (route) => false);
+    return Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => MyHomePage(index: 3,)), (route) => true);
   }
 }
 
