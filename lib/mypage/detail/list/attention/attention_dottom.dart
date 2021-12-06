@@ -49,7 +49,7 @@ class AttentionBottom {
                 child: FlatButton(
                   color: Colors.lightGreen,
                   onPressed: () => onComplComplete(context, jobId, token),
-                  child: Text( "소일 완료하기",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.7,), ),
+                  child: Text( "완료하기",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.7,), ),
                 ),
               ),
               Expanded(

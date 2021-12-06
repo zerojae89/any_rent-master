@@ -184,7 +184,7 @@ class _MyPageReviewReadDetailState extends State<MyPageReviewReadDetail> {
                                       color: Colors.yellow.withOpacity(0.8),
                                       width: defaultSize * 0.3)),
                               width: defaultSize * 9,
-                              height: defaultSize * 15
+                              height: defaultSize * 12
                             // child: (junPrfSeq == null) ? Icon(Icons.account_box_rounded, size: 40,) : Image.network('$url/api/mypage/images?recieveToken=$junPrfSeq')
                           ),
                           Container(
@@ -202,7 +202,7 @@ class _MyPageReviewReadDetailState extends State<MyPageReviewReadDetail> {
                                 Container(),
                                 Container(
                                   // decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
-                                  width: defaultSize * 10.5,
+                                  width: defaultSize * 11,
                                   child: Text(
                                     junNic ?? '',
                                     style: TextStyle(color: Colors.lightGreen[700], fontWeight: FontWeight.bold, fontSize:  defaultSize * 1.7),textAlign: TextAlign.center,
@@ -336,7 +336,7 @@ class _MyPageReviewReadDetailState extends State<MyPageReviewReadDetail> {
                 Container(
                   margin: EdgeInsets.only(left: defaultSize * 1.8,),
                   width: defaultSize * 38,
-                  height: defaultSize * 20,
+                  height: defaultSize * 14,
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(15),
@@ -351,7 +351,7 @@ class _MyPageReviewReadDetailState extends State<MyPageReviewReadDetail> {
                       child: Text(jobCtn ?? '',
                         style:  TextStyle(fontSize:  defaultSize * 1.7),), ), ), ),
                 //Divider(height: defaultSize * 4,),
-                SizedBox(height: defaultSize * 1,),
+                SizedBox(height: defaultSize * 2,),
                 Container( height: defaultSize * 20,  width: double.infinity,
                   child: Column(
                     children: [
@@ -397,9 +397,12 @@ class _MyPageReviewReadDetailState extends State<MyPageReviewReadDetail> {
 
   Widget opNicView(defaultSize, opNicNm, myNicNm){
     return Container(
-      margin: EdgeInsets.only(right: defaultSize * 7),
+      padding: EdgeInsets.only(right: defaultSize * 3),
+      height: defaultSize * 3,
       child: Text( '$opNicNm 님이  $myNicNm 대한 후기와 평점 입니다.',
-        style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.5, fontWeight: FontWeight.bold),
+        style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.5,
+            // fontWeight: FontWeight.bold
+        ),
       ),
       decoration: BoxDecoration(
         // color: Colors.orange[50],
@@ -410,10 +413,10 @@ class _MyPageReviewReadDetailState extends State<MyPageReviewReadDetail> {
 
   Widget opGrdView(defaultSize, opNicNm, myNicNm, grd){
     return Container(
+      padding: EdgeInsets.only(left: defaultSize * 3,right: defaultSize * 2),
       margin: EdgeInsets.only(right: defaultSize * 0,top: defaultSize*1,bottom: defaultSize * 1),
       child: Text( (grd == 9) ? '' : '$opNicNm 님이  $myNicNm 에게 준 평점은 $grd 점 입니다.',
         style: TextStyle(color: Colors.blueAccent, fontSize: defaultSize * 2, fontWeight: FontWeight.bold), ),
-      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       decoration: BoxDecoration( borderRadius: BorderRadius.circular(2), ),
     );
   }

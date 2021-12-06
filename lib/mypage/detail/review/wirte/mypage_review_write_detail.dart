@@ -398,12 +398,12 @@ class _MyPageReviewWriteDetailState extends State<MyPageReviewWriteDetail> {
                       ],
                     ),
                   ),
-                  SizedBox(height: defaultSize * 2.6,),
+                  // SizedBox(height: defaultSize * 1,),
                   (picCnt == 0) ?  Container() : SizedBox(height: defaultSize * 40, child: buildGridView(jobId, picCnt)),
                   Container(
                     margin: EdgeInsets.only(left: defaultSize * 1.8,),
                     width: defaultSize * 38,
-                    height: defaultSize * 20,
+                    height: defaultSize * 14,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(15),
@@ -411,7 +411,7 @@ class _MyPageReviewWriteDetailState extends State<MyPageReviewWriteDetail> {
                         color: Colors.lightGreen[400],width: defaultSize * 0.3
                       )
                     ),
-                    padding: EdgeInsets.only(left: defaultSize* 3 ),
+                    padding: EdgeInsets.only(left: defaultSize* 3 ,right: defaultSize * 3),
                     child:  Container( 
                       child: Padding( 
                         padding: EdgeInsets.only(top: defaultSize*2),
@@ -419,7 +419,7 @@ class _MyPageReviewWriteDetailState extends State<MyPageReviewWriteDetail> {
                           style:  TextStyle(fontSize:  defaultSize * 1.7),), ), ), ),
                   // Divider(height: defaultSize * 4,),
                   SizedBox(height: defaultSize*2,),
-                  Container( height: defaultSize * 16,  width: double.infinity,
+                  Container( height: defaultSize * 20,  width: double.infinity,
                     child: Column(
                       children: [
                         opNicView(defaultSize*1.1, widget.opNicNm),
@@ -428,6 +428,7 @@ class _MyPageReviewWriteDetailState extends State<MyPageReviewWriteDetail> {
                           onLongPress: ()=> (opGrd != 9) ? deleteQuestionsBox(context) : null,
                           onTap: ()=> (opGrd == 9) ? confirmBox(context, setState) : updateQuestionsBox(context),
                           child: Container(
+                            margin: EdgeInsets.only(bottom: defaultSize * 2),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               border:Border.all(color: Colors.amber[700],width: defaultSize * 0.3),
@@ -493,6 +494,7 @@ class _MyPageReviewWriteDetailState extends State<MyPageReviewWriteDetail> {
   Widget opGrdView(defaultSize, opNicNm, myNicNm, giveGrd){
     return Container(
       margin: EdgeInsets.only(right: defaultSize * 0,top: defaultSize*1,bottom: defaultSize * 1),
+      padding: EdgeInsets.only(right: defaultSize * 3, left: defaultSize * 3),
       child: Text( (giveGrd == 9) ? '' : '$myNicNm 님이  $opNicNm에게 준 평점은 $giveGrd 점 입니다.',
         style: TextStyle(color: Colors.amber[800], fontSize: defaultSize * 2, fontWeight: FontWeight.bold), ),
       decoration: BoxDecoration( borderRadius: BorderRadius.circular(2), ),
@@ -563,7 +565,7 @@ class _MyPageReviewWriteDetailState extends State<MyPageReviewWriteDetail> {
                               ],
                             ),
                             Container(
-                              padding: EdgeInsets.all(defaultSize * 1.3),
+                              padding: EdgeInsets.only(top:defaultSize * 1.3, bottom: defaultSize * 1.3,left: defaultSize * 3,right: defaultSize * 3),
                               child: Form(
                                 key: formKey,
                                 child: TextFormField(
@@ -579,11 +581,11 @@ class _MyPageReviewWriteDetailState extends State<MyPageReviewWriteDetail> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 FlatButton(
-                                  child: Text("취소", style: TextStyle(color: Colors.lightGreen[800], fontSize: defaultSize * 1.5),),
+                                  child: Text("취소", style: TextStyle(color: Colors.lightGreen[800], fontSize: defaultSize * 2),),
                                   onPressed: () => Navigator.pop(context, false),
                                 ),
                                 FlatButton(
-                                  child: Text("작성", style: TextStyle(color: Colors.lightGreen[800], fontSize: defaultSize * 1.5),),
+                                  child: Text("작성", style: TextStyle(color: Colors.lightGreen[800], fontSize: defaultSize * 2),),
                                   onPressed: ()=> sendReview("I"),
                                 )
                               ],

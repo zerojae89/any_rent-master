@@ -42,7 +42,7 @@ class _HomeUpdateState extends State<HomeUpdate> {
       jobTp2,
       twnCd,
       twnGc,
-      jobStDtm,
+      // jobStDtm,
       bidDlDtm,
       jobAmt,
       aucMtd,
@@ -154,8 +154,8 @@ class _HomeUpdateState extends State<HomeUpdate> {
         //
         // print("_time =========== $_time");
 
-        jobStDtm = selectedDate.toString().substring(0, 11) + timeSub;
-        print("jobStdtm ============ $jobStDtm");
+        // jobStDtm = selectedDate.toString().substring(0, 11) + timeSub;
+        // print("jobStdtm ============ $jobStDtm");
 
         _timeController.text = formatDate(
             DateTime(2019, 08, 1, selectedTime.hour, selectedTime.minute),
@@ -210,7 +210,7 @@ class _HomeUpdateState extends State<HomeUpdate> {
       jobAmt =
           homeUpdateResultList['homeDetailSub']['jobAmt'].toString(); // 선착순 금액
       bidAmt = homeUpdateResultList['homeDetailSub']['bidAmt']; // 입찰식 금액
-      jobStDtm = homeUpdateResultList['homeDetailSub']['jobStDtm']; //소일 시작시간 ,
+      // jobStDtm = homeUpdateResultList['homeDetailSub']['jobStDtm']; //소일 시작시간 ,
       tp1Nm = homeUpdateResultList['homeDetailSub']['tp1Nm']; // 1차분류
       tp1Cd = homeUpdateResultList['homeDetailSub']['tp1Cd']; // 1차분류 코드
       tp2Nm = homeUpdateResultList['homeDetailSub']['tp2Nm']; // 2차분류
@@ -348,10 +348,10 @@ class _HomeUpdateState extends State<HomeUpdate> {
       return globalKey.currentState.showSnackBar(
           const SnackBar(content: const Text('금액은 0 원 이상이여야 합니다.')));
     }
-    if (jobStDtm == null) {
-      return globalKey.currentState
-          .showSnackBar(const SnackBar(content: const Text('시간을 선택해 주세요.')));
-    }
+    // if (jobStDtm == null) {
+    //   return globalKey.currentState
+    //       .showSnackBar(const SnackBar(content: const Text('시간을 선택해 주세요.')));
+    // }
     if (twnGc == null) {
       setState(() => twnGc = twnGc);
     }
@@ -394,7 +394,7 @@ class _HomeUpdateState extends State<HomeUpdate> {
       request.fields['jobTp2'] = jobTp2;
       request.fields['twnCd'] = twnCd;
       request.fields['twnGc'] = twnGc;
-      request.fields['jobStDtm'] = jobStDtm;
+      // request.fields['jobStDtm'] = jobStDtm;
       request.fields['jobAmt'] = jobAmt;
       request.fields['reqCnt'] = '1';
       request.fields['aucMtd'] = aucMtd;
@@ -417,7 +417,7 @@ class _HomeUpdateState extends State<HomeUpdate> {
         var auctionTimeFromNow = now.add(new Duration(seconds: auctionTime));
         print('auctionTimeFromNow ================= $auctionTimeFromNow');
         print('start ================= $start');
-        print('jobStDtm ================= $jobStDtm');
+        // print('jobStDtm ================= $jobStDtm');
         bidDlDtm = auctionTimeFromNow.toString().substring(0, 16);
         print('bidDlDtm ================= $bidDlDtm');
         // print(start > auctionTimeFromNow);
@@ -712,8 +712,6 @@ class _HomeUpdateState extends State<HomeUpdate> {
                                             moneyController.value = TextEditingValue(
                                               text: string,
                                               selection: TextSelection.collapsed(offset: string.length),);
-                                            print('jobAmt ================== $string');
-                                            setState(() => jobAmt = string);
                                           },
                                           textAlign: TextAlign.right,
                                         ),
@@ -743,20 +741,14 @@ class _HomeUpdateState extends State<HomeUpdate> {
                                             }).toList(),
                                             underline: Container(),
                                             onChanged: (value) {
-                                              setState(() {
-                                                payMtd = value;
-                                              });
-                                              print('payMtd ======== $payMtd');
-                                            },
-                                            hint: Text(
-                                                registerItems.paymentItmes[0]
-                                                    ["name"],
+                                              setState(() {payMtd = value;});
+                                              print('payMtd ======== $payMtd');},
+                                            hint: Text(registerItems.paymentItmes[0]["name"],
                                                 style: TextStyle(
                                                     fontSize: defaultSize * 1.7,
                                                     color: Colors.white)),
                                             value: payMtd,
-                                            iconEnabledColor:
-                                                Colors.amber, //화살표 색
+                                            iconEnabledColor: Colors.amber, //화살표 색
                                           ),
                                         ),
                                       ),
@@ -934,7 +926,9 @@ class _HomeUpdateState extends State<HomeUpdate> {
                           ),
                           child: TextFormField(
                             controller: titleController,
-                            textAlign: TextAlign.left,
+                            validator: (value){
+                              if (value.trim().isEmpty){ return '공백은 입력할 수 없습니다.'; }
+                              if (value.isEmpty) { return '제목을 입력해 주세요.'; } else  return null; },
                             decoration: InputDecoration(
                               // border: InputBorder.none,
                               border: OutlineInputBorder(
@@ -959,10 +953,6 @@ class _HomeUpdateState extends State<HomeUpdate> {
                                   )
                               ),
                             ),
-
-                            validator: (value){
-                              if (value.trim().isEmpty){ return '공백은 입력할 수 없습니다.'; }
-                              if (value.isEmpty) { return '제목을 입력해 주세요.'; } else  return null; },
                             onChanged: (value){
                               print('value ============ $value');
                               print('jobCtn ============ $jobCtn');
@@ -1034,30 +1024,29 @@ class _HomeUpdateState extends State<HomeUpdate> {
                         ),
                         Column(
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
+                            (picCnt > 0) ?
+                        Column(
+                          children: [
+                            Text('터치하여 이미지를 변경 하세요.\n', style: TextStyle(fontSize: defaultSize * 1.5)),
+                            Text('이미지는 3장까지 가능 합니다.', style: TextStyle(fontSize: defaultSize * 1.3)),
+                            SizedBox( height: defaultSize * 45,  child: InkWell( onTap: changeImages, child: buildSwiperPagination(widget.jobId, picCnt)))
+                          ],
+                        )
+                            :
+                        (images.length > 0) ? SizedBox( height: defaultSize * 40,  child: InkWell( onTap: changeImages, child: buildGridView())) :
+                        InkWell(
+                          onTap: changeImages,
+                          child: Container( padding: EdgeInsets.only(top: defaultSize * 2),
+                              child: Center(child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text('터치하여 이미지를 선택 하세요.\n\n', style: TextStyle(fontSize: defaultSize * 1.6)),
+                                  Text('이미지는 3장까지 가능 합니다.', style: TextStyle(fontSize: defaultSize * 1.4)),
+                                ],
+                              ))
+                          ),
+                        ),
 
-                              ],
-                            ),
-                            Container( height: defaultSize * 45,
-                              child: (images.length > 0 && images != null) ? InkWell( onTap: loadAssets, child: buildGridView()) :
-                              InkWell(
-                                onTap: loadAssets,
-                                child: Container( padding: EdgeInsets.only(top: 0), margin: EdgeInsets.only(left: 10,right: 15),
-                                    decoration: BoxDecoration(border: Border.all(color: Colors.grey),
-                                      // borderRadius: BorderRadius.circular(20.0)
-                                    ),
-                                    child: Center(child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Text('터치하여 이미지를 선택 하세요.\n\n', style: TextStyle(fontSize: defaultSize * 1.6)),
-                                        Text('이미지는 3장까지 가능 합니다.', style: TextStyle(fontSize: defaultSize * 1.4)),
-                                      ],
-                                    ))
-                                ),
-                              ),
-                            ),
                             SizedBox(height:  defaultSize * 3,),
                           ],
                         ),
@@ -1103,11 +1092,8 @@ class _HomeUpdateState extends State<HomeUpdate> {
     String result = await registerServer.getTp2(jobTp1);
     if (result == 'error') {
       return globalKey.currentState
-          .showSnackBar(const SnackBar(content: const Text('잠시후 다시 시도해 주세요.')));
-    }
-    setState(() {
-      tp2List = jsonDecode(result);
-    });
+          .showSnackBar(const SnackBar(content: const Text('잠시후 다시 시도해 주세요.')));}
+    setState(() {tp2List = jsonDecode(result);});
   }
 
   setAuctionTime () { //입찰 시간 선택 dailog

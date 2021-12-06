@@ -110,7 +110,7 @@ class _MyPageReviewReadItemState extends State<MyPageReviewReadItem> {
   Widget hanView(defaultSize, junHan){
     print('junHan ========================== $junHan');
     return Container(
-      margin: EdgeInsets.only(left: defaultSize * 8.2),
+      margin: EdgeInsets.only(left: defaultSize * 2),
       child: Text(
         '완료자 : ${junHan == "H" ? widget.myNicNm : widget.opNicNm}',
         style: TextStyle(color: Colors.orange, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),

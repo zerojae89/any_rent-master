@@ -38,7 +38,7 @@ class _MyPageReviewWirteItemState extends State<MyPageReviewWirteItem> {
         shape: widget.index != 0  ? RoundedRectangleBorder( borderRadius: BorderRadius.circular(4),  side: BorderSide( color: Colors.grey[400], )) : null,
         margin: EdgeInsets.only(bottom: 10, left: 1, right: 1),
         child: Padding(
-          padding: EdgeInsets.only(left: 15, top: 10, bottom: 8),
+          padding: EdgeInsets.only(left: 5, top: 10, bottom: 8),
           child: Column(
             children: [
               Container(
@@ -73,7 +73,7 @@ class _MyPageReviewWirteItemState extends State<MyPageReviewWirteItem> {
                 //     color: Colors.grey
                 //   )
                 // ),
-                margin: EdgeInsets.only(right: defaultSize * 17,top: defaultSize*1),
+                margin: EdgeInsets.only(right: defaultSize * 17.4,top: defaultSize*1),
                 padding: EdgeInsets.only(bottom: defaultSize * 0.7),
                 child: Text(
                   (widget.mbrGrd == 9) ? '후기 작성 하기' : '후기 수정 / 삭제' ,
@@ -90,7 +90,7 @@ class _MyPageReviewWirteItemState extends State<MyPageReviewWirteItem> {
   Widget junView(defaultSize, junHan){
     print('junHan ========================== $junHan');
     return Container(
-      margin: EdgeInsets.only(left: defaultSize * 3.5),
+      margin: EdgeInsets.only(left: defaultSize * 4),
       child: Text(
         '신청자 : ${junHan == "J" ? widget.myNicNm : widget.opNicNm}',
         style: TextStyle(color: Colors.blue, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),
@@ -105,7 +105,7 @@ class _MyPageReviewWirteItemState extends State<MyPageReviewWirteItem> {
   Widget hanView(defaultSize, junHan){
     print('junHan ========================== $junHan');
     return Container(
-      margin: EdgeInsets.only(left: defaultSize * 8.2),
+      margin: EdgeInsets.only(left: defaultSize * 2),
       child: Text(
         '완료자 : ${junHan == "H" ? widget.myNicNm : widget.opNicNm}',
         style: TextStyle(color: Colors.orange, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),

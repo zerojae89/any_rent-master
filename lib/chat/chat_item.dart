@@ -124,12 +124,12 @@ class _ChatItemState extends State<ChatItem> {
       },
       child: Card(
         child: Container(
-          height: 100,
+          height: defaultSize * 14,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(margin: EdgeInsets.only(right: 10,left: defaultSize * 0.4),
+              Container(margin: EdgeInsets.only(left: defaultSize * 0.4),
                   decoration: BoxDecoration(
                       color: Colors.white,
                       shape: BoxShape.circle,
@@ -153,42 +153,42 @@ class _ChatItemState extends State<ChatItem> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(top: 20, right: 7),
+                      padding: EdgeInsets.only(top: 20),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        // mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Container(
-                            margin: EdgeInsets.only(left: defaultSize * 3.5),
-                            width: defaultSize * 6,
-                              //   decoration: BoxDecoration(
-                              // border:Border.all(color: Colors.red)
+                            margin: EdgeInsets.only(left: defaultSize * 1),
+                            width: defaultSize * 10,
+                            //     decoration: BoxDecoration(
+                            //   border:Border.all(color: Colors.red)
                             // ),
                               // margin: EdgeInsets.only(right: defaultSize * 5.2),
-                              child: Text(nicNm ?? '', style: TextStyle(fontSize: defaultSize * 1.7,fontWeight: FontWeight.bold),)), //유저 닉네임으로 해야함
+                              child: Text(nicNm ?? '', style: TextStyle(fontSize: defaultSize * 1.5,fontWeight: FontWeight.bold),textAlign: TextAlign.center,)), //유저 닉네임으로 해야함
                           Container(
-                              margin: EdgeInsets.only(left: 10),
+                              margin: EdgeInsets.only(left: defaultSize *1),
                             width: defaultSize * 6,
                               // decoration: BoxDecoration(
                               //     border:Border.all(color: Colors.red)
                               // ),
-                              child: Text(twmNm ?? '', style: TextStyle(fontSize: defaultSize * 1.7,fontWeight: FontWeight.bold,color: Colors.lightGreen),)), //job 동네 이름으로 해야함
+                              child: Text(twmNm ?? '', style: TextStyle(fontSize: defaultSize * 1.5,fontWeight: FontWeight.bold,color: Colors.lightGreen),)), //job 동네 이름으로 해야함
                           Container(
                               margin: EdgeInsets.only(left:10 ),
                               width: defaultSize * 9,
                               // decoration: BoxDecoration(
                               //     border:Border.all(color: Colors.red)
                               // ),
-                              child: Text('${screenDate ?? ''}', style: TextStyle(fontSize: defaultSize * 1.7,fontWeight: FontWeight.bold,color: Colors.amber[700]),)) //마지막 시간이 오늘이 아니면 날짜 오늘이면 시간으로 표시
+                              child: Text('${screenDate ?? ''}', style: TextStyle(fontSize: defaultSize * 1.5,fontWeight: FontWeight.bold,color: Colors.amber[700]),)) //마지막 시간이 오늘이 아니면 날짜 오늘이면 시간으로 표시
                         ],
                       ),
                     ),
                         Container(
-                            height: 40,
+                            height: defaultSize * 5,
                             width: 220,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20.0),color: Colors.lightGreen),
                             margin: EdgeInsets.only(left: 10,top: 12),
-                            padding: EdgeInsets.only(top: 2,left: 20),
+                            padding: EdgeInsets.only(top: defaultSize * 1,left: 20,bottom: defaultSize * 1.4),
                             alignment: Alignment.centerLeft,
                             child:
                             // Text(chatCnt ?? '', style: TextStyle(fontSize: defaultSize * 1.8),)
@@ -197,7 +197,7 @@ class _ChatItemState extends State<ChatItem> {
                                 Container(
                                   padding: EdgeInsets.only(top: defaultSize * 0.5),
                                   width: defaultSize * 18,
-                                    height: defaultSize * 3,
+                                    height: defaultSize * 2.5,
                                 //     decoration: BoxDecoration(
                                 //   border:Border.all(color: Colors.white)
                                 // ),
@@ -210,7 +210,7 @@ class _ChatItemState extends State<ChatItem> {
                                   // decoration: BoxDecoration(
                                   //     border:Border.all(color: Colors.white)
                                   // ),
-                                  child: Text("$unread_msg",style: TextStyle(color: Colors.yellow,fontSize: defaultSize * 1.7),),
+                                  // child: Text("$unread_msg",style: TextStyle(color: Colors.yellow,fontSize: defaultSize * 1.7),),
                                 )
                               ],
                             )
@@ -235,7 +235,7 @@ class _ChatItemState extends State<ChatItem> {
   Widget textView (defaultSize, chatCnt){
     // print(messages[index]['message'].length);
     if(chatCnt.length > 18 ){
-      return Text(chatCnt.substring(0,19)+"...", style: TextStyle( fontSize: defaultSize * 1.7), );
+      return Text(chatCnt.substring(0,19)+"...", style: TextStyle( fontSize: defaultSize * 1.7,color: Colors.white), );
     }
     return Text(chatCnt, style: TextStyle(fontSize: defaultSize * 1.7,color: Colors.white), );
   }
