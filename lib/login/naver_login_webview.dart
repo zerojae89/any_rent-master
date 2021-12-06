@@ -13,7 +13,7 @@ import 'login_server.dart';
 import 'package:any_rent/main_home.dart';
 import '../mypage/profile/mypage_profile.dart';
 
-const LoginUrl = UrlConfig.url+':8443/api/auth/naver';
+const LoginUrl = UrlConfig.url+'/api/auth/naver';
 
 class NaverLoginWebView extends StatefulWidget{
   @override
