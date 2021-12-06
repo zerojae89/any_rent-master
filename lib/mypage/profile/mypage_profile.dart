@@ -150,6 +150,7 @@ class _MyPageProfileState extends State<MyPageProfile> {
             FlatButton(onPressed: () {
               _prefs.remove('token');
               _prefs.remove('state');
+              print('token ========= $token');
               loginServer.logout(token);
               Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (BuildContext context) => MyHomePage(index: 0,)), (route) => false);
             }, child: Text('로그아웃',style: TextStyle(color: Colors.lightGreen[800],fontWeight: FontWeight.bold)),
