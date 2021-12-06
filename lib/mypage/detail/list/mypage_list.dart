@@ -36,7 +36,6 @@ class _MyPageDetailListState extends State<MyPageDetailList> {
 
   @override
   Widget build(BuildContext context) {
-    double defaultSize = SizeConfig.defaultSize;
     return WillPopScope(
       onWillPop: onBackPressed,
       child: Scaffold(

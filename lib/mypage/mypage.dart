@@ -49,7 +49,6 @@ class _MyPageState extends State<MyPage> {
 
   @override
   Widget build(BuildContext context) {
-    double defaultSize = SizeConfig.defaultSize;
     return state ? Scaffold(
           key: globalKey,
           appBar: AppBar(

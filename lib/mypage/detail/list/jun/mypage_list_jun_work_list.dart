@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:any_rent/mypage/mypage_server.dart';
 import 'package:any_rent/settings/custom_shared_preferences.dart';
 import 'package:flutter/material.dart';
+import '../../../../main_home.dart';
 import 'mypage_list_jun_item.dart';
 
 class MyPageJunWorkList extends StatefulWidget {
@@ -55,7 +56,7 @@ class _MyPageJunWorkListState extends State<MyPageJunWorkList> {
         AppBar(
           centerTitle: true,
           title: Text('준일 목록'),
-          leading: IconButton( icon: Icon(Icons.arrow_back), onPressed: ()=>  Navigator.pop(context) ),
+          leading: IconButton( icon: Icon(Icons.arrow_back), onPressed: ()=>  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => MyHomePage(index: 3,)), (route) => true) ),
           // actions: [
           //   IconButton( icon: Icon(Icons.tune),  onPressed: (){ print('필터링'); },
           //   ),
