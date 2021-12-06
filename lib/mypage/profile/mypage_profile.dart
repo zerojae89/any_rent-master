@@ -237,6 +237,6 @@ class _MyPageProfileState extends State<MyPageProfile> {
 
 
   Future<bool> _onBackPressed(){
-    return Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (BuildContext context) => MyHomePage(index: 3,)), (route) => false);
+    return Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (BuildContext context) => MyHomePage(index: 3,)), (route) => true);
   }
 }

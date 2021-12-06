@@ -138,6 +138,7 @@ class _MyPageProfileHeaderState extends State<MyPageProfileHeader> {
     }
     setState(() {
       images = resultList;
+      prfSeq = prfSeq + 1;
       if (error == null) _error = 'No Error Dectected';
     });
   }
