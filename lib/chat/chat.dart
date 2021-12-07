@@ -58,8 +58,9 @@ class _ChatState extends State<Chat> {
         String mbrUdResult = await myPageServer.getProfile(token);
         Map<String, dynamic> profile = jsonDecode(mbrUdResult);
         chatItems = jsonDecode(result);
+        print('3333========$chatItems');
         if(!isDisposed) { setState((){ chatItems = jsonDecode(result); mbrId = profile['mbrId']; }); }
-        print('mbrId ===================================== $mbrId');
+        print('mbrId =============================22======== $mbrId');
       }
     } catch(e){
       globalKey.currentState.showSnackBar(const SnackBar(content: const Text('잠시후 다시 시도해 주세요.')));

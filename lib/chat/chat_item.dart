@@ -6,7 +6,6 @@ import 'package:intl/intl.dart';
 import 'package:any_rent/mypage/mypage_server.dart';
 import 'package:any_rent/settings/custom_shared_preferences.dart';
 import 'package:flutter/material.dart';
-
 import 'chat_page.dart';
 
 // const url = 'http://211.253.20.112'; //개발서버
@@ -21,10 +20,10 @@ class ChatItem extends StatefulWidget{
 }
 
 class _ChatItemState extends State<ChatItem> {
-  String token, mbrId, junId , hanId, jobId, twmNm, nicNm, chatCnt, junHan, unread_msg;
+  String token, jobId, twmNm, nicNm, chatCnt, junHan, mbrId, junId, hanId;
   bool state;
   bool isDisposed = false;
-  int prfSeq;
+  int prfSeq, unreadMsg;
   Map <String, dynamic> chatItems;
   DateFormat yearDateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
   DateFormat dateFormat = DateFormat("MM월 dd일");
@@ -62,6 +61,7 @@ class _ChatItemState extends State<ChatItem> {
             chatCnt = widget.chatItems['chatCnt'];
             mbrId = widget.chatItems['myId'];
             junHan = widget.chatItems['junHan'];
+            unreadMsg = widget.chatItems['unreadMsg'];
             chatItems = widget.chatItems;
           });
           if(junHan == "H"){
@@ -93,7 +93,7 @@ class _ChatItemState extends State<ChatItem> {
 
       var chatDate = dateFormat.format(DateTime.parse(chatItems['lschDtm']));
 
-      // print('chatDate ======================= $chatDate');
+      print('chatDate ======================= $chatDate');
       var now = dateFormat.format(DateTime.now());
       // print('now =========================== $now');
       int compare = now.compareTo(chatDate); //날짜 비교 작업 시작날짜와 입찰 날짜 비교
@@ -104,6 +104,7 @@ class _ChatItemState extends State<ChatItem> {
       }
       // print('compare =============== $compare');
     } catch(e){
+      print('==================$e');
       Scaffold.of(context).showSnackBar( SnackBar(content: Text("잠시후 다시 시도해 주세요.",), duration: Duration(seconds: 3),) );
     }
   }
@@ -210,7 +211,7 @@ class _ChatItemState extends State<ChatItem> {
                                   // decoration: BoxDecoration(
                                   //     border:Border.all(color: Colors.white)
                                   // ),
-                                  // child: Text("$unread_msg",style: TextStyle(color: Colors.yellow,fontSize: defaultSize * 1.7),),
+                                  child: Text("$unreadMsg"??'',style: TextStyle(color: Colors.yellow,fontSize: defaultSize * 1.7),),
                                 )
                               ],
                             )
