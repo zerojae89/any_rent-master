@@ -211,7 +211,8 @@ class _MyPageDetailMyTownState extends State<MyPageDetailMyTown> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: globalKey,
-      body: Column(
+      body:
+         Column(
         children: [
           MyPageDetailAppbar( title: '내 동네',),
           Container(

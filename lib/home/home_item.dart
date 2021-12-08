@@ -291,7 +291,7 @@ class _HomeItemState extends State<HomeItem>
                                 color: Colors.black,
                                 fontSize: defaultSize * 1.7,),
                           ),
-                          padding: EdgeInsets.only(left: 5, top: 5, bottom: 5),
+                          padding: EdgeInsets.only(left: 5, top: 5, bottom: 8),
                           // decoration: BoxDecoration( color: Colors.lightBlue[50],  borderRadius: BorderRadius.circular(2), ),
                         ),
                         Container(
@@ -306,7 +306,7 @@ class _HomeItemState extends State<HomeItem>
                                 fontSize: defaultSize * 1.7,
                                 ),
                           ),
-                          padding: EdgeInsets.only(left: 5, top: 5, bottom: 5),
+                          padding: EdgeInsets.only(left: 5, top: 5, bottom: 8),
                           // decoration: BoxDecoration( color: Colors.pink[50],  borderRadius: BorderRadius.circular(2), ),
                         ),
                       ],
@@ -317,7 +317,7 @@ class _HomeItemState extends State<HomeItem>
                           child: Text(
                             "시작 시간 : ${widget.jobStDtm}",
                             style: TextStyle(
-                                color: Colors.black,
+                                color: Colors.grey[500],
                                 fontSize: defaultSize * 1.5,
                                 ),
                           ),

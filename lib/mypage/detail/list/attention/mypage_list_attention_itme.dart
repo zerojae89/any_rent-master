@@ -59,8 +59,9 @@ class _MyPageAttentionItmeState extends State<MyPageAttentionItme> {
         elevation: widget.index == 0 ? 8 : 4,
         shape: widget.index != 0  ? RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(4),
-            side: BorderSide(
-              color: Colors.grey[400], )) : null,
+            // side: BorderSide(
+              // color: Colors.grey[400], )
+        ) : null,
         margin: EdgeInsets.only(bottom: 7, left: 1, right: 1),
         child: Padding(
           padding: EdgeInsets.only(left: 25, top: 10, bottom: 8),
@@ -214,7 +215,7 @@ class _MyPageAttentionItmeState extends State<MyPageAttentionItme> {
                       //     border: Border.all(color: Colors.grey)),
                       child: Text(
                         "시작 시간 : ${widget.jobStDtm}",
-                        style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.5,
+                        style: TextStyle(color: Colors.grey[500],fontSize: defaultSize * 1.5,
                             // fontWeight: FontWeight.bold
                         ),
                       ),
@@ -262,7 +263,7 @@ class _MyPageAttentionItmeState extends State<MyPageAttentionItme> {
   if(jobSts  == "1"){ return Text('입찰중 ',style: TextStyle(color: Colors.lightGreen, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),textAlign: TextAlign.center,); }
   if(jobSts  == "2"){ return Text('진행중 ',style: TextStyle(color: Colors.purple, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),textAlign: TextAlign.center); }
   if(jobSts  == "3"){ return Text('완료   ',style: TextStyle(color: Colors.blue[900], fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),textAlign: TextAlign.center); }
-  if(jobSts  == "5"){ return Text('완료 대기중  ',style: TextStyle(color: Colors.amber, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),textAlign: TextAlign.center); }
+  if(jobSts  == "5"){ return Text('완료 대기중  ',style: TextStyle(color: Colors.lightBlue, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),textAlign: TextAlign.center); }
   if(jobSts  == "8"){ return Text('시간초과',style: TextStyle(color: Colors.orange, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),textAlign: TextAlign.center); }
   if(jobSts  == "9"){ return Text('취소   ',style: TextStyle(color: Colors.red, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),textAlign: TextAlign.center); }
 }
