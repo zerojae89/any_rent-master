@@ -1,6 +1,8 @@
 import 'dart:convert';
 
+import 'package:any_rent/settings/url.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import '../../../settings/size_config.dart';
 import '../mypage_detail_appbar.dart';
 import 'package:android_intent/android_intent.dart';
@@ -8,6 +10,8 @@ import 'package:geolocator/geolocator.dart';
 import 'package:geocoder/geocoder.dart';
 import '../../mypage_server.dart';
 import '../../../permission/gps_permission.dart';
+
+const mapUrl = UrlConfig.url+'/api/mypage/kakaoMap';
 
 class MyPageDetailMyTown extends StatefulWidget {
   MyPageDetailMyTown({Key key, this.token}) : super(key: key);
@@ -18,7 +22,7 @@ class MyPageDetailMyTown extends StatefulWidget {
 
 class _MyPageDetailMyTownState extends State<MyPageDetailMyTown> {
   double defaultSize = SizeConfig.defaultSize;
-  String latitude, longitude, token, addressLine, subLocality, thoroughfare, insertYn, cert1, cert2, cert3, cert4, substringCert1, substringCert2, substringCert3, substringCert4;
+  String latitude, longitude, token, addressLine, subLocality, thoroughfare, insertYn, cert1, cert2, cert3, cert4, substringCert1, substringCert2, substringCert3, substringCert4, kakaoMapUrl;
   int townCnt1, townCnt2, townCnt3, townCnt4;
   String reCert11 = '양재동';
   String reCert12 = '1';
@@ -98,6 +102,10 @@ class _MyPageDetailMyTownState extends State<MyPageDetailMyTown> {
       }
       print('latitude =============== $latitude');
       print('longitude =============== $longitude');
+
+      setState(() {
+        kakaoMapUrl = mapUrl+'?latitude=$latitude&longitude=$longitude';
+      });
     }
   }
 
@@ -220,7 +228,13 @@ class _MyPageDetailMyTownState extends State<MyPageDetailMyTown> {
             ],
           )
       );
+  }
 
+  Widget getMap(String latitude, String longitude){
+    return WebviewScaffold(
+      url: kakaoMapUrl,
+      ignoreSSLErrors: true, // https 이나 인증서가 정상적이지 않는 경우 하얀 화면이 뜨는데 그것을 없애 주는 것
+    );
   }
 
   @override
@@ -282,14 +296,9 @@ class _MyPageDetailMyTownState extends State<MyPageDetailMyTown> {
                       margin: EdgeInsets.only(top:defaultSize * 1),
                       height: defaultSize * 22,
                       width: defaultSize * 40,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.amberAccent),
-                          color: Colors.lightBlueAccent.withOpacity(0.1),
-                        image: DecorationImage(
-                          image: AssetImage('assets/locationicon.png'),
-                          fit: BoxFit.cover
-                        )
-                      ),
+                        child:  (latitude != null)  ?
+                        getMap(latitude, longitude)
+                            : Padding( padding: EdgeInsets.symmetric(horizontal: 5.0), child: SizedBox( width: defaultSize, height: defaultSize, child: CircularProgressIndicator(), ),),
                     ),
                   ],
                 ),
