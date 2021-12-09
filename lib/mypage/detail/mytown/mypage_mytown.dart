@@ -51,6 +51,7 @@ class _MyPageDetailMyTownState extends State<MyPageDetailMyTown> {
     print('result =================== $result');
     if(result == 'error') { return globalKey.currentState.showSnackBar(const SnackBar(content: const Text('잠시후 다시 시도해 주세요.'))); }
     address = jsonDecode(result);
+    print('=======22222=====$cert1');
     if(!isDisposed) {
       setState(() {
         cert1 = address['reCert1'];
@@ -257,13 +258,6 @@ class _MyPageDetailMyTownState extends State<MyPageDetailMyTown> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                        // decoration: BoxDecoration(
-                        // color: Colors.red.withOpacity(0.1)
-                    // ),
-                    child: Text( '현재위치\n',  style: TextStyle( fontSize: defaultSize * 2,  fontWeight: FontWeight.bold ), )),
-                    Text( (thoroughfare == null) ? '죄송합니다. 현재 위치정보를 가져올 수 없습니다. \n다시 시도해 주세요.' : '' , style: TextStyle( fontSize: defaultSize * 1.5,color: Colors.pink ),),
-                    Divider(),
                     SizedBox(height: defaultSize * 1,),
                     Row(
                       children: [
@@ -291,7 +285,9 @@ class _MyPageDetailMyTownState extends State<MyPageDetailMyTown> {
                       // ),
                         padding: EdgeInsets.only(top: 12),
                       margin: EdgeInsets.only(left: defaultSize * 23),
-                        child: TextButton.icon(onPressed: null, icon: Icon(Icons.gps_fixed,size: 18,color: Colors.lightGreen[800],), label: Text("현재위치",style: TextStyle(color: Colors.lightGreen[800])))),
+                        child: TextButton.icon(onPressed: () {setState(() {latitude = null;});
+                        getGpsPermission();
+                        }, icon: Icon(Icons.gps_fixed,size: 18,color: Colors.lightGreen[800],), label: Text("현재위치",style: TextStyle(color: Colors.lightGreen[800])))),
                       Container(
                       margin: EdgeInsets.only(top:defaultSize * 1),
                       height: defaultSize * 22,
@@ -308,9 +304,9 @@ class _MyPageDetailMyTownState extends State<MyPageDetailMyTown> {
           Container(
               width: defaultSize * 35,
               height: defaultSize * 9.5,
-              // decoration: BoxDecoration(
-              //   color: Colors.red.withOpacity(0.1)
-              // ),
+              decoration: BoxDecoration(
+                color: Colors.red.withOpacity(0.1)
+              ),
             child: Column(
                     children: [
                       Container(
