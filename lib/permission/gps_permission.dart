@@ -24,10 +24,13 @@ class GpsPermission {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15)
+          ),
           title: Center(child: Text("권한 설정거부")),
           content:const Text('권한을 활성화 시켜주세요.'),
           actions: <Widget>[
-            FlatButton(child: Text('설정으로 이동'),
+            FlatButton(child: Text('설정으로 이동',style: TextStyle(color: Colors.lightGreen[800]),),
               onPressed: () => openSetting(context),
             ),
           ],

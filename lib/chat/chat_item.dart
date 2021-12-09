@@ -211,13 +211,11 @@ class _ChatItemState extends State<ChatItem> {
                                   // decoration: BoxDecoration(
                                   //     border:Border.all(color: Colors.white)
                                   // ),
-                                  child: Text("$unreadMsg"??'',style: TextStyle(color: Colors.yellow,fontSize: defaultSize * 1.7),),
+                                  child: Text('$unreadMsg',style: TextStyle(color: Colors.yellow,fontSize: defaultSize * 1.7),),
                                 )
                               ],
                             )
                         ),
-
-
                   ],
                 ),
               ),
@@ -232,6 +230,8 @@ class _ChatItemState extends State<ChatItem> {
   //     return Text($unread_msg.toString());
   //   }
   // }
+
+
 
   Widget textView (defaultSize, chatCnt){
     // print(messages[index]['message'].length);
