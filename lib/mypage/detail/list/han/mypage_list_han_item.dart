@@ -58,7 +58,9 @@ class _MyPageListHanWorkItemState extends State<MyPageListHanWorkItem> {
       },
       child: Card(
         elevation: widget.index == 0 ? 8 : 4,
-        shape: widget.index != 0  ? RoundedRectangleBorder( borderRadius: BorderRadius.circular(4),  side: BorderSide( color: Colors.grey[400], )) : null,
+        shape: widget.index != 0  ? RoundedRectangleBorder( borderRadius: BorderRadius.circular(4),
+            // side: BorderSide( color: Colors.grey[400], )
+        ) : null,
         margin: EdgeInsets.only(bottom: 6, left: 1, right: 1),
         child: Padding(
           padding: EdgeInsets.only(left: 25, top: 10, bottom: 8),

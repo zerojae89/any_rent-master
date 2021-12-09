@@ -120,7 +120,9 @@ class _MyPageListJunWorkItemState extends State<MyPageListJunWorkItem> {
       },
       child: Card(
         elevation: widget.index == 0 ? 8 : 4,
-        shape: widget.index != 0 ? RoundedRectangleBorder(borderRadius: BorderRadius.circular(4), side: BorderSide(color: Colors.grey[400],)) : null,
+        shape: widget.index != 0 ? RoundedRectangleBorder(borderRadius: BorderRadius.circular(4),
+            // side: BorderSide(color: Colors.grey[400],)
+        ) : null,
         margin: EdgeInsets.only(bottom: 6, left: 1, right: 1),
         child: Padding(
           padding: EdgeInsets.only(left: 25, top: 10, bottom: 8),
@@ -241,66 +243,12 @@ class _MyPageListJunWorkItemState extends State<MyPageListJunWorkItem> {
     );
   }
 
-  Widget jobStsText(String jobSts, double defaultSize) {
-    if (jobSts == "1") {
-      return Text(
-        '입찰중 ',
-        style: TextStyle(
-            color: Colors.lightGreen,
-            fontSize: defaultSize * 1.7,
-            fontWeight: FontWeight.bold),
-        textAlign: TextAlign.left,
-      );
-    }
-    if (jobSts == "2") {
-      return Text(
-        '진행중 ',
-        style: TextStyle(
-            color: Colors.orange,
-            fontSize: defaultSize * 1.7,
-            fontWeight: FontWeight.bold),
-        textAlign: TextAlign.left,
-      );
-    }
-    if (jobSts == "3") {
-      return Text(
-        '완료   ',
-        style: TextStyle(
-            color: Colors.blue[900],
-            fontSize: defaultSize * 1.7,
-            fontWeight: FontWeight.bold),
-        textAlign: TextAlign.left,
-      );
-    }
-    if (jobSts == "5") {
-      return Text(
-        '완료 대기중  ',
-        style: TextStyle(
-            color: Colors.amber,
-            fontSize: defaultSize * 1.2,
-            fontWeight: FontWeight.bold),
-        textAlign: TextAlign.left,
-      );
-    }
-    if (jobSts == "8") {
-      return Text(
-        '시간초과',
-        style: TextStyle(
-            color: Colors.amber[700],
-            fontSize: defaultSize * 1.7,
-            fontWeight: FontWeight.bold),
-        textAlign: TextAlign.left,
-      );
-    }
-    if (jobSts == "9") {
-      return Text(
-        '취소   ',
-        style: TextStyle(
-            color: Colors.red,
-            fontSize: defaultSize * 1.7,
-            fontWeight: FontWeight.bold),
-        textAlign: TextAlign.left,
-      );
-    }
+  jobStsText(String jobSts, double defaultSize){
+    if(jobSts  == "1"){ return Text('입찰중 ',style: TextStyle(color: Colors.lightGreen, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),textAlign: TextAlign.left); }
+    if(jobSts  == "2"){ return Text('진행중 ',style: TextStyle(color: Colors.purple, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),textAlign: TextAlign.left); }
+    if(jobSts  == "3"){ return Text('완료   ',style: TextStyle(color: Colors.blue[900], fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),textAlign: TextAlign.left); }
+    if(jobSts  == "5"){ return Text('완료 대기중  ',style: TextStyle(color: Colors.lightBlue, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),textAlign: TextAlign.left,); }
+    if(jobSts  == "8"){ return Text('시간초과',style: TextStyle(color: Colors.orange, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),textAlign: TextAlign.left); }
+    if(jobSts  == "9"){ return Text('취소   ',style: TextStyle(color: Colors.red, fontSize: defaultSize * 1.7, fontWeight: FontWeight.bold),textAlign: TextAlign.left); }
   }
 }

@@ -477,8 +477,11 @@ class _HomeUpdateState extends State<HomeUpdate> {
                   color: Colors.grey[50],
                   child: Center(
                     child: isNextPage ? AlertDialog(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15)
+                      ),
                       title: Center(
-                          child: Text('수정 되었습니다!', style: TextStyle(fontSize: defaultSize * 2),)),)
+                          child: Text('수정 되었습니다!', style: TextStyle(fontSize: defaultSize * 2,color: Colors.lightGreen[800]),)),)
                         : CircularProgressIndicator(),
                   )),
             ),

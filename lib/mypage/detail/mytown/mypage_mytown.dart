@@ -18,8 +18,8 @@ class MyPageDetailMyTown extends StatefulWidget {
 
 class _MyPageDetailMyTownState extends State<MyPageDetailMyTown> {
   double defaultSize = SizeConfig.defaultSize;
-  String latitude, longitude, token, addressLine, subLocality, thoroughfare, insertYn, cert1, cert2, substringCert1, substringCert2;
-  int townCnt1, townCnt2;
+  String latitude, longitude, token, addressLine, subLocality, thoroughfare, insertYn, cert1, cert2, cert3, cert4, substringCert1, substringCert2, substringCert3, substringCert4;
+  int townCnt1, townCnt2, townCnt3, townCnt4;
   String reCert11 = '양재동';
   String reCert12 = '1';
   bool permission = false;
@@ -51,10 +51,16 @@ class _MyPageDetailMyTownState extends State<MyPageDetailMyTown> {
       setState(() {
         cert1 = address['reCert1'];
         cert2 = address['reCert2'];
+        cert3 = address['reCert3'];
+        cert4 = address['reCert4'];
         if(cert1 != null){ substringCert1 = cert1.substring(10); }
         if(cert2 != null){ substringCert2 = cert2.substring(10); }
+        if(cert1 != null){ substringCert3 = cert3.substring(10); }
+        if(cert2 != null){ substringCert4 = cert4.substring(10); }
         townCnt1 = address['townCnt1'];
         townCnt2 = address['townCnt2'];
+        townCnt3 = address['townCnt3'];
+        townCnt4 = address['townCnt4'];
       });
     }
     // print('substringCert1 =============== $substringCert1');
@@ -142,27 +148,37 @@ class _MyPageDetailMyTownState extends State<MyPageDetailMyTown> {
       setState(() {
         cert1 = address['twnCdNm1'];
         cert2 = address['twnCdNm2'];
+        cert3 = address['twnCdNm3'];
+        cert4 = address['twnCdNm4'];
         if(cert1 != null){ substringCert1 = cert1.substring(10); }
         if(cert2 != null){ substringCert2 = cert2.substring(10); }
+        if(cert3 != null){ substringCert3 = cert3.substring(10); }
+        if(cert4 != null){ substringCert4 = cert4.substring(10); }
         townCnt1 = address['townCnt1'];
         townCnt2 = address['townCnt2'];
+        townCnt3 = address['townCnt3'];
+        townCnt4 = address['townCnt4'];
       });
     }
     print('_sendAddress reCert1 =============== $cert1');
     print('_sendAddress reCert2 =============== $cert2');
     print('_sendAddress townCnt1 =============== $townCnt1');
     print('_sendAddress townCnt2 =============== $townCnt2');
+    print('_sendAddress reCert3 =============== $cert3');
+    print('_sendAddress reCert4 =============== $cert4');
+    print('_sendAddress townCnt3 =============== $townCnt3');
+    print('_sendAddress townCnt4 =============== $townCnt4');
   }
 
   Widget reCertText2(String cert, int cnt, String reCert, bool type){
     return (cert == null) ? Container() :
       Container(
-        decoration: BoxDecoration(
-          // color: Colors.lightBlueAccent.withOpacity(0.1)
-        ),
+        // decoration: BoxDecoration(
+        //   color: Colors.lightBlueAccent.withOpacity(0.1)
+        // ),
         margin: EdgeInsets.only(left: defaultSize),
         // color: Colors.red.withOpacity(0.3),
-          padding: EdgeInsets.all(defaultSize * 2),
+          padding: EdgeInsets.only(left:defaultSize *2 ,right: defaultSize *2),
           child: Column(
             children: [
               Row(
@@ -178,17 +194,17 @@ class _MyPageDetailMyTownState extends State<MyPageDetailMyTown> {
                         child: Text('동네 : ', style: TextStyle( fontSize:  defaultSize * 1.8),)),
                         SizedBox(width: defaultSize * 1,),
                         Container(
-                          padding: EdgeInsets.only(top: defaultSize * 0.4),
+                          padding: EdgeInsets.only(top: defaultSize * 0.4,),
                         height: defaultSize * 3,
-                            // decoration: BoxDecoration(
-                            // color: Colors.red.withOpacity(0.1)
+                        //     decoration: BoxDecoration(
+                        //     color: Colors.red.withOpacity(0.1)
                         // ),
                         child: Text(cert ?? '' , style: TextStyle( fontSize:  defaultSize * 1.8),)),
                       ],
                     ),
                   ),
                   SizedBox(width: defaultSize * 10,),
-                  TextButton(child: Text('동네 삭제',style: TextStyle(fontSize: defaultSize * 2,color: Colors.red[700]),),onPressed: ()=> removeAddressDialog(reCert, type),)
+                  TextButton(child: Text('삭제',style: TextStyle(fontSize: defaultSize * 2,color: Colors.red[700]),),onPressed: ()=> removeAddressDialog(reCert, type),)
                   // IconButton(icon: Icon(Icons.clear, color: Colors.amber,), onPressed: ()=> removeAddressDialog(reCert, type)),
                 ],
               ),
@@ -211,9 +227,11 @@ class _MyPageDetailMyTownState extends State<MyPageDetailMyTown> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: globalKey,
+      appBar: AppBar(centerTitle:true,title: Text("내 동네"),
+      actions: [FlatButton(onPressed: ()=> certificationAddress(), child: Text("동네인증"))],),
+
       body: Column(
         children: [
-          MyPageDetailAppbar( title: '내 동네',),
           Container(
             child: Container(
               // decoration: BoxDecoration(
@@ -225,10 +243,14 @@ class _MyPageDetailMyTownState extends State<MyPageDetailMyTown> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text( '현재위치\n',  style: TextStyle( fontSize: defaultSize * 2.6,  fontWeight: FontWeight.bold ), ),
-                    Text( (thoroughfare == null) ? '죄송합니다. 현재 위치정보를 가져올 수 없습니다. 다시 시도해 주세요.' : '' , style: TextStyle( fontSize: defaultSize * 1.9, ),),
+                    Container(
+                        // decoration: BoxDecoration(
+                        // color: Colors.red.withOpacity(0.1)
+                    // ),
+                    child: Text( '현재위치\n',  style: TextStyle( fontSize: defaultSize * 2,  fontWeight: FontWeight.bold ), )),
+                    Text( (thoroughfare == null) ? '죄송합니다. 현재 위치정보를 가져올 수 없습니다. \n다시 시도해 주세요.' : '' , style: TextStyle( fontSize: defaultSize * 1.5,color: Colors.pink ),),
                     Divider(),
-                    SizedBox(height: defaultSize * 2,),
+                    SizedBox(height: defaultSize * 1,),
                     Row(
                       children: [
                         Expanded( flex: 4, child: Text( (thoroughfare != null) ? '현재위치) $thoroughfare' : '', style: TextStyle( fontSize: defaultSize * 2, ), ) ),
@@ -247,57 +269,79 @@ class _MyPageDetailMyTownState extends State<MyPageDetailMyTown> {
                         ),
                       ],
                     ),
-                    SizedBox(height: defaultSize * 3,),
                     Container(
-                      margin: EdgeInsets.only(top:defaultSize * 3),
-                      height: defaultSize * 20,
+                      width: defaultSize * 12,
+                      height: defaultSize * 5,
+                      // decoration: BoxDecoration(
+                      // color: Colors.red.withOpacity(0.1)
+                      // ),
+                        padding: EdgeInsets.only(top: 12),
+                      margin: EdgeInsets.only(left: defaultSize * 23),
+                        child: TextButton.icon(onPressed: null, icon: Icon(Icons.gps_fixed,size: 18,color: Colors.lightGreen[800],), label: Text("현재위치",style: TextStyle(color: Colors.lightGreen[800])))),
+                      Container(
+                      margin: EdgeInsets.only(top:defaultSize * 1),
+                      height: defaultSize * 22,
                       width: defaultSize * 40,
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.amberAccent),
-                          // color: Colors.lightBlueAccent.withOpacity(0.1),
+                          color: Colors.lightBlueAccent.withOpacity(0.1),
                         image: DecorationImage(
                           image: AssetImage('assets/locationicon.png'),
                           fit: BoxFit.cover
                         )
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
             ),
           ),
           Container(
-            width: defaultSize * 35,
-            // decoration: BoxDecoration(
-            //   color: Colors.red.withOpacity(0.1)
-            // ),
-            // margin: EdgeInsets.only(left: defaultSize * 1),
-              child: Column(
-                children: [
-                  Container(
-                      child: (substringCert1 == null) ? Container() : reCertText2(substringCert1, townCnt1, cert1, true)),
-                  Container( child: (substringCert2 == null) ? Container() : reCertText2(substringCert2, townCnt2, cert2, false)),
-                ],
-              ),
+              width: defaultSize * 35,
+              height: defaultSize * 9.5,
+              // decoration: BoxDecoration(
+              //   color: Colors.red.withOpacity(0.1)
+              // ),
+            child: Column(
+                    children: [
+                      Container(
+                          child: (substringCert1 == null) ? Container() : reCertText2(substringCert1, townCnt1, cert1, true)),
+                      Container( child: (substringCert2 == null) ? Container() : reCertText2(substringCert2, townCnt2, cert2, false)),
+                    ],
+                  ),
           ),
-          Expanded( flex: 1,
-            child: Container(
-              child: Center(
-                child:  Container(
-                  width: defaultSize * 12,
-                  height: defaultSize * 4.5,
-                  decoration: BoxDecoration(
-                      color: Colors.lightGreen,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: FlatButton(
-                    child: Text( '동네 인증',  style: TextStyle( color: Colors.white,fontWeight: FontWeight.bold ), ),
-                    onPressed: ()=> certificationAddress(),
-                  ),
-                ),
-              ),
+          Container(
+            width: defaultSize * 35,
+            height: defaultSize * 9.5,
+            // decoration: BoxDecoration(
+            //     color: Colors.red.withOpacity(0.1)
+            // ),
+            child: Column(
+              children: [
+                Container(
+                    child: (substringCert1 == null) ? Container() : reCertText2(substringCert3, townCnt3, cert3, true)),
+                Container( child: (substringCert2 == null) ? Container() : reCertText2(substringCert4, townCnt4, cert4, false)),
+              ],
             ),
           ),
+          // Container(
+          //   child: Container(
+          //     child: Center(
+          //       child:  Container(
+          //         width: defaultSize * 12,
+          //         height: defaultSize * 4.5,
+          //         decoration: BoxDecoration(
+          //             color: Colors.lightGreen,
+          //           borderRadius: BorderRadius.circular(10),
+          //         ),
+          //         child: FlatButton(
+          //           child: Text( '동네 인증',  style: TextStyle( color: Colors.white,fontWeight: FontWeight.bold ), ),
+          //           onPressed: ()=> certificationAddress(),
+          //         ),
+          //       ),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );
