@@ -77,9 +77,13 @@ class _HomeDetailState extends State<HomeDetail> {
 
   @override
   void dispose() {
+    print("종료체크");
     isDisposed = true;
     _controller.dispose();
-    if(aucMtd == '2')_timer.cancel();
+    if(aucMtd == '2') {
+      print("타이머 종료 $aucMtd");
+      _timer.cancel();
+    }
     super.dispose();
   }
 
@@ -154,6 +158,7 @@ class _HomeDetailState extends State<HomeDetail> {
           timeForTimer = differenceSeconds;
           if(!isDisposed) {
             setState(() {
+              String hour, min, sec;
               if (timeForTimer < 1) {
                 timeToDisplay = "입찰 시간 종료";
                 print('timeToDisplay ======================= $timeToDisplay');
@@ -165,9 +170,25 @@ class _HomeDetailState extends State<HomeDetail> {
                 int t = timeForTimer - (3600 * h);
                 int m = t ~/ 60;
                 int s = t - (60 * m);
-                // if()
+                if(h < 10) {
+                  hour = '0' + h.toString();
+                } else {
+                  hour = h.toString();
+                }
+                if(m < 10) {
+                  min = '0' + m.toString();
+                } else {
+                  min = m.toString();
+                }
+                if(s < 10) {
+                  sec = '0' + s.toString();
+                } else {
+                  sec = s.toString();
+                }
+                // timeToDisplay =
+                //     "$differenceDays일 "+  h.toString() + ":" + m.toString() + ":" + s.toString();
                 timeToDisplay =
-                    "$differenceDays일 "+  h.toString() + ":" + m.toString() + ":" + s.toString();
+                    "$differenceDays일 "+  hour + ":" + min + ":" + sec;
                 timeForTimer = timeForTimer - 1;
               } else if (timeForTimer < 60) {
                 timeToDisplay = timeForTimer.toString();
@@ -175,14 +196,41 @@ class _HomeDetailState extends State<HomeDetail> {
               } else if (timeForTimer < 3600) {
                 int m = timeForTimer ~/ 60;
                 int s = timeForTimer - (60 * m);
-                timeToDisplay = m.toString() + ":" + s.toString();
+                if(m < 10) {
+                  min = '0' + m.toString();
+                } else {
+                  min = m.toString();
+                }
+                if(s < 10) {
+                  sec = '0' + s.toString();
+                } else {
+                  sec = s.toString();
+                }
+                // timeToDisplay = m.toString() + ":" + s.toString();
+                timeToDisplay = min + ":" + sec;
                 timeForTimer = timeForTimer - 1;
               } else {
                 int h = timeForTimer ~/ 3600;
                 int t = timeForTimer - (3600 * h);
                 int m = t ~/ 60;
                 int s = t - (60 * m);
-                timeToDisplay = h.toString() + ":" + m.toString() + ":" + s.toString();
+                if(h < 10) {
+                  hour = '0' + h.toString();
+                } else {
+                  hour = h.toString();
+                }
+                if(m < 10) {
+                  min = '0' + m.toString();
+                } else {
+                  min = m.toString();
+                }
+                if(s < 10) {
+                  sec = '0' + s.toString();
+                } else {
+                  sec = s.toString();
+                }
+                // timeToDisplay = h.toString() + ":" + m.toString() + ":" + s.toString();
+                timeToDisplay = hour + ":" + min + ":" + sec;
                 timeForTimer = timeForTimer - 1;
               }
             });
@@ -560,19 +608,19 @@ class _HomeDetailState extends State<HomeDetail> {
               child: FlatButton(
                 color: Colors.lightGreen,
                 onPressed: () {
-                  if(aucMtd == '2')_timer.cancel();
+                  if(aucMtd == '2') _timer.cancel();
                   homeDetailDialog.onUpdatePressed(context, jobId);
                 },
                 child: Text( "수정하기",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 2,), ),
               ),
             ),
             Expanded(flex: 2,
-              child: Expanded(
+              // child: Expanded(
                 child: FlatButton(
                   onPressed: () => homeDetailDialog.onDeletePressed(context, jobId, token),
                   child: Text("삭제하기",style: TextStyle(fontSize: defaultSize*2),),
                 ),
-              ),
+              // ),
             ),
           ],
         ),
