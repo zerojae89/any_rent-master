@@ -61,13 +61,13 @@ class _MyPageListHanWorkItemState extends State<MyPageListHanWorkItem> {
         shape: widget.index != 0  ? RoundedRectangleBorder( borderRadius: BorderRadius.circular(4),
             // side: BorderSide( color: Colors.grey[400], )
         ) : null,
-        margin: EdgeInsets.only(bottom: 6, left: 1, right: 1),
+        margin: EdgeInsets.only(bottom: defaultSize * 0.6, left: defaultSize * 0.1, right: defaultSize * 0.1),
         child: Padding(
-          padding: EdgeInsets.only(left: 25, top: 10, bottom: 8),
+          padding: EdgeInsets.only(left: defaultSize * 2.7, top: defaultSize * 1, bottom: defaultSize * 0.9),
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.only(top: 5),
+                padding: EdgeInsets.only(top: defaultSize * 0.6),
               ),
               Row(
                 children: [
@@ -90,8 +90,8 @@ class _MyPageListHanWorkItemState extends State<MyPageListHanWorkItem> {
                     children: [
                       Container(
                           margin: EdgeInsets.only(left: defaultSize * 3),
-                          padding: EdgeInsets.only(left: 5,top: 5),
-                          height: 50,
+                          padding: EdgeInsets.only(left: defaultSize * 0.6,top: defaultSize * 0.6),
+                          height: defaultSize * 6,
                           width: defaultSize * 25,
                           child: Text(widget.jobTtl ?? '일거리',
                           style: TextStyle(fontWeight: FontWeight.bold),)),

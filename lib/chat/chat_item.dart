@@ -163,38 +163,43 @@ class _ChatItemState extends State<ChatItem> {
                       child: Row(
                         // mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
+                          SizedBox(width: defaultSize*1.5,),
                           Container(
-                            margin: EdgeInsets.only(left: defaultSize * 1),
-                            width: defaultSize * 10,
-                            //     decoration: BoxDecoration(
-                            //   border:Border.all(color: Colors.red)
-                            // ),
-                              // margin: EdgeInsets.only(right: defaultSize * 5.2),
-                              child: Text(nicNm ?? '', style: TextStyle(fontSize: defaultSize * 1.5,fontWeight: FontWeight.bold),textAlign: TextAlign.center,)), //유저 닉네임으로 해야함
+                            child: Text(nicNm ?? '', style: TextStyle(fontSize: defaultSize * 1.5,fontWeight: FontWeight.bold),textAlign: TextAlign.left,),
+                            width: defaultSize * 12,
+                          //     decoration: BoxDecoration(
+                          // color: Colors.blue.withOpacity(0.3)),
+                          ),
                           Container(
-                              margin: EdgeInsets.only(left: defaultSize *1),
                             width: defaultSize * 6,
                               // decoration: BoxDecoration(
                               //     border:Border.all(color: Colors.red)
                               // ),
-                              child: Text(twmNm ?? '', style: TextStyle(fontSize: defaultSize * 1.5,fontWeight: FontWeight.bold,color: Colors.lightGreen),)), //job 동네 이름으로 해야함
+                              child: Text(twmNm ?? '', style: TextStyle(fontSize: defaultSize * 1.5,fontWeight: FontWeight.bold,color: Colors.lightGreen[700]),)
+                              ), //job 동네 이름으로 해야함
                           Container(
-                              margin: EdgeInsets.only(left:10 ),
-                              width: defaultSize * 9,
-                              // decoration: BoxDecoration(
-                              //     border:Border.all(color: Colors.red)
-                              // ),
-                              child: Text('${screenDate ?? ''}', style: TextStyle(fontSize: defaultSize * 1.5,fontWeight: FontWeight.bold,color: Colors.amber[700]),)) //마지막 시간이 오늘이 아니면 날짜 오늘이면 시간으로 표시
+                            padding: EdgeInsets.all(defaultSize * 0.4),
+                            width: defaultSize * 4,
+                            height: defaultSize * 2.7,
+                            decoration: BoxDecoration(
+                               shape: BoxShape.circle,color: Colors.pink),
+                            child: Text('$unreadMsg',style: TextStyle(color: Colors.white,fontSize: defaultSize * 1.7),textAlign: TextAlign.center,),
+                              // unreadMsg==0 ? '':'$unreadMsg
+                          ),
+
+                           //마지막 시간이 오늘이 아니면 날짜 오늘이면 시간으로 표시
                         ],
                       ),
                     ),
                         Container(
-                            height: defaultSize * 5,
-                            width: 220,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20.0),color: Colors.lightGreen),
                             margin: EdgeInsets.only(left: 10,top: 12),
                             padding: EdgeInsets.only(top: defaultSize * 1,left: 20,bottom: defaultSize * 1.4),
+                            height: defaultSize * 5,
+                            width: defaultSize * 24,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20.0),
+                                color: Colors.lightGreen
+                            ),
                             alignment: Alignment.centerLeft,
                             child:
                             // Text(chatCnt ?? '', style: TextStyle(fontSize: defaultSize * 1.8),)
@@ -202,22 +207,21 @@ class _ChatItemState extends State<ChatItem> {
                               children: [
                                 Container(
                                   padding: EdgeInsets.only(top: defaultSize * 0.5),
-                                  width: defaultSize * 18,
+                                  width: defaultSize * 13,
                                     height: defaultSize * 2.5,
                                 //     decoration: BoxDecoration(
                                 //   border:Border.all(color: Colors.white)
                                 // ),
                                     child: textView (defaultSize, chatCnt ?? '메세지 내용이 없습니다.',)
+
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(top: defaultSize * 0.5,left: defaultSize * 1),
-                                  width: defaultSize * 4,
-                                  height: defaultSize * 3,
-                                  // decoration: BoxDecoration(
-                                  //     border:Border.all(color: Colors.white)
-                                  // ),
-                                  child: Text(unreadMsg==0 ? '':'$unreadMsg',style: TextStyle(color: Colors.yellow,fontSize: defaultSize * 1.7),),
-                                )
+                                    margin: EdgeInsets.only(left:defaultSize * 0.2 ),
+                                    width: defaultSize * 6,
+                                    // decoration: BoxDecoration(
+                                    //     border:Border.all(color: Colors.red)
+                                    // ),
+                                    child: Text('${screenDate ?? ''}', style: TextStyle(fontSize: defaultSize * 1.3,color: Colors.yellowAccent),textAlign: TextAlign.right,))
                               ],
                             )
                         ),
@@ -240,8 +244,8 @@ class _ChatItemState extends State<ChatItem> {
 
   Widget textView (defaultSize, chatCnt){
     // print(messages[index]['message'].length);
-    if(chatCnt.length > 18 ){
-      return Text(chatCnt.substring(0,19)+"...", style: TextStyle( fontSize: defaultSize * 1.7,color: Colors.white), );
+    if(chatCnt.length > 8 ){
+      return Text(chatCnt.substring(0,9)+"...", style: TextStyle( fontSize: defaultSize * 1.7,color: Colors.white), );
     }
     return Text(chatCnt, style: TextStyle(fontSize: defaultSize * 1.7,color: Colors.white), );
   }

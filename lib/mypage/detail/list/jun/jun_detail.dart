@@ -269,7 +269,7 @@ class _MyPageJunDetailState extends State<MyPageJunDetail> {
                                 Container(),
                             Container(
                               // decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
-                              width: defaultSize * 11,
+                              width: defaultSize * 12,
                               child: Text(
                                 junNic ?? '',
                                 style: TextStyle(color: Colors.lightGreen[700], fontWeight: FontWeight.bold, fontSize:  defaultSize * 1.7),textAlign: TextAlign.center,
@@ -277,7 +277,7 @@ class _MyPageJunDetailState extends State<MyPageJunDetail> {
                             ),
                                 SizedBox(height: defaultSize * 1.5,),
                             Container(
-                              width: defaultSize * 10.5,
+                              width: defaultSize * 12,
                               // decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
                               child: Text(
                                 twnNm ?? '',
@@ -334,7 +334,7 @@ class _MyPageJunDetailState extends State<MyPageJunDetail> {
                       Container(
                         margin: EdgeInsets.only(left: defaultSize * 3.5),
                         child: Padding(
-                          padding: EdgeInsets.only(left: 10),
+                          padding: EdgeInsets.only(left: defaultSize * 1.2),
                           child: Container(
                             width: defaultSize * 14.7,
                             child: Text(
@@ -423,7 +423,7 @@ class _MyPageJunDetailState extends State<MyPageJunDetail> {
                         border: Border.all(color: Colors.lightGreen,width: 1),
                         borderRadius: BorderRadius.circular(20.0)
                     ),
-                    width: 350,
+                    width: defaultSize * 37,
                     child: Padding( padding: EdgeInsets.all(20),  child: Text(jobCtn ?? '', style:  TextStyle(fontSize:  defaultSize * 1.7),), ), ), ),
                 (picCnt == 0) ?  Container() : SizedBox(height: defaultSize * 45, child: buildGridView(jobId, picCnt)),
                 Divider(height: defaultSize * 4,),
@@ -533,7 +533,7 @@ class _MyPageJunDetailState extends State<MyPageJunDetail> {
               child: FlatButton(
                 color: Colors.lightGreen,
                 onPressed: () => onComplComplete(context, jobId, token),
-                child: Text( "완료하기",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 1.3,), ),
+                child: Text( "완료하기",  style: TextStyle( color: Colors.white,  fontSize: defaultSize * 2,), ),
               ),
             ),
             Expanded(

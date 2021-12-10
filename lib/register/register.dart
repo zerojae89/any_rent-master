@@ -607,7 +607,7 @@ class _RegisterState extends State<Register> {
                         Text('날짜', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),
                         SizedBox(height: 10,),
                         Row(
-                          children: [Padding(padding: EdgeInsets.only(left: 43)),
+                          children: [Padding(padding: EdgeInsets.only(left:defaultSize * 5)),
                             Expanded(flex: 2 ,
                               child: Text('시작일', style: TextStyle(fontSize: defaultSize * 1.6),),),
                             Expanded( flex: 6 ,
@@ -621,8 +621,8 @@ class _RegisterState extends State<Register> {
                                     _selectDate(context);
                                     },
                                   child: Container(
-                                  width: 200,
-                                  height: 30,
+                                  width: defaultSize * 20,
+                                  height: defaultSize * 3.5,
                                   margin: EdgeInsets.only(top: 0),
                                   alignment: Alignment.center,
                                   // decoration: BoxDecoration(border:Border.all(color: Colors.grey)),
@@ -640,10 +640,10 @@ class _RegisterState extends State<Register> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.all(10.0),
+                    padding: EdgeInsets.all(defaultSize * 1.2),
                     child:Row(
-                      children: [ Padding(padding: EdgeInsets.only(left: 55)),
-                        Text('시작 시간'),
+                      children: [ Padding(padding: EdgeInsets.only(left: defaultSize * 6.2)),
+                        Text('시작 시간',style: TextStyle(fontSize: defaultSize * 1.6),),
                         InkWell(
                           onTap: () {
                             FocusScopeNode currentFocus = FocusScope.of(context);
@@ -654,9 +654,9 @@ class _RegisterState extends State<Register> {
                           },
                           child:
                           Container(
-                            margin: EdgeInsets.only(left:12),
+                            margin: EdgeInsets.only(left:defaultSize * 1.3),
                             width: _width / 1.7,
-                            height: 20,
+                            height: defaultSize * 2.2,
                             alignment: Alignment.center,
                             child: Text( selectedTime.format(context) ?? '시작시간을 선택하세요.',
                               style:  TextStyle(fontSize: defaultSize * 2),
@@ -666,21 +666,21 @@ class _RegisterState extends State<Register> {
                       ],
                     )
                   ),
-                  SizedBox(height: 5,),
+                  SizedBox(height: defaultSize * 0.6,),
                   Divider(),
-                  SizedBox(height: 10,),
+                  SizedBox(height: defaultSize * 1.1,),
                   Container(
                     child: Column(
                       children: [
                         Row(
                           children: [
                             Padding(padding: EdgeInsets.fromLTRB(defaultSize,defaultSize,defaultSize,defaultSize)),
-                            Container( width: 30,
+                            Container( width: defaultSize * 3.3,
                               child: Text('동네',
                                 style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.5),),),
                             Container(
-                              padding: EdgeInsets.only(left: 10),
-                              height: 40,
+                              padding: EdgeInsets.only(left: defaultSize * 1),
+                              height: defaultSize * 4.7,
                               width: defaultSize * 8.3,
                               decoration: BoxDecoration(border: Border.all(color: Colors.lightGreen),borderRadius: BorderRadius.circular(15)),
                               child: (areaItems == null) ? Padding( padding: EdgeInsets.symmetric(horizontal: 5.0), child: SizedBox( width: defaultSize, height: defaultSize, child: CircularProgressIndicator(), ),) :
@@ -704,9 +704,9 @@ class _RegisterState extends State<Register> {
                                   value:twnCd,
                                   iconEnabledColor: Colors.amber, //화살표 색
                                 ),
-                              ),SizedBox(width:8,),
-                            Container( width: 30,child: Text('범위', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.5),),),
-                            Container( padding: EdgeInsets.only(left: 10), height: 40,width: defaultSize * 8.1,decoration: BoxDecoration(border: Border.all(color: Colors.lightGreen),borderRadius: BorderRadius.circular(15)),
+                              ),SizedBox(width:defaultSize * 0.8,),
+                            Container( width: defaultSize * 3.4,child: Text('범위', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.5),),),
+                            Container( padding: EdgeInsets.only(left: defaultSize * 1.1), height: defaultSize * 4.7,width: defaultSize * 8.1,decoration: BoxDecoration(border: Border.all(color: Colors.lightGreen),borderRadius: BorderRadius.circular(15)),
 
                                 child: DropdownButton(
                                   items: registerItems.rangeItems.map((item) {
@@ -730,8 +730,8 @@ class _RegisterState extends State<Register> {
                               ),
                             SizedBox(width: 8,),
 
-                            Container(width: 30, child: Text('희망성별', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.5),),),
-                            Container( padding: EdgeInsets.only(left: 10), height: 40,width: defaultSize * 8.3,decoration: BoxDecoration(border: Border.all(color: Colors.lightGreen),borderRadius: BorderRadius.circular(15)),
+                            Container(width: defaultSize * 3.4, child: Text('희망성별', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.5),),),
+                            Container( padding: EdgeInsets.only(left: 10), height: defaultSize * 4.7,width: defaultSize * 8.3,decoration: BoxDecoration(border: Border.all(color: Colors.lightGreen),borderRadius: BorderRadius.circular(15)),
                               child:DropdownButton(
                                 items: registerItems.genderItems.map((item) {
                                   return  DropdownMenuItem(
@@ -796,7 +796,7 @@ class _RegisterState extends State<Register> {
                           child: Text('일 제목', style: TextStyle(fontWeight: FontWeight.bold , fontSize: defaultSize * 1.8),),
                         ),
                         Container(
-                          margin: EdgeInsets.only(left: 20),
+                          margin: EdgeInsets.only(left: defaultSize * 2.2),
                           // width: 280,
                           width: defaultSize * 28,
                           height: defaultSize * 4.5,
@@ -895,8 +895,8 @@ class _RegisterState extends State<Register> {
                               ),
                         ),
                     Container(
-                      width: 80,
-                      margin: EdgeInsets.only(top:10,bottom: 18,right: 240),
+                      width: defaultSize * 8.6,
+                      margin: EdgeInsets.only(top:defaultSize * 1.1,bottom: defaultSize * 2,right: defaultSize * 29),
                       child: Text('사진 첨부',style: TextStyle(fontSize: defaultSize*1.8,fontWeight: FontWeight.bold),),
                     ),
                     Column(

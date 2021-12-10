@@ -90,10 +90,10 @@ class _MyPageAttentionItmeState extends State<MyPageAttentionItme> {
                        Row(
                          children: [
                            Container(
-                             padding: EdgeInsets.only(top: 5,left: 2),
+                             padding: EdgeInsets.only(top: defaultSize * 0.6,left: defaultSize * 0.8),
                              // decoration: BoxDecoration(
                              //     border: Border.all(color: Colors.grey)),
-                             height: 50,
+                             height: defaultSize * 5.7,
                              width: defaultSize * 19,
                              child: Text(widget.jobTtl ?? '일거리',
                                  style: TextStyle(fontWeight: FontWeight.bold)),
@@ -127,7 +127,7 @@ class _MyPageAttentionItmeState extends State<MyPageAttentionItme> {
                              margin: EdgeInsets.only(right: defaultSize * 6,bottom: defaultSize * 0.5),
                              // decoration: BoxDecoration(
                              //     border: Border.all(color: Colors.grey)),
-                             padding: EdgeInsets.only(top: 5),
+                             padding: EdgeInsets.only(top: defaultSize * 0.5),
                              height: 25,
                              width: defaultSize * 17,
                              child: (widget.aucMtd == "1")

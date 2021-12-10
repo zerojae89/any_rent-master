@@ -190,7 +190,7 @@ class _MyPageHanDetailState extends State<MyPageHanDetail> {
                                     color: Colors.yellow.withOpacity(0.8),
                                     width: 5)),
                             width: defaultSize * 9,
-                            height: defaultSize * 15
+                            height: defaultSize * 12
                           // child: (junPrfSeq == null) ? Icon(Icons.account_box_rounded, size: 40,) : Image.network('$url/api/mypage/images?recieveToken=$junPrfSeq')
                         ),
 
@@ -208,7 +208,7 @@ class _MyPageHanDetailState extends State<MyPageHanDetail> {
                       Container(),
                       Container(
                         // decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
-                        width: defaultSize * 10.5,
+                        width: defaultSize * 12,
                         child: Text(
                           junNic ?? '',
                           style: TextStyle(color: Colors.lightGreen[700], fontWeight: FontWeight.bold, fontSize:  defaultSize * 1.7),textAlign: TextAlign.center,
@@ -216,7 +216,7 @@ class _MyPageHanDetailState extends State<MyPageHanDetail> {
                       ),
                       SizedBox(height: defaultSize * 1.5,),
                       Container(
-                        width: defaultSize * 10.5,
+                        width: defaultSize * 12,
                         // decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
                         child: Text(
                           twnNm ?? '',
@@ -273,7 +273,7 @@ class _MyPageHanDetailState extends State<MyPageHanDetail> {
                     Container(
                       margin: EdgeInsets.only(left: defaultSize * 3.5),
                       child: Padding(
-                        padding: EdgeInsets.only(left: 10),
+                        padding: EdgeInsets.only(left: defaultSize * 1.1),
                         child: Container(
                           width: defaultSize * 14.7,
                           child: Text(

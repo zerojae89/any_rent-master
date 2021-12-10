@@ -216,9 +216,9 @@ class _MyPageDetailMyTownState extends State<MyPageDetailMyTown> {
                   ),
                   SizedBox(width: defaultSize * 6.3,),
                   Container(
-                    margin: EdgeInsets.only(top: 8),
+                    margin: EdgeInsets.only(top: defaultSize * 0.8),
                     height: defaultSize * 4,
-                      width: defaultSize * 9,
+                      width: defaultSize * 8.5,
                       decoration: BoxDecoration(color: Colors.pink,borderRadius: BorderRadius.circular(15)),
                       child: FlatButton(child: Text('삭제',style: TextStyle(fontSize: defaultSize * 2,color: Colors.white),),onPressed: ()=> removeAddressDialog(reCert, type),))
                   // IconButton(icon: Icon(Icons.clear, color: Colors.amber,), onPressed: ()=> removeAddressDialog(reCert, type)),
@@ -337,7 +337,7 @@ class _MyPageDetailMyTownState extends State<MyPageDetailMyTown> {
                             ),
                             Container(
                               // margin: EdgeInsets.only(left: defaultSize * 2),
-                              padding: EdgeInsets.only(top: defaultSize * 0.8,left: defaultSize * 2),
+                              padding: EdgeInsets.only(top: defaultSize * 0.8,left: defaultSize * 2.3),
                               width: defaultSize * 10,
                               height: defaultSize * 3,
                               // decoration: BoxDecoration(

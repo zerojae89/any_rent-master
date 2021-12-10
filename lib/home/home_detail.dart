@@ -342,7 +342,7 @@ class _HomeDetailState extends State<HomeDetail> {
                                 Container(),
                                 Container(
                                   // decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
-                                  width: defaultSize * 11,
+                                  width: defaultSize * 12,
                                   child: Text(
                                     junNic ?? '',
                                     style: TextStyle(color: Colors.lightGreen[700], fontWeight: FontWeight.bold, fontSize:  defaultSize * 1.7),textAlign: TextAlign.center,
@@ -350,7 +350,7 @@ class _HomeDetailState extends State<HomeDetail> {
                                 ),
                                 SizedBox(height: defaultSize * 1.5,),
                                 Container(
-                                  width: defaultSize * 10.5,
+                                  width: defaultSize * 12,
                                   // decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
                                   child: Text(
                                     twnNm ?? '',
@@ -381,7 +381,7 @@ class _HomeDetailState extends State<HomeDetail> {
                                 SizedBox(height: defaultSize * 1.2,),
                                 Container(
                                   margin: EdgeInsets.only(left: defaultSize * 1),
-                                  width: 70,
+                                  width: defaultSize * 7,
                                   // decoration: BoxDecoration(
                                   //   border: Border.all(color: Colors.grey)
                                   // ),
@@ -407,7 +407,7 @@ class _HomeDetailState extends State<HomeDetail> {
                       Container(
                         margin: EdgeInsets.only(left: defaultSize * 3),
                         child: Padding(
-                          padding: EdgeInsets.only(left: 10),
+                          padding: EdgeInsets.only(left: defaultSize * 1),
                           child: Container(
                             width: defaultSize * 16,
                             child: Text(
@@ -426,7 +426,7 @@ class _HomeDetailState extends State<HomeDetail> {
                     ],
                   ),
                 ),
-                SizedBox(height: 10,),
+                SizedBox(height: defaultSize * 1,),
                 Container(
                   child: Row(
                     children: [
@@ -459,12 +459,13 @@ class _HomeDetailState extends State<HomeDetail> {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(left: defaultSize * 1.5,top: defaultSize * 0.7),
+                        margin: EdgeInsets.only(left: defaultSize * 0.5,top: defaultSize * 0.7),
                         child: Container(
+                          width: defaultSize * 7,
                           child: Text(
                             (payMtd == null) ? '' : (payMtd == '1') ? '직접결제' : (payMtd == '2')? '안전결제' : '',
                             style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7 , ),
-                            textAlign: TextAlign.center,
+                            textAlign: TextAlign.right,
                           ),
                         ),
                       ),
@@ -475,15 +476,16 @@ class _HomeDetailState extends State<HomeDetail> {
                 Row(
                   children: [
                     Container(margin:EdgeInsets.only(left: defaultSize * 4.1,top: defaultSize * 2),child: Text('희망 성별 :', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7),)),
-                    Container(margin: EdgeInsets.only(left: 10,top: defaultSize * 2), child: Text(hanGndName ?? '', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7),)),
+                    Container(margin: EdgeInsets.only(left: defaultSize * 1.1,top: defaultSize * 2), child: Text(hanGndName ?? '', style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7),)),
                     Container(margin: EdgeInsets.only(top: defaultSize * 2, left: defaultSize * 5.6),child: Text('입찰방식 :',style: TextStyle(fontSize: defaultSize * 1.7,),),),
                     Container(
-                      margin: EdgeInsets.only(left: defaultSize * 3.8,top: defaultSize * 2),
+                      margin: EdgeInsets.only(left: defaultSize * 0.6,top: defaultSize * 2),
                       child: Container(
+                        width: defaultSize * 7.9,
                         child: Text(
                           (aucMtd == null) ? '' : (aucMtd == '1') ? '선착순' : (aucMtd == '2')? '입찰식' : '',
                           style: TextStyle(color: Colors.black, fontSize:  defaultSize * 1.7, ),
-                          textAlign: TextAlign.center,
+                          textAlign: TextAlign.right,
                         ),
                       ),
                     ),

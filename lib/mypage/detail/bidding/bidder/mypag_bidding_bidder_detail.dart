@@ -162,7 +162,7 @@ class _MypageBidderDetailState extends State<MypageBidderDetail> {
               child: Row(
                 children: [
                   Container(child: Text( '입찰인원  ${widget.count} 명', style: TextStyle(color: Colors.black, fontSize: defaultSize * 1.7 ),), ),
-                  SizedBox(width: defaultSize * 9.8,),
+                  SizedBox(width: defaultSize * 8.5,),
                   Container(
                       // decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
                       width: defaultSize * 16,
