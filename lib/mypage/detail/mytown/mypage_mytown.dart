@@ -224,7 +224,6 @@ class _MyPageDetailMyTownState extends State<MyPageDetailMyTown> {
                   // IconButton(icon: Icon(Icons.clear, color: Colors.amber,), onPressed: ()=> removeAddressDialog(reCert, type)),
                 ],
               ),
-
             ],
           )
       );

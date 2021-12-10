@@ -160,14 +160,13 @@ class _MyPageProfileHeaderState extends State<MyPageProfileHeader> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.only(left: 10,top: 10,right: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    margin: EdgeInsets.only(top: 10),
                     width: defaultSize * 15,
-                    height: defaultSize * 18,
+                    height: defaultSize * 20,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
@@ -183,13 +182,12 @@ class _MyPageProfileHeaderState extends State<MyPageProfileHeader> {
                       )
                     ),
                     // child: (images.length > 0) ?
-                    SizedBox( height: defaultSize * 5)
+                    // SizedBox( height: defaultSize * 5)
                     // : (prfSeq == null) ?  Icon(Icons.circle, size: defaultSize * 8,) :  Image.network('$url/api/mypage/images?recieveToken=$prfSeq'),//이미지 널 체크 여부
             // ),
                 ],
               ),
             ),
-            Padding(padding: EdgeInsets.only(top: defaultSize )),
           ],
         ),
       ),

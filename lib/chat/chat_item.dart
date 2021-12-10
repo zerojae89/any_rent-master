@@ -41,6 +41,8 @@ class _ChatItemState extends State<ChatItem> {
     super.dispose();
   }
 
+
+
   loadToken() async{
     // print('widget.chatItems =========================================== ${widget.chatItems}');
     token = await customSharedPreferences.getString('token');
@@ -90,6 +92,7 @@ class _ChatItemState extends State<ChatItem> {
           }
         }
       }
+      print('---------$chatCnt');
 
       var chatDate = dateFormat.format(DateTime.parse(chatItems['lschDtm']));
 
@@ -108,6 +111,8 @@ class _ChatItemState extends State<ChatItem> {
       Scaffold.of(context).showSnackBar( SnackBar(content: Text("잠시후 다시 시도해 주세요.",), duration: Duration(seconds: 3),) );
     }
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -145,7 +150,7 @@ class _ChatItemState extends State<ChatItem> {
                       //     width: 5)
                   ),
                   width: defaultSize * 9,
-                  height: defaultSize * 15
+                  height: defaultSize * 12
                 // child: (junPrfSeq == null) ? Icon(Icons.account_box_rounded, size: 40,) : Image.network('$url/api/mypage/images?recieveToken=$junPrfSeq')
               ),
               // Container(child: (prfSeq == null) ? Icon(Icons.account_box_rounded, size: defaultSize * 8,) :
@@ -211,7 +216,7 @@ class _ChatItemState extends State<ChatItem> {
                                   // decoration: BoxDecoration(
                                   //     border:Border.all(color: Colors.white)
                                   // ),
-                                  child: Text('$unreadMsg',style: TextStyle(color: Colors.yellow,fontSize: defaultSize * 1.7),),
+                                  child: Text(unreadMsg==0 ? '':'$unreadMsg',style: TextStyle(color: Colors.yellow,fontSize: defaultSize * 1.7),),
                                 )
                               ],
                             )

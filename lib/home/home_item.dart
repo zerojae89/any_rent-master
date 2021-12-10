@@ -176,16 +176,16 @@ class _HomeItemState extends State<HomeItem>
         ) : null,
         margin: EdgeInsets.only(bottom: 6, left: 1, right: 1),
         child: Padding(
-          padding: EdgeInsets.only(left: 25, top: 10, bottom: 8),
+          padding: EdgeInsets.only(left: 18, top: 10, bottom: 8),
           child: Column(
               children: [
             Padding(padding: EdgeInsets.only(top: 5)),
             Row(
               children: [
                 Container(
-                  margin: EdgeInsets.only(top: defaultSize * 2,bottom: defaultSize * 3 ),
-                  width: defaultSize * 8,
-                  height: defaultSize * 10,
+                  // margin: EdgeInsets.only(left: 5 ),
+                  width: defaultSize * 9,
+                  height: defaultSize * 12,
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.yellow.withOpacity(0.8),width: defaultSize * 0.3),
                       shape: BoxShape.circle,
@@ -202,10 +202,10 @@ class _HomeItemState extends State<HomeItem>
                     Row(
                       children: [
                         Container(
-                          margin: EdgeInsets.only(left: 15,),
+                          margin: EdgeInsets.only(left: 5,),
                           // decoration: BoxDecoration(
                           //     border: Border.all(color: Colors.grey)),
-                          padding: EdgeInsets.only(top: 5, left: 5),
+                          padding: EdgeInsets.only(top: 5, left: 9),
                           height: 40,
                           width: defaultSize * 18,
                           child: Text(widget.jobTtl ?? '일거리',

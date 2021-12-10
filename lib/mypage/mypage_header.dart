@@ -91,9 +91,8 @@ class _MyPageHeaderState extends State<MyPageHeader> {
                                 color: Colors.yellow.withOpacity(0.8),
                                 width: 5)),
                         width: defaultSize * 15,
-                        height: defaultSize * 18
+                        height: defaultSize * 20
                       ),
-                      SizedBox(height: defaultSize * 1,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
