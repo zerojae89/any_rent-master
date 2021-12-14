@@ -6,18 +6,20 @@ import 'package:http/http.dart' as http;
 
 const url = UrlConfig.url;
 
-class MyPageServer{
+class MyPageServer {
 
   //유저 정보 가져오기
-  Future<String> getProfile(String token) async{
-    print("getProfile====================================================Start");
-    http.Response response = await http.post( '$url/api/mypage/getToken',
-      body: {
-        "recieveToken" : token,
-      }
+  Future<String> getProfile(String token) async {
+    print(
+        "getProfile====================================================Start");
+    http.Response response = await http.post('$url/api/mypage/getToken',
+        body: {
+          "recieveToken": token,
+        }
     );
     if (response.statusCode == 200) {
-      print("getProfile====================================================end");
+      print(
+          "getProfile====================================================end");
       print(response.body);
       String jsonString = response.body;
       return jsonString;
@@ -29,12 +31,12 @@ class MyPageServer{
   }
 
   //낙내임 변경
-  Future<String> changrNic(String token, String nicNm) async{
+  Future<String> changrNic(String token, String nicNm) async {
     print("changrNic====================================================Start");
-    http.Response response = await http.post( '$url/api/mypage/uptNicnm',
+    http.Response response = await http.post('$url/api/mypage/uptNicnm',
         body: {
-          "recieveToken" : token,
-          "recieveNicNm" : nicNm
+          "recieveToken": token,
+          "recieveNicNm": nicNm
         }
     );
     if (response.statusCode == 200) {
@@ -50,11 +52,14 @@ class MyPageServer{
   }
 
   //동네 가져오기
-  Future<String> getAddress(String token) async{
-    print("getAddress====================================================Start");
-    http.Response response = await http.post( '$url/api/mypage/userTown',  body: { "recieveToken" : token, } );
+  Future<String> getAddress(String token) async {
+    print(
+        "getAddress====================================================Start");
+    http.Response response = await http.post(
+        '$url/api/mypage/userTown', body: { "recieveToken": token,});
     if (response.statusCode == 200) {
-      print("getAddress====================================================end");
+      print(
+          "getAddress====================================================end");
       print(response.body);
       String jsonString = response.body;
       return jsonString;
@@ -66,17 +71,20 @@ class MyPageServer{
   }
 
   //동네 등록 하기
-  Future<String> sendAddress(String token, String latitude, String longitude ) async{
-    print("sendAddress====================================================Start");
-    http.Response response = await http.post( '$url/api/mypage/registerTown',
+  Future<String> sendAddress(String token, String latitude,
+      String longitude) async {
+    print(
+        "sendAddress====================================================Start");
+    http.Response response = await http.post('$url/api/mypage/registerTown',
         body: {
-          "recieveToken" : token,
-          "gps_y" : latitude,
-          "gps_x" : longitude,
+          "recieveToken": token,
+          "gps_y": latitude,
+          "gps_x": longitude,
         }
     );
     if (response.statusCode == 200) {
-      print("sendAddress====================================================end");
+      print(
+          "sendAddress====================================================end");
       print(response.body);
       String jsonString = response.body;
       return jsonString;
@@ -88,11 +96,14 @@ class MyPageServer{
   }
 
   //동네 삭제하기
-  Future<String> removeAddress(String token, String twnCd) async{
-    print("removeAddress====================================================Start");
-    http.Response response = await http.post( '$url/api/mypage/deleteTown',  body: { "recieveToken" : token, "twnCd": twnCd } );
+  Future<String> removeAddress(String token, String twnCd) async {
+    print(
+        "removeAddress====================================================Start");
+    http.Response response = await http.post('$url/api/mypage/deleteTown',
+        body: { "recieveToken": token, "twnCd": twnCd});
     if (response.statusCode == 200) {
-      print("removeAddress====================================================end");
+      print(
+          "removeAddress====================================================end");
       print(response.body);
       String jsonString = response.body;
       return jsonString;
@@ -104,16 +115,19 @@ class MyPageServer{
   }
 
   //동네 인증하기
-  Future<String> certificationAddress(String token, String latitude, String longitude) async{
-    print("certificationAddress====================================================Start");
-    http.Response response = await http.post( '$url/api/mypage/increaseCert',
+  Future<String> certificationAddress(String token, String latitude,
+      String longitude) async {
+    print(
+        "certificationAddress====================================================Start");
+    http.Response response = await http.post('$url/api/mypage/increaseCert',
         body: {
-          "recieveToken" : token,
-          "gps_y" : latitude,
-          "gps_x" : longitude,
-    } );
+          "recieveToken": token,
+          "gps_y": latitude,
+          "gps_x": longitude,
+        });
     if (response.statusCode == 200) {
-      print("certificationAddress====================================================end");
+      print(
+          "certificationAddress====================================================end");
       print(response.body);
       String jsonString = response.body;
       return jsonString;
@@ -125,15 +139,17 @@ class MyPageServer{
   }
 
   //이미지 삭제하기
-  Future<String> removeProfile(String token) async{
-    print("removeProfile====================================================Start");
-    http.Response response = await http.post( '$url/api/mypage/profliDel',
+  Future<String> removeProfile(String token) async {
+    print(
+        "removeProfile====================================================Start");
+    http.Response response = await http.post('$url/api/mypage/profliDel',
         body: {
-          "recieveToken" : token,
+          "recieveToken": token,
         }
     );
     if (response.statusCode == 200) {
-      print("removeProfile====================================================end");
+      print(
+          "removeProfile====================================================end");
       print(response.body);
       String jsonString = response.body;
       return jsonString;
@@ -145,136 +161,153 @@ class MyPageServer{
   }
 
   //준일 목록 불러오기
-  Future<String> getjunWorkList(String token) async{
-    print("junWorkList====================================================Start");
-    http.Response response = await http.post( '$url/api/mypage/junWork',
-        body: {
-          "recieveToken" : token,
-        }
-    );
-    if (response.statusCode == 200) {
-      print("junWorkList====================================================end");
-      print(response.body);
-      String jsonString = response.body;
-      return jsonString;
-    } else {
-      throw Exception('error');
-      // print('error!!!!!!!!!!');
-      // return "error";
-    }
-  }
-
-  Future<String> getAttentionList(String token) async{ //관삼목록 목록 불러오기
-    print("getAttentionList====================================================Start");
-    http.Response response = await http.post( '$url/api/service/hanItsSelect',
-        body: {
-          "recieveToken" : token,
-        }
-    );
-    if (response.statusCode == 200) {
-      print("getAttentionList====================================================end");
-      print(response.body);
-      String jsonString = response.body;
-      return jsonString;
-    } else {
-      throw Exception('error');
-      // print('error!!!!!!!!!!');
-      // return "error";
-    }
-  }
-
-  Future<String> getHanWorkList(String token) async{ //한일 목록 불러오기
-    print("getAttentionList====================================================Start");
-    http.Response response = await http.post( '$url/api/service/hanilSelect',
-        body: {
-          "recieveToken" : token,
-        }
-    );
-    if (response.statusCode == 200) {
-      print("getAttentionList====================================================end");
-      print(response.body);
-      String jsonString = response.body;
-      return jsonString;
-    } else {
-      throw Exception('error');
-      // print('error!!!!!!!!!!');
-      // return "error";
-    }
-  }
-
-  Future<String> sendServiceComplete(String token, String jobId) async{ //소일 완료 하기
-    print("sendServiceComplete====================================================Start");
-    http.Response response = await http.post( '$url/api/service/completeServ',
-        body: {
-          "recieveToken" : token,
-          "jobId" : jobId
-        }
-    );
-    if (response.statusCode == 200) {
-      print("sendServiceComplete====================================================end");
-      print(response.body);
-      String jsonString = response.body;
-      return jsonString;
-    } else {
-      throw Exception('error');
-      // print('error!!!!!!!!!!');
-      // return "error";
-    }
-  }
-
-  Future<String> getHanId(String token, ) async{ //하니 아이디 가져오기
-    print("getHanId====================================================Start");
-    http.Response response = await http.post( '$url/api/service/getHanId',
-        body: {
-          "recieveToken" : token,
-        }
-    );
-    if (response.statusCode == 200) {
-      print("getHanId====================================================end");
-      print(response.body);
-      String jsonString = response.body;
-      return jsonString;
-    } else {
-      throw Exception('error');
-      // print('error!!!!!!!!!!');
-      // return "error";
-    }
-  }
-
-  Future<String> getReviewWiretList(String token ) async{ //리뷰 작성 가져오기
-    print("getHanId====================================================Start");
-    http.Response response = await http.post( '$url/api/chat/getReviewWiretList',
-        body: {
-          "recieveToken" : token,
-        }
-    );
-    if (response.statusCode == 200) {
-      print("getHanId====================================================end");
-      print(response.body);
-      String jsonString = response.body;
-      return jsonString;
-    } else {
-      throw Exception('error');
-      // print('error!!!!!!!!!!');
-      // return "error";
-    }
-  }
-
-  Future<String> sendReview(String token, String opId, String jobId, String junHan, String revCtn, String grd, String kind) async{ //후기 작성 및 수정 하기
-    print("sendReview====================================================Start");
-    http.Response response = await http.post( "$url/api/chat/sendReview",
+  Future<String> getjunWorkList(String token) async {
+    print(
+        "junWorkList====================================================Start");
+    http.Response response = await http.post('$url/api/mypage/junWork',
         body: {
           "recieveToken": token,
-          "opId" : opId,
-          "jobId" : jobId,
-          "junHan" : junHan,
+        }
+    );
+    if (response.statusCode == 200) {
+      print(
+          "junWorkList====================================================end");
+      print(response.body);
+      String jsonString = response.body;
+      return jsonString;
+    } else {
+      throw Exception('error');
+      // print('error!!!!!!!!!!');
+      // return "error";
+    }
+  }
+
+  Future<String> getAttentionList(String token) async {
+    //관삼목록 목록 불러오기
+    print(
+        "getAttentionList====================================================Start");
+    http.Response response = await http.post('$url/api/service/hanItsSelect',
+        body: {
+          "recieveToken": token,
+        }
+    );
+    if (response.statusCode == 200) {
+      print(
+          "getAttentionList====================================================end");
+      print(response.body);
+      String jsonString = response.body;
+      return jsonString;
+    } else {
+      throw Exception('error');
+      // print('error!!!!!!!!!!');
+      // return "error";
+    }
+  }
+
+  Future<String> getHanWorkList(String token) async {
+    //한일 목록 불러오기
+    print(
+        "getAttentionList====================================================Start");
+    http.Response response = await http.post('$url/api/service/hanilSelect',
+        body: {
+          "recieveToken": token,
+        }
+    );
+    if (response.statusCode == 200) {
+      print(
+          "getAttentionList====================================================end");
+      print(response.body);
+      String jsonString = response.body;
+      return jsonString;
+    } else {
+      throw Exception('error');
+      // print('error!!!!!!!!!!');
+      // return "error";
+    }
+  }
+
+  Future<String> sendServiceComplete(String token, String jobId) async {
+    //소일 완료 하기
+    print(
+        "sendServiceComplete====================================================Start");
+    http.Response response = await http.post('$url/api/service/completeServ',
+        body: {
+          "recieveToken": token,
+          "jobId": jobId
+        }
+    );
+    if (response.statusCode == 200) {
+      print(
+          "sendServiceComplete====================================================end");
+      print(response.body);
+      String jsonString = response.body;
+      return jsonString;
+    } else {
+      throw Exception('error');
+      // print('error!!!!!!!!!!');
+      // return "error";
+    }
+  }
+
+  Future<String> getHanId(String token,) async {
+    //하니 아이디 가져오기
+    print("getHanId====================================================Start");
+    http.Response response = await http.post('$url/api/service/getHanId',
+        body: {
+          "recieveToken": token,
+        }
+    );
+    if (response.statusCode == 200) {
+      print("getHanId====================================================end");
+      print(response.body);
+      String jsonString = response.body;
+      return jsonString;
+    } else {
+      throw Exception('error');
+      // print('error!!!!!!!!!!');
+      // return "error";
+    }
+  }
+
+  Future<String> getReviewWiretList(String token) async {
+    //리뷰 작성 가져오기
+    print("getHanId====================================================Start");
+    http.Response response = await http.post('$url/api/chat/getReviewWiretList',
+        body: {
+          "recieveToken": token,
+        }
+    );
+    if (response.statusCode == 200) {
+      print("getHanId====================================================end");
+      print(response.body);
+      String jsonString = response.body;
+      return jsonString;
+    } else {
+      throw Exception('error');
+      // print('error!!!!!!!!!!');
+      // return "error";
+    }
+  }
+
+  Future<String> sendReview(String token, String opId, String jobId,
+      String junHan, String revCtn, String grd, String kind) async {
+    //후기 작성 및 수정 하기
+    print(
+        "sendReview====================================================Start");
+    http.Response response = await http.post("$url/api/chat/sendReview",
+        body: {
+          "recieveToken": token,
+          "opId": opId,
+          "jobId": jobId,
+          "junHan": junHan,
           "revCtn": revCtn,
           "grd": grd,
-          "kind" : kind
+          "kind": kind
         }
     );
     if (response.statusCode == 200) {
-      print("sendReview====================================================end");
+      print(
+          "sendReview====================================================end");
       print(response.body);
       String jsonString = response.body;
       return jsonString;
@@ -285,16 +318,19 @@ class MyPageServer{
     }
   }
 
-  Future<String> deleteReview(String token, String jobId, ) async{ //후기 삭제 하기
-    print("deleteReview====================================================Start");
-    http.Response response = await http.post( "$url/api/chat/deleteReview",
+  Future<String> deleteReview(String token, String jobId,) async {
+    //후기 삭제 하기
+    print(
+        "deleteReview====================================================Start");
+    http.Response response = await http.post("$url/api/chat/deleteReview",
         body: {
           "recieveToken": token,
-          "jobId" : jobId,
+          "jobId": jobId,
         }
     );
     if (response.statusCode == 200) {
-      print("deleteReview====================================================end");
+      print(
+          "deleteReview====================================================end");
       print(response.body);
       String jsonString = response.body;
       return jsonString;
@@ -305,11 +341,12 @@ class MyPageServer{
     }
   }
 
-  Future<String> getReviewReadList(String token ) async{ //리뷰 작성 가져오기
+  Future<String> getReviewReadList(String token) async {
+    //리뷰 작성 가져오기
     print("getHanId====================================================Start");
-    http.Response response = await http.post( '$url/api/chat/getReviewReadList',
+    http.Response response = await http.post('$url/api/chat/getReviewReadList',
         body: {
-          "recieveToken" : token,
+          "recieveToken": token,
         }
     );
     if (response.statusCode == 200) {
@@ -324,11 +361,15 @@ class MyPageServer{
     }
   }
 
-  Future<String> getBidderList(String token ) async{ //리뷰 작성 가져오기
-    print("getBidderList====================================================Start");
-    http.Response response = await http.post( '$url/api/mypage/bidder',  body: { "recieveToken" : token } );
+  Future<String> getBidderList(String token) async {
+    //리뷰 작성 가져오기
+    print(
+        "getBidderList====================================================Start");
+    http.Response response = await http.post(
+        '$url/api/mypage/bidder', body: { "recieveToken": token});
     if (response.statusCode == 200) {
-      print("getBidderList====================================================end");
+      print(
+          "getBidderList====================================================end");
       print(response.body);
       String jsonString = response.body;
       return jsonString;
@@ -339,11 +380,15 @@ class MyPageServer{
     }
   }
 
-  Future<String> getBidderDetail(String jobId ) async{ //리뷰 작성 가져오기
-    print("getBidderDetail====================================================Start");
-    http.Response response = await http.post( '$url/api/mypage/bidderDetail',  body: { "jobId" : jobId } );
+  Future<String> getBidderDetail(String jobId) async {
+    //리뷰 작성 가져오기
+    print(
+        "getBidderDetail====================================================Start");
+    http.Response response = await http.post(
+        '$url/api/mypage/bidderDetail', body: { "jobId": jobId});
     if (response.statusCode == 200) {
-      print("getBidderDetail====================================================end");
+      print(
+          "getBidderDetail====================================================end");
       print(response.body);
       String jsonString = response.body;
       return jsonString;
@@ -351,6 +396,22 @@ class MyPageServer{
       throw Exception('error');
       // print('error!!!!!!!!!!');
       // return "error";
+    }
+  }
+
+  Future<String> keyWordRegi(String token) async {
+    print(
+        "keyWord====================================================Start");
+    http.Response response = await http.post(
+        '$url/api/mypage/keyWordRegi', body: { "recieveToken": token});
+    if (response.statusCode == 200) {
+      print(
+          "keyWord====================================================end");
+      print(response.body);
+      String jsonString = response.body;
+      return jsonString;
+    } else {
+      throw Exception('error');
     }
   }
 }

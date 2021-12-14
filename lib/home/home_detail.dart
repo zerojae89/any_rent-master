@@ -273,7 +273,9 @@ class _HomeDetailState extends State<HomeDetail> {
                     children: [
                       Row(
                         children: [
+                          SizedBox(),
                           Container(
+                            alignment: Alignment.centerLeft,
                             margin: EdgeInsets.only(left: defaultSize * 2,),
                             padding: EdgeInsets.only(top: defaultSize * 0.4),
                             // decoration: BoxDecoration(border: Border.all(color:Colors.grey)),

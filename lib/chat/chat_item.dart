@@ -30,6 +30,7 @@ class _ChatItemState extends State<ChatItem> {
   DateFormat timeFormat = DateFormat("HH시 mm분");
   var screenDate;
 
+
   @override
   void initState() {
     super.initState();
@@ -40,7 +41,6 @@ class _ChatItemState extends State<ChatItem> {
     isDisposed = true;
     super.dispose();
   }
-
 
 
   loadToken() async{
@@ -68,6 +68,7 @@ class _ChatItemState extends State<ChatItem> {
           });
           if(junHan == "H"){
             print('merId ============================= hanId');
+            print('unread ================22============= $unreadMsg');
             if(!isDisposed) {
               setState(() {
                 hanId = widget.chatItems['myId'];
@@ -92,7 +93,6 @@ class _ChatItemState extends State<ChatItem> {
           }
         }
       }
-      print('---------$chatCnt');
 
       var chatDate = dateFormat.format(DateTime.parse(chatItems['lschDtm']));
 
@@ -112,6 +112,18 @@ class _ChatItemState extends State<ChatItem> {
     }
   }
 
+  // String UnreadMsg(){
+  //   setState(unreadMsg) {
+  //   });
+  //   return "";
+  // }
+
+  // String ChatCnt(){
+  //   setState((){
+  //     chatCnt;
+  //   });
+  //   return "";
+  // }
 
 
   @override
@@ -123,7 +135,7 @@ class _ChatItemState extends State<ChatItem> {
         print('ChatItem ==================');
         print('junId ============== $junId');
         print('mbrId ============== $mbrId');
-        print('hanId ============== $hanId');
+        print('hanId ========55=== $unreadMsg');
         // print('chatItems ================================== $chatItems');
 
         Navigator.push(context, MaterialPageRoute(builder: (context) => ChatPage(mbrId: mbrId, jobId: jobId, junId: junId, hanId: hanId,)));
@@ -177,7 +189,7 @@ class _ChatItemState extends State<ChatItem> {
                               // ),
                               child: Text(twmNm ?? '', style: TextStyle(fontSize: defaultSize * 1.5,fontWeight: FontWeight.bold,color: Colors.lightGreen[700]),)
                               ), //job 동네 이름으로 해야함
-                          Container(
+                          (unreadMsg == 0)? Container(width: defaultSize * 4, ) : Container(
                             padding: EdgeInsets.all(defaultSize * 0.4),
                             width: defaultSize * 4,
                             height: defaultSize * 2.7,
@@ -212,6 +224,7 @@ class _ChatItemState extends State<ChatItem> {
                                 //     decoration: BoxDecoration(
                                 //   border:Border.all(color: Colors.white)
                                 // ),
+
                                     child: textView (defaultSize, chatCnt ?? '메세지 내용이 없습니다.',)
 
                                 ),

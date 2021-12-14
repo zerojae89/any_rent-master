@@ -1,18 +1,26 @@
+import 'package:any_rent/settings/custom_shared_preferences.dart';
+import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import '../mypage_detail_appbar.dart';
 import '../../../settings/size_config.dart';
 
 class MyPageDetailKeyword extends StatefulWidget {
+
   @override
   _MyPageDetailKeywordState createState() => _MyPageDetailKeywordState();
 }
 
 class _MyPageDetailKeywordState extends State<MyPageDetailKeyword> {
+  String token, mbrId, keyWord, uyn;
+  bool state;
+  bool isDisposed = false;
+  int keySeq;
+  DateFormat fsrgDtm = DateFormat("yyyy-mm-dd HH:mm:ss");
+  DateFormat lschDtm = DateFormat("yyyy-mm-dd HH:mm:ss");
 
 
   TextEditingController _controller;
   var keyWordArrayList = [];
-  String keyWord;
 
   void initState() {
     super.initState();
@@ -22,6 +30,20 @@ class _MyPageDetailKeywordState extends State<MyPageDetailKeyword> {
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  loadToken() async{
+    token = await customSharedPreferences.getString('token');
+    state = await customSharedPreferences.getString('state');
+
+    // try{
+    //   if(state){
+    //     if(!isDisposed) {
+    //       mbrId = widget.keyWord['mbrid'];
+    //
+    //     }
+    //   }
+    // }
   }
 
   @override

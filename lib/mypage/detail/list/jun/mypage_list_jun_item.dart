@@ -125,19 +125,17 @@ class _MyPageListJunWorkItemState extends State<MyPageListJunWorkItem> {
         ) : null,
         margin: EdgeInsets.only(bottom: defaultSize * 0.7, left: defaultSize * 0.1, right: defaultSize * 0.1),
         child: Padding(
-          padding: EdgeInsets.only(left: defaultSize * 2.7, top: defaultSize * 1.1, bottom: defaultSize * 0.9),
+          padding: EdgeInsets.only(left: defaultSize * 2.7, top: defaultSize * 1, bottom: defaultSize * 0.9),
           child: Column(
             children: [
-              Padding(
-                padding: EdgeInsets.only(top: defaultSize * 0.6),),
               Row(
                 children: [
                   Container(
-                    margin: EdgeInsets.only(top: defaultSize * 2,bottom: defaultSize * 3),
+                    alignment: Alignment.centerLeft,
                     width: defaultSize * 8,
                     height: defaultSize * 10,
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.yellow.withOpacity(0.5),width: defaultSize * 0.3),
+                        border: Border.all(color: Colors.yellow.withOpacity(0.7),width: defaultSize * 0.3),
                         shape: BoxShape.circle,
                     image: DecorationImage(
                       fit: BoxFit.fill,
@@ -147,49 +145,41 @@ class _MyPageListJunWorkItemState extends State<MyPageListJunWorkItem> {
                     )
                     ),
                   ),
+                  
+                  Container(
+                    height: defaultSize * 14,
+                    width: defaultSize * 4,
+                    // color: Colors.red.withOpacity(0.3),
+                  ),
                   Column(
                     children: [
                       Container(
-                        // decoration: BoxDecoration(
-                        //     border: Border.all(color: Colors.grey)),
-                        margin: EdgeInsets.only(left: defaultSize * 3),
-                        padding: EdgeInsets.only(left: defaultSize * 0.6, top: defaultSize * 0.6),
+                        alignment: Alignment.centerLeft,
                         height: defaultSize * 4.8,
                         width: defaultSize * 25,
                         child: Text(widget.jobTtl ?? '일거리',
                             style: TextStyle(fontWeight: FontWeight.bold)),
                       ),
                       Container(
-                        margin: EdgeInsets.only(left: defaultSize * 3,bottom: defaultSize * 1,right: defaultSize * 6.7),
+                        alignment: Alignment.centerLeft,
+                        margin: EdgeInsets.only(right: defaultSize * 8),
                         width: defaultSize * 17,
+                        height: defaultSize * 3,
                         // decoration: BoxDecoration(
                         //     border: Border.all(color: Colors.grey)),
-                        child: (widget.aucMtd == "1")
-                            ? Text(
-                                '금액 : ' + formatter.format(widget.jobAmt) + '원',
-                                style: TextStyle(
-                                    fontSize: defaultSize * 1.7,
-                                    color: Colors.black,
-                                    // fontWeight: FontWeight.bold
-                                ),
-                          textAlign: TextAlign.left,
-                              )
-                            : Text(
-                                '희망 금액 : ' +
-                                    formatter.format(widget.jobAmt) +
-                                    '원',
-                                style: TextStyle(
-                                    fontSize: defaultSize * 1.7,
-                                    color: Colors.black,
-                                    // fontWeight: FontWeight.bold
-                                ),
+                        child: (widget.aucMtd == "1") ? Text('금액 : ' + formatter.format(widget.jobAmt) + '원',
+                                style: TextStyle(fontSize: defaultSize * 1.7, color: Colors.black,),
+                          textAlign: TextAlign.left,) : Text('희망 금액 : ' + formatter.format(widget.jobAmt) + '원',
+                                style: TextStyle(fontSize: defaultSize * 1.7, color: Colors.black,),
                           textAlign: TextAlign.left,
                               ),
                       ),
                       Row(
                         children: [
                           Container(
-                            padding:EdgeInsets.only(bottom: defaultSize * 1),
+                            margin: EdgeInsets.only(right: defaultSize * 4),
+                            alignment: Alignment.centerLeft,
+                            height: defaultSize * 3,
                             // decoration: BoxDecoration(
                             //     border: Border.all(color: Colors.grey)),
                             child: Text(
@@ -204,10 +194,9 @@ class _MyPageListJunWorkItemState extends State<MyPageListJunWorkItem> {
                             // decoration: BoxDecoration( color: Colors.lightBlue[50],  borderRadius: BorderRadius.circular(2), ),
                           ),
                           Container(
-                            padding:EdgeInsets.only(bottom: defaultSize * 1),
-                            margin: EdgeInsets.only(left: defaultSize * 3,right: defaultSize * 6.7),
-                            // decoration: BoxDecoration(
-                            //     border: Border.all(color: Colors.grey)),
+                            alignment: Alignment.centerLeft,
+                            height: defaultSize * 3,
+                            margin: EdgeInsets.only(right: defaultSize * 10),
                             child: Text(
                               (widget.payMtd == "1") ? '직접결제' : '안전결제',
                               style: TextStyle(
@@ -223,15 +212,14 @@ class _MyPageListJunWorkItemState extends State<MyPageListJunWorkItem> {
                       ),
 
                       Container(
-                        margin: EdgeInsets.only(right: defaultSize * 12.5),
-                        width: defaultSize * 10,
+                        alignment: Alignment.centerLeft,
+                        margin: EdgeInsets.only(right: defaultSize * 15.5),
+                        width: defaultSize * 9,
+                        height: defaultSize * 3,
                         // decoration: BoxDecoration(
                         //     border: Border.all(color: Colors.grey)),
                         child: jobStsText( jobSts, defaultSize),
-                        padding: EdgeInsets.only(left: defaultSize * 1),
-                        // decoration: BoxDecoration( color: Colors.orange[50],  borderRadius: BorderRadius.circular(2), ),
                       ),
-                      SizedBox(height: defaultSize * 2,)
                     ],
                   )
                 ],

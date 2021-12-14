@@ -176,10 +176,9 @@ class _HomeItemState extends State<HomeItem>
         ) : null,
         margin: EdgeInsets.only(bottom: defaultSize*0.8, left: defaultSize * 0.1, right: defaultSize * 0.1),
         child: Padding(
-          padding: EdgeInsets.only(left: defaultSize * 2, top: defaultSize*1.2, bottom: defaultSize * 0.8),
+          padding: EdgeInsets.only(left: defaultSize * 2,top: defaultSize * 1, bottom: defaultSize * 0.8),
           child: Column(
               children: [
-            Padding(padding: EdgeInsets.only(top: defaultSize * 0.5)),
             Row(
               children: [
                 Container(
@@ -197,15 +196,19 @@ class _HomeItemState extends State<HomeItem>
                           '$url/api/mypage/images?recieveToken=$junPrfSeq')),
                   ),
                 ),
+                Container(width: defaultSize * 2.5, height: defaultSize * 15,
+                  // decoration: BoxDecoration(color: Colors.red.withOpacity(0.3)),
+                ),
                 Column(
                   children: [
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(
-                          margin: EdgeInsets.only(left: defaultSize * 0.5,),
+                          margin: EdgeInsets.only(right: defaultSize * 0.9),
+                          alignment: Alignment.centerLeft,
                           // decoration: BoxDecoration(
                           //     border: Border.all(color: Colors.grey)),
-                          padding: EdgeInsets.only(top: defaultSize * 0.6, left: defaultSize * 1),
                           height: defaultSize * 4.7,
                           width: defaultSize * 18,
                           child: Text(widget.jobTtl ?? '일거리',
@@ -220,55 +223,38 @@ class _HomeItemState extends State<HomeItem>
                             width: defaultSize*5.7,
                           )
                               : (jobIts == widget.jobId)
-                                  ? IconButton(
-                                      icon: Icon(
-                                        Icons.favorite,
-                                        color: Colors.redAccent,
-                                      ),
+                                  ? IconButton(icon: Icon(Icons.favorite, color: Colors.redAccent,),
                                       iconSize: defaultSize * 2,
-                                      onPressed: () =>
-                                          sendAttentionDelete(context))
-                                  : IconButton(
-                                      icon:
-                                          Icon(Icons.favorite_border_outlined),
+                              onPressed: () => sendAttentionDelete(context))
+                                  : IconButton(icon: Icon(Icons.favorite_border_outlined),
                                       iconSize: defaultSize * 2,
-                                      onPressed: () => sendAttention(context)),
+                              onPressed: () => sendAttention(context)),
                         ),
                       ],
                     ),
                     Row(
                       children: [
                         Container(
-                          margin: EdgeInsets.only(left: defaultSize * 3),
+                          // margin: EdgeInsets.only(left: defaultSize * 3),
                           // decoration: BoxDecoration(
                           //     border: Border.all(color: Colors.grey)),
-                          padding: EdgeInsets.only(left: defaultSize * 0.6, top: defaultSize * 0.6),
-                          height: defaultSize * 3.2,
-                          width: defaultSize * 17,
-                          child: (widget.aucMtd == "1")
-                              ? Text(
-                                  '금액 : ' +
-                                      formatter.format(widget.jobAmt) +
-                                      '원',
-                                  style: TextStyle(
-                                      color: Colors.black,),
+                          alignment: Alignment.centerLeft,
+                          width: defaultSize * 16,
+                          height: defaultSize * 3,
+                          child: (widget.aucMtd == "1") ? Text(
+                                  '금액 : ' + formatter.format(widget.jobAmt) + '원',
+                                  style: TextStyle(color: Colors.black,),
                                   // style: TextStyle(color: Colors.orange, fontSize: 12, fontWeight: FontWeight.bold),
-                                )
-                              : Text(
-                                  '희망 금액 : ' +
-                                      formatter.format(widget.jobAmt) +
-                                      '원',
-                            style: TextStyle(
-                              color: Colors.black,),
+                                ) : Text('희망 금액 : ' + formatter.format(widget.jobAmt) + '원',
+                            style: TextStyle(color: Colors.black,),
                                   // style: TextStyle(color: Colors.orange, fontSize: 12, fontWeight: FontWeight.bold),
                                 ),
                         ),
                         Container(
-                          padding:
-                              EdgeInsets.only(left: defaultSize * 1, top: defaultSize * 0.6),
+                          height: defaultSize * 3,
+                          alignment: Alignment.centerLeft,
                           // decoration: (BoxDecoration(
                           //     color: Colors.grey))),
-                          height: defaultSize * 3.5,
                           width: defaultSize * 8,
                           child: Text(
                             widget.twnNm,
@@ -277,12 +263,16 @@ class _HomeItemState extends State<HomeItem>
                                 fontSize: defaultSize * 1.5,),
                           ),
                         ),
+                        SizedBox(width: defaultSize * 0.4,)
                       ],
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(
+                          alignment: Alignment.centerLeft,
                           width: defaultSize * 8,
+                          height: defaultSize * 3,
                           // decoration: BoxDecoration(
                           //     border: Border.all(color: Colors.grey)),
                           child: Text(
@@ -291,12 +281,13 @@ class _HomeItemState extends State<HomeItem>
                                 color: Colors.black,
                                 fontSize: defaultSize * 1.7,),
                           ),
-                          padding: EdgeInsets.only(left: defaultSize * 0.7, top: defaultSize * 0.7, bottom: defaultSize * 1),
                           // decoration: BoxDecoration( color: Colors.lightBlue[50],  borderRadius: BorderRadius.circular(2), ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(right: defaultSize * 4.1),
+                          alignment: Alignment.centerLeft,
+                          // margin: EdgeInsets.only(right: defaultSize * 4.1),
                           width: defaultSize * 10,
+                          height: defaultSize * 3,
                           // decoration: BoxDecoration(
                           //     border: Border.all(color: Colors.grey)),
                           child: Text(
@@ -306,14 +297,15 @@ class _HomeItemState extends State<HomeItem>
                                 fontSize: defaultSize * 1.7,
                                 ),
                           ),
-                          padding: EdgeInsets.only(left: defaultSize * 0.6, top: defaultSize * 0.6, bottom: defaultSize * 0.9),
                           // decoration: BoxDecoration( color: Colors.pink[50],  borderRadius: BorderRadius.circular(2), ),
                         ),
+                        SizedBox(width: defaultSize * 6.5,)
                       ],
                     ),
                     Container(
-                        child: Container(
-                          padding: EdgeInsets.only(left: defaultSize * 0.1, top: defaultSize * 0.6, bottom: defaultSize * 1),
+                      alignment: Alignment.centerLeft,
+                      height: defaultSize * 3,
+                          margin: EdgeInsets.only(right: defaultSize * 4),
                           child: Text(
                             "시작 시간 : ${widget.jobStDtm}",
                             style: TextStyle(
@@ -321,8 +313,7 @@ class _HomeItemState extends State<HomeItem>
                                 fontSize: defaultSize * 1.5,
                                 ),
                           ),
-                        ),
-                      ),
+                    ),
                   ],
                 ),
               ],
