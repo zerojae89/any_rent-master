@@ -146,12 +146,13 @@ class _ChatItemState extends State<ChatItem> {
       },
       child: Card(
         child: Container(
+          // color: Colors.red.withOpacity(0.4),
           height: defaultSize * 14,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(margin: EdgeInsets.only(left: defaultSize * 0.4),
+              Container(
                   decoration: BoxDecoration(
                       color: Colors.white,
                       shape: BoxShape.circle,

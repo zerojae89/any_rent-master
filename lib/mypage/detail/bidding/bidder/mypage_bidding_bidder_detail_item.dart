@@ -1,8 +1,10 @@
 import 'dart:async';
 
+import 'package:any_rent/settings/custom_shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:any_rent/settings/size_config.dart';
 import 'package:intl/intl.dart';
+import 'package:any_rent/mypage/mypage_server.dart';
 
 import 'mypag_bidding_bidder_detail.dart';
 
@@ -19,14 +21,17 @@ class MyPageBidderDetailItem extends StatefulWidget {
 
 class _MyPageBidderDetailItemState extends State<MyPageBidderDetailItem> {
 
-  String jobSts;
+  String jobSts, token;
   bool isDisposed = false;
   final formatter = new NumberFormat("###,###,###,###,###");
   String  formBidAmt = '0';
   String  formJobAmt = '0';
 
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   @override
   void initState() {
+    loadToken();
     formBidAmt =  formatter.format(widget.bidAmt);
     formJobAmt =  formatter.format(widget.jobAmt);
     jobSts = widget.jobSts;
@@ -34,10 +39,16 @@ class _MyPageBidderDetailItemState extends State<MyPageBidderDetailItem> {
     super.initState();
   }
 
+
+
   @override
   void dispose() {
     isDisposed = true;
     super.dispose();
+  }
+
+  loadToken() async{
+    token = await customSharedPreferences.getString('token');
   }
 
   @override
@@ -96,24 +107,24 @@ class _MyPageBidderDetailItemState extends State<MyPageBidderDetailItem> {
           barrierDismissible: false,
           builder: (BuildContext context){
             return AlertDialog(
-              // RoundedRectangleBorder - Dialog 화면 모서리 둥글게 조절
-              // shape: RoundedRectangleBorder(
-              // borderRadius: BorderRadius.circular(10.0)
+              shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),),
               title: Center(child: Text('입찰하기'),),
               content: Builder(
                 builder: (BuildContext context){
                   return Text(
                       '입찰을 진행 하시겠습니까? \n입찰을 하면 변경이 불가능합니다.'
-                          '\n희망 금액 $formJobAmt'
-                          '\n입찰 금액 $formBidAmt'
+                          '\n\n희망 금액 $formJobAmt'
+                          '\n\n입찰 금액 $formBidAmt'
                   );
                 },
               ),
               actions: <Widget>[
-                FlatButton(onPressed: () {
-                  Navigator.pop(context);
-                }, child: Text('취소', style: TextStyle(color: Colors.purple),)),
-                FlatButton(onPressed: sendReservationAucMtd, child: Text('낙찰', style: TextStyle(color: Colors.purple),)),
+                FlatButton(onPressed: () {Navigator.pop(context);},
+                    child: Text('취소', style: TextStyle(color: Colors.lightGreen[800]),)),
+                FlatButton(onPressed: sendReservationAucMtd,
+                    child: Text('낙찰', style: TextStyle(color: Colors.lightGreen[800]),),
+                ),
                 // FlatButton(onPressed: validateAndSave , child: Text('변경', style: TextStyle(color: Colors.purple),)),
               ],
             );
@@ -124,8 +135,19 @@ class _MyPageBidderDetailItemState extends State<MyPageBidderDetailItem> {
     }
   }
 
-  sendReservationAucMtd () async{
-    Navigator.pop(context);
-
+  void sendReservationAucMtd() async{
+    // final form = formKey.currentState;
+    // if(form.validate()) {
+    //   form.save();
+    //   String result = await myPageServer.bidderSuccess(token,
+    //       jobId,hanId,bidAmt
+    //   );
+    //   print('=======33333333===$result');
+    // }
   }
+
+//   sendReservationAucMtd () async{
+//     Navigator.pop(context);
+//
+//   }
 }

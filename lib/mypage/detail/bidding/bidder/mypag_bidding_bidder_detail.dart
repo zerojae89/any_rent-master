@@ -13,8 +13,9 @@ import 'mypage_bidding_bidder_detail_item.dart';
 class MypageBidderDetail extends StatefulWidget {
 
   String jobId, bidDlDtm, jobTtl, jobSts;
-  int count, jobAmt;
+  int count, jobAmt, bidAmt;
   MypageBidderDetail(this.jobId, this.count, this.bidDlDtm, this.jobAmt, this.jobTtl, this.jobSts);
+
   @override
   _MypageBidderDetailState createState() => _MypageBidderDetailState();
 }

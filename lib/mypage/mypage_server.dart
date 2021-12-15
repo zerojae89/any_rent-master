@@ -419,6 +419,32 @@ class MyPageServer {
     }
   }
 
+  Future<String> bidderSuccess(String token, String jobId, String hanId, String bidAmt) async {
+    print("keyWord=============================Start");
+    print("token=====================3333$token");
+    print("keyword=====================3333$jobId");
+    print("token=====================3333$hanId");
+    print("keyword=====================3333$bidAmt");
+    http.Response response = await http.post(
+        '$url/api/mypage/bidderSuccess',
+        body: {
+          "recieveToken": token,
+          "jobId" : jobId,
+          "hanId" : hanId,
+          "bidAmt" : bidAmt
+        }
+    );
+    if (response.statusCode == 200) {
+      print(
+          "keyWord====================================================end");
+      print(response.body);
+      String jsonString = response.body;
+      return jsonString;
+    } else {
+      throw Exception('error');
+    }
+  }
+
 
 }
 
