@@ -112,11 +112,15 @@ class _ChatItemState extends State<ChatItem> {
     }
   }
 
-  // String UnreadMsg(){
-  //   setState(unreadMsg) {
-  //   });
-  //   return "";
-  // }
+  String UnreadMsg(){
+    if(unreadMsg>0){
+      print('===============55555$unreadMsg');
+      setState(() {
+        '$unreadMsg';
+      });
+    }
+    return "";
+  }
 
   // String ChatCnt(){
   //   setState((){

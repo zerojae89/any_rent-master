@@ -57,7 +57,7 @@ class _MyPageDetailListState extends State<MyPageDetailList> {
                 title: Text('한일'),
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.message_outlined),
+                icon: Icon(Icons.star_border_outlined),
                 title: Text('관심'),
               ),
             ]

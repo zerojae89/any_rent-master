@@ -124,7 +124,7 @@ class _ChatPageState extends State<ChatPage> {
 
     } catch(e){
       print(e);
-      globalKey.currentState.showSnackBar(const SnackBar(content: const Text('잠시후 다시 시도해 주세요.1 ')));
+      globalKey.currentState.showSnackBar(const SnackBar(content: const Text('잠시후 다시 시도해 주세요.')));
     }
   }
 
@@ -213,6 +213,8 @@ class _ChatPageState extends State<ChatPage> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Container(margin: EdgeInsets.only(right: 30),
+                                    width: defaultSize * 8,
+                                    height: defaultSize * 10,
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       shape: BoxShape.circle,
@@ -223,8 +225,7 @@ class _ChatPageState extends State<ChatPage> {
                                               : NetworkImage(
                                               '$url/api/mypage/images?recieveToken=$userPrfSeq')), //.
                                     ),
-                                    width: defaultSize * 9,
-                                    height: defaultSize * 12
+
 
                                 ),
                                 Container(
