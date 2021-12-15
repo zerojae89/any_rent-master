@@ -147,6 +147,9 @@ class _MyHomePageState extends State<MyHomePage> {
         barrierDismissible: false,
         builder: (BuildContext context){
           return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15)
+            ),
             title: Text('재인증'),
             content: Text('재인증이 필요합니다. 로그인 페이지로 이동합니다.'),
             actions: [

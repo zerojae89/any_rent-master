@@ -1,3 +1,4 @@
+import 'package:any_rent/mypage/mypage_server.dart';
 import 'package:any_rent/settings/custom_shared_preferences.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
@@ -12,38 +13,24 @@ class MyPageDetailKeyword extends StatefulWidget {
 
 class _MyPageDetailKeywordState extends State<MyPageDetailKeyword> {
   String token, mbrId, keyWord, uyn;
-  bool state;
   bool isDisposed = false;
   int keySeq;
-  DateFormat fsrgDtm = DateFormat("yyyy-mm-dd HH:mm:ss");
-  DateFormat lschDtm = DateFormat("yyyy-mm-dd HH:mm:ss");
+
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
 
-  TextEditingController _controller;
-  var keyWordArrayList = [];
 
   void initState() {
+    loadToken();
     super.initState();
-    _controller = TextEditingController();
   }
 
   void dispose() {
-    _controller.dispose();
     super.dispose();
   }
 
   loadToken() async{
     token = await customSharedPreferences.getString('token');
-    state = await customSharedPreferences.getString('state');
-
-    // try{
-    //   if(state){
-    //     if(!isDisposed) {
-    //       mbrId = widget.keyWord['mbrid'];
-    //
-    //     }
-    //   }
-    // }
   }
 
   @override
@@ -73,16 +60,28 @@ class _MyPageDetailKeywordState extends State<MyPageDetailKeyword> {
                         children: [
                           Container(
                             width: 220,
-                            child: TextField(
-                              controller: _controller,
-                              autofocus: true,
-                              decoration: InputDecoration(
-                                // border: InputBorder.none, // 하단 밑줄 제거s
-                                hintText: '키워드를 입력해 주세요',
-                                labelText: '키워드',
+                            child: Form(
+                              key: formKey,
+                              child: TextFormField(
+                                decoration: InputDecoration(hintText: '키워드를 입력해 주세요'),
+                                autofocus: true,
+                                validator: (value){ if(value.isEmpty){ return '키워드를 입력해주세요'; } else{ return null; } }, //null check
+                                onSaved: (value){ keyWord = value; },
                               ),
                             ),
                           ),
+                          // Container(
+                          //   width: 220,
+                          //   child: TextField(
+                          //     controller: _controller,
+                          //     autofocus: true,
+                          //     decoration: InputDecoration(
+                          //       // border: InputBorder.none, // 하단 밑줄 제거s
+                          //       hintText: '키워드를 입력해 주세요',
+                          //       labelText: '키워드',
+                          //     ),
+                          //   ),
+                          // ),
                           Container( width: 80,
                             decoration: (BoxDecoration(
                               borderRadius: BorderRadius.circular(20.0)
@@ -91,11 +90,7 @@ class _MyPageDetailKeywordState extends State<MyPageDetailKeyword> {
                               borderRadius: BorderRadius.circular(10.0)
                             ),
                               child: Text( '등록', style: TextStyle( color: Colors.white ), ),
-                              onPressed: (){
-                                keyWord = _controller.text;
-                                print('keyWord =  $keyWord');
-                                _controller.clear();
-                              },
+                              onPressed:validateAndSave
                             ),
                           ),
                         ],
@@ -110,4 +105,22 @@ class _MyPageDetailKeywordState extends State<MyPageDetailKeyword> {
       ),
     );
   }
+  void validateAndSave() async{
+    final form = formKey.currentState;
+    if(form.validate()) {
+      form.save();
+      print('===========2222222$keyWord');
+      String result = await myPageServer.keyWordRegi(token, keyWord);
+      print('=======33333333===$result');
+      // String result = await myPageServer.changrNic(token, nicNm);
+      // if(result != 'error') {
+      //   setState(() { nicNm; });
+      //   Scaffold.of(context).showSnackBar(SnackBar(content: Text('닉네임이 변경되었습니다.')));
+      // } else {
+      //   Scaffold.of(context).showSnackBar(SnackBar(content: Text('잠시후 다시 시도해 주세요')));
+      // }
+      // Navigator.pop(context, true);
+    }
+  }
 }
+

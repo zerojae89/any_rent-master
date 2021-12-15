@@ -84,9 +84,9 @@ class _MyPageProfileNicNameState extends State<MyPageProfileNicName> {
         barrierDismissible: false,
         builder: (BuildContext context){
           return AlertDialog(
-            // RoundedRectangleBorder - Dialog 화면 모서리 둥글게 조절
-            // shape: RoundedRectangleBorder(
-            // borderRadius: BorderRadius.circular(10.0)
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15)
+            ),
             title: Center(child: Text('닉네임'),),
             content: Builder(
                 builder: (BuildContext context){
@@ -102,8 +102,8 @@ class _MyPageProfileNicNameState extends State<MyPageProfileNicName> {
                 },
               ),
             actions: <Widget>[
-              FlatButton(onPressed: () => Navigator.pop(context, false), child: Text('취소', style: TextStyle(color: Colors.lightGreen),)),
-              FlatButton(onPressed: validateAndSave , child: Text('변경', style: TextStyle(color: Colors.lightGreen),)),
+              FlatButton(onPressed: () => Navigator.pop(context, false), child: Text('취소', style: TextStyle(color: Colors.lightGreen[800]),)),
+              FlatButton(onPressed: validateAndSave , child: Text('변경', style: TextStyle(color: Colors.lightGreen[800]),)),
             ],
           );
         }

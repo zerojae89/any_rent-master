@@ -382,8 +382,7 @@ class MyPageServer {
 
   Future<String> getBidderDetail(String jobId) async {
     //리뷰 작성 가져오기
-    print(
-        "getBidderDetail====================================================Start");
+    print("getBidderDetail==========================================Start");
     http.Response response = await http.post(
         '$url/api/mypage/bidderDetail', body: { "jobId": jobId});
     if (response.statusCode == 200) {
@@ -399,11 +398,16 @@ class MyPageServer {
     }
   }
 
-  Future<String> keyWordRegi(String token) async {
-    print(
-        "keyWord====================================================Start");
+  Future<String> keyWordRegi(String token, String keyWord) async {
+    print("keyWord=============================Start");
+    print("token=====================3333$token");
+    print("keyword=====================3333$keyWord");
+
     http.Response response = await http.post(
-        '$url/api/mypage/keyWordRegi', body: { "recieveToken": token});
+        '$url/api/mypage/keyWordRegi',
+        body: { "recieveToken": token,
+                "keyWord" : keyWord }
+        );
     if (response.statusCode == 200) {
       print(
           "keyWord====================================================end");
@@ -414,6 +418,8 @@ class MyPageServer {
       throw Exception('error');
     }
   }
+
+
 }
 
 MyPageServer myPageServer = MyPageServer();
