@@ -4,6 +4,7 @@ import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import '../mypage_detail_appbar.dart';
 import '../../../settings/size_config.dart';
+import 'package:any_rent/settings/size_config.dart';
 
 class MyPageDetailKeyword extends StatefulWidget {
 
@@ -12,7 +13,7 @@ class MyPageDetailKeyword extends StatefulWidget {
 }
 
 class _MyPageDetailKeywordState extends State<MyPageDetailKeyword> {
-  String token, mbrId, keyWord, uyn;
+  String token, mbrId, keyWord, uyn, substringKey1;
   bool isDisposed = false;
   int keySeq;
 
@@ -30,13 +31,24 @@ class _MyPageDetailKeywordState extends State<MyPageDetailKeyword> {
   }
 
   loadToken() async{
-    token = await customSharedPreferences.getString('token');
+    token = await customSharedPreferences.getString('token'); // 토큰 확인.
+  }
+
+  Widget findKeyword(String(keyWord) ){
+    double defaultSize = SizeConfig.defaultSize;
+    Container(
+      child: Text(keyWord,style: TextStyle(fontSize: defaultSize * 2,color: Colors.lightGreen[800]),),
+      width: defaultSize * 200,
+      height: defaultSize * 10,
+      color: Colors.lightBlue.withOpacity(0.3),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     double defaultSize = SizeConfig.defaultSize;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -66,7 +78,7 @@ class _MyPageDetailKeywordState extends State<MyPageDetailKeyword> {
                                 decoration: InputDecoration(hintText: '키워드를 입력해 주세요'),
                                 autofocus: true,
                                 validator: (value){ if(value.isEmpty){ return '키워드를 입력해주세요'; } else{ return null; } }, //null check
-                                onSaved: (value){ keyWord = value; },
+                                onSaved: (value){ keyWord = value; }, // 입력값이 keyWored 변수 값으로 저장.
                               ),
                             ),
                           ),
@@ -90,12 +102,27 @@ class _MyPageDetailKeywordState extends State<MyPageDetailKeyword> {
                               borderRadius: BorderRadius.circular(10.0)
                             ),
                               child: Text( '등록', style: TextStyle( color: Colors.white ), ),
-                              onPressed:validateAndSave
+                              onPressed:validateAndSave //터치하면 인증 후 서버로 던지는 함수로 저장.
                             ),
                           ),
                         ],
                       ),
                     ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.only(left: defaultSize * 5, right: defaultSize * 5),
+                  width: 400,
+                  height: 300,
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Container(child: Text('검색어 1')),
+                          Container(child: TextButton(child: Text('X',style: TextStyle(color: Colors.red[800]),),),)
+                        ],
+                      )
+                    ],
                   ),
                 ),
               ],

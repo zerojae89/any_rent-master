@@ -12,8 +12,8 @@ import '../main_home.dart';
 // const url = "http://192.168.1.3:3000"; //재승 내부 ip
 // const chatUrl = 'http://211.253.20.112:3443'; //개발서버
 // const chatUrl = "http://192.168.1.3:3000"; //재승 내부 ip
-const url = UrlConfig.url;
-const chatUrl = UrlConfig.url+':3443'; //개발서버
+const url = UrlConfig.url; // 서버 주소
+const chatUrl = UrlConfig.url+':3443'; //개발서버 (채팅전용?)
 
 class ChatPage extends StatefulWidget {
   final String jobId, hanId, junId, mbrId;
@@ -24,12 +24,11 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   SocketIO socketIO;
-  List messages;
+  List messages;  //? 이해 안감
   double height, width;
-  TextEditingController textController;
-  ScrollController scrollController;
-  final globalKey = GlobalKey<ScaffoldState>();
-  final listKey = GlobalKey<ScaffoldState>();
+  TextEditingController textController; //키보드 타이핑 텍스트를 데이터화 하는 기능
+  ScrollController scrollController; // 화면을 스크룰 방식으로 볼 수 있게 하는 기능
+  final globalKey = GlobalKey<ScaffoldState>(); //반복적으로 쓰이는 안내메세지를 계속 쓰는 기능.
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   bool isDisposed = false;
@@ -42,7 +41,7 @@ class _ChatPageState extends State<ChatPage> {
   DateFormat dateTimeFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
   @override
   void initState() {
-    messages = List();
+    messages = List(); // ? 이해 안감
     textController = TextEditingController();
     scrollController = ScrollController();
     if(!isDisposed) {

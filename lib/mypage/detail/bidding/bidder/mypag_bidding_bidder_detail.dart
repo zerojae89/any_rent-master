@@ -52,7 +52,7 @@ class _MypageBidderDetailState extends State<MypageBidderDetail> {
   loadToken() async {
     try{
       if(widget.jobId != null){
-        String result = await myPageServer.getBidderDetail(widget.jobId);
+        String result = await myPageServer.getBidderDetail(widget.jobId); // 잡아이디가 없을 시 서버로부터 잡아이디 데이터를 가져와 결과값에 저장.
         if(!isDisposed){setState(() => bidderItems = jsonDecode(result)['result'] );}
         print(bidderItems.length);
       }

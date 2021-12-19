@@ -194,8 +194,8 @@ class _MyPageDetailMyTownState extends State<MyPageDetailMyTown> {
                           margin: EdgeInsets.only(right: defaultSize * 5.4),
                           padding: EdgeInsets.only(top: defaultSize * 1.6,),
                         height: defaultSize * 4,
-                        //     decoration: BoxDecoration(
-                        //     color: Colors.red.withOpacity(0.1)
+                            // decoration: BoxDecoration(
+                            // color: Colors.red.withOpacity(0.1),
                         // ),
                         child: Text(cert ?? '' , style: TextStyle( fontSize:  defaultSize * 1.8),)),
                         Container(

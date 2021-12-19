@@ -46,24 +46,24 @@ class _ChatState extends State<Chat> {
 
   loadToken() async{
     print('mbrId ===================================== $mbrId');
-    token = await customSharedPreferences.getString('token');
+    token = await customSharedPreferences.getString('token'); // 토큰 불러오기
     // debugPrint('Chat token == $token');
-    state =  await customSharedPreferences.getBool('state');
+    state =  await customSharedPreferences.getBool('state'); // 현재 상태
     // debugPrint('Chat state == $state');
     setState(() { state = state; token = token;});
     try{
       if(state){
-        String result = await chatServer.getChatList(token);
-        // print('Chat1 chatRresult == $chatRresult');
-        String mbrUdResult = await myPageServer.getProfile(token);
-        Map<String, dynamic> profile = jsonDecode(mbrUdResult);
-        chatItems = jsonDecode(result);
-        print('3333========$chatItems');
-        if(!isDisposed) { setState((){ chatItems = jsonDecode(result); mbrId = profile['mbrId']; }); }
+        String result = await chatServer.getChatList(token); //서버로부터 채팅 데이터 가져옴 (토큰 인증)
+        String mbrUdResult = await myPageServer.getProfile(token); //서버에서 사용자정보 가져옴 (토큰 인증)
+        Map<String, dynamic> profile = jsonDecode(mbrUdResult); //디코드로 JSON 내용 풀어 내용을 프로필과 비교
+        chatItems = jsonDecode(result); //chatItems 로 받은 데이터를 jsonDecode 결과값으로 저장
+        print('3333========$chatItems'); // 채팅 데이터가 올바르게 서버에서 내려졌는지 확인
+        if(!isDisposed) { setState((){ chatItems = jsonDecode(result); mbrId = profile['mbrId']; }); } //데이터가 없을시 챗 아이템으로 받을 데이터를 jsonDecode 결과값으로 저장
+        print('#############$chatItems');
         print('mbrId =============================22======== $mbrId');
       }
     } catch(e){
-      globalKey.currentState.showSnackBar(const SnackBar(content: const Text('잠시후 다시 시도해 주세요.')));
+      globalKey.currentState.showSnackBar(const SnackBar(content: const Text('잠시후 다시 시도해 주세요.'))); // 에러발생시 해당 메시지 전달
     }
   }
 

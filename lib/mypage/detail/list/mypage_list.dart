@@ -60,6 +60,10 @@ class _MyPageDetailListState extends State<MyPageDetailList> {
                 icon: Icon(Icons.star_border_outlined),
                 title: Text('관심'),
               ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.tag),
+                title: Text('관심'),
+              ),
             ]
         ),
       ),

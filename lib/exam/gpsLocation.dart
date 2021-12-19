@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'AnyRent',
-        theme: ThemeData( primarySwatch: Colors.purple, ), // 앱에 매인 테마 색을 정한다.
+        theme: ThemeData( primarySwatch: Colors.lightGreen, ), // 앱에 매인 테마 색을 정한다.
         // home: MyHomePage(index: 0),
         home: AskForPermission()
     );

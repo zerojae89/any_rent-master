@@ -94,14 +94,14 @@ class _HomeDetailState extends State<HomeDetail> {
     debugPrint('HomeDetail jobId ================= $jobId');
     var homeDetail;
     try{
-      if(token == null ){ //비회원 또는 비로그인 상세 보기
-        homeDetail = { "jobId" : jobId };
-        result  = await homeServer.getHomeDetail(homeDetail);
-        debugPrint('result ============= $result');
-        homeDetailResultList = jsonDecode(result);
-        // debugPrint('NULL TOKEN homeDetailResultList ==================== $homeDetailResultList');
-      }else {
-        homeDetail = { "recieveToken": token ,"jobId" : jobId };
+    if(token == null ){ //비회원 또는 비로그인 상세 보기
+    homeDetail = { "jobId" : jobId };
+    result  = await homeServer.getHomeDetail(homeDetail);
+    debugPrint('result ============= $result');
+    homeDetailResultList = jsonDecode(result);
+    // debugPrint('NULL TOKEN homeDetailResultList ==================== $homeDetailResultList');
+    }else {
+    homeDetail = { "recieveToken": token ,"jobId" : jobId };
         result  = await homeServer.getHomeDetail(homeDetail);
         debugPrint('result ============= $result');
         // debugPrint('homeDetailResultList result ============= $result');

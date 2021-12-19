@@ -39,7 +39,7 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    loadPermission();
+    loadPermission(); // 권환 확인 로드
   }
 
   @override
@@ -53,14 +53,14 @@ class _HomeState extends State<Home> {
     if(!isDisposed) { setState(() => permission); }  // SharedPreferences에 permission으로 저장된 값을 읽어 필드에 저장. 없을 경우 false
     //permisssion false 일경우 처음으로 돌아 간다.
     print('Home permission =============== $permission');
-    if(permission) getGpsPermission();
+    if(permission) getGpsPermission(); // 권한 확인이 되면 GPS 권한 가져오는 함수 실행.
   }
 
   getGpsPermission() async{
     gpsPermissionBool = await gpsPermission.requestLocationPermission(context);
     // print('gpsPermissionBool ===================== $gpsPermissionBool');
     if(!isDisposed) { setState(() => gpsPermissionBool); }
-    if(gpsPermissionBool) gpsService();
+    if(gpsPermissionBool) gpsService();  //GPS 권한이 준되었으면 GPS정보 가져오는 함수 실행.
   }
 
   Future gpsService() async {
@@ -318,7 +318,7 @@ class _HomeState extends State<Home> {
                                 ListView.builder(
                                   itemCount: homeItems.length,
                                   itemBuilder: (context, index) {
-                                    jobId = homeItems[homeItems.length - index -1]['jobId'];
+                                    jobId = homeItems[homeItems.length - index -1]['jobId']; //ListView로 화면내에서도 서버 데이터를 가져와 매핑 시키는 것 같음.
                                     jobTtl = homeItems[homeItems.length - index -1]['jobTtl'];
                                     aucMtd = homeItems[homeItems.length - index -1]['aucMtd'];
                                     jobStDtm = homeItems[homeItems.length - index -1]['jobStDtm'];
@@ -329,7 +329,7 @@ class _HomeState extends State<Home> {
                                     jobIts = homeItems[homeItems.length - index -1]['jobIts'];
                                     twnNm = homeItems[homeItems.length - index -1]['twnNm'];
                                     prfSeq = homeItems[homeItems.length - index -1]['prfSeq'];
-                                    return HomeItem(token, jobId, jobTtl, aucMtd, jobStDtm, bidDlDtm, jobAmt, index, payMtd, jobIts, twnNm, prfSeq );
+                                    return HomeItem(token, jobId, jobTtl, aucMtd, jobStDtm, bidDlDtm, jobAmt, index, payMtd, jobIts, twnNm, prfSeq ); // 가져온 value값들을 HomeItem으로 전달.
                                   },
                                 ),
                               )

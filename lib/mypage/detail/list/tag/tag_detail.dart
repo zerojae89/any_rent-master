@@ -9,7 +9,7 @@ import 'package:any_rent/settings/size_config.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import '../../../mypage_server.dart';
-import 'attention_dottom.dart';
+import 'tag_dottom.dart';
 
 enum WhyFarther { report, hiding }
 
@@ -37,7 +37,7 @@ class _MyPageAttentionDetailState extends State<MyPageAttentionDetail> {
   @override
   void initState() {
     super.initState();
-    imageCache.clear(); //캐시 이미지 삭제
+    imageCache.clear();
     loadToken();
     jobId = widget.jobId;
   }
@@ -52,10 +52,10 @@ class _MyPageAttentionDetailState extends State<MyPageAttentionDetail> {
     token = await customSharedPreferences.getString('token'); //토큰으로 회원 비회원 판단
     var homeDetail;
     try{
-        homeDetail = { "recieveToken": token ,"jobId" : jobId }; // 서버에서 토큰, 잡아이디 값 가져옴.
-        result  = await homeServer.getHomeDetail(homeDetail); // 서버에서 가져온 값을 result로 저장.
+        homeDetail = { "recieveToken": token ,"jobId" : jobId };
+        result  = await homeServer.getHomeDetail(homeDetail);
         // debugPrint('result ============= $result');
-        homeDetailResultList = jsonDecode(result); // 저장된 result 값을 디코딩하여 변수 값으로 반환 .
+        homeDetailResultList = jsonDecode(result);
         debugPrint('NULL TOKEN homeDetailResultList ==================== $homeDetailResultList');
         String resultID = await myPageServer.getProfile(token); //관심에서 본인이 준일 구분 하기 위한 mbrId 받기위한 호출
         // debugPrint('MyPageAttentionDetail responeJson == $resultID');
@@ -63,7 +63,7 @@ class _MyPageAttentionDetailState extends State<MyPageAttentionDetail> {
     } catch(e){
       globalKey.currentState.showSnackBar(const SnackBar(content: const Text('잠시후 다시 시도해 주세요.')));
     }
-    if(!isDisposed)  { // 변수값으로 변환된 값을 배열에 입력.
+    if(!isDisposed)  {
       setState(() {
         mbrId = profile['mbrId'];
         picCnt = homeDetailResultList['picCnt'];

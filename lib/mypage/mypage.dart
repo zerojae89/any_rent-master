@@ -40,10 +40,10 @@ class _MyPageState extends State<MyPage> {
   }
 
   loadToken() async{
-    token = await customSharedPreferences.getString('token');
+    token = await customSharedPreferences.getString('token'); // 서버에서 토큰 가져옴
     // debugPrint('Mypage token == $token');
-    state =  await customSharedPreferences.getBool('state');
-    if(!isDisposed) setState(() => state);
+    state =  await customSharedPreferences.getBool('state'); // 현재 로그인 상태 유,무 확인
+    if(!isDisposed) setState(() => state); // 상태가 로그인이 아니면 로그인 하도록 함.
     print('Mypage state == $state');
   }
 
@@ -77,7 +77,7 @@ class _MyPageState extends State<MyPage> {
                          
                      ),
                      child: MyPageHeader()),
-                 MyPageMenuItem(
+                 MyPageMenuItem( // 미리 짜여진 아이템 함수에 리턴할 값 작성
                    icon: Icon(Icons.location_on_outlined, color: Colors.black,),
                    title: '내동네',
                    press: (){
@@ -89,7 +89,7 @@ class _MyPageState extends State<MyPage> {
                  ),
                  MyPageMenuItem(
                    icon: Icon(Icons.article_outlined, color: Colors.black,),
-                   title: '준일 / 한일 / 관심',
+                   title: '준일 / 한일 / 관심 / 키워드',
                    press: (){
                      print('준일 / 한일 / 관심 이동');
                      Navigator.push(context, MaterialPageRoute(builder: (context) => MyPageDetailList(index: 0,)));

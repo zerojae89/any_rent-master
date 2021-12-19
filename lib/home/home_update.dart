@@ -11,7 +11,6 @@ import 'package:intl/intl.dart';
 import 'package:any_rent/mypage/detail/mytown/mypage_mytown.dart';
 import 'package:flutter/material.dart';
 
-// import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
 import 'package:any_rent/settings/size_config.dart';
 import '../login/login.dart';
@@ -37,36 +36,8 @@ class HomeUpdate extends StatefulWidget {
 class _HomeUpdateState extends State<HomeUpdate> {
   double _width;
   DateTime selectedDate = DateTime.now();
-  String token,
-      jobTp1,
-      jobTp2,
-      twnCd,
-      twnGc,
-      // jobStDtm,
-      bidDlDtm,
-      jobAmt,
-      aucMtd,
-      payMtd,
-      jobTtl,
-      jobCtn,
-      hanGnd,
-      townCd1,
-      townCd2,
-      townNm1,
-      townNm2,
-      auctionTimeString,
-      twnGcName,
-      hanGndName;
-  String result,
-      jobId,
-      junId,
-      tp1Nm,
-      tp2Nm,
-      twnNm,
-      junNic,
-      jobIts,
-      tp1Cd,
-      tp2Cd;
+  String token, jobTp1, jobTp2, twnCd, twnGc, bidDlDtm,jobAmt,aucMtd,payMtd,jobTtl,jobCtn, hanGnd, townCd1, townCd2, townNm1, townNm2, auctionTimeString, twnGcName, hanGndName;
+  String result, jobId, junId, tp1Nm, tp2Nm, twnNm, junNic, jobIts, tp1Cd, tp2Cd; // jobStDtm
   String message = '';
   int bidAmt, junPrfSeq, mbrGrd;
   int picCnt = 0;

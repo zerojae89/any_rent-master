@@ -41,8 +41,8 @@ class _MyPageHeaderState extends State<MyPageHeader> {
     state = await customSharedPreferences.getBool('state');
     if (state) {
       try {
-        String result = await myPageServer.getProfile(token);
-        profile = jsonDecode(result);
+        String result = await myPageServer.getProfile(token); // 서버 토큰값을 결과값으로 저장
+        profile = jsonDecode(result); // 디코딩 됀 값을 프로파일 변수에 저장.
       } catch (e) {
         Scaffold.of(context).showSnackBar(SnackBar(
           content: Text(
@@ -51,7 +51,7 @@ class _MyPageHeaderState extends State<MyPageHeader> {
           duration: Duration(seconds: 3),
         ));
       }
-      if (!isDisposed) {
+      if (!isDisposed) { // 만약 아래 해당 내용이 없을시 벨류값을 문자열로 입력
         setState(() {
           prfSeq = profile['prfSeq'];
           nicNm = profile['nicNm'].toString();

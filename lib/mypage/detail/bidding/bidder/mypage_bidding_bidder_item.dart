@@ -30,7 +30,7 @@ class _MyPageBidderItemState extends State<MyPageBidderItem> {
 
   @override
   void initState() {
-    formJobAmt =  formatter.format(widget.jobAmt);
+    formJobAmt =  formatter.format(widget.jobAmt); //? 이해 못함..
     time();
     print('===============================================');
     print(widget.jobId);

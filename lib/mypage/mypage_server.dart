@@ -419,24 +419,25 @@ class MyPageServer {
     }
   }
 
-  Future<String> bidderSuccess(String token, String jobId, String hanId, String bidAmt) async {
-    print("keyWord=============================Start");
+  Future<String> bidderSuccess(String token, String jobId, String hanId, int bidAmt) async {
+    print(
+        "bidderSuccess====================================================start");
     print("token=====================3333$token");
-    print("keyword=====================3333$jobId");
-    print("token=====================3333$hanId");
-    print("keyword=====================3333$bidAmt");
+    print("jobId=====================3333$jobId");
+    print("hanId=====================3333$hanId");
+    print("bidAmt=====================3333$bidAmt");
     http.Response response = await http.post(
         '$url/api/mypage/bidderSuccess',
         body: {
           "recieveToken": token,
           "jobId" : jobId,
           "hanId" : hanId,
-          "bidAmt" : bidAmt
+          "bidAmt": '$bidAmt'
         }
     );
     if (response.statusCode == 200) {
       print(
-          "keyWord====================================================end");
+          "bidderSuccess====================================================end");
       print(response.body);
       String jsonString = response.body;
       return jsonString;

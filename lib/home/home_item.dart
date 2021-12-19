@@ -12,7 +12,7 @@ import 'package:any_rent/settings/url.dart';
 
 const url = UrlConfig.url;
 
-class HomeItem extends StatefulWidget {
+class HomeItem extends StatefulWidget { // 변수 선언
   String token,
       jobId,
       jobTtl,
@@ -23,7 +23,7 @@ class HomeItem extends StatefulWidget {
       jobIts,
       twnNm;
   int index, jobAmt,prfSeq;
-  HomeItem(
+  HomeItem( //home.dart 에서 리턴했던 값들을 받아주는 곳
       this.token,
       this.jobId,
       this.jobTtl,
@@ -77,7 +77,7 @@ class _HomeItemState extends State<HomeItem>
   }
 
   time() {
-    if (widget.aucMtd == '2') {
+    if (widget.aucMtd == '2') { //aucMtd ? 이해 못함
       _timer = Timer.periodic(_duration, (timer) {
         DateFormat dateFormat = DateFormat(dateFormatString); //날짜 방식 정하기
         DateTime nowDateTime = dateFormat.parse(DateFormat(dateFormatString)
@@ -140,7 +140,7 @@ class _HomeItemState extends State<HomeItem>
     }
   }
 
-  loadToken() async {
+  loadToken() async { //비회원도 볼 수 있는 페이지
     // token = await customSharedPreferences.getString('token');
     // state = await customSharedPreferences.getBool('state');
     //
@@ -196,7 +196,7 @@ class _HomeItemState extends State<HomeItem>
                           '$url/api/mypage/images?recieveToken=$junPrfSeq')),
                   ),
                 ),
-                Container(width: defaultSize * 2.5, height: defaultSize * 15,
+                SizedBox(width: defaultSize * 2, height: defaultSize * 15,
                   // decoration: BoxDecoration(color: Colors.red.withOpacity(0.3)),
                 ),
                 Column(
@@ -305,7 +305,7 @@ class _HomeItemState extends State<HomeItem>
                     Container(
                       alignment: Alignment.centerLeft,
                       height: defaultSize * 3,
-                          margin: EdgeInsets.only(right: defaultSize * 4),
+                          margin: EdgeInsets.only(right: defaultSize * 2),
                           child: Text(
                             "시작 시간 : ${widget.jobStDtm}",
                             style: TextStyle(

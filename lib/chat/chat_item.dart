@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:any_rent/settings/size_config.dart';
 import 'package:any_rent/settings/url.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 import 'package:any_rent/mypage/mypage_server.dart';
 import 'package:any_rent/settings/custom_shared_preferences.dart';
@@ -34,7 +35,7 @@ class _ChatItemState extends State<ChatItem> {
   @override
   void initState() {
     super.initState();
-    loadToken();
+    loadToken(); //토큰 로드
   }
   @override
   void dispose() {
@@ -45,13 +46,13 @@ class _ChatItemState extends State<ChatItem> {
 
   loadToken() async{
     // print('widget.chatItems =========================================== ${widget.chatItems}');
-    token = await customSharedPreferences.getString('token');
+    token = await customSharedPreferences.getString('token'); // 서버로부터 토큰 받음
     // debugPrint('Chat token == $token');
-    state =  await customSharedPreferences.getBool('state');
+    state =  await customSharedPreferences.getBool('state'); // 현재 로그인 상태인지 bool으로 확인
     // debugPrint('Chat state == $state');
     try{
-      if(state){
-        if(!isDisposed) {
+      if(state){ // 로그인 상태일시
+        if(!isDisposed) {  // 데이터가 없으면 데이터를 chatItems 베열에 저장
           setState(() {
             // mbrId = widget.mbrId;
             junId = widget.chatItems['junId'];
@@ -66,25 +67,25 @@ class _ChatItemState extends State<ChatItem> {
             unreadMsg = widget.chatItems['unreadMsg'];
             chatItems = widget.chatItems;
           });
-          if(junHan == "H"){
+          if(junHan == "H"){ //내가 하니일 때
             print('merId ============================= hanId');
             print('unread ================22============= $unreadMsg');
-            if(!isDisposed) {
+            if(!isDisposed) { // 데이터가 없으면
               setState(() {
-                hanId = widget.chatItems['myId'];
-                junId = widget.chatItems['opId'];
+                hanId = widget.chatItems['myId']; // 하니 아이디 데이터를 내 아이디로 위젯에 저장
+                junId = widget.chatItems['opId']; // 주니 아이디 데이터를 op(?) 로 저장
               });
             }
           } else {
             if(!isDisposed) {
-              setState(() {
+              setState(() { // ? 왜 같은 작업을 반복하는지 이해 못함.;;
                 hanId = widget.chatItems['opId'];
                 junId = widget.chatItems['myId'];
               });
             }
           }
         }
-        if(chatCnt == ' '){
+        if(chatCnt == ' '){     // 채팅 내용이 공백일 경우 '메세지가 없습니다.' 출력.
           print('chatCnt ============================= ''');
           if(!isDisposed) {
             setState(() {
@@ -94,33 +95,31 @@ class _ChatItemState extends State<ChatItem> {
         }
       }
 
-      var chatDate = dateFormat.format(DateTime.parse(chatItems['lschDtm']));
+      var chatDate = dateFormat.format(DateTime.parse(chatItems['lschDtm'])); // 채팅날짜 변수값 저장
 
-      print('chatDate ======================= $chatDate');
-      var now = dateFormat.format(DateTime.now());
+      print('chatDate ======================= $chatDate'); //채팅날짜 데이터 확인
+      var now = dateFormat.format(DateTime.now()); // 현재 시간 데이터
       // print('now =========================== $now');
       int compare = now.compareTo(chatDate); //날짜 비교 작업 시작날짜와 입찰 날짜 비교
-      if (compare == 0 ){
-        if(!isDisposed) { setState(() => screenDate = timeFormat.format(DateTime.parse(chatItems['lschDtm']))); }
+      if (compare == 0 ){ //? 비교 기준 이해 못함.
+        if(!isDisposed) { setState(() => screenDate = timeFormat.format(DateTime.parse(chatItems['lschDtm']))); } //시간  데이터 없으면 데이터 삽입
       } else {
-        if(!isDisposed) { setState(() => screenDate = dateFormat.format(DateTime.parse(chatItems['lschDtm']))); }
+        if(!isDisposed) { setState(() => screenDate = dateFormat.format(DateTime.parse(chatItems['lschDtm']))); } // 날짜 데이터 없으면 데이터 삽입
       }
       // print('compare =============== $compare');
     } catch(e){
       print('==================$e');
-      Scaffold.of(context).showSnackBar( SnackBar(content: Text("잠시후 다시 시도해 주세요.",), duration: Duration(seconds: 3),) );
+      Scaffold.of(context).showSnackBar( SnackBar(content: Text("잠시후 다시 시도해 주세요.",), duration: Duration(seconds: 3),) );  // 에러 발생시 해당 메세지 전달.
     }
   }
 
-  String UnreadMsg(){
-    if(unreadMsg>0){
-      print('===============55555$unreadMsg');
-      setState(() {
-        '$unreadMsg';
-      });
-    }
-    return "";
-  }
+  // String UnreadMsg(){
+  //     setState(() {
+  //       '$unreadMsg';
+  //     });
+  //   }
+  //   return "";
+  // }
 
   // String ChatCnt(){
   //   setState((){
@@ -142,8 +141,8 @@ class _ChatItemState extends State<ChatItem> {
         print('hanId ========55=== $unreadMsg');
         // print('chatItems ================================== $chatItems');
 
-        Navigator.push(context, MaterialPageRoute(builder: (context) => ChatPage(mbrId: mbrId, jobId: jobId, junId: junId, hanId: hanId,)));
-      },
+        Navigator.push(context, MaterialPageRoute(builder: (context) => ChatPage(mbrId: mbrId, jobId: jobId, junId: junId, hanId: hanId,))); //?? 이해 못함.
+      }, // 기존 변수 값 위에 서버에서 받은 벨류 값을 추가
       child: Card(
         child: Container(
           // color: Colors.red.withOpacity(0.4),

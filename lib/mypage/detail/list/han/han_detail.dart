@@ -56,6 +56,7 @@ class _MyPageHanDetailState extends State<MyPageHanDetail> {
 
   loadToken() async {
     token = await customSharedPreferences.getString('token'); //토큰으로 회원 비회원 판단
+    print('========!!!!!!!!========$isDisposed');
     debugPrint('HomeDetail token ================= $token');
     var homeDetail;
     try{ //한일은 비로그인 또는 비회원 처럼 디테일 가져온다
@@ -69,7 +70,7 @@ class _MyPageHanDetailState extends State<MyPageHanDetail> {
       globalKey.currentState.showSnackBar(const SnackBar(content: const Text('잠시후 다시 시도해 주세요.')));
     }
     if(!isDisposed)  {
-
+      print('========!!!!!!!!========$isDisposed');
       setState(() {
         message = hanDetailResultList['message'];
         picCnt = hanDetailResultList['picCnt'];
