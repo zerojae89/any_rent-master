@@ -4,6 +4,7 @@ import '../../../main_home.dart';
 import 'attention/mypage_list_attention_list.dart';
 import 'han/mypage_list_han_work_list.dart';
 import 'jun/mypage_list_jun_work_list.dart';
+import 'tag/mypage_list_tag_Worklist.dart';
 
 class MyPageDetailList extends StatefulWidget {
   MyPageDetailList({Key key, this.index}) : super(key: key);
@@ -30,7 +31,7 @@ class _MyPageDetailListState extends State<MyPageDetailList> {
     super.dispose();
   }
 
-  List<Widget> children = [MyPageJunWorkList(), MyPageHanWorkList(), MyPageAttentionWorkList()];
+  List<Widget> children = [MyPageJunWorkList(), MyPageHanWorkList(), MyPageAttentionWorkList(),MyPageTagWorkList()];
 
   void onTap(int index) { if(!isDisposed) setState(() => currentIndex = index ); } // 하단 네비게이션 바 인덱스 변경
 
@@ -62,7 +63,7 @@ class _MyPageDetailListState extends State<MyPageDetailList> {
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.tag),
-                title: Text('관심'),
+                title: Text('키워'),
               ),
             ]
         ),

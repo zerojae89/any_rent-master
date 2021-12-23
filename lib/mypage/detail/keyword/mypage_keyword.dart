@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:any_rent/mypage/mypage_server.dart';
 import 'package:any_rent/settings/custom_shared_preferences.dart';
 import 'package:date_time_picker/date_time_picker.dart';
@@ -6,6 +7,7 @@ import '../mypage_detail_appbar.dart';
 import '../../../settings/size_config.dart';
 import 'package:any_rent/settings/size_config.dart';
 
+
 class MyPageDetailKeyword extends StatefulWidget {
 
   @override
@@ -13,9 +15,10 @@ class MyPageDetailKeyword extends StatefulWidget {
 }
 
 class _MyPageDetailKeywordState extends State<MyPageDetailKeyword> {
-  String token, mbrId, keyWord, uyn, substringKey1;
+  String token, mbrId, keyWord, uyn, substringKey1,resultMessage;
   bool isDisposed = false;
   int keySeq;
+  final globalKey = GlobalKey<ScaffoldState>();
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -32,15 +35,21 @@ class _MyPageDetailKeywordState extends State<MyPageDetailKeyword> {
 
   loadToken() async{
     token = await customSharedPreferences.getString('token'); // 토큰 확인.
+    print('----------22----$keyWord');
   }
 
-  Widget findKeyword(String(keyWord) ){
+
+
+
+  Widget findKeyword(String resultMessage){
     double defaultSize = SizeConfig.defaultSize;
+    return(resultMessage == null) ? Container():
     Container(
-      child: Text(keyWord,style: TextStyle(fontSize: defaultSize * 2,color: Colors.lightGreen[800]),),
-      width: defaultSize * 200,
-      height: defaultSize * 10,
-      color: Colors.lightBlue.withOpacity(0.3),
+      alignment: Alignment.centerLeft,
+      child: Text(resultMessage,style: TextStyle(fontSize: defaultSize * 2,color: Colors.lightGreen[800]),),
+      width: defaultSize * 18,
+      height: defaultSize * 5,
+      // color: Colors.lightBlue.withOpacity(0.3),
     );
   }
 
@@ -48,6 +57,7 @@ class _MyPageDetailKeywordState extends State<MyPageDetailKeyword> {
   Widget build(BuildContext context) {
     double defaultSize = SizeConfig.defaultSize;
     return Scaffold(
+      key: globalKey,
       resizeToAvoidBottomInset: false,
       body: Column(
         // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -102,7 +112,7 @@ class _MyPageDetailKeywordState extends State<MyPageDetailKeyword> {
                               borderRadius: BorderRadius.circular(10.0)
                             ),
                               child: Text( '등록', style: TextStyle( color: Colors.white ), ),
-                              onPressed:validateAndSave //터치하면 인증 후 서버로 던지는 함수로 저장.
+                              onPressed:validateAndSave, //터치하면 인증 후 서버로 던지는 함수로 저장.
                             ),
                           ),
                         ],
@@ -118,7 +128,7 @@ class _MyPageDetailKeywordState extends State<MyPageDetailKeyword> {
                     children: [
                       Row(
                         children: [
-                          Container(child: Text('검색어 1')),
+                          Container(child: findKeyword(resultMessage),),
                           Container(child: TextButton(child: Text('X',style: TextStyle(color: Colors.red[800]),),),)
                         ],
                       )
@@ -132,13 +142,25 @@ class _MyPageDetailKeywordState extends State<MyPageDetailKeyword> {
       ),
     );
   }
-  void validateAndSave() async{
+  validateAndSave() async{
     final form = formKey.currentState;
     if(form.validate()) {
       form.save();
       print('===========2222222$keyWord');
       String result = await myPageServer.keyWordRegi(token, keyWord);
       print('=======33333333===$result');
+      if(!isDisposed){
+        setState(() => resultMessage = jsonDecode(result)['result'] );
+      }
+      print('=========ffffff$resultMessage');
+      if(resultMessage=="SAME"){
+        return globalKey.currentState.showSnackBar(const SnackBar(content: const Text('동일한 키워드가 이미 존재합니다.')));
+       } else if(resultMessage =='DISABLED'){
+        return globalKey.currentState.showSnackBar(const SnackBar(content: const Text('키워드 등록은 다섯개까지만 가능합니다.')));
+      } else {
+        setState(() => resultMessage = jsonDecode(result)['result'] );}
+      print('23232=======$resultMessage');
+
       // String result = await myPageServer.changrNic(token, nicNm);
       // if(result != 'error') {
       //   setState(() { nicNm; });

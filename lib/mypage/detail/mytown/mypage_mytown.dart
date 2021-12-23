@@ -197,7 +197,7 @@ class _MyPageDetailMyTownState extends State<MyPageDetailMyTown> {
                             // decoration: BoxDecoration(
                             // color: Colors.red.withOpacity(0.1),
                         // ),
-                        child: Text(cert ?? '' , style: TextStyle( fontSize:  defaultSize * 1.8),)),
+                         child: Text(cert ?? '' , style: TextStyle( fontSize:  defaultSize * 1.8),)),
                         Container(
                           height: defaultSize * 4,
                               width: defaultSize * 4,

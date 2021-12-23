@@ -7,7 +7,7 @@ import 'tag_detail.dart';
 
 const url = UrlConfig.url;
 
-class MyPageAttentionItme extends StatefulWidget {
+class MyPageTagItme extends StatefulWidget {
   String token,
       jobId,
       jobTtl,
@@ -18,7 +18,7 @@ class MyPageAttentionItme extends StatefulWidget {
       jobIts,
       jobSts;
   int index, jobAmt, prfSeq;
-  MyPageAttentionItme(
+  MyPageTagItme(
       this.token,
       this.jobId,
       this.jobTtl,
@@ -33,10 +33,10 @@ class MyPageAttentionItme extends StatefulWidget {
       this.prfSeq);
 
   @override
-  _MyPageAttentionItmeState createState() => _MyPageAttentionItmeState();
+  _MyPageMyPageTagItmeState createState() => _MyPageMyPageTagItmeState();
 }
 
-class _MyPageAttentionItmeState extends State<MyPageAttentionItme> {
+class _MyPageMyPageTagItmeState extends State<MyPageTagItme> {
   final formatter = new NumberFormat("###,###,###,###,###");
   String jobIts, jobSts;
   int junPrfSeq;
